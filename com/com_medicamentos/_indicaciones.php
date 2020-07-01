@@ -16,7 +16,7 @@ if($TR>0){
 	$dRSd=mysql_fetch_assoc($RSd);
 	$tr_RSd=mysql_num_rows($RSd);
 }
-$btnNew='<a href="indicacionesForm.php" class="btn btn-default fancybox fancybox.iframe fancyreload">
+$btnNew='<a href="indicacionesForm.php" class="btn btn-default fancybox fancybox.iframe fancyreload" data-type="iframe">
         <i class="fas fa-plus-square fa-lg"></i> NUEVA INDICACION
         </a>';
 ?>
