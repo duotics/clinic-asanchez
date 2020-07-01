@@ -1,0 +1,1 @@
+[15-Jun-2020 10:56:45 America/Guayaquil] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/urologoas/public_html/com/com_medicamentos/actions.php:199) in /home2/urologoas/public_html/com/com_medicamentos/actions.php on line 233
