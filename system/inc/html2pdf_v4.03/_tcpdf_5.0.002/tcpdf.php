@@ -12714,9 +12714,9 @@ if (!class_exists('TCPDF', false)) {
 					$lastcols = $num_cols - 1;
 					for ($i = 1; $i < $num_cols; ++$i) {
 						$functions .= ($fc + $i).' 0 R ';
-						if ($i < $lastcols) {
+						if ($i < $lastcols) {
 							$bounds .= sprintf('%.3F ', $grad['colors'][$i]['offset']);
-						}
+						}
 						$encode .= '0 1 ';
 					}
 					$out .= ' /Functions ['.trim($functions).']';
@@ -18547,22 +18547,22 @@ if (!class_exists('TCPDF', false)) {
 			$e = $ox * $this->k * (1 - $svgscale_x);
 			$f = ($this->h - $oy) * $this->k * (1 - $svgscale_y);
 			$this->_out(sprintf('%.3F %.3F %.3F %.3F %.3F %.3F cm', $svgscale_x, 0, 0, $svgscale_y, $e + $svgoffset_x, $f + $svgoffset_y));
-			// creates a new XML parser to be used by the other XML functions
-			$this->parser = xml_parser_create('UTF-8');
-			// the following function allows to use parser inside object
-			xml_set_object($this->parser, $this);
-			// disable case-folding for this XML parser
-			xml_parser_set_option($this->parser, XML_OPTION_CASE_FOLDING, 0);
-			// sets the element handler functions for the XML parser
+			// creates a new XML parser to be used by the other XML functions
+			$this->parser = xml_parser_create('UTF-8');
+			// the following function allows to use parser inside object
+			xml_set_object($this->parser, $this);
+			// disable case-folding for this XML parser
+			xml_parser_set_option($this->parser, XML_OPTION_CASE_FOLDING, 0);
+			// sets the element handler functions for the XML parser
 			xml_set_element_handler($this->parser, 'startSVGElementHandler', 'endSVGElementHandler');
-			// sets the character data handler function for the XML parser
-			xml_set_character_data_handler($this->parser, 'segSVGContentHandler');
-			// start parsing an XML document
-			if(!xml_parse($this->parser, $svgdata)) {
+			// sets the character data handler function for the XML parser
+			xml_set_character_data_handler($this->parser, 'segSVGContentHandler');
+			// start parsing an XML document
+			if(!xml_parse($this->parser, $svgdata)) {
 				$error_message = sprintf("SVG Error: %s at line %d", xml_error_string(xml_get_error_code($this->parser)), xml_get_current_line_number($this->parser));
-				$this->Error($error_message);
-			}
-			// free this XML parser
+				$this->Error($error_message);
+			}
+			// free this XML parser
 			xml_parser_free($this->parser);
 			// restore previous graphic state
 			$this->_out($this->epsmarker.'Q');
@@ -18611,14 +18611,14 @@ if (!class_exists('TCPDF', false)) {
 			$this->endlinex = $this->img_rb_x;
 		}
 
-		/**
-		 * Get the tranformation matrix from SVG transform attribute
-		 * @param string transformation
-		 * @return array of transformations
+		/**
+		 * Get the tranformation matrix from SVG transform attribute
+		 * @param string transformation
+		 * @return array of transformations
 		 * @author Nicola Asuni
 		 * @since 5.0.000 (2010-05-02)
-		 * @access protected
-		 */
+		 * @access protected
+		 */
 		protected function getSVGTransformMatrix($attribute) {
 			// identity matrix
 			$tm = array(1, 0, 0, 1, 0, 0);
@@ -18714,15 +18714,15 @@ if (!class_exists('TCPDF', false)) {
 			return $tm;
 		}
 
-		/**
-		 * Get the product of two SVG tranformation matrices
+		/**
+		 * Get the product of two SVG tranformation matrices
 		 * @param array $ta first SVG tranformation matrix
-		 * @param array $tb second SVG tranformation matrix
-		 * @return transformation array
+		 * @param array $tb second SVG tranformation matrix
+		 * @return transformation array
 		 * @author Nicola Asuni
 		 * @since 5.0.000 (2010-05-02)
-		 * @access protected
-		 */
+		 * @access protected
+		 */
 		protected function getTransformationMatrixProduct($ta, $tb)  {
 			$tm = array();
 			$tm[0] = ($ta[0] * $tb[0]) + ($ta[2] * $tb[1]);
@@ -18765,8 +18765,8 @@ if (!class_exists('TCPDF', false)) {
 			$this->Transform($this->convertSVGtMatrix($tm));
 		}
 
-		/**
-		 * Apply the requested SVG styles (*** TO BE COMPLETED ***)
+		/**
+		 * Apply the requested SVG styles (*** TO BE COMPLETED ***)
 		 * @param array $svgstyle array of SVG styles to apply
 		 * @param array $prevsvgstyle array of previous SVG style
 		 * @param int $x X origin of the bounding box
@@ -18775,11 +18775,11 @@ if (!class_exists('TCPDF', false)) {
 		 * @param int $h height of the bounding box
 		 * @param string $clip_function clip function
 		 * @param array $clip_params array of parameters for clipping function
-		 * @return object style
+		 * @return object style
 		 * @author Nicola Asuni
 		 * @since 5.0.000 (2010-05-02)
-		 * @access protected
-		 */
+		 * @access protected
+		 */
 		protected function setSVGStyles($svgstyle, $prevsvgstyle, $x=0, $y=0, $w=1, $h=1, $clip_function='', $clip_params=array())  {
 			$objstyle = '';
 			if(!isset($svgstyle['opacity'])) {
@@ -19018,8 +19018,8 @@ if (!class_exists('TCPDF', false)) {
 			return $objstyle;
 		}
 
-		/**
-		 * Draws an SVG path
+		/**
+		 * Draws an SVG path
 		 * @param string $d attribute d of the path SVG element
 		 * @param string $style Style of rendering. Possible values are:
 		 * <ul>
@@ -19031,11 +19031,11 @@ if (!class_exists('TCPDF', false)) {
 		 *	 <li>CNZ: Clipping mode (using the even-odd rule to determine which regions lie inside the clipping path).</li>
 		 *	 <li>CEO: Clipping mode (using the nonzero winding number rule to determine which regions lie inside the clipping path).</li>
 		 * </ul>
-		 * @return array of container box measures (x, y, w, h)
+		 * @return array of container box measures (x, y, w, h)
 		 * @author Nicola Asuni
 		 * @since 5.0.000 (2010-05-02)
-		 * @access protected
-		 */
+		 * @access protected
+		 */
 		protected function SVGPath($d, $style='') {
 			// set fill/stroke style
 			$op = $this->getPathPaintOperator($style, '');
@@ -19344,16 +19344,16 @@ if (!class_exists('TCPDF', false)) {
 			return array($xmin, $ymin, ($xmax - $xmin), ($ymax - $ymin));
 		}
 
-		/**
-		 * Returns the angle in  radiants between two vectors
+		/**
+		 * Returns the angle in  radiants between two vectors
 		 * @param int $x1 X coordiante of first vector point
 		 * @param int $y1 Y coordiante of first vector point
 		 * @param int $x2 X coordiante of second vector point
-		 * @param int $y2 Y coordiante of second vector point
+		 * @param int $y2 Y coordiante of second vector point
 		 * @author Nicola Asuni
 		 * @since 5.0.000 (2010-05-04)
-		 * @access protected
-		 */
+		 * @access protected
+		 */
 		protected function getVectorsAngle($x1, $y1, $x2, $y2) {
 			$dprod = ($x1 * $x2) + ($y1 * $y2);
 			$dist1 = sqrt(($x1 * $x1) + ($y1 * $y1));
@@ -19368,15 +19368,15 @@ if (!class_exists('TCPDF', false)) {
 			return $angle;
 		}
 
-		/**
-		 * Sets the opening SVG element handler function for the XML parser. (*** TO BE COMPLETED ***)
-		 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
-		 * @param string $name The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters. 
-		 * @param array $attribs The third parameter, attribs, contains an associative array with the element's attributes (if any). The keys of this array are the attribute names, the values are the attribute values. Attribute names are case-folded on the same criteria as element names. Attribute values are not case-folded. The original order of the attributes can be retrieved by walking through attribs the normal way, using each(). The first key in the array was the first attribute, and so on. 
+		/**
+		 * Sets the opening SVG element handler function for the XML parser. (*** TO BE COMPLETED ***)
+		 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
+		 * @param string $name The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters. 
+		 * @param array $attribs The third parameter, attribs, contains an associative array with the element's attributes (if any). The keys of this array are the attribute names, the values are the attribute values. Attribute names are case-folded on the same criteria as element names. Attribute values are not case-folded. The original order of the attributes can be retrieved by walking through attribs the normal way, using each(). The first key in the array was the first attribute, and so on. 
 		 * @author Nicola Asuni
 		 * @since 5.0.000 (2010-05-02)
-		 * @access protected
-		 */
+		 * @access protected
+		 */
 		protected function startSVGElementHandler($parser, $name, $attribs) {
 			// check if we are in clip mode
 			if ($this->svgclipmode) {
@@ -19393,7 +19393,7 @@ if (!class_exists('TCPDF', false)) {
 				$clipping = true;
 			}
 			// get styling properties
-			$prev_svgstyle = $this->svgstyles[(count($this->svgstyles) - 1)]; // previous style
+			$prev_svgstyle = $this->svgstyles[(count($this->svgstyles) - 1)]; // previous style
 			$svgstyle = array(); // current style
 			if (isset($attribs['style'])) {
 				$attribs['style'] = ';'.$attribs['style'];
@@ -19435,10 +19435,10 @@ if (!class_exists('TCPDF', false)) {
 			}
 			$svgstyle['transfmatrix'] = $tm;
 			// process tag
-			switch($name) {
-				case 'defs': {
-					$this->svgdefsmode = true;
-					break;
+			switch($name) {
+				case 'defs': {
+					$this->svgdefsmode = true;
+					break;
 				}
 				// clipPath
 				case 'clipPath': {
@@ -19447,16 +19447,16 @@ if (!class_exists('TCPDF', false)) {
 					$this->svgclippaths[$this->svgclipid] = array();
 					break;
 				}
-				case 'svg': {
-					// start of SVG object
-					break;
-				}
-				case 'g': {
-					// group together related graphics elements
+				case 'svg': {
+					// start of SVG object
+					break;
+				}
+				case 'g': {
+					// group together related graphics elements
 					array_push($this->svgstyles, $svgstyle);
 					$this->StartTransform();
-					$this->setSVGStyles($svgstyle, $prev_svgstyle);
-					break;
+					$this->setSVGStyles($svgstyle, $prev_svgstyle);
+					break;
 				}
 				case 'linearGradient': {
 					$this->svggradientid = $attribs['id'];
@@ -19753,26 +19753,26 @@ if (!class_exists('TCPDF', false)) {
 						$this->startSVGElementHandler($parser, $use['name'], $use['attribs']);
 					}
 					break;
-				}
-				default: {
-					break;
-				}
-			}
-		}
-
-		/**
-		 * Sets the closing SVG element handler function for the XML parser.
-		 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
-		 * @param string $name The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters. 
+				}
+				default: {
+					break;
+				}
+			}
+		}
+
+		/**
+		 * Sets the closing SVG element handler function for the XML parser.
+		 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
+		 * @param string $name The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters. 
 		 * @author Nicola Asuni
 		 * @since 5.0.000 (2010-05-02)
-		 * @access protected
-		 */
-		protected function endSVGElementHandler($parser, $name) {
+		 * @access protected
+		 */
+		protected function endSVGElementHandler($parser, $name) {
 			switch($name) {
-				case 'defs': {
-					$this->svgdefsmode = false;
-					break;
+				case 'defs': {
+					$this->svgdefsmode = false;
+					break;
 				}
 				// clipPath
 				case 'clipPath': {
@@ -19780,34 +19780,34 @@ if (!class_exists('TCPDF', false)) {
 					break;
 				}
 				case 'g': {
-					// ungroup: remove last style from array
+					// ungroup: remove last style from array
 					array_pop($this->svgstyles);
-					$this->StopTransform();
-					break;
+					$this->StopTransform();
+					break;
 				}
 				case 'text':
-				case 'tspan': {
+				case 'tspan': {
 					// print text
 					$this->Cell(0, 0, trim($this->svgtext), 0, 0, '', 0, '', 0, false, 'L', 'T');
-					$this->StopTransform();
-					break;
-				}
-				default: {
-					break;
-				}
-			}
+					$this->StopTransform();
+					break;
+				}
+				default: {
+					break;
+				}
+			}
 		}
-
-		/**
-		 * Sets the character data handler function for the XML parser.
-		 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
-		 * @param string $data The second parameter, data, contains the character data as a string. 
+
+		/**
+		 * Sets the character data handler function for the XML parser.
+		 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
+		 * @param string $data The second parameter, data, contains the character data as a string. 
 		 * @author Nicola Asuni
 		 * @since 5.0.000 (2010-05-02)
-		 * @access protected
-		 */
-		protected function segSVGContentHandler($parser, $data) {
-			$this->svgtext .= $data;
+		 * @access protected
+		 */
+		protected function segSVGContentHandler($parser, $data) {
+			$this->svgtext .= $data;
 		}
 
 	} // END OF TCPDF CLASS

@@ -1,34 +1,34 @@
-TCPDF - README
-============================================================
-
-IF YOU'D LIKE TO SUPPORT TCPDF, PLEASE CONSIDER MAKING A 
-DONATION: 
-http://sourceforge.net/donate/index.php?group_id=128076
-
-------------------------------------------------------------
-
-Name: TCPDF
-Version: 5.0.002
-Release date: 2010-05-06
-Author:	Nicola Asuni
-	
-Copyright (c) 2001-2010:
-	Nicola Asuni
-	Tecnick.com s.r.l.
-	Via Della Pace, 11
-	09044 Quartucciu (CA)
-	ITALY
-	www.tecnick.com
-	
-URLs:
-	http://www.tcpdf.org
-	http://www.sourceforge.net/projects/tcpdf
-	
-Description:
-	TCPDF is a PHP class for generating PDF files on-the-fly without requiring external extensions.
-	TCPDF has been originally derived from the Public Domain FPDF class by Olivier Plathey (http://www.fpdf.org).
-	
-Main Features:
+TCPDF - README
+============================================================
+
+IF YOU'D LIKE TO SUPPORT TCPDF, PLEASE CONSIDER MAKING A 
+DONATION: 
+http://sourceforge.net/donate/index.php?group_id=128076
+
+------------------------------------------------------------
+
+Name: TCPDF
+Version: 5.0.002
+Release date: 2010-05-06
+Author:	Nicola Asuni
+	
+Copyright (c) 2001-2010:
+	Nicola Asuni
+	Tecnick.com s.r.l.
+	Via Della Pace, 11
+	09044 Quartucciu (CA)
+	ITALY
+	www.tecnick.com
+	
+URLs:
+	http://www.tcpdf.org
+	http://www.sourceforge.net/projects/tcpdf
+	
+Description:
+	TCPDF is a PHP class for generating PDF files on-the-fly without requiring external extensions.
+	TCPDF has been originally derived from the Public Domain FPDF class by Olivier Plathey (http://www.fpdf.org).
+	
+Main Features:
 //  * no external libraries are required for the basic functions;
 //  * all ISO page formats, custom page formats, custom margins and units of measure;
 //  * UTF-8 Unicode and Right-To-Left languages;
@@ -50,35 +50,35 @@ Main Features:
 //  * automatic page numbering and page groups;
 //  * move and delete pages;
 //  * page compression (requires php-zlib extension);
-
-
-Installation (full instructions on http://www.tcpdf.org):
-	1. copy the folder on your Web server
-	2. set your installation path and other parameters on the config/tcpdf_config.php
-	3. call the examples/example_001.php page with your browser to see an example
-
-Source Code Documentation:
-	doc/index.html
-	
-For Additional Documentation:
-	http://www.tcpdf.org
-
-License
-	Copyright (C) 2002-2010 Nicola Asuni - Tecnick.com S.r.l.
-	
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU Lesser General Public License as published by
-	the Free Software Foundation, either version 2.1 of the License, or
-	(at your option) any later version.
-	
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU Lesser General Public License for more details.
-	
-	You should have received a copy of the GNU Lesser General Public License
-	along with this program.  If not, see <http://www.gnu.org/licenses/>.
-	
-	See LICENSE.TXT file for more information.
-	
-============================================================
+
+
+Installation (full instructions on http://www.tcpdf.org):
+	1. copy the folder on your Web server
+	2. set your installation path and other parameters on the config/tcpdf_config.php
+	3. call the examples/example_001.php page with your browser to see an example
+
+Source Code Documentation:
+	doc/index.html
+	
+For Additional Documentation:
+	http://www.tcpdf.org
+
+License
+	Copyright (C) 2002-2010 Nicola Asuni - Tecnick.com S.r.l.
+	
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU Lesser General Public License as published by
+	the Free Software Foundation, either version 2.1 of the License, or
+	(at your option) any later version.
+	
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU Lesser General Public License for more details.
+	
+	You should have received a copy of the GNU Lesser General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	
+	See LICENSE.TXT file for more information.
+	
+============================================================

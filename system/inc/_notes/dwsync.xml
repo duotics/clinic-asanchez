@@ -1,24 +1,24 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<dwsync>
-<file name="fnc_data.php" server="C:/AppServ/www/CLINIC_BIOGEPA/" local="130430556380036725" remote="130430556380000000" Dst="0" />
-<file name="fnc_tra.php" server="C:/AppServ/www/CLINIC_BIOGEPA/" local="130460048044340577" remote="130460048040000000" Dst="0" />
-<file name="fnc_tra.php" server="//servidor/clinic/" local="130501123377859631" remote="130501123370000000" Dst="0" />
-<file name="class.image-resize.php" server="//servidor/clinic/" local="130483471811380513" remote="130483471810000000" Dst="0" />
-<file name="enLetras.class.php" server="//servidor/clinic/" local="130081791341160193" remote="130081791340000000" Dst="0" />
-<file name="fnc_data.php" server="//servidor/clinic/" local="130501102853999201" remote="130501102850000000" Dst="0" />
-<file name="fnc_gen.php" server="//servidor/clinic/" local="130500039012337923" remote="130500039010000000" Dst="0" />
-<file name="fnc_sys.php" server="//servidor/clinic/" local="130505446210000000" remote="130505446210000000" Dst="0" />
-<file name="html2pdf.class.php" server="//servidor/clinic/" local="129509941860000000" remote="129509941860000000" Dst="0" />
-<file name="paginator.class.php" server="//servidor/clinic/" local="130301741913019766" remote="130301741910000000" Dst="0" />
-<file name="fnc_sys.php" server="C:/AppServ/www/CLINIC_ORDONEZ/" local="131638989228989549" remote="131638989220000000" Dst="0" />
-<file name="fncDocs.php" server="//SERVIDOR/clinic/" local="131436589338793730" remote="131436589330000000" Dst="0" />
-<file name="class.image-resize.php" server="//SERVIDOR/clinic/" local="130483471811380513" remote="130483471810000000" Dst="0" />
-<file name="enLetras.class.php" server="//SERVIDOR/clinic/" local="130081791341160193" remote="130081791340000000" Dst="0" />
-<file name="fnc_data.php" server="//SERVIDOR/clinic/" local="131448892916398046" remote="131448892910000000" Dst="0" />
-<file name="fnc_gen.php" server="//SERVIDOR/clinic/" local="131409223371519517" remote="131409223370000000" Dst="0" />
-<file name="fnc_sys.php" server="//SERVIDOR/clinic/" local="131412372071861941" remote="131412372070000000" Dst="0" />
-<file name="fnc_tra.php" server="//SERVIDOR/clinic/" local="131412098961180216" remote="131412098960000000" Dst="0" />
-<file name="html2pdf.class.php" server="//SERVIDOR/clinic/" local="129509941860000000" remote="129509941860000000" Dst="0" />
-<file name="paginator.class.php" server="//SERVIDOR/clinic/" local="131410980673528141" remote="131410980670000000" Dst="0" />
-<file name="fnc_sys.php" server="192.185.166.226//public_html/" local="131990118367185817" remote="131990118000000000" Dst="0" />
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="fnc_data.php" server="C:/AppServ/www/CLINIC_BIOGEPA/" local="130430556380036725" remote="130430556380000000" Dst="0" />
+<file name="fnc_tra.php" server="C:/AppServ/www/CLINIC_BIOGEPA/" local="130460048044340577" remote="130460048040000000" Dst="0" />
+<file name="fnc_tra.php" server="//servidor/clinic/" local="130501123377859631" remote="130501123370000000" Dst="0" />
+<file name="class.image-resize.php" server="//servidor/clinic/" local="130483471811380513" remote="130483471810000000" Dst="0" />
+<file name="enLetras.class.php" server="//servidor/clinic/" local="130081791341160193" remote="130081791340000000" Dst="0" />
+<file name="fnc_data.php" server="//servidor/clinic/" local="130501102853999201" remote="130501102850000000" Dst="0" />
+<file name="fnc_gen.php" server="//servidor/clinic/" local="130500039012337923" remote="130500039010000000" Dst="0" />
+<file name="fnc_sys.php" server="//servidor/clinic/" local="130505446210000000" remote="130505446210000000" Dst="0" />
+<file name="html2pdf.class.php" server="//servidor/clinic/" local="129509941860000000" remote="129509941860000000" Dst="0" />
+<file name="paginator.class.php" server="//servidor/clinic/" local="130301741913019766" remote="130301741910000000" Dst="0" />
+<file name="fnc_sys.php" server="C:/AppServ/www/CLINIC_ORDONEZ/" local="131638989228989549" remote="131638989220000000" Dst="0" />
+<file name="fncDocs.php" server="//SERVIDOR/clinic/" local="131436589338793730" remote="131436589330000000" Dst="0" />
+<file name="class.image-resize.php" server="//SERVIDOR/clinic/" local="130483471811380513" remote="130483471810000000" Dst="0" />
+<file name="enLetras.class.php" server="//SERVIDOR/clinic/" local="130081791341160193" remote="130081791340000000" Dst="0" />
+<file name="fnc_data.php" server="//SERVIDOR/clinic/" local="131448892916398046" remote="131448892910000000" Dst="0" />
+<file name="fnc_gen.php" server="//SERVIDOR/clinic/" local="131409223371519517" remote="131409223370000000" Dst="0" />
+<file name="fnc_sys.php" server="//SERVIDOR/clinic/" local="131412372071861941" remote="131412372070000000" Dst="0" />
+<file name="fnc_tra.php" server="//SERVIDOR/clinic/" local="131412098961180216" remote="131412098960000000" Dst="0" />
+<file name="html2pdf.class.php" server="//SERVIDOR/clinic/" local="129509941860000000" remote="129509941860000000" Dst="0" />
+<file name="paginator.class.php" server="//SERVIDOR/clinic/" local="131410980673528141" remote="131410980670000000" Dst="0" />
+<file name="fnc_sys.php" server="192.185.166.226//public_html/" local="131990118367185817" remote="131990118000000000" Dst="0" />
 </dwsync>
