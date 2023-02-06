@@ -1,3 +1,6 @@
+#folders
 /.vscode
 /.well-known
 /data
+#files
+*.zip
