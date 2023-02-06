@@ -1,7 +1,10 @@
 #folders
-/.vscode
-/.well-known
-/data
-#files
-*.zip
+/.git/
+/.vscode/
+/.well-known/
+/data/
 /vendor/
+#files
+.env
+*.zip
+
