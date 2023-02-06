@@ -8,8 +8,8 @@ $hostType='localhost/'; //$hostType='192.168.0.2/'; //Remoto. 'www.'; Local. 'lo
 $protocolS='http://';
 */
 $domainName='';
-$folderBase='/www/'; //Remoto. '/'; Local. '/Folder/' (Folder in www)
-$folderCont='clinic-asanchez/'; //Folder if system is in subdirectory
+$folderBase='/'; //Remoto. '/'; Local. '/Folder/' (Folder in www)
+$folderCont=''; //Folder if system is in subdirectory
 $serverRoot=$_SERVER['DOCUMENT_ROOT'];
 $hostType='pacientes.urologoalfredosanchez.com/'; //$hostType='192.168.0.2/'; //Remoto. 'www.'; Local. 'localhost/'
 $protocolS='https://';
