@@ -1,0 +1,20 @@
+{
+    "name": "duotics/clinic-asanchez",
+    "description": "clinic",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "files": [
+            "app/helpers/helper.php"
+          ]
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    },
+    "authors": [
+        {
+            "name": "duotics"
+        }
+    ]
+}
