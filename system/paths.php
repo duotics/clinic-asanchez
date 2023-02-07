@@ -24,4 +24,4 @@ $RAIZu = $RAIZ . 'uploads/';
 $RAIZa = $RAIZ . 'assets/';
 $RAIZd = $RAIZ . 'data/';
 $RAIZv = $RAIZ . 'vendor/';
-$RAIZv = $RAIZ . 'node_modules/';
+$RAIZn = $RAIZ . 'node_modules/';
