@@ -4,6 +4,7 @@
 /.well-known/
 /data/
 /vendor/
+/node_modules/
 #files
 .env
 *.zip

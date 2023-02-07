@@ -1,0 +1,22 @@
+{
+  "name": "clinic-asanchez",
+  "version": "1.0.0",
+  "description": "clinic",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duotics/clinic-asanchez.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/duotics/clinic-asanchez/issues"
+  },
+  "homepage": "https://github.com/duotics/clinic-asanchez#readme",
+  "dependencies": {
+    "bootstrap": "^3.4.1"
+  }
+}
