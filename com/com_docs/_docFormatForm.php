@@ -99,8 +99,8 @@ $btnNew = '<a href="' . $urlc . '" class="btn btn-default"><i class="fas fa-plus
 	$(document).ready(function() {
 		$(".btnInsertContent").on("click", function() {
 			var content = $(this).attr("data-cont");
-			alert(content);
-			//tinymce.activeEditor.insertContent(campo);
+			//alert(content);
+			tinymce.activeEditor.insertContent(campo);
 		});
 	});
 </script>
