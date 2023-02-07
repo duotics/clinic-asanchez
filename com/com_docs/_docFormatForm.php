@@ -69,7 +69,7 @@ $btnNew = '<a href="' . $urlc . '" class="btn btn-default"><i class="fas fa-plus
 								<?php
 								$valInsertContent = $dRScf['typ_aux'];
 								if ($valInsertContent == 'img') {
-									$valInsertContent = "<img src='{$dRScf['typ_val']}'>";
+									$valInsertContent = '<img src="'.$dRScf['typ_val'].'">';
 								}
 								?>
 								<tr>
