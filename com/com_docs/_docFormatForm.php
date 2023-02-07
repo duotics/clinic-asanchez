@@ -77,7 +77,7 @@ $btnNew = '<a href="' . $urlc . '" class="btn btn-default"><i class="fas fa-plus
 									<td><?php echo $dRScf["typ_val"] ?></td>
 									<td><?php echo $dRScf["typ_aux"] ?></td>
 									<td><?php echo $dRScf["mod_cod"] ?></td>
-									<th><a data-cont="<?php echo $valInsertContent ?>" class='btnInsertContent btn btn-default btn-xs'>
+									<th><a data-cont='<?php echo $valInsertContent ?>' class='btnInsertContent btn btn-default btn-xs'>
 											<i class="fa fa-chevron-right"></i>
 										</a>
 									</th>
