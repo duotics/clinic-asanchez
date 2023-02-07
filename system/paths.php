@@ -8,6 +8,8 @@ define('RAIZc', RAIZ . 'com/');
 define('RAIZs', RAIZ . 'system/');
 define('RAIZu', RAIZ . 'uploads/');
 define('RAIZa', RAIZ . 'assets/');
+define('RAIZv', RAIZ . 'vendor/');
+define('RAIZn', RAIZ . 'node_modules/');
 
 global $RAIZ, $RAIZi, $RAIZii, $RAIZj, $RAIZc, $RAIZs, $RAIZmdb, $RAIZu, $RAIZt, $RAIZa;
 $RAIZ = $_ENV['APP_URL'];
@@ -21,3 +23,5 @@ $RAIZs = $RAIZ . 'system/';
 $RAIZu = $RAIZ . 'uploads/';
 $RAIZa = $RAIZ . 'assets/';
 $RAIZd = $RAIZ . 'data/';
+$RAIZv = $RAIZ . 'vendor/';
+$RAIZv = $RAIZ . 'node_modules/';
