@@ -10,11 +10,16 @@
           ]
     },
     "require": {
-        "vlucas/phpdotenv": "^5.5"
+        "vlucas/phpdotenv": "^4.0"
     },
     "authors": [
         {
             "name": "duotics"
         }
-    ]
+    ],
+    "config": {
+        "platform": {
+            "php": "5.6"
+        }
+    }
 }

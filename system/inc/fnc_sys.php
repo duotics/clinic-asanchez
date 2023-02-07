@@ -1111,7 +1111,7 @@ function vImg($ruta,$nombre,$thumb=TRUE,$pthumb='t_',$retHtml=FALSE){//v1.5
 
 	//$pthumb PREFIJO de Thumb
 
-	//RAIZ must be named RAIZ0 depends the root folder
+	//RAIZ must be named RAIZ depends the root folder
 
 	$imgRet['n']=$GLOBALS['RAIZi'].'struct/no_image.jpg';
 
