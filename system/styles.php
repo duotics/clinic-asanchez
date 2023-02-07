@@ -3,7 +3,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo $RAIZn ?>bootstrap/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo $RAIZn ?>bootswatch/<?php echo $bsTheme ?>/bootstrap.min.css" />
 <!--Fonts Awesome 4.0.3 -->
-<link rel="stylesheet" type="text/css" href="<?php echo $RAIZa ?>plugins/fontawesome-free-5.8.1-web/css/all.css">
+<link rel="stylesheet" type="text/css" href="<?php echo $RAIZn ?>@fortawesome/fontawesome-free/css/all.min.css">
 <!--FancyBox -->
 <link rel="stylesheet" type="text/css" href="<?php echo $RAIZa ?>plugins/fancybox-v3.5.7/jquery.fancybox.min.css" />
 <!--
