@@ -77,7 +77,7 @@ $btnNew = '<a href="' . $urlc . '" class="btn btn-default"><i class="fas fa-plus
 									<td><?php echo $dRScf["typ_val"] ?></td>
 									<td><?php echo $dRScf["typ_aux"] ?></td>
 									<td><?php echo $dRScf["mod_cod"] ?></td>
-									<th><a href='javascript:;' onClick='tinymce.activeEditor.insertContent("<?php echo $valInsertContent ?>");return false;' class='btn btn-default btn-xs'>
+									<th><a data-cont="<?php echo $valInsertContent ?>" class='btnInsertContent btn btn-default btn-xs'>
 											<i class="fa fa-chevron-right"></i>
 										</a>
 									</th>
@@ -95,3 +95,12 @@ $btnNew = '<a href="' . $urlc . '" class="btn btn-default"><i class="fas fa-plus
 		</div>
 	</form>
 </div>
+<script>
+	$(document).ready(function() {
+		$(".btnInsertContent").on("click", function() {
+			var content = $(this).attr("data-cont");
+			alert(content);
+			//tinymce.activeEditor.insertContent(campo);
+		});
+	});
+</script>
