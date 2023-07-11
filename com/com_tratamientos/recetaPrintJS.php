@@ -34,6 +34,12 @@ include(RAIZf.'head.php'); ?>
 			<td></td>
 			<td><?php echo $dPac['pac_nom'].' '.$dPac['pac_ape'] ?></td>
 		</tr>
+		<tr>
+			<td></td>
+			<td><?php echo $dPac['pac_ced'] ?></td>
+			<td></td>
+			<td><?php echo $dPac['pac_ced'] ?></td>
+		</tr>
 	</table>
 	<!-- DIAGNOSTICOS -->
 	<?php
