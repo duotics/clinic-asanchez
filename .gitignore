@@ -6,6 +6,7 @@
 /vendor/
 /node_modules/
 #files
-.env
+*.env
 *.zip
-
+# Excluir los archivos ZIP en la carpeta db/backup
+!/db/backup/*.zip
