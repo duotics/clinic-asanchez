@@ -10,4 +10,4 @@
 <?php include(RAIZs.'styles.php'); ?>
 <?php include(RAIZs.'libs.php'); ?>
 </head>
-<body class="<?php echo $css['body'] ?>">
+<body class="<?php echo isset($css['body']) ? $css['body'] : '' ?>">

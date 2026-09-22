@@ -1,6 +1,6 @@
 <?php 
-$fi=vParam('fi', $_GET['fi'], $_POST['fi'], FALSE);//$_REQUEST[fi];
-$ff=vParam('ff', $_GET['ff'], $_POST['ff'], FALSE);//$_REQUEST[ff];
+$fi=vParam('fi', isset($_GET['fi']) ? $_GET['fi'] : NULL, isset($_POST['fi']) ? $_POST['fi'] : NULL, FALSE);//$_REQUEST[fi];
+$ff=vParam('ff', isset($_GET['ff']) ? $_GET['ff'] : NULL, isset($_POST['ff']) ? $_POST['ff'] : NULL, FALSE);//$_REQUEST[ff];
 
 if(!$fi) $fi=$sdate;
 if(!$ff) $ff=$sdate;
@@ -38,7 +38,7 @@ if($fi&&$ff){
 	
 </div>
 <div class="">
-<?php if($tRS>0){ ?>
+<?php $sum=0; $contPac=0; if($tRS>0){ ?>
 
 	<table class="table table-bordered">
 		<thead>

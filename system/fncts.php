@@ -144,10 +144,11 @@ function vParam($nompar, $pget, $ppost, $revsess=NULL){
 	$ppost. Obtenemos parametros POST.
 	$revsess. TRUE o FALSE para confirmar si recuperamos valor desde la $_SESSION
 	*/
-	session_start();
+	if (session_status() !== PHP_SESSION_ACTIVE) { session_start(); }
+	$id_ret=NULL;
 	if(isset($pget)) {$id_ret=$pget;}
 	else if (isset($ppost)){$id_ret=$ppost;}
-	else if ($revsess==TRUE) $id_ret=$_SESSION[$nompar];
+	else if ($revsess==TRUE And isset($_SESSION[$nompar])) $id_ret=$_SESSION[$nompar];
 	return $id_ret;
 	}
 //CREAR TABLA TEMPORAL PARA BUSQUEDA DE PACIENTES
@@ -300,6 +301,8 @@ if (!((isset($_SESSION['dU'])) && (isAuthorized("",$MM_authorizedUsers, $_SESSIO
 function isAuthorized($strUsers, $UserName) { 
   // For security, start by assuming the visitor is NOT authorized. 
   $isValid = False;
+  $strGroups = '';
+  $UserGroup = NULL;
   // When a visitor has logged into this site, the Session variable MM_Username set equal to their username. 
   // Therefore, we know that a user is NOT logged in if that Session variable is blank. 
   if (!empty($UserName)) { 

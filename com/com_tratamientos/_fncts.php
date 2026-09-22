@@ -1,17 +1,21 @@
 <?php include('../../init.php');
 $_SESSION['LOG']=NULL;//INICIALIZA SESSION LOG
-$id=vParam('id',$_GET['id'],$_POST['id']); //ID STANDAR
-$idp=vParam('idp',$_GET['idp'],$_POST['idp']); //ID PACIENTE
-$idc=vParam('idc',$_GET['idc'],$_POST['idc']); //ID CONSULTA
+$id=vParam('id',isset($_GET['id']) ? $_GET['id'] : NULL,isset($_POST['id']) ? $_POST['id'] : NULL); //ID STANDAR
+$idp=vParam('idp',isset($_GET['idp']) ? $_GET['idp'] : NULL,isset($_POST['idp']) ? $_POST['idp'] : NULL); //ID PACIENTE
+$idc=vParam('idc',isset($_GET['idc']) ? $_GET['idc'] : NULL,isset($_POST['idc']) ? $_POST['idc'] : NULL); //ID CONSULTA
 //Variables para funciones de TRATAMIENTOS
-$idt=vParam('idt',$_GET['idt'],$_POST['idt']);
-$idtd=vParam('idtd',$_GET['idtd'],$_POST['idtd']);
+$idt=vParam('idt',isset($_GET['idt']) ? $_GET['idt'] : NULL,isset($_POST['idt']) ? $_POST['idt'] : NULL);
+$idtd=vParam('idtd',isset($_GET['idtd']) ? $_GET['idtd'] : NULL,isset($_POST['idtd']) ? $_POST['idtd'] : NULL);
 //Variables para Medicamentos
-$idr=vParam('idr',$_GET['idr'],$_POST['idr']);
+$idr=vParam('idr',isset($_GET['idr']) ? $_GET['idr'] : NULL,isset($_POST['idr']) ? $_POST['idr'] : NULL);
 //VARIABLE ACCION Y REDIRECCION
-$goTo=vParam('url',$_GET['url'],$_POST['url']);
-$acc=vParam('acc',$_GET['acc'],$_POST['acc']);
+$goTo=vParam('url',isset($_GET['url']) ? $_GET['url'] : NULL,isset($_POST['url']) ? $_POST['url'] : NULL);
+$acc=vParam('acc',isset($_GET['acc']) ? $_GET['acc'] : NULL,isset($_POST['acc']) ? $_POST['acc'] : NULL);
 $vP=FALSE;
+$LOG='';
+$accJS=FALSE;
+$accP=FALSE;
+$goToP='';
 //ALL POST to $data
 $data=$_POST;
 mysql_query("SET AUTOCOMMIT=0;");
@@ -38,8 +42,8 @@ if ((isset($data['form'])) && ($data['form'] == 'tratdet')){
 		SSQL($data['idc'], "int"),
 		SSQL($data['idp'], "int"),
 		SSQL($data['fecha'], "date"),
-		SSQL($data['fechap'], "date"),
-		SSQL($data['diagnostico'], "text"),
+		SSQL(isset($data['fechap']) ? $data['fechap'] : '', "date"),
+		SSQL(isset($data['diagnostico']) ? $data['diagnostico'] : '', "text"),
 		SSQL($data['obs'], "text"));
 		if(@mysql_query($qryI)){
 			$vP=TRUE;
@@ -51,8 +55,8 @@ if ((isset($data['form'])) && ($data['form'] == 'tratdet')){
 	if($acc=='UPDt'){	
 		$qryinst=sprintf('UPDATE db_tratamientos SET fecha=%s, diagnostico=%s, fechap=%s, obs=%s WHERE tid=%s',
 		SSQL($data['fecha'], "date"),
-		SSQL($data['diagnostico'], "text"),
-		SSQL($data['fechap'], "date"),
+		SSQL(isset($data['diagnostico']) ? $data['diagnostico'] : '', "text"),
+		SSQL(isset($data['fechap']) ? $data['fechap'] : '', "date"),
 		SSQL($data['obs'], "text"),
 		SSQL($data['idt'], "int"));
 		if(@mysql_query($qryinst)){
@@ -61,12 +65,12 @@ if ((isset($data['form'])) && ($data['form'] == 'tratdet')){
 			$qryUPC=sprintf('UPDATE db_consultas SET con_diapc=%s, con_typvisP=%s WHERE con_num=%s',
 						  SSQL($data['con_diapc'],'int'),
 						  SSQL($data['con_typvisP'],'int'),
-						  $idc,'int');
+						  SSQL($idc,'int'));
 			mysql_query($qryUPC);
 		}else $LOG.=$cfg['p']['ins-false'].mysql_error();
 		$goToP.='?idt='.$idt;
 	}
-	if($acc==md5(INStd)){
+	if($acc==md5('INStd')){
 		//$detMed=detRow('db_medicamentos_grp','idp',$data['idref']);
 		$qLMG=sprintf('SELECT * FROM db_medicamentos_grp WHERE idp=%s',
 					 SSQL($data['idref'],'int'));
@@ -144,7 +148,7 @@ if ((isset($data['form'])) && ($data['form'] == 'tratdet')){
 		$goToP='?idt='.$_POST['trat_id'];
 	}
 	
-	if($acc==md5(UPDtd)){
+	if($acc==md5('UPDtd')){
 		if($_POST['tipTD']=='I') $indicacion=$_POST['descripcion'];
 		$qryUpd=sprintf('UPDATE db_tratamientos_detalle SET generico=%s, comercial=%s, presentacion=%s, cantidad=%s, numero=%s, descripcion=%s, indicacion=%s WHERE id=%s',
 						SSQL($data['generico'], "text"),
@@ -167,7 +171,7 @@ if ((isset($data['form'])) && ($data['form'] == 'tratdet')){
 //FUNCIONES GENERAL Y JS ACTIONS
 /************************************************************************************/
 //Creacion Nuevo Tratamiento (cab)
-if ((isset($acc)) && ($acc == md5(NEWt))){
+if ((isset($acc)) && ($acc == md5('NEWt'))){
 	//$accJS=TRUE;
 	$qryD=sprintf('INSERT INTO db_tratamientos (con_num,pac_cod,fecha) VALUES (%s,%s,%s)',
 				  SSQL($idc, 'int'),
@@ -181,7 +185,7 @@ if ((isset($acc)) && ($acc == md5(NEWt))){
 	$goToP.='?idt='.$idt;
 }
 //Eliminación de TRATAMIENTO (cab)
-if ((isset($acc)) && ($acc == md5(DELtf))){
+if ((isset($acc)) && ($acc == md5('DELtf'))){
 	$accJS=TRUE;
 	$qryD=sprintf('DELETE FROM db_tratamientos_detalle WHERE tid=%s',
 				  SSQL($idt, "int"));
@@ -195,7 +199,7 @@ if ((isset($acc)) && ($acc == md5(DELtf))){
 	}else $LOG.=$cfg['p']['del-false'].mysql_error();
 }
 //Eliminación de TRATAMIENTO Detalle
-if ((isset($acc)) && ($acc == md5(DELtd))){
+if ((isset($acc)) && ($acc == md5('DELtd'))){
 	$qrydel=sprintf('DELETE FROM db_tratamientos_detalle WHERE id=%s',
 					SSQL($idtd, "int"));
 	if(@mysql_query($qrydel)){

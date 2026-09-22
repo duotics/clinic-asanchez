@@ -1,11 +1,13 @@
 <?php 
 function startConfigs(){
-	if(!($_SESSION['conf'])){
+	$iniMtime=filemtime(RAIZs.'config.ini');
+	if(!($_SESSION['conf']) Or !isset($_SESSION['conf_mtime']) Or $_SESSION['conf_mtime']!=$iniMtime){
 		$conf=parse_ini_file(RAIZs.'config.ini',TRUE);
 		foreach($conf as $x => $xval){
 			foreach($xval as $y => $yval) $configEnd[$x][$y]=$yval;
 		}
 		$_SESSION['conf']=$configEnd;
+		$_SESSION['conf_mtime']=$iniMtime;
 	}
 }
 startConfigs();

@@ -2,7 +2,7 @@
 $dM=vLogin('REP-RESP');
 include(RAIZf."head.php");
 include(RAIZm.'mod_menu/menuMain.php');
-sLOG("g",$_REQUEST['LOG']) ?>
+sLOG("g",isset($_REQUEST['LOG']) ? $_REQUEST['LOG'] : NULL) ?>
 <div class="container">
     <?php echo genPageHead($dM['mod_cod'])?>
 	<?php include('_repPacRes.php') ?>

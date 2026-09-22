@@ -1,11 +1,11 @@
 <?php include('../../init.php');
 $dM=vLogin('CONSULTA');
-$tabS=$_SESSION['tab']['con'];
-$rowMod=fnc_datamod($_SESSION['MODSEL']);
-$acc=vParam('acc', $_GET['acc'], $_POST['acc']);
-$idp=vParam('idp', $_GET['idp'], $_POST['idp']);
-$idc=vParam('idc', $_GET['idc'], $_POST['idc']);
-$idr=vParam('idr', $_GET['idr'], $_POST['idr']);
+$tabS=isset($_SESSION['tab']['con']) ? $_SESSION['tab']['con'] : NULL;
+$rowMod=fnc_datamod(isset($_SESSION['MODSEL']) ? $_SESSION['MODSEL'] : NULL);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
+$idp=vParam('idp', isset($_GET['idp']) ? $_GET['idp'] : NULL, isset($_POST['idp']) ? $_POST['idp'] : NULL);
+$idc=vParam('idc', isset($_GET['idc']) ? $_GET['idc'] : NULL, isset($_POST['idc']) ? $_POST['idc'] : NULL);
+$idr=vParam('idr', isset($_GET['idr']) ? $_GET['idr'] : NULL, isset($_POST['idr']) ? $_POST['idr'] : NULL);
 $dRes=detRow('db_fullcalendar', 'id', $idr);
 $dCon=detRow('db_consultas','con_num',$idc);
 if($dRes) $acc='NEW';
@@ -55,7 +55,7 @@ include(RAIZm.'mod_menu/menuMain.php'); ?>
     <div class="collapse navbar-collapse" id="navbar-cons-est">
 		<ul class="nav navbar-nav">
 		<li><div class="btn-group">
-        <?php echo $status_cons ?>
+        <?php echo isset($status_cons) ? $status_cons : '' ?>
 		<button type="button" class="btn btn-default navbar-btn disabled">Estado</button>
 		<?php echo $stat['inf'] ?>
     </div></li>

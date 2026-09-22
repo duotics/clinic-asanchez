@@ -40,14 +40,16 @@ $NumA = $NE->ValorEnLetras(date('Y'), ''); ?>
 		<input name="idp" type="hidden" id="idp" value="<?php echo $idp ?>">
 		<input name="idc" type="hidden" id="idc" value="<?php echo $idc ?>">
 		<input name="acc" type="hidden" id="acc" value="<?php echo $acc ?>">
-		<input name="form" type="hidden" id="form" value="<?php echo md5(fDocs) ?>">
+		<input name="form" type="hidden" id="form" value="<?php echo md5('fDocs') ?>">
 		<input name="url" type="hidden" value="<?php echo $urlc ?>">
 	</fieldset>
 
 	<?php
+	$contL = '';
+	$btnNew = '';
 	$contL .= '<ul class="nav navbar-nav">
       	<li><a><span class="label label-primary">' . $idd . '</span></a></li>
-        <li><a><span class="label label-default">Paciente</span><span class="label label-primary">' . $detpac['pac_nom'] . ' ' . $detpac['pac_ape'] . '</span></a></li>
+        <li><a><span class="label label-default">Paciente</span><span class="label label-primary">' . $dP['pac_nom'] . ' ' . $dP['pac_ape'] . '</span></a></li>
         <li><a><span class="label label-default">Consulta</span><span class="label label-primary">' . $idc . '</span></a></li>
         <li><a>' . $dD["fecha"] . '</a></li>
     </ul>';
@@ -123,9 +125,9 @@ $NumA = $NE->ValorEnLetras(date('Y'), ''); ?>
 					<div class="btn-group">
 						<a class="btn dropdown-toggle btn-primary btn-sm" data-toggle="dropdown" href="#">Datos Paciente <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="javascript:;" onClick="tinymce.activeEditor.insertContent('<?php echo $detpac_nom ?>');return false;">Nombre Paciente</a></li>
-							<li><a href="javascript:;" onClick="tinymce.activeEditor.insertContent('<?php echo $detpac['pac_ced'] ?>');return false;">Cedula</a></li>
-							<li><a href="javascript:;" onClick="tinymce.activeEditor.insertContent('<?php echo edad($detpac['pac_fec']) ?>');return false;">Edad</a></li>
+							<li><a href="javascript:;" onClick="tinymce.activeEditor.insertContent('<?php echo $dP['pac_nom'].' '.$dP['pac_ape'] ?>');return false;">Nombre Paciente</a></li>
+							<li><a href="javascript:;" onClick="tinymce.activeEditor.insertContent('<?php echo $dP['pac_ced'] ?>');return false;">Cedula</a></li>
+							<li><a href="javascript:;" onClick="tinymce.activeEditor.insertContent('<?php echo edad($dP['pac_fec']) ?>');return false;">Edad</a></li>
 						</ul>
 					</div>
 					<div class="btn-group">

@@ -1,6 +1,7 @@
 // JavaScript Document
 $(document).ready(function(){
 	$('#loaderFrame').load(function(){
+            if(!$(this).attr('src')) return; // evita imprimir en la carga inicial vacia del iframe
             var w = (this.contentWindow || this.contentDocument.defaultView);
             w.print();
 			//setTimeout("closePrintView()", 3000);

@@ -1,5 +1,5 @@
 <?php
-$sbr=vParam('sBr', $_GET['sBr'], $_POST['sBr'],FALSE);
+$sbr=vParam('sBr', isset($_GET['sBr']) ? $_GET['sBr'] : NULL, isset($_POST['sBr']) ? $_POST['sBr'] : NULL, FALSE);
 $qry=genCadSearchPac($sbr);
 $RSpt = mysql_query($qry) or die(mysql_error());
 $dRSpt = mysql_fetch_assoc($RSpt);

@@ -1,5 +1,5 @@
 <?php include_once('../../init.php');
-$idt=vParam('id',$_GET['id'],$_POST['id']);
+$idt=vParam('id',isset($_GET['id']) ? $_GET['id'] : NULL,isset($_POST['id']) ? $_POST['id'] : NULL);
 $dettrat=detRow('db_tratamientos','tid',$idt);//fnc_datatrat($idt);
 $detCon=detRow('db_consultas','con_num',$dettrat['con_num']);//fnc_datatrat($idt);
 //$detpac=detRow('db_pacientes','pac_cod',$detCon['pac_cod']);//dPac($dettrat['pac_cod']);
@@ -43,6 +43,7 @@ include(RAIZf.'head.php'); ?>
 	</table>
 	<!-- DIAGNOSTICOS -->
 	<?php
+	$resDiag='';
 	if($tRSld>0){
 		do{ 
 			if($dRSld['id_diag']>1){
@@ -86,6 +87,7 @@ include(RAIZf.'head.php'); ?>
 	$tRStl=mysql_num_rows($RStl);
 	$contmed=1;
 	$contind=1;
+	$resReceta='';
 	if($tRStl>0){
 		do{
 			if($dRStl['tip']=='G'){
@@ -133,6 +135,8 @@ include(RAIZf.'head.php'); ?>
 	}
 	?>
 	<?php
+	$nuevafecha='';
+	$proxima='';
 	if($detCon['con_diapc']){
 		$nuevafecha = strtotime('+'.intval($detCon['con_diapc']).' day',strtotime($sdate));
 		$verifPrx=date('w',$nuevafecha);

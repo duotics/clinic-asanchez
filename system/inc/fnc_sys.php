@@ -984,7 +984,11 @@ function gebBtnHis($idc,$idp){
 
 	$idFin=$row_RSfin['con_num'];
 
-	
+	$link_ini='';
+
+	$link_fin='';
+
+
 
 	$qryAnt=sprintf('SELECT * FROM db_consultas WHERE pac_cod=%s and con_num<%s ORDER BY con_num DESC LIMIT 1',
 
@@ -1312,9 +1316,9 @@ function sLOG($type='a'){
 
 	//SESSION_LOG: Vector ['m']=Mensaje; ['t']=Titulo; ['c']=class, ['i']=imagen
 
-	$LOG=$_SESSION['LOG'];
+	$LOG=isset($_SESSION['LOG']) ? $_SESSION['LOG'] : array();
 
-	if(!$LOG['c']) $LOG['c']='alert-warning';
+	if(empty($LOG['c'])) $LOG['c']='alert-warning';
 
 	if(isset($LOG['m'])){
 

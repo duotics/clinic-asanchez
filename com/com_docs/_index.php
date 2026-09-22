@@ -1,12 +1,13 @@
 <?php
-$idTyp=vParam('typ',$_GET['typ'],$_POST['typ']);
+$idTyp=vParam('typ',isset($_GET['typ']) ? $_GET['typ'] : NULL,isset($_POST['typ']) ? $_POST['typ'] : NULL);
+$param='';
 if($idTyp) $param=' AND id_ef='.$idTyp;
 $TR=totRowsTabP('db_documentos',$param);
 $query_RSd=sprintf('SELECT * FROM db_documentos WHERE 1=1 '.$param.' ORDER BY id_doc DESC');
  ?>
 <div class="well well-sm">
 <fieldset class="form-inline">
-		<span class="label label-primary">Resultados <?php echo $totalRows_RSt?></span> 
+		<span class="label label-primary">Resultados <?php echo $TR?></span>
         <span class="label label-default">Filtros</span>
         <div class="form-group">
             <label for="typ_cod">Tipo Examen</label>

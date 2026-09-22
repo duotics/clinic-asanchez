@@ -1,6 +1,6 @@
 <?php if($dExamF){
 	$acc=md5('UPDef');
-	$dateexam=$dExamF['fechae'];
+	$dateexam=isset($dExamF['fechae']) ? $dExamF['fechae'] : NULL;
 	$btnAcc='<button type="submit" class="btn btn-success"><i class="fas fa-save fa-lg"></i> ACTUALIZAR</button>';
 }else{
 	$acc=md5('INSef');
@@ -8,7 +8,7 @@
 	$btnAcc='<button type="submit" class="btn btn-primary"><i class="fas fa-save fa-lg"></i> CREAR</button>';
 }
 
-$idefd=vParam('idefd',$_GET['idefd'],$_POST['idefd']);
+$idefd=vParam('idefd',isset($_GET['idefd']) ? $_GET['idefd'] : NULL,isset($_POST['idefd']) ? $_POST['idefd'] : NULL);
 $dEFD=detRow('db_examenes_format_det','id',$idefd);
 if($dEFD){
 	$accD=md5('UPDefd');

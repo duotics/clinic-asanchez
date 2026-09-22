@@ -1,7 +1,7 @@
 <?php include_once('../../init.php');
-if(!$vVT){
-	$idc=vParam('idc', $_GET['idc'], $_POST['idc']);
-	$idp=vParam('idp', $_GET['idp'], $_POST['idp']);
+if(!isset($vVT) || !$vVT){
+	$idc=vParam('idc', isset($_GET['idc']) ? $_GET['idc'] : NULL, isset($_POST['idc']) ? $_POST['idc'] : NULL);
+	$idp=vParam('idp', isset($_GET['idp']) ? $_GET['idp'] : NULL, isset($_POST['idp']) ? $_POST['idp'] : NULL);
 }
 $detCon=detRow('db_consultas','con_num',$idc);
 ?>

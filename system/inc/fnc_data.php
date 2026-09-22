@@ -156,11 +156,12 @@ function estCon_old($est){
 
 //ULTIMA IMAGEN DE UN PACIENTE
 function lastImgPac($param1){
+$detMed=array();
 $detPacMed=detRow('db_pacientes_media','cod_pac',$param1,'id','DESC');
 if($detPacMed){
 	$detMed=detRow('db_media','id_med',$detPacMed['id_med']);
 }
-return $detMed['file'];
+return isset($detMed['file']) ? $detMed['file'] : '';
 }
 
 function paramsRepObs($file){
@@ -392,6 +393,7 @@ function detRowSel($table,$fielID,$field,$param){
 }
 
 function detRowGSel($table,$fieldID,$fieldVal,$field,$param,$ord=FALSE,$valOrd=NULL,$ascdes='ASC'){//v1.0
+	$orderBy='';
 	if($ord){
 		if(!($valOrd)) $orderBy='ORDER BY '.' sVAL '.$ascdes;
 		else $orderBy='ORDER BY '.$valOrd.' '.$ascdes;
@@ -420,6 +422,8 @@ return ($RS_datos); mysql_free_result($RS_datos);
 }
 
 function detRowGSelNP($table,$fieldID,$fieldVal,$params,$ord=FALSE,$valOrd=NULL,$ascdes='ASC'){//v0.2
+	$lP='';
+	$orderBy='';
 	if($params){
 		foreach($params as $x => $dat) {
 			foreach($dat as $y => $xVal) $lP.=$xVal['cond'].' '.$xVal['field'].' '.$xVal['comp'].' "'.$xVal['val'].'" ';
@@ -439,6 +443,7 @@ function detRowGSelNP($table,$fieldID,$fieldVal,$params,$ord=FALSE,$valOrd=NULL,
 }
 
 function detRow($table,$field,$param,$foN=NULL, $foF='ASC'){//v1.0
+	$paramOrd='';
 	if($foN) $paramOrd='ORDER BY '.$foN.' '.$foF;
 	$qry = sprintf("SELECT * FROM %s WHERE %s = %s ".$paramOrd.' LIMIT 1',
 	SSQL($table, ''),
