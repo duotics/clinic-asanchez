@@ -4,6 +4,7 @@
 /.well-known/
 /data/
 /vendor/
+/temp/
 /node_modules/
 #files
 *.env
