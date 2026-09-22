@@ -1,5 +1,5 @@
 <?php include('../../init.php');
-$val=$_REQUEST[val];
+$val=$_REQUEST['val'];
 $valF=explode('/',$val);
 $fi=$valF[0];
 $ff=$valF[1];
@@ -18,7 +18,7 @@ if($fi&&$ff){
 	$tRS=mysql_num_rows($RS);
 } ?>
 <link rel="stylesheet" type="text/css" href="<?php echo $RAIZa ?>css/cssPrint_01.css" />
-<?php $css[body]='cero';
+<?php $css['body']='cero';
 include(RAIZf."head.php"); ?>
 <div class="print print-report">
 	<div class="titRep">Resumen de Visitas</div>
@@ -41,22 +41,22 @@ include(RAIZf."head.php"); ?>
 			<tbody>
 			<?php do{ ?>
 			<?php
-				$dPac=detRow('db_pacientes','pac_cod',$dRS[pac_cod]);
-				$dTC=detRow('db_types','typ_cod',$dRS[con_typvis]);
-				$dTP=detRow('db_types','typ_cod',$dRS[con_typ]);
-				$sum+=$dRS[con_val];
-				if(!$dRS[con_val]) $dRS[con_val]='-';
+				$dPac=detRow('db_pacientes','pac_cod',$dRS['pac_cod']);
+				$dTC=detRow('db_types','typ_cod',$dRS['con_typvis']);
+				$dTP=detRow('db_types','typ_cod',$dRS['con_typ']);
+				$sum+=$dRS['con_val'];
+				if(!$dRS['con_val']) $dRS['con_val']='-';
 				if($fi==$ff) $detFec = date_format(date_create($dRS['con_fec']), 'H:m:s');
-				else $detFec=$dRS[con_fec];
+				else $detFec=$dRS['con_fec'];
 				$contPac++;
 			?>
 			<tr>
-				<td><?php echo $dRS[con_num] ?></td>
+				<td><?php echo $dRS['con_num'] ?></td>
 				<td><?php echo $detFec ?></td>
-				<td><?php echo $dPac[pac_ape].' '.$dPac[pac_nom] ?></td>
-				<td><?php echo $dTC[typ_val] ?></td>
-				<td><?php echo $dTP[typ_val] ?></td>
-				<td><?php echo $dRS[con_val] ?></td>
+				<td><?php echo $dPac['pac_ape'].' '.$dPac['pac_nom'] ?></td>
+				<td><?php echo $dTC['typ_val'] ?></td>
+				<td><?php echo $dTP['typ_val'] ?></td>
+				<td><?php echo $dRS['con_val'] ?></td>
 			</tr>
 			<?php }while($dRS=mysql_fetch_assoc($RS)); ?>
 			</tbody>

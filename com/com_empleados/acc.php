@@ -92,7 +92,7 @@ if((!mysql_error())&&($vStep==TRUE)){
 	$_SESSION['LOG']['t']='OPERACIÓN EXITOSA';	
 	$_SESSION['LOG']['c']='info';
 	$_SESSION['LOG']['i']=$RAIZa.'images/icons/Ok-48.png';
-	$_SESSION[dU][u_theme]=$dat['user_theme'];
+	$_SESSION['dU']['u_theme']=$dat['user_theme'];
 }else{
 	mysql_query("ROLLBACK;");
 	$_SESSION['LOG']['t']='ERROR';	

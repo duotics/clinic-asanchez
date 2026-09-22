@@ -24,8 +24,8 @@ if((isset($data['form']))&&($data['form']==md5('formType'))){
 		SSQL($id,'int'));
 		if(@mysql_query($qry)){
 			$vP=TRUE;
-			$LOG.=$cfg[p]['upd-true'];
-		}else $LOG.=$cfg[p]['upd-false'].mysql_error();
+			$LOG.=$cfg['p']['upd-true'];
+		}else $LOG.=$cfg['p']['upd-false'].mysql_error();
 	}else $LOGd.='no UPD';
 	if((isset($acc))&&($acc==md5(INSt))){
 		$LOGd.='INS<br>';
@@ -41,8 +41,8 @@ if((isset($data['form']))&&($data['form']==md5('formType'))){
 		if(@mysql_query($qry)){
 			$vP=TRUE;
 			$id=@mysql_insert_id();
-			$LOG.=$cfg[p]['ins-true'];
-		}else $LOG.=$cfg[p]['ins-false'].mysql_error();
+			$LOG.=$cfg['p']['ins-true'];
+		}else $LOG.=$cfg['p']['ins-false'].mysql_error();
 	}else $LOGd.='no INS';
 	$goTo.='?id='.$id;
 }
@@ -53,8 +53,8 @@ if((isset($acc))&&($acc==md5(DELt))){
 	$LOGd.=$qry.'<br>';
 	if(@mysql_query($qry)){
 		$vP=TRUE;
-		$LOG.=$cfg[p]['del-true'];
-	}else $LOG.=$cfg[p]['del-false'].mysql_error();
+		$LOG.=$cfg['p']['del-true'];
+	}else $LOG.=$cfg['p']['del-false'].mysql_error();
 	$goTo.='?ref='.$ref;
 }
 if((isset($acc))&&($acc==md5(STt))){
@@ -64,8 +64,8 @@ if((isset($acc))&&($acc==md5(STt))){
 		SSQL($ids,'int'));
 	if(@mysql_query($qry)){
 		$vP=TRUE;
-		$LOG.=$cfg[p]['est-true'];
-	}else $LOG.=$cfg[p]['est-false'].mysql_error();
+		$LOG.=$cfg['p']['est-true'];
+	}else $LOG.=$cfg['p']['est-false'].mysql_error();
 	$goTo.='?ref='.$ref;
 }
 if((isset($acc))&&($acc==md5(CLONEt))){
@@ -84,8 +84,8 @@ if((isset($acc))&&($acc==md5(CLONEt))){
 	if(@mysql_query($qry)){
 		$vP=TRUE;
 		$id=@mysql_insert_id();
-		$LOG.=$cfg[p]['ins-true'];
-	}else $LOG.=$cfg[p]['ins-false'].mysql_error();
+		$LOG.=$cfg['p']['ins-true'];
+	}else $LOG.=$cfg['p']['ins-false'].mysql_error();
 	$goTo.='?id='.$id;
 }
 
@@ -94,14 +94,14 @@ if($vD==TRUE) $LOG.=$LOGd;
 if((!mysql_error())&&($vP==TRUE)){
 	$_SESSION['sBr']=$data['pac_nom'].' '.$data['pac_ape'];
 	mysql_query("COMMIT;");
-	$LOGt.=$cfg[p]['m-ok'];
-	$LOGc=$cfg[p]['c-ok'];
-	$LOGi=$RAIZa.$cfg[p]['i-ok'];
+	$LOGt.=$cfg['p']['m-ok'];
+	$LOGc=$cfg['p']['c-ok'];
+	$LOGi=$RAIZa.$cfg['p']['i-ok'];
 }else{
 	mysql_query("ROLLBACK;");
-	$LOGt.=$cfg[p]['m-fail'];
-	$LOGc=$cfg[p]['c-fail'];
-	$LOGi=$RAIZa.$cfg[p]['i-fail'];
+	$LOGt.=$cfg['p']['m-fail'];
+	$LOGc=$cfg['p']['c-fail'];
+	$LOGi=$RAIZa.$cfg['p']['i-fail'];
 }
 mysql_query("SET AUTOCOMMIT=1;"); //Habilita el autocommit
 

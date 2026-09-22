@@ -23,7 +23,7 @@ function gen_pageTit($MOD,$tit=NULL,$des=NULL,$icon=NULL){
 		$rowMod['mod_des']=$des;
 		$rowMod['mod_icon']=$icon;
 	}
-	$returnTit;
+	$returnTit='';
 	$returnTit.='<div class="page-header">';
     $returnTit.='<h2>';
 	if($rowMod['mod_icon']){ $returnTit.=' <span class="'.$rowMod['mod_icon'].'"></span> ';	}
@@ -36,6 +36,7 @@ function gen_pageTit($MOD,$tit=NULL,$des=NULL,$icon=NULL){
 }
 //Deshabilitar Reservas
 function disable_reserv($con_fin,$pac_fin){
+	$res_fun='';
 	if(@mysql_result(@mysql_query("SELECT * FROM db_consultas_reserva WHERE con_num='$con_fin' AND pac_cod='$pac_fin'"),'cons_res_num'))
 	{
 		if(@mysql_query("DELETE FROM db_consultas_reserva WHERE con_num='$con_fin' AND pac_cod='$pac_fin'")or($res_fun=mysql_error()))
@@ -101,6 +102,7 @@ function exam_numimg($param1){
 
 
 function uploadfile_ant($params, $file){
+	$resultado='';
 	$code = substr(md5(uniqid(rand())),0,6).'_'; $prefijo = '_'.$code.'_';
 	$fileextnam = $file['name']; // Obtiene el nombre del archivo, y su extension
 	$ext = substr($fileextnam, strpos($fileextnam,'.'), strlen($fileextnam)-1); // Saca su extension
@@ -191,6 +193,7 @@ function tableExists($table_name){
 }
 function fnc_cadsearch($busqueda){
 	session_start();
+	$msg_sys='';
 	//SI EXISTE CADENA DE BUSQUEDA	
 	if((isset($busqueda))&&($busqueda!="")){
 		//$msg_sys.="Existe Cadena *$busqueda* - ";
@@ -262,7 +265,7 @@ $MM_donotCheckaccess = "true";
   return $isValid; 
 }*/
 $MM_restrictGoTo = $GLOBALS['RAIZ']."wrongaccess.php";
-if (!((isset($_SESSION[dU])) && (isAuthorized("",$MM_authorizedUsers, $_SESSION[dU], $_SESSION['MM_UserGroup'])))) {   
+if (!((isset($_SESSION['dU'])) && (isAuthorized("",$MM_authorizedUsers, $_SESSION['dU'], $_SESSION['MM_UserGroup'])))) {   
   $MM_qsChar = "?";
   $MM_referrer = $_SERVER['PHP_SELF'];
   if (strpos($MM_restrictGoTo, "?")) $MM_qsChar = "&";
@@ -281,7 +284,7 @@ $MM_donotCheckaccess = "false";
 // *** Restrict Access To Page: Grant or deny access to this page
 
 $MM_restrictGoTo = $GLOBALS['RAIZ']."wrongaccess.php";
-if (!((isset($_SESSION[dU])) && (isAuthorized("",$MM_authorizedUsers, $_SESSION[dU], $_SESSION['MM_UserGroup'])))) {   
+if (!((isset($_SESSION['dU'])) && (isAuthorized("",$MM_authorizedUsers, $_SESSION['dU'], $_SESSION['MM_UserGroup'])))) {   
   $MM_qsChar = "?";
   $MM_referrer = $_SERVER['PHP_SELF'];
   if (strpos($MM_restrictGoTo, "?")) $MM_qsChar = "&";

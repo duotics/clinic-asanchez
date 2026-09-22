@@ -1,5 +1,5 @@
 <?php require('../../../init.php');
-$id=$_REQUEST[id];
+$id=$_REQUEST['id'];
 include(RAIZf.'head.php'); ?>
 
 <h1>SUBIR IMAGEN <?php echo $id ?></h1>

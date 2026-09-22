@@ -30,13 +30,13 @@ $tRSld=mysql_num_rows($RSld);
 $resDiag=NULL;
 if($tRSld>0){
 	do{
-	if($dRSld[id_diag]>1){
-			$dDiag=detRow('db_diagnosticos','id_diag',$dRSld[id_diag]);
-			$dDiag_cod=$dDiag[codigo].'-';
-			$dDiag_nom=$dDiag[nombre];
+	if($dRSld['id_diag']>1){
+			$dDiag=detRow('db_diagnosticos','id_diag',$dRSld['id_diag']);
+			$dDiag_cod=$dDiag['codigo'].'-';
+			$dDiag_nom=$dDiag['nombre'];
 		}else{
 			$dDiag_cod=NULL;
-			$dDiag_nom=$dRSld[obs];
+			$dDiag_nom=$dRSld['obs'];
 		}
 		$resDiag.=' <span class="label label-default">'.$dDiag_cod.$dDiag_nom.'</span> ';
 	}while($dRSld=mysql_fetch_assoc($RSld));

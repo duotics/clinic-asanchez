@@ -10,15 +10,15 @@ $dRS=mysql_fetch_assoc($RS);
 $tRS=mysql_num_rows($RS);
 if($tRS>0){
 	do{
-		$dDiagExis=detRow('db_diagnosticos','codigo',$dRS[id10]);
+		$dDiagExis=detRow('db_diagnosticos','codigo',$dRS['id10']);
 		if($dDiagExis){//EXISTE codigo CIE10 en db_diagnosticos
 			$contO++;
 		}else{
 			
 			$qryI=sprintf('INSERT INTO db_diagnosticos (codigo,nombre,val,ref,estado) VALUES (%s,%s,%s,%s,%s)',
-						 SSQL($dRS[id10],'text'),
-						 SSQL($dRS[dec10],'text'),
-						 SSQL($dRS[grp10],'text'),
+						 SSQL($dRS['id10'],'text'),
+						 SSQL($dRS['dec10'],'text'),
+						 SSQL($dRS['grp10'],'text'),
 						 SSQL('cie10','text'),
 						 SSQL(1,'int'));
 			if(@mysql_query($qryI)){

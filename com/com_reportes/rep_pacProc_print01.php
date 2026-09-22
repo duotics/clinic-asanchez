@@ -64,7 +64,7 @@ if($banSR==TRUE){
         <th style="width:25%; background:#666; color:#fff; text-align:center;">Cantidad</th>
 	</tr>
 	<?php
-    	$dataG;
+    	$dataG=array();
 		$contDataG=0;
 		$sumVals=0;
 		do{

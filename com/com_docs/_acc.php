@@ -56,20 +56,20 @@ if ((isset($acc)) && ($acc == md5(DELd))){
 	$qry=sprintf('DELETE FROM db_documentos WHERE md5(id_doc)=%s LIMIT 1',
 	SSQL($ids, "text"));
 	if(@mysql_query($qry)){
-		$LOG.=$cfg[p]['del-true'];
-	}else $LOG.=$cfg[p]['del-false'].mysql_error();
+		$LOG.=$cfg['p']['del-true'];
+	}else $LOG.=$cfg['p']['del-false'].mysql_error();
 }
 //VERIFY COMMIT
 if(!mysql_error()){
 	mysql_query("COMMIT;");
 	$LOGt='Operación Ejecutada Exitosamente';
 	$LOGc='alert-success';
-	$LOGi=$RAIZa.$cfg[p]['i-ok'];
+	$LOGi=$RAIZa.$cfg['p']['i-ok'];
 }else{
 	mysql_query("ROLLBACK;");
 	$LOGt='Fallo del Sistema';
 	$LOGc='alert-danger';
-	$LOGi=$RAIZa.$cfg[p]['i-fail'];
+	$LOGi=$RAIZa.$cfg['p']['i-fail'];
 }
 mysql_query("SET AUTOCOMMIT=1;"); //Habilita el autocommit
 $_SESSION['LOG']['m']=$LOG;

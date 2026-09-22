@@ -15,10 +15,10 @@ if(($_POST['form'])&&($_POST['form']==md5('fdiag'))){
 	$nombre=$_POST['nombre'];
 	if($acc==md5('INSd')){
 		$qry=sprintf("INSERT INTO db_diagnosticos (codigo,nombre,ref,val) VALUES (%s,%s,%s,%s)",
-					 SSQL($data[codigo], 'text'),
-					 SSQL($data[nombre], 'text'),
-					 SSQL($data[val], 'text'),
-					 SSQL($data[ref], 'text'));
+					 SSQL($data['codigo'], 'text'),
+					 SSQL($data['nombre'], 'text'),
+					 SSQL($data['val'], 'text'),
+					 SSQL($data['ref'], 'text'));
 		if(@mysql_query($qry)){
 			$vP=TRUE;
 			$LOG.='<p>Diagnostico Creado Correctamente</p>';
@@ -26,10 +26,10 @@ if(($_POST['form'])&&($_POST['form']==md5('fdiag'))){
 	}
 	if($acc==md5('UPDd')){
 		$qry=sprintf("UPDATE db_diagnosticos SET codigo=%s, nombre=%s, val=%s, ref=%s WHERE id_diag=%s",
-					 SSQL($data[codigo], 'text'),
-					 SSQL($data[nombre], 'text'),
-					 SSQL($data[val], 'text'),
-					 SSQL($data[ref], 'text'),
+					 SSQL($data['codigo'], 'text'),
+					 SSQL($data['nombre'], 'text'),
+					 SSQL($data['val'], 'text'),
+					 SSQL($data['ref'], 'text'),
 					 SSQL($id, 'int'));
 		if(@mysql_query($qry)){
 			$vP=TRUE;

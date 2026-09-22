@@ -42,13 +42,13 @@ $pages = new Paginator;
 	<?php
     $typexam=fnc_datatyp($dRSc['typ_cod']);
 	$typexam=$typexam['typ_val'];
-	$dPac=detRow('db_pacientes','pac_cod',$dRSc[pac_cod]) ?>
+	$dPac=detRow('db_pacientes','pac_cod',$dRSc['pac_cod']) ?>
 	<tr>
         	<td><?php echo $dRSc['id_cir'] ?></td>
-			<td><?php echo $dPac[pac_nom].' '.$dPac[pac_ape] ?></td>
+			<td><?php echo $dPac['pac_nom'].' '.$dPac['pac_ape'] ?></td>
 			<td><?php echo $dRSc['diagnostico'] ?></td>
-            <td><abbr title="<?php echo $dRSc['fechar'] ?>"><?php echo $dRSc[cirugiar] ?></abbr></td>
-			<td><abbr title="<?php echo $dRSc['fechap'] ?>"><?php echo $dRSc[cirugiap] ?></abbr></td>
+            <td><abbr title="<?php echo $dRSc['fechar'] ?>"><?php echo $dRSc['cirugiar'] ?></abbr></td>
+			<td><abbr title="<?php echo $dRSc['fechap'] ?>"><?php echo $dRSc['cirugiap'] ?></abbr></td>
             <td><div class="readmore"><?php echo $dRSc['protocolo'] ?></div></td>
             <td><?php echo $dRSc['evolucion'] ?></td>
             <td><?php echo totRowsTab('db_cirugias_media','id_cir',$dRSc['id_cir']) ?></td>

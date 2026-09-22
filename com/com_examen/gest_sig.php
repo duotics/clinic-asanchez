@@ -82,8 +82,8 @@ $tr_RSh=mysql_num_rows($RSh);
 		$pesoKG=$row_RSh['peso'].' Kg.';
 		$pesoLB=round($row_RSh['peso']*2.20462262, 2);
 		$pesoLB.=' Lb.';
-		$tallaCM;
-		$tallaPL;
+		$tallaCM='';
+		$tallaPL='';
 		if($row_RSh['talla']){
 			$tallaCM=$row_RSh['talla'].' Cm';
 			$tallaPL=round($row_RSh['talla']/2.54, 2);

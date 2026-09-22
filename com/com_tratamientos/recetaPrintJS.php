@@ -12,7 +12,7 @@ if($dettrat){
 	$dRSld=mysql_fetch_assoc($RSld);
 	$tRSld=mysql_num_rows($RSld);
 }
-$css[body]='cero';
+$css['body']='cero';
 include(RAIZf.'head.php'); ?>
 <link rel="stylesheet" type="text/css" href="<?php echo $RAIZa ?>css/cssPrint_02-03.css" />
 <div class="print print-receta">
@@ -45,13 +45,13 @@ include(RAIZf.'head.php'); ?>
 	<?php
 	if($tRSld>0){
 		do{ 
-			if($dRSld[id_diag]>1){
-				$dDiag=detRow('db_diagnosticos','id_diag',$dRSld[id_diag]);
-				$dDiag_cod=$dDiag[codigo].'-';
-				$dDiag_nom=$dDiag[nombre];
+			if($dRSld['id_diag']>1){
+				$dDiag=detRow('db_diagnosticos','id_diag',$dRSld['id_diag']);
+				$dDiag_cod=$dDiag['codigo'].'-';
+				$dDiag_nom=$dDiag['nombre'];
 			}else{
 				$dDiag_cod=NULL;
-				$dDiag_nom=$dRSld[obs];
+				$dDiag_nom=$dRSld['obs'];
 			}
 			$resDiag.='<td>Dx. '.$dDiag_cod.$dDiag_nom.'</td>';		
 		}while($dRSld=mysql_fetch_assoc($RSld));
@@ -88,29 +88,29 @@ include(RAIZf.'head.php'); ?>
 	$contind=1;
 	if($tRStl>0){
 		do{
-			if($dRStl[tip]=='G'){
+			if($dRStl['tip']=='G'){
 				$resReceta.='<tr>';
 				$resReceta.='<td>*</td>';
-				$resReceta.='<td><strong style="text-decoration: underline;">'.strtoupper($dRStl[generico]).'</strong></td>';
+				$resReceta.='<td><strong style="text-decoration: underline;">'.strtoupper($dRStl['generico']).'</strong></td>';
 				$resReceta.='<td></td>';
 				$resReceta.='<td>*</td>';
-				$resReceta.='<td><strong style="text-decoration: underline;">'.strtoupper($dRStl[generico]).'</strong><br>
-				<span style="font-size:10px;">'.$dRStl[descripcion].'</span></td>';
+				$resReceta.='<td><strong style="text-decoration: underline;">'.strtoupper($dRStl['generico']).'</strong><br>
+				<span style="font-size:10px;">'.$dRStl['descripcion'].'</span></td>';
 				$resReceta.='</tr>';
 			}
-			if($dRStl[tip]=='M'){
+			if($dRStl['tip']=='M'){
 				$NE=new EnLetras();
-				$medCantLT=$NE->ValorEnLetras($dRStl[numero],'');
+				$medCantLT=$NE->ValorEnLetras($dRStl['numero'],'');
 				$resReceta.='<tr>';
 				$resReceta.='<td>•</td>';
-				$resReceta.='<td><strong>'.strtoupper($dRStl[generico]).' ('.strtoupper($dRStl[comercial]).') '.$dRStl[presentacion].' '.$dRStl[cantidad].' - # '.$dRStl[numero].' ('.$medCantLT.')'.'</strong></td>';
+				$resReceta.='<td><strong>'.strtoupper($dRStl['generico']).' ('.strtoupper($dRStl['comercial']).') '.$dRStl['presentacion'].' '.$dRStl['cantidad'].' - # '.$dRStl['numero'].' ('.$medCantLT.')'.'</strong></td>';
 				$resReceta.='<td></td>';
 				$resReceta.='<td>•</td>';
-				$resReceta.='<td><strong>'.strtoupper($dRStl[generico]).' ('.strtoupper($dRStl[comercial]).') '.$dRStl[presentacion].' '.$dRStl[cantidad].' - # '.$dRStl[numero].' ('.$medCantLT.')'.'</strong><br>
-				<span style="font-size:10px;">'.$dRStl[descripcion].'</span></td>';
+				$resReceta.='<td><strong>'.strtoupper($dRStl['generico']).' ('.strtoupper($dRStl['comercial']).') '.$dRStl['presentacion'].' '.$dRStl['cantidad'].' - # '.$dRStl['numero'].' ('.$medCantLT.')'.'</strong><br>
+				<span style="font-size:10px;">'.$dRStl['descripcion'].'</span></td>';
 				$resReceta.='</tr>';
 			}
-			if($dRStl[tip]=='I'){
+			if($dRStl['tip']=='I'){
 				if($contind==1){
 					$resReceta.='<tr>';
 					$resReceta.='<td></td>';
@@ -124,7 +124,7 @@ include(RAIZf.'head.php'); ?>
 				$resReceta.='<td></td>';
 				$resReceta.='<td></td>';
 				$resReceta.='<td></td>';
-				$resReceta.='<td style="font-size:10px;">'.strtoupper($dRStl[indicacion]).'</td>';
+				$resReceta.='<td style="font-size:10px;">'.strtoupper($dRStl['indicacion']).'</td>';
 				$resReceta.='</tr>';
 				$contind++;
 			}
@@ -133,8 +133,8 @@ include(RAIZf.'head.php'); ?>
 	}
 	?>
 	<?php
-	if($detCon[con_diapc]){
-		$nuevafecha = strtotime('+'.intval($detCon[con_diapc]).' day',strtotime($sdate));
+	if($detCon['con_diapc']){
+		$nuevafecha = strtotime('+'.intval($detCon['con_diapc']).' day',strtotime($sdate));
 		$verifPrx=date('w',$nuevafecha);
 		if($verifPrx==6) $addDayS=$addDayS+2;
 		else if($verifPrx==0) $addDayS++;
@@ -149,8 +149,8 @@ include(RAIZf.'head.php'); ?>
 		
 	}
 	$proxima.='<strong>PROXIMA VISITA. '.$nuevafecha.'</strong>';
-	if($detCon[con_typvisP]){
-		$detTyp=detRow('db_types','typ_cod',$detCon[con_typvisP]);
+	if($detCon['con_typvisP']){
+		$detTyp=detRow('db_types','typ_cod',$detCon['con_typvisP']);
 		$proxima.='<br>Tipo Visita. <strong>'.$detTyp['typ_val'].'</strong>';
 	}
 	?>
@@ -181,9 +181,9 @@ include(RAIZf.'head.php'); ?>
 	</table>
 -->
 	<div class="sello">
-		<div class="selloR1"><img src="<?php echo $RAIZ.$cfg[sello][A] ?>" alt="" style="width: 100%"></div>
+		<div class="selloR1"><img src="<?php echo $RAIZ.$cfg['sello']['A'] ?>" alt="" style="width: 100%"></div>
 	</div>
 	<div class="sello">
-		<div class="selloR2"><img src="<?php echo $RAIZ.$cfg[sello][A] ?>" alt="" style="width: 100%"></div>
+		<div class="selloR2"><img src="<?php echo $RAIZ.$cfg['sello']['A'] ?>" alt="" style="width: 100%"></div>
 	</div>
 </div>

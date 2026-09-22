@@ -26,7 +26,7 @@ if($dExa){
 	
 	$dPac_edad=edad($dPac['pac_fec']);
 	
-	$dPacSig=detSigLast($detCon[pac_cod]);
+	$dPacSig=detSigLast($detCon['pac_cod']);
 }
 ?>
 
@@ -82,13 +82,13 @@ tr.trAux{background: #E4E9F7; vertical-align: middle;}
 	<!-- DIAGNOSTICOS -->
 	<?php if($tRSld>0){ ?>
 	<?php do{
-		if($dRSld[id_diag]>1){
-			$dDiag=detRow('db_diagnosticos','id_diag',$dRSld[id_diag]);
-			$dDiag_cod=$dDiag[codigo];
-			$dDiag_nom=$dDiag[nombre];
+		if($dRSld['id_diag']>1){
+			$dDiag=detRow('db_diagnosticos','id_diag',$dRSld['id_diag']);
+			$dDiag_cod=$dDiag['codigo'];
+			$dDiag_nom=$dDiag['nombre'];
 		}else{
 			$dDiag_cod=NULL;
-			$dDiag_nom=$dRSld[obs];
+			$dDiag_nom=$dRSld['obs'];
 		}
 		
 		$resDiag.='<tr>';
@@ -133,9 +133,9 @@ tr.trAux{background: #E4E9F7; vertical-align: middle;}
 	</table>
 	<?php } ?>
 	
-	<?php if($dExa[des]){ ?>
+	<?php if($dExa['des']){ ?>
 	<div style="padding: 20px;">
-		<?php echo $dExa[des] ?>
+		<?php echo $dExa['des'] ?>
 	</div>
 	<?php } ?>
 	

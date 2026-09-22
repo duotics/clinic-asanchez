@@ -67,12 +67,12 @@ if(isset($data['form'])&&($data['form']==md5(MedGrp))){
 		$LOG=var_dump($data);
 		$qINS=sprintf('INSERT INTO db_medicamentos_grp (idp,idm) VALUES (%s,%s)',
 						SSQL($id, 'int'),
-					 	SSQL($data[idref], 'int'));
+					 	SSQL($data['idref'], 'int'));
 		$LOG.=$qINS;
 		if(@mysql_query($qINS)){
 			$vP=TRUE;
-			$LOG.=$cfg[p]['ins-true'];
-		}else $LOG.=$cfg[p]['ins-false'].mysql_error();
+			$LOG.=$cfg['p']['ins-true'];
+		}else $LOG.=$cfg['p']['ins-false'].mysql_error();
 		$goToP='?id='.$id;
 	}	
 }
@@ -85,15 +85,15 @@ if(isset($data['form'])&&($data['form']==md5(find))){
 		$idA=AUD(NULL,'Crear Indicacion');
 		$qryI = sprintf("INSERT INTO db_indicaciones (des, feat, est) 
 		VALUES (%s,%s,%s)",
-						SSQL($data[des], "text"),
-						SSQL($data[feat], "text"),
-						SSQL($data[est], "text"));
+						SSQL($data['des'], "text"),
+						SSQL($data['feat'], "text"),
+						SSQL($data['est'], "text"));
 		if(@mysql_query($qryI)){
 			$vP=TRUE;
 			$id=mysql_insert_id();
 			$ids=md5($id);
-			$LOG.=$cfg[p]['ins-true'];
-		}else $LOG.= $cfg[p]['ins-false'].mysql_error();
+			$LOG.=$cfg['p']['ins-true'];
+		}else $LOG.= $cfg['p']['ins-false'].mysql_error();
 	}
 	if($acc==md5(UPDi)){
 		$LOGd.="acc -> UPDm<br>";
@@ -102,14 +102,14 @@ if(isset($data['form'])&&($data['form']==md5(find))){
 		$qryU=sprintf("UPDATE db_indicaciones SET 
 		des=%s, feat=%s, est=%s WHERE md5(id)=%s 
 		LIMIT 1",
-						SSQL($data[des], 'text'),
-						SSQL($data[feat], 'int'),
-						SSQL($data[est], 'int'),
+						SSQL($data['des'], 'text'),
+						SSQL($data['feat'], 'int'),
+						SSQL($data['est'], 'int'),
 						SSQL($ids, "text"));
 		if(@mysql_query($qryU)){
 			$vP=TRUE;
-			$LOG.=$cfg[p]['upd-true'];
-		}else $LOG.= $cfg[p]['upd-false'].mysql_error();
+			$LOG.=$cfg['p']['upd-true'];
+		}else $LOG.= $cfg['p']['upd-false'].mysql_error();
 	}
 	$goToP='?ids='.$ids;
 }
@@ -147,19 +147,19 @@ if(isset($acc)&&($acc==md5(CLONm))){
 	$idA=AUD(NULL,'Crear Medicamento');
 	$qINS=sprintf('INSERT INTO db_medicamentos (lab,generico,comercial,presentacion,cantidad,descripcion,estado,idA) 
 	VALUES (%s,%s,%s,%s,%s,%s,%s,%s)',
-				  SSQL($detM[lab],'int'),
-				  SSQL($detM[generico],'text'),
-				 SSQL($detM[comercial],'text'),
-				 SSQL($detM[presentacion],'text'),
-				 SSQL($detM[cantidad],'text'),
-				 SSQL($detM[descripcion],'text'),
-				 SSQL($detM[estado],'int'),
+				  SSQL($detM['lab'],'int'),
+				  SSQL($detM['generico'],'text'),
+				 SSQL($detM['comercial'],'text'),
+				 SSQL($detM['presentacion'],'text'),
+				 SSQL($detM['cantidad'],'text'),
+				 SSQL($detM['descripcion'],'text'),
+				 SSQL($detM['estado'],'int'),
 				 SSQL($idA,'int'));
 	if(@mysql_query($qINS)){
 		$vP=TRUE;
 		$id=mysql_insert_id();
-		$LOG.=$cfg[p]['clon-true'];
-	}else $LOG.=$cfg[p]['clon-false'].mysql_error();
+		$LOG.=$cfg['p']['clon-true'];
+	}else $LOG.=$cfg['p']['clon-false'].mysql_error();
 	$goToP.='?id='.$id;
 }
 if(isset($acc)&&($acc==md5(DELmg))){
@@ -215,17 +215,17 @@ if(isset($acc)&&($acc==md5(FTi))){
 //////////////////////////////////////////////////////////////
 if($vD==TRUE) $LOG.=$LOGd;
 $LOG.=mysql_error();
-$LOGr[m]=$LOG;
+$LOGr['m']=$LOG;
 if(($vP==TRUE)&&(!mysql_error())){
 	mysql_query("COMMIT;");
-	$LOGr[t]=$cfg[p]['m-ok'];
-	$LOGr[c]=$cfg[p]['c-ok'];
-	$LOGr[i]=$RAIZa.$cfg[p]['i-ok'];
+	$LOGr['t']=$cfg['p']['m-ok'];
+	$LOGr['c']=$cfg['p']['c-ok'];
+	$LOGr['i']=$RAIZa.$cfg['p']['i-ok'];
 }else{
 	mysql_query("ROLLBACK;");
-	$LOGr[t]=$cfg[p]['m-fail'];
-	$LOGr[c]=$cfg[p]['c-fail'];
-	$LOGr[i]=$RAIZa.$cfg[p]['i-fail'];
+	$LOGr['t']=$cfg['p']['m-fail'];
+	$LOGr['c']=$cfg['p']['c-fail'];
+	$LOGr['i']=$RAIZa.$cfg['p']['i-fail'];
 }
 mysql_query("SET AUTOCOMMIT=1;"); //Habilita el autocommit
 $_SESSION['LOG']=$LOGr;

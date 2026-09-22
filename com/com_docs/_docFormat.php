@@ -45,7 +45,7 @@ $btnNew='<a href="docFormatForm.php" class="btn btn-primary fancyR" data-type="i
 		<td><?php echo $id ?></td>
 		<td><?php echo $btnStat ?></td>
 		<td><?php $date ?></td>
-		<td><?php echo $dRSd[nombre] ?></td>
+		<td><?php echo $dRSd['nombre'] ?></td>
 		<td><?php echo $btnView ?></td>
         <td><?php echo $TRd ?></td>
         <td align="center">

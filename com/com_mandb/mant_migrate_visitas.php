@@ -55,7 +55,7 @@ $dRS=mysql_fetch_assoc($RS);
 <?php do{ ?>
 	<tr>
 <?php
-	$ID=$dRS[pac_cod];
+	$ID=$dRS['pac_cod'];
 	$qryB=sprintf('SELECT * FROM bck_visitas WHERE CODIGO=%s',
 				 SSQL($ID,'int'));
 	$RSb=mysql_query($qryB);
@@ -84,12 +84,12 @@ $dRS=mysql_fetch_assoc($RS);
 			//CONSULTA - VISITA DATA
 			//FECHA GEN
 			$RES=NULL;
-			$fecha = date_create($det[FECHAVIS]);
+			$fecha = date_create($det['FECHAVIS']);
 			$fecha = date_format($fecha, 'Y-m-d');
 			//MIGRACION FECHA
-			$set[con_fec]=$det[FECHAVIS];
+			$set['con_fec']=$det['FECHAVIS'];
 			//MIGRACION TIPO DE VISITA
-			$det_TipVis=$det[TIPOVISITA];
+			$det_TipVis=$det['TIPOVISITA'];
 			if($det_TipVis){
 				switch($det_TipVis){
 					//case '':
@@ -123,22 +123,22 @@ $dRS=mysql_fetch_assoc($RS);
 			}else{
 				$det_TipVis=NULL;
 			}
-			$set[con_typvis]=$det_TipVis;
+			$set['con_typvis']=$det_TipVis;
 			//MIGRACION MOTIVO
-			$set[dcon_mot]=$det[MOTIVO01].'\n'.$det[MOTIVO02].'\n'.$det[MOTIVO03].'\n'.$det[MOTIVO04].'\n'.$det[MOTIVO05];
+			$set['dcon_mot']=$det['MOTIVO01'].'\n'.$det['MOTIVO02'].'\n'.$det['MOTIVO03'].'\n'.$det['MOTIVO04'].'\n'.$det['MOTIVO05'];
 			//DETALLES CONSULTA
-			$set[dcon_ef_cavo]=$det[CAM];
-			$set[dcon_ef_fosn]=$det[FOSAS];
-			$set[dcon_ef_oro]=$det[OROFARINGE];
-			$set[dcon_ef_cue]=$det[CUELLO];
-			$set[dcon_tor_ins]=$det[TORAX];
-			$set[dcon_tor_pal]=$det[PALPACION];
-			$set[dcon_tor_per]=$det[PERCUSION];
-			$set[dcon_tor_aus]=$det[AUSCULTA].' - '.$det[AUSCULTA2];
-			$set[dcon_ef_obs]=$det[EXAFIS01].' - '.$det[EXAFIS02];
-			$set[con_diapc]=$det[DIAS];
-			$set[con_val]=$det[VALOR];
-			$visita=$det[NROVISITA];
+			$set['dcon_ef_cavo']=$det['CAM'];
+			$set['dcon_ef_fosn']=$det['FOSAS'];
+			$set['dcon_ef_oro']=$det['OROFARINGE'];
+			$set['dcon_ef_cue']=$det['CUELLO'];
+			$set['dcon_tor_ins']=$det['TORAX'];
+			$set['dcon_tor_pal']=$det['PALPACION'];
+			$set['dcon_tor_per']=$det['PERCUSION'];
+			$set['dcon_tor_aus']=$det['AUSCULTA'].' - '.$det['AUSCULTA2'];
+			$set['dcon_ef_obs']=$det['EXAFIS01'].' - '.$det['EXAFIS02'];
+			$set['con_diapc']=$det['DIAS'];
+			$set['con_val']=$det['VALOR'];
+			$visita=$det['NROVISITA'];
 			
 			$qry=sprintf('INSERT INTO db_consultas (id_ant, pac_cod, con_fec, con_typvis, con_val, dcon_mot, 
 			dcon_ef_cavo, dcon_ef_fosn, dcon_ef_oro, dcon_ef_cue, 
@@ -147,20 +147,20 @@ $dRS=mysql_fetch_assoc($RS);
 			VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',
 						SSQL($visita,'text'),
 						SSQL($ID,'int'),
-						SSQL($set[con_fec],'text'),
-						SSQL($set[con_typvis],'int'),
-						SSQL($set[con_val],'text'),
-						SSQL($set[dcon_mot],'text'),//
-						SSQL($set[dcon_ef_cavo],'text'),
-						SSQL($set[dcon_ef_fosn],'text'),
-						SSQL($set[dcon_ef_oro],'text'),
-						SSQL($set[dcon_ef_cue],'text'),
-						SSQL($set[dcon_tor_ins],'text'),//
-						SSQL($set[dcon_tor_pal],'text'),
-						SSQL($set[dcon_tor_per],'text'),
-						SSQL($set[dcon_tor_aus],'text'),//
-						SSQL($set[dcon_ef_obs],'text'),
-						SSQL($set[con_diapc],'text')
+						SSQL($set['con_fec'],'text'),
+						SSQL($set['con_typvis'],'int'),
+						SSQL($set['con_val'],'text'),
+						SSQL($set['dcon_mot'],'text'),//
+						SSQL($set['dcon_ef_cavo'],'text'),
+						SSQL($set['dcon_ef_fosn'],'text'),
+						SSQL($set['dcon_ef_oro'],'text'),
+						SSQL($set['dcon_ef_cue'],'text'),
+						SSQL($set['dcon_tor_ins'],'text'),//
+						SSQL($set['dcon_tor_pal'],'text'),
+						SSQL($set['dcon_tor_per'],'text'),
+						SSQL($set['dcon_tor_aus'],'text'),//
+						SSQL($set['dcon_ef_obs'],'text'),
+						SSQL($set['con_diapc'],'text')
 						);
 			//echo $qry.'<hr>';
 			if(@mysql_query($qry)){
@@ -175,28 +175,28 @@ $dRS=mysql_fetch_assoc($RS);
 			/////////////////////////////
 			/////////////////////////////
 			//MIGRACION DE SIGNOS VITALES
-			$setS[peso]=$det[PESO];
-			$setS[talla]=$det[TALLA];
-			$setS[pa]=$det[TENARTERIA];
-			$setS[fc]=$det[FRECARDIAC];
-			$setS[fr]=$det[FRERESPIRA];
-			$setS[po2]=$det[O2];
-			$setS[co2]=$det[CO2];
-			$setS[temp]=$det[TEMPERA];
+			$setS['peso']=$det['PESO'];
+			$setS['talla']=$det['TALLA'];
+			$setS['pa']=$det['TENARTERIA'];
+			$setS['fc']=$det['FRECARDIAC'];
+			$setS['fr']=$det['FRERESPIRA'];
+			$setS['po2']=$det['O2'];
+			$setS['co2']=$det['CO2'];
+			$setS['temp']=$det['TEMPERA'];
 			
-			if(($setS[peso])||($setS[pa])||($setS[fc])||($setS[fr])||($setS[po2])||($setS[co2])||($setS[talla])||($setS[temp])){
+			if(($setS['peso'])||($setS['pa'])||($setS['fc'])||($setS['fr'])||($setS['po2'])||($setS['co2'])||($setS['talla'])||($setS['temp'])){
 				$qryS=sprintf('INSERT INTO db_signos (pac_cod,fecha,peso,pa,fc,fr,po2,co2,talla,temp) 
 				VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',
 							 SSQL($ID,'int'),
 							 SSQL($fecha,'date'),
-							 SSQL($setS[peso],'double'),
-							 SSQL($setS[pa],'text'),
-							 SSQL($setS[fc],'int'),
-							 SSQL($setS[fr],'int'),
-							 SSQL($setS[po2],'int'),
-							 SSQL($setS[co2],'int'),
-							 SSQL($setS[talla],'double'),
-							 SSQL($setS[temp],'double'));
+							 SSQL($setS['peso'],'double'),
+							 SSQL($setS['pa'],'text'),
+							 SSQL($setS['fc'],'int'),
+							 SSQL($setS['fr'],'int'),
+							 SSQL($setS['po2'],'int'),
+							 SSQL($setS['co2'],'int'),
+							 SSQL($setS['talla'],'double'),
+							 SSQL($setS['temp'],'double'));
 				if(@mysql_query($qryS)){
 					$idSig=mysql_insert_id();
 					//$RES.='<p>Signos Creados</p>';
@@ -209,12 +209,12 @@ $dRS=mysql_fetch_assoc($RS);
 			/////////////////////////////
 			/////////////////////////////
 			//MIGRACION DE EXAMENES
-			$EXAPED=array('01'=>array($det[EXAPED01],$det[EXAMEN01]),
-			 '02'=>array($det[EXAPED02],$det[EXAMEN02]),
-			 '03'=>array($det[EXAPED03],$det[EXAMEN03]),
-			 '04'=>array($det[EXAPED04],$det[EXAMEN04]),
-			 '05'=>array($det[EXAPED05],$det[EXAMEN05]),
-			 '06'=>array($det[EXAPED06],$det[EXAMEN06]));
+			$EXAPED=array('01'=>array($det['EXAPED01'],$det['EXAMEN01']),
+			 '02'=>array($det['EXAPED02'],$det['EXAMEN02']),
+			 '03'=>array($det['EXAPED03'],$det['EXAMEN03']),
+			 '04'=>array($det['EXAPED04'],$det['EXAMEN04']),
+			 '05'=>array($det['EXAPED05'],$det['EXAMEN05']),
+			 '06'=>array($det['EXAPED06'],$det['EXAMEN06']));
 			
 			foreach($EXAPED as $key => $val){
 				if($val[0]){
@@ -239,7 +239,7 @@ $dRS=mysql_fetch_assoc($RS);
 			/////////////////////////////
 			/////////////////////////////
 			//MIGRACION DE DIAGNOSTICOS
-			$DIAGNOS=array('DIAGNOS01'=>$det[DIAGNOS01],'DIAGNOS02'=>$det[DIAGNOS02],'DIAGNOS03'=>$det[DIAGNOS03],'DIAGNOS04'=>$det[DIAGNOS04]);
+			$DIAGNOS=array('DIAGNOS01'=>$det['DIAGNOS01'],'DIAGNOS02'=>$det['DIAGNOS02'],'DIAGNOS03'=>$det['DIAGNOS03'],'DIAGNOS04'=>$det['DIAGNOS04']);
 			foreach($DIAGNOS as $key => $val){
 				if(($key)&&($val)){
 					$qryD=sprintf('INSERT INTO db_consultas_diagostico (con_num,id_diag,obs) VALUES (%s,%s,%s)',

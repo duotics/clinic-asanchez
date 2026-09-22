@@ -217,7 +217,7 @@ $detCon=detRow('db_consultas','con_num',$idc);
 					$resDiag.='<table class="table">';
 			   		do{
 						$resDiag.='<tr>';
-						$resDiag.='<td>'.utf8_encode(strftime("%d-%B-%Y",strtotime($dRSlca[con_fec]))).'</td>';
+						$resDiag.='<td>'.utf8_encode(strftime("%d-%B-%Y",strtotime($dRSlca['con_fec']))).'</td>';
 						$resDiag.='<td>';
 						$qLD=sprintf('SELECT * FROM db_consultas_diagostico WHERE con_num=%s ORDER BY id ASC LIMIT 2',
 									 SSQL($dRSlca['con_num'],'int'));
@@ -227,13 +227,13 @@ $detCon=detRow('db_consultas','con_num',$idc);
 						if($tRSld>0){
 							//$resDiag.='<ul class="">';
 							do{
-								if($dRSld[id_diag]>1){
-								$dDiag=detRow('db_diagnosticos','id_diag',$dRSld[id_diag]);
-								$dDiag_cod=$dDiag[codigo].'-';
-								$dDiag_nom=$dDiag[nombre];
+								if($dRSld['id_diag']>1){
+								$dDiag=detRow('db_diagnosticos','id_diag',$dRSld['id_diag']);
+								$dDiag_cod=$dDiag['codigo'].'-';
+								$dDiag_nom=$dDiag['nombre'];
 								}else{
 									$dDiag_cod=NULL;
-									$dDiag_nom=$dRSld[obs];
+									$dDiag_nom=$dRSld['obs'];
 								}
 								//$resDiag.='<li class="">'.$dDiag_cod.$dDiag_nom.'</li>';
 								$resDiag.=' <span class="btn btn-default btn-xs">'.$dDiag_cod.$dDiag_nom.'</span> ';

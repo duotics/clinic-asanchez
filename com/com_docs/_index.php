@@ -38,12 +38,12 @@ $pages = new Paginator;
 		<tbody>
 		<?php do{ ?>
 		<?php
-				 $dPac=detRow('db_pacientes','pac_cod',$dRS[pac_cod]);
+				 $dPac=detRow('db_pacientes','pac_cod',$dRS['pac_cod']);
 				 $idDoc=$dRS['id_doc'];
 		?>
 			<tr>
 			<td><?php echo $idDoc ?></td>
-			<td><?php echo $dPac[pac_nom].' '.$dPac[pac_ape] ?></td>
+			<td><?php echo $dPac['pac_nom'].' '.$dPac['pac_ape'] ?></td>
 			<td><?php echo $dRS['fecha'] ?></td>
 			<td><?php echo $dRS['nombre'] ?></td>
 			<td>

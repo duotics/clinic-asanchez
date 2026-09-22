@@ -163,9 +163,9 @@ if ((isset($acc)) && ($acc==md5('NEWe'))){
 				   SSQL($idp,'int'),
 				   SSQL($sdate,'date'),
 				   SSQL($sdate,'date'),
-				   SSQL($dEF[enc],'text'),
-				   SSQL($dEF[des],'text'),
-				   SSQL($dEF[pie],'text'));
+				   SSQL($dEF['enc'],'text'),
+				   SSQL($dEF['des'],'text'),
+				   SSQL($dEF['pie'],'text'));
 	if(@mysql_query($qryIE)){
 		$vP=TRUE;
 		$id=@mysql_insert_id();
@@ -180,7 +180,7 @@ if ((isset($acc)) && ($acc==md5('NEWe'))){
 		if($tRSefd>0){
 			do{
 				$qIEFd=sprintf('INSERT INTO db_examenes_det (idefd,ide) VALUES (%s,%s)',
-							  SSQL($dRSefd[id],'int'),
+							  SSQL($dRSefd['id'],'int'),
 							  SSQL($id,'int'));
 				$debug.=$qIEFd.'<br>';
 				if(@mysql_query($qIEFd)){

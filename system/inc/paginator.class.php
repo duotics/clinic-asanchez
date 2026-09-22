@@ -91,6 +91,7 @@ class Paginator{
 		<div class='col-md-8'><select class=\"form-control input-sm\" onchange=\"window.location='$_SERVER[PHP_SELF]?page=1&ipp='+this[this.selectedIndex].value+'$this->querystring';return false\">$items</select></div></div>\n";
 	}
 	function display_jump_menu(){
+		$option='';
 		for($i=1;$i<=$this->num_pages;$i++){
 			$option .= ($i==$this->current_page) ? "<option value=\"$i\" selected>$i</option>\n":"<option value=\"$i\">$i</option>\n";
 		}

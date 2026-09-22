@@ -2,7 +2,7 @@
 $dM=vLogin('PACIENTE');
 include(RAIZf."head.php");
 include(RAIZm.'mod_menu/menuMain.php');
-$btnNew='<a href="'.$RAIZc.'com_pacientes/form.php" class="btn btn-primary btn-sm">'.$cfg[i]['new'].' Nuevo Paciente</a>';
+$btnNew='<a href="'.$RAIZc.'com_pacientes/form.php" class="btn btn-primary btn-sm">'.$cfg['i']['new'].' Nuevo Paciente</a>';
 ?>
 <div class="container">
 	<?php echo genPageHeader($dM['mod_cod'],'page-header',null,null,null,null,null,null,$btnNew)?>

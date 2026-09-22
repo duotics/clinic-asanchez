@@ -53,21 +53,21 @@ if($fi&&$ff){
 		</thead>
 		<tbody>
 		<?php do{ ?>
-		<?php $dPac=detRow('db_pacientes','pac_cod',$dRS[pac_cod]);
-		$dTC=detRow('db_types','typ_cod',$dRS[con_typvis]);
-		$dTP=detRow('db_types','typ_cod',$dRS[con_typ]);
-		$sum+=$dRS[con_val];
-		if($fi==$ff) $detFec = date_format(date_create($dRS[con_fec]), 'H:m:s');
-		else $detFec=$dRS[con_fec];
+		<?php $dPac=detRow('db_pacientes','pac_cod',$dRS['pac_cod']);
+		$dTC=detRow('db_types','typ_cod',$dRS['con_typvis']);
+		$dTP=detRow('db_types','typ_cod',$dRS['con_typ']);
+		$sum+=$dRS['con_val'];
+		if($fi==$ff) $detFec = date_format(date_create($dRS['con_fec']), 'H:m:s');
+		else $detFec=$dRS['con_fec'];
 		$contPac++; 
 		?>
 		<tr>
-			<td><a href="<?php echo $RAIZc ?>com_consultas/form.php?idc=<?php echo $dRS[con_num] ?>"><?php echo $dRS[con_num] ?></a></td>
+			<td><a href="<?php echo $RAIZc ?>com_consultas/form.php?idc=<?php echo $dRS['con_num'] ?>"><?php echo $dRS['con_num'] ?></a></td>
 			<td><?php echo $detFec ?></td>
-			<td><?php echo $dPac[pac_nom].' '.$dPac[pac_ape] ?></td>
-			<td><?php echo $dTC[typ_val] ?></td>
-			<td><?php echo $dTP[typ_val] ?></td>
-			<td><?php echo $dRS[con_val] ?></td>
+			<td><?php echo $dPac['pac_nom'].' '.$dPac['pac_ape'] ?></td>
+			<td><?php echo $dTC['typ_val'] ?></td>
+			<td><?php echo $dTP['typ_val'] ?></td>
+			<td><?php echo $dRS['con_val'] ?></td>
 		</tr>
 		<?php }while($dRS=mysql_fetch_assoc($RS)); ?>
 		</tbody>

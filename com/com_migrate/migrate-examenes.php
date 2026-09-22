@@ -27,24 +27,24 @@ do{
 	$contN++;
 	$det=$dRS; //ASOCIO EL ROW a la variable $det
 	$LOG.='<div style="border-bottom:1px solid #ccc; padding:5px 0;">';
-	if(($det[con_num]>0)&&($det[pac_cod]>0)){
+	if(($det['con_num']>0)&&($det['pac_cod']>0)){
 		$paramsN=NULL;
 		$paramsN[]=array(
-			array("cond"=>"AND","field"=>"id_ant","comp"=>"=","val"=>$det[con_num]),
-			array("cond"=>"AND","field"=>"pac_cod","comp"=>'=',"val"=>$det[pac_cod]));
+			array("cond"=>"AND","field"=>"id_ant","comp"=>"=","val"=>$det['con_num']),
+			array("cond"=>"AND","field"=>"pac_cod","comp"=>'=',"val"=>$det['pac_cod']));
 		$detC=detRowNP('db_consultas',$paramsN);
 		if($detC){
 			$qryIT=sprintf('INSERT INTO db_examenes 
 			(id_exa, id_ef, con_num, pac_cod, fecha, fechae, des, resultado) 
 			VALUES (%s,%s,%s,%s,%s,%s,%s,%s)',
-						   SSQL($det[id],'int'),
+						   SSQL($det['id'],'int'),
 						   SSQL(1,'int'),
-						   SSQL($detC[con_num],'int'),
-						   SSQL($det[pac_cod],'int'),
-						   SSQL($det[fecha],'text'),
-						   SSQL($det[fechae],'text'),
-						   SSQL($det[descripcion],'text'),
-						   SSQL($det[resultado],'text'));
+						   SSQL($detC['con_num'],'int'),
+						   SSQL($det['pac_cod'],'int'),
+						   SSQL($det['fecha'],'text'),
+						   SSQL($det['fechae'],'text'),
+						   SSQL($det['descripcion'],'text'),
+						   SSQL($det['resultado'],'text'));
 			if(@mysql_query($qryIT)){
 				$idT=mysql_insert_id();
 				$LOG.='* Creo EXAMEN: '.$idT.'<br>';

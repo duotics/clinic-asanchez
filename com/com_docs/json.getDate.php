@@ -20,8 +20,8 @@ function valMes($mes){
 
 
 $dat=$_REQUEST;
-$fecha=$dat[rFec];
-$dias=$dat[rDia];
+$fecha=$dat['rFec'];
+$dias=$dat['rDia'];
 if(!$fecha) $fecha = $sdate;
 if(!$dias) $dias=1;
 

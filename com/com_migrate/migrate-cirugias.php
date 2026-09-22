@@ -29,23 +29,23 @@ $det=$dRS; //ASOCIO EL ROW a la variable $det
 $LOG.='<div style="border-bottom:1px solid #ccc; padding:5px 0;">';
 $paramsN=NULL;
 $paramsN[]=array(
-	array("cond"=>"AND","field"=>"id_ant","comp"=>"=","val"=>$det[con_num]),
-	array("cond"=>"AND","field"=>"pac_cod","comp"=>'=',"val"=>$det[pac_cod]));
+	array("cond"=>"AND","field"=>"id_ant","comp"=>"=","val"=>$det['con_num']),
+	array("cond"=>"AND","field"=>"pac_cod","comp"=>'=',"val"=>$det['pac_cod']));
 $detC=detRowNP('db_consultas',$paramsN);
 	$qryIC=sprintf('INSERT INTO db_cirugias 
 	(id_cir, con_num, pac_cod, fecha, diagnostico, cirugiap, fechap, cirugiar, fechar, protocolo, evolucion) 
 	VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',
-				   SSQL($det[id],'int'),
-				   SSQL($detC[con_num],'int'),
-				   SSQL($det[pac_cod],'int'),
-				   SSQL($det[fecha],'text'),
-				   SSQL($det[diagnostico],'text'),
-				   SSQL($det[cirugiap],'text'),
-				   SSQL($det[fechap],'text'),
-				   SSQL($det[cirugiar],'text'),
-				   SSQL($det[fechar],'text'),
-				   SSQL($det[protocolo],'text'),
-				   SSQL($det[evolucion],'text'));
+				   SSQL($det['id'],'int'),
+				   SSQL($detC['con_num'],'int'),
+				   SSQL($det['pac_cod'],'int'),
+				   SSQL($det['fecha'],'text'),
+				   SSQL($det['diagnostico'],'text'),
+				   SSQL($det['cirugiap'],'text'),
+				   SSQL($det['fechap'],'text'),
+				   SSQL($det['cirugiar'],'text'),
+				   SSQL($det['fechar'],'text'),
+				   SSQL($det['protocolo'],'text'),
+				   SSQL($det['evolucion'],'text'));
 	if(@mysql_query($qryIC)){
 		$idT=mysql_insert_id();
 		$LOG.='* Creo CIRUGIA: '.$idT.'<br>';

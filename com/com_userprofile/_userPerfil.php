@@ -1,10 +1,10 @@
 <?php 
-$detU=detRow('db_user_system','user_cod',$_SESSION[dU][u_id]);
+$detU=detRow('db_user_system','user_cod',$_SESSION['dU']['u_id']);
 $detE=dataEmp($detU['emp_cod']);
 $detE_fullname=$detE['emp_nom'].' '.$detE['emp_ape'];
 ?>
 <div>
-	<?php echo gen_pageTit($dM[mod_ref]) ?>
+	<?php echo gen_pageTit($dM['mod_ref']) ?>
     <?php if($detU){ ?>
 	<form action="actions.php" method="post" role="form">
     <input type="hidden" name="form" value="formPerfil">

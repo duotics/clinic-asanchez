@@ -28,25 +28,25 @@ do{
 	$det=$dRS; //ASOCIO EL ROW a la variable $det
 	$LOG.='<div style="border-bottom:1px solid #ccc; padding:5px 0;">';
 	
-	if(($det[con_num]>0)&&($det[pac_cod]>0)){
+	if(($det['con_num']>0)&&($det['pac_cod']>0)){
 		$paramsN=NULL;
 		$paramsN[]=array(
-			array("cond"=>"AND","field"=>"id_ant","comp"=>"=","val"=>$det[con_num]),
-			array("cond"=>"AND","field"=>"pac_cod","comp"=>'=',"val"=>$det[pac_cod]));
+			array("cond"=>"AND","field"=>"id_ant","comp"=>"=","val"=>$det['con_num']),
+			array("cond"=>"AND","field"=>"pac_cod","comp"=>'=',"val"=>$det['pac_cod']));
 		$detC=detRowNP('db_consultas',$paramsN);
 		if($detC){
 			
-			$dF=detRow('db_documentos_formato','nombre',$det[nombre]);
+			$dF=detRow('db_documentos_formato','nombre',$det['nombre']);
 			
 			$qryIT=sprintf('INSERT INTO db_documentos 
 			(id_df, con_num, pac_cod, nombre, contenido, fecha) 
 			VALUES (%s,%s,%s,%s,%s,%s)',
-						   SSQL($dF[id_df],'int'),
-						   SSQL($detC[con_num],'int'),
-						   SSQL($det[pac_cod],'int'),
-						   SSQL($det[nombre],'text'),
-						   SSQL($det[contenido],'text'),
-						   SSQL($det[fecha],'text'));
+						   SSQL($dF['id_df'],'int'),
+						   SSQL($detC['con_num'],'int'),
+						   SSQL($det['pac_cod'],'int'),
+						   SSQL($det['nombre'],'text'),
+						   SSQL($det['contenido'],'text'),
+						   SSQL($det['fecha'],'text'));
 			if(@mysql_query($qryIT)){
 				$idT=mysql_insert_id();
 				$LOG.='* Creo DOCUMENTO: '.$idT.'<br>';

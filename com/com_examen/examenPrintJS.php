@@ -7,7 +7,7 @@ $detCon=detRow('db_consultas','con_num',$dExa['con_num']);//fnc_datatrat($idt);
 $dPac=detRow('db_pacientes','pac_cod',$detCon['pac_cod']);
 $dExa_fecha=date_ame2euro($dExa['fechae']);
 if($dExa){
-	$dExaF=detRow('db_examenes_format','id',$dExa[id_ef]);
+	$dExaF=detRow('db_examenes_format','id',$dExa['id_ef']);
 	$qLD=sprintf('SELECT * FROM db_consultas_diagostico WHERE con_num=%s ORDER BY id ASC LIMIT 2',
 				SSQL($dExa['con_num'],'int'));
 	//echo $qLD.'<br>';
@@ -27,9 +27,9 @@ if($dExa){
 	
 	$dPac_edad=edad($dPac['pac_fec']);
 	
-	$dPacSig=detSigLast($detCon[pac_cod]);
+	$dPacSig=detSigLast($detCon['pac_cod']);
 }
-$css[body]='cero';
+$css['body']='cero';
 ?>
 <?php include(RAIZf.'head.php'); ?>
 <link rel="stylesheet" type="text/css" href="<?php echo $RAIZa ?>css/cssPrint_01.css" />
@@ -68,13 +68,13 @@ $css[body]='cero';
 	?>
 	<?php do{ ?>
 	<?php
-		if($dRSld[id_diag]>1){
-			$dDiag=detRow('db_diagnosticos','id_diag',$dRSld[id_diag]);
-			$dDiag_cod=$dDiag[codigo];
-			$dDiag_nom=$dDiag[nombre];
+		if($dRSld['id_diag']>1){
+			$dDiag=detRow('db_diagnosticos','id_diag',$dRSld['id_diag']);
+			$dDiag_cod=$dDiag['codigo'];
+			$dDiag_nom=$dDiag['nombre'];
 		}else{
 			$dDiag_cod=NULL;
-			$dDiag_nom=$dRSld[obs];
+			$dDiag_nom=$dRSld['obs'];
 		}
 		
 		$resDiag.='<tr>';
@@ -105,7 +105,7 @@ $css[body]='cero';
 
 	<?php
 		$resED.='<tr>';
-		$resED.='<td><span style="font-size:10px; color:#ccc">'.$dExaF[nom].'</span></td>';
+		$resED.='<td><span style="font-size:10px; color:#ccc">'.$dExaF['nom'].'</span></td>';
 		$resED.='<td style="text-align:left; font-size:14px;">'.$dRSled['eNom'].'</td>';
 		$resED.='<td></td>';
 		$resED.='</tr>';
@@ -124,19 +124,19 @@ $css[body]='cero';
 		<?php echo $resED ?>
 	</table>
 	<?php } ?>
-	<?php if($dExaF[enc]){ ?>
+	<?php if($dExaF['enc']){ ?>
 	<div>
-		<?php echo $dExaF[enc] ?>
+		<?php echo $dExaF['enc'] ?>
 	</div>
 	<?php } ?>
-	<?php if($dExa[des]){ ?>
+	<?php if($dExa['des']){ ?>
 	<div style="padding: 0px; font-size: 10px">
-		<div style="padding: 20px; margin: 20px; border: 1px solid #eee"><?php echo $dExa[des] ?></div>
+		<div style="padding: 20px; margin: 20px; border: 1px solid #eee"><?php echo $dExa['des'] ?></div>
 	</div>
 	<?php } ?>
-	<?php if($dExaF[pie]){ ?>
-	<?php $dExaF[pie] = str_replace('{RAIZ}',$RAIZ,$dExaF[pie]); ?>
-	<?php echo $dExaF[pie] ?>
+	<?php if($dExaF['pie']){ ?>
+	<?php $dExaF['pie'] = str_replace('{RAIZ}',$RAIZ,$dExaF['pie']); ?>
+	<?php echo $dExaF['pie'] ?>
 	<?php } ?>
 	<div class="sello">
 		<div class="selloEA"><img src="<?php echo $RAIZa ?>images/struct/selloA-02.jpg" alt="" style="width: 100%"></div>

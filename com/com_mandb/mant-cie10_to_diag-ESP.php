@@ -24,15 +24,15 @@ if($tRS>0){ ?>
 	</tr>
 <?php do{ ?>
 	<?php 
-		$dDiagExis=detRow('db_diagnosticos','codigo',$dRS[id10]);
+		$dDiagExis=detRow('db_diagnosticos','codigo',$dRS['id10']);
 		if($dDiagExis){//EXISTE codigo CIE10 en db_diagnosticos
 			$contO++;
 			$LOG='Omitido - Ya existente';
 		}else{
 			$qryI=sprintf('INSERT INTO db_diagnosticos (codigo,nombre,val,ref,estado) VALUES (%s,%s,%s,%s,%s)',
-						 SSQL($dRS[id10],'text'),
-						 SSQL($dRS[dec10],'text'),
-						 SSQL($dRS[grp10],'text'),
+						 SSQL($dRS['id10'],'text'),
+						 SSQL($dRS['dec10'],'text'),
+						 SSQL($dRS['grp10'],'text'),
 						 SSQL('cie10','text'),
 						 SSQL(1,'int'));
 			if(@mysql_query($qryI)){
@@ -44,9 +44,9 @@ if($tRS>0){ ?>
 			}
 		} ?>
 	<tr>
-		<td><?php echo $dRS[id10] ?></td>
-		<td><?php echo $dRS[dec10] ?></td>
-		<td><?php echo $dRS[grp10] ?></td>
+		<td><?php echo $dRS['id10'] ?></td>
+		<td><?php echo $dRS['dec10'] ?></td>
+		<td><?php echo $dRS['grp10'] ?></td>
 		<td><?php echo $LOG ?></td>
 	</tr>
 	<?php }while($dRS=mysql_fetch_assoc($RS)); ?>

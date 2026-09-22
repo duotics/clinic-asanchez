@@ -27,27 +27,27 @@ do{
 	$contN++;
 	$det=$dRS; //ASOCIO EL ROW a la variable $det
 	$LOG.='<div style="border-bottom:1px solid #ccc; padding:5px 0;">';
-	if(($det[con_num]>0)&&($det[pac_cod]>0)){
+	if(($det['con_num']>0)&&($det['pac_cod']>0)){
 		$paramsN=NULL;
 		$paramsN[]=array(
-			array("cond"=>"AND","field"=>"id_ant","comp"=>"=","val"=>$det[con_num]),
-			array("cond"=>"AND","field"=>"pac_cod","comp"=>'=',"val"=>$det[pac_cod]));
+			array("cond"=>"AND","field"=>"id_ant","comp"=>"=","val"=>$det['con_num']),
+			array("cond"=>"AND","field"=>"pac_cod","comp"=>'=',"val"=>$det['pac_cod']));
 		$detC=detRowNP('db_consultas',$paramsN);
 		if($detC){
 			$qryIT=sprintf('INSERT INTO db_tratamientos 
 			(con_num, pac_cod, diagnostico, fecha) 
 			VALUES (%s,%s,%s,%s)',
-			SSQL($detC[con_num],'int'),
-			SSQL($det[pac_cod],'int'),
-			SSQL($det[diagnostico],'text'),
-			SSQL($det[fecha],'text'));
+			SSQL($detC['con_num'],'int'),
+			SSQL($det['pac_cod'],'int'),
+			SSQL($det['diagnostico'],'text'),
+			SSQL($det['fecha'],'text'));
 
 			if(@mysql_query($qryIT)){
 				$idT=mysql_insert_id();
 				$LOG.='* Creo TRATAMIENTO: '.$idT.'<br>';
 				//SELECT DETALLES CONSULTA OLD
 				$qryTD=sprintf('SELECT * FROM tbl_tratamientos_det WHERE tid=%s',
-							SSQL($det[tid],'int'));//old table hugoortiz system v.1
+							SSQL($det['tid'],'int'));//old table hugoortiz system v.1
 				$RStd=mysql_query($qryTD);
 				$dRStd=mysql_fetch_assoc($RStd);
 				$tRStd=mysql_num_rows($RStd);
@@ -62,10 +62,10 @@ do{
 									   SSQL($idT,'int'),
 									   SSQL(1,'text'),//db_medicamentos id=1 es un registro general
 									   SSQL('M','text'),//Tipo: M=Medicamento, I=Indicacion
-									   SSQL($detTD[medicamento],'text'),
-									   SSQL($detTD[presentacion],'text'),
-									   SSQL($detTD[numero],'text'),
-									   SSQL($detTD[instrucciones],'text'));
+									   SSQL($detTD['medicamento'],'text'),
+									   SSQL($detTD['presentacion'],'text'),
+									   SSQL($detTD['numero'],'text'),
+									   SSQL($detTD['instrucciones'],'text'));
 						if(@mysql_query($qryITD)){
 							$vP=TRUE;
 							$LOG.='* Creo DETALLE DE TRATAMIENTO: '.$idT.'<br>';

@@ -17,9 +17,9 @@ $data=$_POST;
 //FUNCIONES PARA CIRUGIAS
 if ((isset($form)) && ($form == md5(fCir))){//BEG form fCir
 	
-	if(isset($data[btnJ])) $accjs=TRUE;//Indica que actue Javascript para cerrar el Fancybox
+	if(isset($data['btnJ'])) $accjs=TRUE;//Indica que actue Javascript para cerrar el Fancybox
 	
-	if(($_FILES[efile][size][0])>0){
+	if(($_FILES['efile']['size'][0])>0){
 		$LOGd.='FILES DETECTED<br>';
 		$param_file['ext']=array('.jpg','.gif','.png','.jpeg','.JPG', '.GIF', '.PNG', '.JPEG');
 		$param_file['siz']=2097152;//en KBPS

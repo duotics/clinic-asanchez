@@ -3,7 +3,7 @@ set_time_limit(1800);//30minutos*60segundo=1800
 $fecBP=$sdatet;
 function convIDtoANTID($ID){
 	$contT1=strlen($ID);
-	$IDN.=$ID;
+	$IDN=$ID;
 	for($x=0;$x<5-$contT1;$x++){
 		$IDN='0'.$IDN;
 	}
@@ -41,16 +41,16 @@ $tRS=mysql_num_rows($RS);
 <?php
 if($tRS>0){
 	do{
-		$ID=$dRS[pac_cod];
+		$ID=$dRS['pac_cod'];
 		$IDMOD=convIDtoANTID($ID);
-		$VISITA=$dRS[id_ant];
-		$CONS=$dRS[con_num];
+		$VISITA=$dRS['id_ant'];
+		$CONS=$dRS['con_num'];
 		$paramsN=NULL;
 		$paramsN[]=array(
 			array("cond"=>"AND","field"=>"NROCODIGO","comp"=>"=","val"=>$IDMOD),
 			array("cond"=>"AND","field"=>"NROVISITA","comp"=>'=',"val"=>$VISITA));
 		$det=detRowNP('bck_recetas',$paramsN);
-		$fechaREC = date_create($det[FECHAREC]);
+		$fechaREC = date_create($det['FECHAREC']);
 		$fechaREC = date_format($fechaREC, 'Y-m-d');
 	
 		$RES=NULL;
@@ -68,13 +68,13 @@ if($tRS>0){
 			}
 			//TRATAMIENTO DETALLE MEDICAMENTOS
 			$MEDICAMENTOS=array(
-			'01'=>array($det[RECETA01],$det[CANTR01],$det[DOSIS01],$det[INDICA01],$det[INDICA02]),
-			'02'=>array($det[RECETA02],$det[CANTR02],$det[DOSIS02],$det[INDICA03],$det[INDICA04]),
-			'03'=>array($det[RECETA03],$det[CANTR03],$det[DOSIS03],$det[INDICA05],$det[INDICA06]),
-			'04'=>array($det[RECETA04],$det[CANTR04],$det[DOSIS04],$det[INDICA07],$det[INDICA08]),
-			'05'=>array($det[RECETA05],$det[CANTR05],$det[DOSIS05],$det[INDICA09],$det[INDICA10]),
-			'06'=>array($det[RECETA06],$det[CANTR06],$det[DOSIS06],$det[INDICA11],$det[INDICA12]),
-			'07'=>array($det[RECETA07],$det[CANTR07],$det[DOSIS07],$det[INDICA13],$det[INDICA14])
+			'01'=>array($det['RECETA01'],$det['CANTR01'],$det['DOSIS01'],$det['INDICA01'],$det['INDICA02']),
+			'02'=>array($det['RECETA02'],$det['CANTR02'],$det['DOSIS02'],$det['INDICA03'],$det['INDICA04']),
+			'03'=>array($det['RECETA03'],$det['CANTR03'],$det['DOSIS03'],$det['INDICA05'],$det['INDICA06']),
+			'04'=>array($det['RECETA04'],$det['CANTR04'],$det['DOSIS04'],$det['INDICA07'],$det['INDICA08']),
+			'05'=>array($det['RECETA05'],$det['CANTR05'],$det['DOSIS05'],$det['INDICA09'],$det['INDICA10']),
+			'06'=>array($det['RECETA06'],$det['CANTR06'],$det['DOSIS06'],$det['INDICA11'],$det['INDICA12']),
+			'07'=>array($det['RECETA07'],$det['CANTR07'],$det['DOSIS07'],$det['INDICA13'],$det['INDICA14'])
 			);
 			foreach($MEDICAMENTOS as $key => $val){
 				if($val[0]){
@@ -93,10 +93,10 @@ if($tRS>0){
 				}
 			}
 			//TRATAMIENTO DETALLE INDICACIONES
-			$INDICACIONES=array('INDICA15'=>$det[INDICA15],
-								'INDICA16'=>$det[INDICA16],
-								'INDICA17'=>$det[INDICA17],
-								'INDICA18'=>$det[INDICA18]);
+			$INDICACIONES=array('INDICA15'=>$det['INDICA15'],
+								'INDICA16'=>$det['INDICA16'],
+								'INDICA17'=>$det['INDICA17'],
+								'INDICA18'=>$det['INDICA18']);
 			foreach($INDICACIONES as $key => $val){
 				if($val){
 					$qryITD=sprintf('INSERT INTO db_tratamientos_detalle (tid,tip,indicacion) VALUES (%s,%s,%s); ',

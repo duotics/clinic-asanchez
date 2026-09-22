@@ -36,7 +36,7 @@ $tr_RSd=mysql_num_rows($RSd);
     
 	<?php if ($tr_RSd>0){
 $classlast=TRUE;
-$classtr;
+$classtr='';
 ?>
 <div>
 	<table class="table table-striped table-bordered table-condensed">

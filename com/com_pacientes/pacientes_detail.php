@@ -28,7 +28,7 @@ $detPacFin_edad=edad($dPac['pac_fec']);
 				<?php } ?>
 				<tr><td><?php echo $dPac['pac_fec'] ?></td></tr>
 				<tr><td><?php echo $detPacFin_edad ?></td></tr>
-				<tr><td><span class="label label-default">Ultima Visita</span> <?php echo $dCon[con_fec] ?> </td></tr>
+				<tr><td><span class="label label-default">Ultima Visita</span> <?php echo $dCon['con_fec'] ?> </td></tr>
 			</table>
 			</div>
 		</div>

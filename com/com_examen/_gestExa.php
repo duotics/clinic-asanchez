@@ -1,7 +1,7 @@
 <?php 
 $id=vParam('id', $_GET['id'], $_POST['id']);
 $dPac=detRow('db_pacientes','pac_cod',$id);
-$idp=$dPac[pac_cod];
+$idp=$dPac['pac_cod'];
 if($dPac['pac_fec']) $dPac_fec=edad($dPac['pac_fec']).'Años';
 ?>
 
@@ -18,7 +18,7 @@ if($dPac['pac_fec']) $dPac_fec=edad($dPac['pac_fec']).'Años';
 		if($tRSlef>0){
 			$contR.='<ul class="dropdown-menu">';
 			do{
-				$contR.='<li><a href="'.$RAIZc.'com_examen/_fncts.php?idp='.$idp.'&idc='.$idc.'&idef='.$dRSlef[id].'&acc='.md5(NEWe).'" class="fancyR" data-type="iframe">'.$dRSlef[nom].'</a></li>';
+				$contR.='<li><a href="'.$RAIZc.'com_examen/_fncts.php?idp='.$idp.'&idc='.$idc.'&idef='.$dRSlef['id'].'&acc='.md5(NEWe).'" class="fancyR" data-type="iframe">'.$dRSlef['nom'].'</a></li>';
 			}while($dRSlef=mysql_fetch_assoc($RSlef));
 			$contR.='</ul>';
 		}

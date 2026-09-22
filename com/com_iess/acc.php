@@ -268,8 +268,8 @@ if ((isset($acc)) && ($acc == md5('DELRI'))){
 					  SSQL($ids, "text"));
 		if(mysql_query($qDel)){
 			$vP=TRUE;
-			$LOG.=$cfg[p]['del-true'];
-		}else $LOG.=$cfg[p]['del-false'].mysql_error();
+			$LOG.=$cfg['p']['del-true'];
+		}else $LOG.=$cfg['p']['del-false'].mysql_error();
 	}else $LOG.='<p>No se pudo eliminar tablas relacionadas</p>'.mysql_error();
 }
 //END DEL REPORT

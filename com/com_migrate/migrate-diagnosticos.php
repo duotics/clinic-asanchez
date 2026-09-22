@@ -33,9 +33,9 @@ do{
 		$qryID=sprintf('INSERT INTO db_diagnosticos 
 		(id_diag, codigo, nombre, estado) 
 		VALUES (%s,%s,%s,%s)',
-		SSQL($det[id],'int'),
-		SSQL($det[codigo],'text'),
-		SSQL($det[nombre],'text'),
+		SSQL($det['id'],'int'),
+		SSQL($det['codigo'],'text'),
+		SSQL($det['nombre'],'text'),
 		SSQL(1,'int'));
 	
 		if(@mysql_query($qryID)){
@@ -43,7 +43,7 @@ do{
 			$LOG.='* Creo Diagnostico: '.$idT.'<br>';
 			$vP=TRUE;
 		}else{
-			$LOG.='Error al Crear Diagnostico: '.$val[id].' - '.mysql_error().'<br>'.$qryID;
+			$LOG.='Error al Crear Diagnostico: '.$val['id'].' - '.mysql_error().'<br>'.$qryID;
 			$vP=FALSE;
 			break;
 		}

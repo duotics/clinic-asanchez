@@ -66,13 +66,13 @@ tr.trAux{background: #E4E9F7; vertical-align: middle;}
 	<!-- DIAGNOSTICOS -->
 	<?php if($tRSld>0){ ?>
 	<?php do{
-		if($dRSld[id_diag]>1){
-			$dDiag=detRow('db_diagnosticos','id_diag',$dRSld[id_diag]);
-			$dDiag_cod=$dDiag[codigo];
-			$dDiag_nom=$dDiag[nombre];
+		if($dRSld['id_diag']>1){
+			$dDiag=detRow('db_diagnosticos','id_diag',$dRSld['id_diag']);
+			$dDiag_cod=$dDiag['codigo'];
+			$dDiag_nom=$dDiag['nombre'];
 		}else{
 			$dDiag_cod=NULL;
-			$dDiag_nom=$dRSld[obs];
+			$dDiag_nom=$dRSld['obs'];
 		}
 		
 		$resDiag.='<tr>';
@@ -110,16 +110,16 @@ tr.trAux{background: #E4E9F7; vertical-align: middle;}
 	$contind=1;
 	if($tRStl>0){
 		do{
-			if($dRStl[tip]=='M'){
+			if($dRStl['tip']=='M'){
 				$resReceta.='<tr>';
 				$resReceta.='<td>•</td>';
-				$resReceta.='<td><strong>'.$dRStl[generico].' ('.$dRStl[comercial].') '.$dRStl[presentacion].' - # '.$dRStl[numero].'</strong></td>';
+				$resReceta.='<td><strong>'.$dRStl['generico'].' ('.$dRStl['comercial'].') '.$dRStl['presentacion'].' - # '.$dRStl['numero'].'</strong></td>';
 				$resReceta.='<td></td>';
 				$resReceta.='<td>•</td>';
-				$resReceta.='<td><strong>'.$dRStl[generico].' ('.$dRStl[comercial].') '.$dRStl[presentacion].' - # '.$dRStl[numero].'</strong><br>'.$dRStl[descripcion].'</td>';
+				$resReceta.='<td><strong>'.$dRStl['generico'].' ('.$dRStl['comercial'].') '.$dRStl['presentacion'].' - # '.$dRStl['numero'].'</strong><br>'.$dRStl['descripcion'].'</td>';
 				$resReceta.='</tr>';
 			}
-			if($dRStl[tip]=='I'){
+			if($dRStl['tip']=='I'){
 				if($contind==1){
 					$resReceta.='<tr>';
 					$resReceta.='<td></td>';
@@ -133,7 +133,7 @@ tr.trAux{background: #E4E9F7; vertical-align: middle;}
 				$resReceta.='<td></td>';
 				$resReceta.='<td></td>';
 				$resReceta.='<td></td>';
-				$resReceta.='<td>'.$dRStl[indicacion].'</td>';
+				$resReceta.='<td>'.$dRStl['indicacion'].'</td>';
 				$resReceta.='</tr>';
 				$contind++;
 			}
@@ -142,8 +142,8 @@ tr.trAux{background: #E4E9F7; vertical-align: middle;}
 	}
 	?>
 	<?php
-	if($detCon[con_diapc]){
-		$nuevafecha = strtotime('+'.intval($detCon[con_diapc]).' day',strtotime($sdate));
+	if($detCon['con_diapc']){
+		$nuevafecha = strtotime('+'.intval($detCon['con_diapc']).' day',strtotime($sdate));
 		$verifPrx=date('w',$nuevafecha);
 		if($verifPrx==6) $addDayS=$addDayS+2;
 		else if($verifPrx==0) $addDayS++;
@@ -158,8 +158,8 @@ tr.trAux{background: #E4E9F7; vertical-align: middle;}
 		
 	}
 	$proxima.='<strong>PROXIMA VISITA. '.$nuevafecha.'</strong>';
-	if($detCon[con_typvisP]){
-		$detTyp=detRow('db_types','typ_cod',$detCon[con_typvisP]);
+	if($detCon['con_typvisP']){
+		$detTyp=detRow('db_types','typ_cod',$detCon['con_typvisP']);
 		$proxima.='<br>Tipo Visita. <strong>'.$detTyp['typ_val'].'</strong>';
 	}
 	?>

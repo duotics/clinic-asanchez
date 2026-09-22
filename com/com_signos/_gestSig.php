@@ -63,10 +63,10 @@ include(RAIZf.'head.php') ?>
 			<td><?php echo $IMC['val'].' '.$IMC['inf']; ?></td>
 			<td><?php echo $dRSh['pa'] ?></td>
             <td>
-				<a href="<?php echo $urlc; ?>?id=<?php echo $id ?>&idh=<?php echo $dRSh[id] ?>" class="btn btn-info btn-xs">
+				<a href="<?php echo $urlc; ?>?id=<?php echo $id ?>&idh=<?php echo $dRSh['id'] ?>" class="btn btn-info btn-xs">
 					<i class="fas fa-edit fa-lg"></i> Editar
 				</a>
-				<a href="_acc.php?id=<?php echo $id ?>&idh=<?php echo $dRSh[id] ?>&acc=<?php echo md5(delS) ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs">
+				<a href="_acc.php?id=<?php echo $id ?>&idh=<?php echo $dRSh['id'] ?>&acc=<?php echo md5(delS) ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs">
 					<i class="fas fa-trash fa-lg"></i> Eliminar
 				</a>
 			</td>

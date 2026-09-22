@@ -16,7 +16,7 @@ $tr_RSe=mysql_num_rows($RSe);
   
   <?php if ($tr_RSe>0){
 $classlast=TRUE;
-$classtr;
+$classtr='';
 ?>
 	<table class="table table-striped table-bordered table-condensed">
 	<thead>

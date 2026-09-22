@@ -11,7 +11,7 @@ if($acc==md5(NEWt)) header(sprintf("Location: %s", '_fncts.php?idc='.$idc.'&idp=
 $detTrat=detRow('db_tratamientos','tid',$idt);
 if($detTrat){
 	$fechaReceta=$detTrat['fecha'];
-	$dCon=detRow('db_consultas','con_num',$detTrat[con_num]);
+	$dCon=detRow('db_consultas','con_num',$detTrat['con_num']);
 	$acc='UPDt';
 	$btnAcc='<button name="btnA" type="submit" class="btn btn-success btn-narvar"><i class="fa fa-refresh"></i> GUARDAR</button>';
 	$btnP='<button name="btnP" type="submit" class="btn btn-default btn-navbar"><i class="fas fa-print fa-lg"></i> GUARDAR E IMPRIMIR</button>';
@@ -206,15 +206,15 @@ if($tr_RStl>0){
 </tr></thead>
 <tbody>
 <?php do{ ?>
-<?php switch($dRStl[tip]){ ?>
+<?php switch($dRStl['tip']){ ?>
 <?php case 'G': ?>
 <tr>
-	<td contenteditable="true" onBlur="saveToDatabase(this,'generico','<?php echo $dRStl[id] ?>')" onClick="showEdit(this);"><?php echo $dRStl[generico] ?></td>
-	<td contenteditable="true" onBlur="saveToDatabase(this,'comercial','<?php echo $dRStl[id] ?>')" onClick="showEdit(this);"><?php echo $dRStl[comercial] ?></td>
-	<td contenteditable="true" onBlur="saveToDatabase(this,'presentacion','<?php echo $dRStl[id] ?>')" onClick="showEdit(this);"><?php echo $dRStl[presentacion] ?></td>
-	<td contenteditable="true" onBlur="saveToDatabase(this,'cantidad','<?php echo $dRStl[id] ?>')" onClick="showEdit(this);"><?php echo $dRStl[cantidad] ?></td>
-	<td contenteditable="true" onBlur="saveToDatabase(this,'numero','<?php echo $dRStl[id] ?>')" onClick="showEdit(this);"><?php echo $dRStl[numero] ?></td>
-	<td contenteditable="true" onBlur="saveToDatabase(this,'descripcion','<?php echo $dRStl[id] ?>')" onClick="showEdit(this);"><?php echo $dRStl[descripcion] ?></td>
+	<td contenteditable="true" onBlur="saveToDatabase(this,'generico','<?php echo $dRStl['id'] ?>')" onClick="showEdit(this);"><?php echo $dRStl['generico'] ?></td>
+	<td contenteditable="true" onBlur="saveToDatabase(this,'comercial','<?php echo $dRStl['id'] ?>')" onClick="showEdit(this);"><?php echo $dRStl['comercial'] ?></td>
+	<td contenteditable="true" onBlur="saveToDatabase(this,'presentacion','<?php echo $dRStl['id'] ?>')" onClick="showEdit(this);"><?php echo $dRStl['presentacion'] ?></td>
+	<td contenteditable="true" onBlur="saveToDatabase(this,'cantidad','<?php echo $dRStl['id'] ?>')" onClick="showEdit(this);"><?php echo $dRStl['cantidad'] ?></td>
+	<td contenteditable="true" onBlur="saveToDatabase(this,'numero','<?php echo $dRStl['id'] ?>')" onClick="showEdit(this);"><?php echo $dRStl['numero'] ?></td>
+	<td contenteditable="true" onBlur="saveToDatabase(this,'descripcion','<?php echo $dRStl['id'] ?>')" onClick="showEdit(this);"><?php echo $dRStl['descripcion'] ?></td>
     <td>
     <a href="_fncts.php?idt=<?php echo $idt ?>&idtd=<?php echo $dRStl['id'] ?>&acc=<?php echo md5(DELtd) ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs">
     <i class="fas fa-trash fa-lg"></i> Quitar</a>
@@ -223,12 +223,12 @@ if($tr_RStl>0){
 <?php break; ?>
 <?php case 'M': ?>
 <tr>
-	<td contenteditable="true" onBlur="saveToDatabase(this,'generico','<?php echo $dRStl[id] ?>')" onClick="showEdit(this);"><?php echo $dRStl[generico] ?></td>
-	<td contenteditable="true" onBlur="saveToDatabase(this,'comercial','<?php echo $dRStl[id] ?>')" onClick="showEdit(this);"><?php echo $dRStl[comercial] ?></td>
-	<td contenteditable="true" onBlur="saveToDatabase(this,'presentacion','<?php echo $dRStl[id] ?>')" onClick="showEdit(this);"><?php echo $dRStl[presentacion] ?></td>
-	<td contenteditable="true" onBlur="saveToDatabase(this,'cantidad','<?php echo $dRStl[id] ?>')" onClick="showEdit(this);"><?php echo $dRStl[cantidad] ?></td>
-	<td contenteditable="true" onBlur="saveToDatabase(this,'numero','<?php echo $dRStl[id] ?>')" onClick="showEdit(this);"><?php echo $dRStl[numero] ?></td>
-	<td contenteditable="true" onBlur="saveToDatabase(this,'descripcion','<?php echo $dRStl[id] ?>')" onClick="showEdit(this);"><?php echo $dRStl[descripcion] ?></td>
+	<td contenteditable="true" onBlur="saveToDatabase(this,'generico','<?php echo $dRStl['id'] ?>')" onClick="showEdit(this);"><?php echo $dRStl['generico'] ?></td>
+	<td contenteditable="true" onBlur="saveToDatabase(this,'comercial','<?php echo $dRStl['id'] ?>')" onClick="showEdit(this);"><?php echo $dRStl['comercial'] ?></td>
+	<td contenteditable="true" onBlur="saveToDatabase(this,'presentacion','<?php echo $dRStl['id'] ?>')" onClick="showEdit(this);"><?php echo $dRStl['presentacion'] ?></td>
+	<td contenteditable="true" onBlur="saveToDatabase(this,'cantidad','<?php echo $dRStl['id'] ?>')" onClick="showEdit(this);"><?php echo $dRStl['cantidad'] ?></td>
+	<td contenteditable="true" onBlur="saveToDatabase(this,'numero','<?php echo $dRStl['id'] ?>')" onClick="showEdit(this);"><?php echo $dRStl['numero'] ?></td>
+	<td contenteditable="true" onBlur="saveToDatabase(this,'descripcion','<?php echo $dRStl['id'] ?>')" onClick="showEdit(this);"><?php echo $dRStl['descripcion'] ?></td>
     <td>
     <a href="_fncts.php?idt=<?php echo $idt ?>&idtd=<?php echo $dRStl['id'] ?>&acc=<?php echo md5(DELtd) ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs">
     <i class="fas fa-trash fa-lg"></i> Quitar</a>
@@ -237,7 +237,7 @@ if($tr_RStl>0){
 <?php break; ?>
 <?php case 'I': ?>
 <tr class="info">
-    <td colspan="6" contenteditable="true" onBlur="saveToDatabase(this,'indicacion','<?php echo $dRStl[id] ?>')" onClick="showEdit(this);"><?php echo $dRStl[indicacion] ?></td>
+    <td colspan="6" contenteditable="true" onBlur="saveToDatabase(this,'indicacion','<?php echo $dRStl['id'] ?>')" onClick="showEdit(this);"><?php echo $dRStl['indicacion'] ?></td>
     <td>
     <a href="_fncts.php?idt=<?php echo $idt ?>&idtd=<?php echo $dRStl['id'] ?>&acc=<?php echo md5(DELtd) ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs">
     <i class="fas fa-trash fa-lg"></i> Quitar</a>
@@ -291,13 +291,13 @@ if($tr_RStl>0){
 			
 			if($tRSld>0){
 				do{
-				if($dRSld[id_diag]>1){
-						$dDiag=detRow('db_diagnosticos','id_diag',$dRSld[id_diag]);
-						$dDiag_cod=$dDiag[codigo].'-';
-						$dDiag_nom=$dDiag[nombre];
+				if($dRSld['id_diag']>1){
+						$dDiag=detRow('db_diagnosticos','id_diag',$dRSld['id_diag']);
+						$dDiag_cod=$dDiag['codigo'].'-';
+						$dDiag_nom=$dDiag['nombre'];
 					}else{
 						$dDiag_cod=NULL;
-						$dDiag_nom=$dRSld[obs];
+						$dDiag_nom=$dRSld['obs'];
 					}
 					$resDiag.=' <span class="btn btn-default btn-xs">'.$dDiag_cod.$dDiag_nom.'</span> ';
 				}while($dRSld=mysql_fetch_assoc($RSld));

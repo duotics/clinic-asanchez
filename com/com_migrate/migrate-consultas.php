@@ -41,34 +41,34 @@ do{
 	con_typ, con_typvis, con_val, tip_pag, 
 	dcon_mot, dcon_obs, dcon_enfa, dcon_ef_agen, con_stat, id_aud) 
 	VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',
-			   SSQL($det[sec],'text'),
-			   SSQL($det[con_num],'text'),
-			   SSQL($det[pac_cod],'text'),
-			   SSQL($det[con_fec],'text'),
-			   SSQL($det[con_upd],'text'),
+			   SSQL($det['sec'],'text'),
+			   SSQL($det['con_num'],'text'),
+			   SSQL($det['pac_cod'],'text'),
+			   SSQL($det['con_fec'],'text'),
+			   SSQL($det['con_upd'],'text'),
 				
-			   SSQL($det[con_typ],'text'),
-			   SSQL($det[mot_typ],'text'),
-			   SSQL($det[con_val],'text'),
-			   SSQL($det[tip_pag],'text'),
+			   SSQL($det['con_typ'],'text'),
+			   SSQL($det['mot_typ'],'text'),
+			   SSQL($det['con_val'],'text'),
+			   SSQL($det['tip_pag'],'text'),
 				
-			   SSQL($det[dcon_mot],'text'),
-			   SSQL($det[dcon_evo],'text'),
-			   SSQL($det[dcon_enf],'text'),
-			   SSQL($det[dcon_exa],'text'),
-			   SSQL($det[con_stat],'text'),
-			   SSQL($det[id_aud],'text'));
+			   SSQL($det['dcon_mot'],'text'),
+			   SSQL($det['dcon_evo'],'text'),
+			   SSQL($det['dcon_enf'],'text'),
+			   SSQL($det['dcon_exa'],'text'),
+			   SSQL($det['con_stat'],'text'),
+			   SSQL($det['id_aud'],'text'));
 	
 	
 	if(@mysql_query($qC)){
-		$LOG.='* CREADO CONSULTA: '.$det[sec].'<br>';
+		$LOG.='* CREADO CONSULTA: '.$det['sec'].'<br>';
 		
 		//CREAR DISGNOSTICO DEFINITIVO
-		if($det[con_diagd]>0){
+		if($det['con_diagd']>0){
 			$qICd=sprintf('INSERT INTO db_consultas_diagostico (con_num,id_diag)
 			VALUES (%s,%s)',
-						  SSQL($det[sec],'int'),
-						  SSQL($det[con_diagd],'int'));
+						  SSQL($det['sec'],'int'),
+						  SSQL($det['con_diagd'],'int'));
 			if(@mysql_query($qICd)){
 				$LOG.='* CREADO CONSULTA DIAGNOSTICO DEFINITIVO: <br>';
 			}else{
@@ -78,12 +78,12 @@ do{
 			}	
 		}
 		//CREAR DISGNOSTICO PRESUNTIVO
-		if($det[con_diagp]){
+		if($det['con_diagp']){
 			$qICp=sprintf('INSERT INTO db_consultas_diagostico (con_num,id_diag,obs)
 			VALUES (%s,%s,%s)',
-						 SSQL($det[sec],'int'),
+						 SSQL($det['sec'],'int'),
 						 SSQL(1,'int'),
-						 SSQL($det[con_diagp],'text'));
+						 SSQL($det['con_diagp'],'text'));
 			if(@mysql_query($qICp)){
 				$LOG.='* CREADO CONSULTA DIAGNOSTICO OTRO (ID1): <br>';
 			}else{
@@ -94,7 +94,7 @@ do{
 		}
 		
 	}else{
-		$LOG.='Error al CREAR CONSULTA: '.$det[sec].' - '.mysql_error().'<br>'.$qC;
+		$LOG.='Error al CREAR CONSULTA: '.$det['sec'].' - '.mysql_error().'<br>'.$qC;
 		$vP=FALSE;
 		break;
 	}

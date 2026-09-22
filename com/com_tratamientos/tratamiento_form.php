@@ -11,7 +11,7 @@ if($acc==md5(NEWt)) header(sprintf("Location: %s", '_fncts.php?idc='.$idc.'&idp=
 $detTrat=detRow('db_tratamientos','tid',$idt);
 if($detTrat){
 	$fechaReceta=$detTrat['fecha'];
-	$dCon=detRow('db_consultas','con_num',$detTrat[con_num]);
+	$dCon=detRow('db_consultas','con_num',$detTrat['con_num']);
 	$acc='UPDt';
 	$btntrat='<button type="submit" class="btn btn-success"><i class="fa fa-refresh"></i> ACTUALIZAR</button>';
 	$idc=$detTrat['con_num'];
@@ -200,7 +200,7 @@ if($tr_RStl>0){
 </tr></thead>
 <tbody>
 <?php do{ ?>
-<?php switch($dRStl[tip]){ ?>
+<?php switch($dRStl['tip']){ ?>
 <?php case 'M': ?>
 <tr>
 	<td><?php echo $dRStl['generico'] ?></td>

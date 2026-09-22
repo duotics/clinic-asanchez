@@ -8,8 +8,8 @@ if($det){
 	$btnAcc='<button type="submit" class="btn btn-success btn-large navbar-btn" value="btnA"><i class="fas fa-save fa-lg"></i> ACTUALIZAR</button>';
 }else{
 	$acc=md5(INSi);
-	$det[feat]=1;
-	$det[est]=1;
+	$det['feat']=1;
+	$det['est']=1;
 	$btnAcc='<button type="submit" class="btn btn-primary btn-large navbar-btn" value="btnA"><i class="fas fa-save fa-lg"></i> CREAR</button>';
 }
 $btnNew='<a href="'.$urlc.'" class="btn btn-default navbar-btn"><i class="fas fa-plus-square fa-lg"></i> NUEVO</a>';
@@ -42,10 +42,10 @@ $btnNew='<a href="'.$urlc.'" class="btn btn-default navbar-btn"><i class="fas fa
 				<label class="col-sm-2 control-label">Destacado</label>
 				<div class="col-sm-10">
 				<label for="featA" class="checkbox-inline">
-					<input type="radio" id="featA" name="feat" value="1" <?php if($det[feat]) echo 'checked' ?>> Activo
+					<input type="radio" id="featA" name="feat" value="1" <?php if($det['feat']) echo 'checked' ?>> Activo
 				</label>
 				<label for="featB" class="checkbox-inline">
-					<input type="radio" id="featB" name="feat" value="0" <?php if(!$det[feat]) echo 'checked' ?>> Inactivo
+					<input type="radio" id="featB" name="feat" value="0" <?php if(!$det['feat']) echo 'checked' ?>> Inactivo
 				</label>
 			</div>
 			</div>
@@ -53,10 +53,10 @@ $btnNew='<a href="'.$urlc.'" class="btn btn-default navbar-btn"><i class="fas fa
 				<label class="col-sm-2 control-label">Estado</label>
 				<div class="col-sm-10">
 				<label for="estA" class="checkbox-inline">
-					<input type="radio" id="estA" name="est" value="1" <?php if($det[est]) echo 'checked' ?>> Activo
+					<input type="radio" id="estA" name="est" value="1" <?php if($det['est']) echo 'checked' ?>> Activo
 				</label>
 				<label for="estB" class="checkbox-inline">
-					<input type="radio" id="estB" name="est" value="0" <?php if(!$det[est]) echo 'checked' ?>> Inactivo
+					<input type="radio" id="estB" name="est" value="0" <?php if(!$det['est']) echo 'checked' ?>> Inactivo
 				</label>
 			</div>
 			</div>

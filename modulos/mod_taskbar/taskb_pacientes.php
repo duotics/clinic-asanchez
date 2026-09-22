@@ -13,7 +13,7 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="nav_taskb">
-      <a href="<?php echo $RAIZc ?>com_pacientes/form.php" class="btn btn-primary navbar-btn"><?php echo $cfg[i]['new'] ?> Nuevo Paciente</a>
+      <a href="<?php echo $RAIZc ?>com_pacientes/form.php" class="btn btn-primary navbar-btn"><?php echo $cfg['i']['new'] ?> Nuevo Paciente</a>
       <a href="?sBr=+" class="btn btn-primary navbar-btn navbar-right">Total Pacientes <span class="badge"><?php echo fnc_totpac();?></span></a>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

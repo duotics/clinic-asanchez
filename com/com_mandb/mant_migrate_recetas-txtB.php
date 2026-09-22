@@ -3,7 +3,7 @@ set_time_limit(1800);//30minutos*60segundo=1800
 $fecBP=$sdatet;
 function convIDtoANTID($ID){
 	$contT1=strlen($ID);
-	$IDN.=$ID;
+	$IDN=$ID;
 	for($x=0;$x<5-$contT1;$x++){
 		$IDN='0'.$IDN;
 	}
@@ -12,8 +12,8 @@ function convIDtoANTID($ID){
 $vP=FALSE;
 $contGen=0;
 
-$ini=$_GET[i];
-$lim=$_GET[l];
+$ini=$_GET['i'];
+$lim=$_GET['l'];
 if($lim>0){
 $qryS='SELECT id_ant,pac_cod,con_num FROM db_consultas LIMIT '.intval($ini).','.intval($lim);
 	echo $qryS;
@@ -22,16 +22,16 @@ $dRS=mysql_fetch_assoc($RS);
 $tRS=mysql_num_rows($RS);
 if($tRS>0){
 	do{
-		$ID=$dRS[pac_cod];
+		$ID=$dRS['pac_cod'];
 		$IDMOD=convIDtoANTID($ID);
-		$VISITA=$dRS[id_ant];
-		$CONS=$dRS[con_num];
+		$VISITA=$dRS['id_ant'];
+		$CONS=$dRS['con_num'];
 		$paramsN=NULL;
 		$paramsN[]=array(
 			array("cond"=>"AND","field"=>"NROCODIGO","comp"=>"=","val"=>$IDMOD),
 			array("cond"=>"AND","field"=>"NROVISITA","comp"=>'=',"val"=>$VISITA));
 		$det=detRowNP('bck_recetas',$paramsN);
-		$fechaREC = date_create($det[FECHAREC]);
+		$fechaREC = date_create($det['FECHAREC']);
 		$fechaREC = date_format($fechaREC, 'Y-m-d');
 	
 		if($det){//CREO LA RECETA

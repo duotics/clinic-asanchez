@@ -13,15 +13,15 @@ $plot = new PHPlot(800,600);
 
 $datos =array();
 if($field){
-	$param[tit]='Historial '.$field;
+	$param['tit']='Historial '.$field;
 	do{
 		$datos[]=array($dRS['fecha'],(int)$dRS[$field]);
 	}while ($dRS = mysql_fetch_assoc($RS));
 }else{
-	$param[tit]='Historial IMC / Peso / Talla';
+	$param['tit']='Historial IMC / Peso / Talla';
 	do{
-		$IMC=calcIMC($dRS[imc],$dRS[peso],$dRS[talla]);
-		$datos[]=array($dRS['fecha'],(int)$dRS[peso],(int)$dRS[talla],$IMC[val]);
+		$IMC=calcIMC($dRS['imc'],$dRS['peso'],$dRS['talla']);
+		$datos[]=array($dRS['fecha'],(int)$dRS['peso'],(int)$dRS['talla'],$IMC['val']);
 	}while ($dRS = mysql_fetch_assoc($RS));
 	$leg[]=array('Peso','Talla','IMC');
 	
@@ -34,7 +34,7 @@ if($field){
 //Define the object
 
 //Set titles
-$plot->SetTitle($param[tit]);
+$plot->SetTitle($param['tit']);
 $plot->SetXTitle('FECHAS','plotdown');
 $plot->SetYTitle('VALORES','plotleft');
 

@@ -1,7 +1,7 @@
 <?php
 $emp_ses_username_RS_user_detail = "-1";
-if (isset($_SESSION[dU])) {
-  $emp_ses_username_RS_user_detail = $_SESSION[dU];
+if (isset($_SESSION['dU'])) {
+  $emp_ses_username_RS_user_detail = $_SESSION['dU'];
 }
 $query_RS_user_detail = "SELECT * FROM db_user_system WHERE user_username='".$emp_ses_username_RS_user_detail."'";
 $RS_user_detail = mysql_query($query_RS_user_detail) or die(mysql_error());

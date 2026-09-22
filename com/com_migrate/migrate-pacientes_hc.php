@@ -30,13 +30,13 @@ var_dump($dRS);
 do{
 	$det=$dRS; //ASOCIO EL ROW a la variable $det
 	
-	$valHC=detRow('db_paciente_hc','hc_id',$det[pac_cod]);
+	$valHC=detRow('db_paciente_hc','hc_id',$det['pac_cod']);
 	
-	$anterior_antf=$valHC[hc_antf];
-	$anterior_antp=$valHC[hc_antp];
+	$anterior_antf=$valHC['hc_antf'];
+	$anterior_antp=$valHC['hc_antp'];
 	
-	$nuevo_antf=$det[dcon_antf];
-	$nuevo_antp=$det[dcon_antp];
+	$nuevo_antf=$det['dcon_antf'];
+	$nuevo_antp=$det['dcon_antp'];
 	
 	$final_antf=$nuevo_antf.'. '.$anterior_antf;
 	$final_antp=$nuevo_antp.'. '.$anterior_antp;
@@ -49,13 +49,13 @@ do{
 		$qUHC=sprintf('UPDATE db_paciente_hc SET hc_antf=%s, hc_antp=%s WHERE pac_cod=%s',
 		SSQL($final_antf,'text'),
 		SSQL($final_antp,'text'),
-		SSQL($det[pac_cod],'int'));
+		SSQL($det['pac_cod'],'int'));
 	
 		if(@mysql_query($qUHC)){
-			$LOG.='* Actualizo HC: '.$det[pac_cod].'<br>';
+			$LOG.='* Actualizo HC: '.$det['pac_cod'].'<br>';
 			$vP=TRUE;
 		}else{
-			$LOG.='Error al Actualizar HC: '.$det[pac_cod].' - '.mysql_error().'<br>'.$qUHC;
+			$LOG.='Error al Actualizar HC: '.$det['pac_cod'].' - '.mysql_error().'<br>'.$qUHC;
 			$vP=FALSE;
 			break;
 		}

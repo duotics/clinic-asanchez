@@ -63,6 +63,7 @@ function genCheck($nom=NULL, $RS, $sel=NULL, $class=NULL, $opt=NULL, $id=NULL){
 	$class. attrib 'class' for <select>
 	$opt. optional attrib
 	$id. attrib 'id' for <select> */
+	$retVal='';
 	if($RS){
 		$dRS = mysql_fetch_assoc($RS);
 		$tRS = mysql_num_rows($RS);
@@ -148,6 +149,8 @@ function insRow($table,$params){//v.0.1
 function genStatus($dest,$params,$css=NULL){//v.2.0
 
 $firstP=TRUE;
+
+$lP='';
 
 foreach($params as $x => $xVal) {
 
@@ -355,7 +358,7 @@ function genPageNavbar($MOD, $tit=NULL, $des='',$icon=NULL,$css='navbar-fixed-to
 
 	}
 
-	$returnTit;
+	$returnTit='';
 
 	$returnTit.='<nav class="navbar navbar-default">';
 
@@ -431,11 +434,11 @@ if (isset($username)) {
 
 			$_SESSION['autentificacion']=TRUE;
 
-			$_SESSION[dU]=$dLogin;
+			$_SESSION['dU']=$dLogin;
 
 			
 
-			$_SESSION[dU] = $dLogin;
+			$_SESSION['dU'] = $dLogin;
 
 			$_SESSION['bsTheme'] = $dLogin['u_theme'];
 
@@ -473,6 +476,8 @@ if (isset($username)) {
 
 function genMenu($refMC,$css=NULL,$vrfUL=TRUE){
 
+	$ret='';
+
 	//Consulta para Menus Principales
 
 	$qry=sprintf("SELECT * FROM db_menus_items 
@@ -493,7 +498,7 @@ function genMenu($refMC,$css=NULL,$vrfUL=TRUE){
 
 	SSQL('0','int'),
 
-	SSQL($_SESSION[dU][u_id],'int'),
+	SSQL($_SESSION['dU']['u_id'],'int'),
 
 	SSQL('1','text'));
 
@@ -519,7 +524,7 @@ function genMenu($refMC,$css=NULL,$vrfUL=TRUE){
 
 			SSQL($dRSmp['men_id'],'int'),
 
-			SSQL($_SESSION[dU][u_id],'int'),
+			SSQL($_SESSION['dU']['u_id'],'int'),
 
 			SSQL(1,'int'));
 
@@ -635,6 +640,8 @@ function fncStat($dest,$params,$css=NULL){
 
 $firstP=TRUE;
 
+$lP='';
+
 foreach($params as $x => $xVal) {
 
     if($x=='val'){
@@ -705,7 +712,7 @@ function genPageHeader($MOD, $tip='page-header', $tit=NULL, $tag='h1', $id=NULL,
 
 	if($tag==null) $tag='h1';
 
-	$ret;
+	$ret='';
 
 	switch($tip){
 
@@ -809,7 +816,7 @@ function genPageHead($MOD, $tit=NULL, $tag='h1', $id=NULL, $des=NULL,$icon=NULL)
 
 	}
 
-	$returnTit;
+	$returnTit='';
 
 	$returnTit.='<div class="page-header">';
 
@@ -853,7 +860,7 @@ function vLogin($mSel=NULL){//,$accesscheck=FALSE){
 
 		WHERE db_menus_user.user_cod=%s AND db_menus_items.men_nombre=%s',
 
-		SSQL($_SESSION[dU][u_id],'int'),
+		SSQL($_SESSION['dU']['u_id'],'int'),
 
 		SSQL($mSel,'text'));
 
@@ -875,7 +882,7 @@ function vLogin($mSel=NULL){//,$accesscheck=FALSE){
 
 	$MM_restrictGoTo = $GLOBALS['RAIZ']."wrongaccess.php";
 
-	if (!((isset($_SESSION[dU])) && ($vVM) && (isAuthorized($MM_authorizedUsers, $_SESSION[dU])))) {   
+	if (!((isset($_SESSION['dU'])) && ($vVM) && (isAuthorized($MM_authorizedUsers, $_SESSION['dU'])))) {   
 
  
 
@@ -1204,6 +1211,8 @@ function uploadfile($params, $file){
 	$filename = $prefijo.$ext; // Obtiene el nombre del archivo, y su extension.
 
 	$aux_grab=FALSE;//Variable para determinar si se cumplieron todos los requisitos y proceso a guardar los archivos
+
+	$LOG='';
 
 	// Verifica si la extension es valida
 

@@ -37,14 +37,14 @@ do{
 		$qryIM=sprintf('INSERT INTO db_media 
 		(file, estado) 
 		VALUES (%s,%s)',
-		SSQL($det[img_path],'text'),
-		SSQL($det[img_status],'int'));
+		SSQL($det['img_path'],'text'),
+		SSQL($det['img_status'],'int'));
 	
 		if(@mysql_query($qryIM)){
 			$idT=mysql_insert_id();
 			$LOG.='* Creo MEDIA: '.$idT.'<br>';
 			$qIMP=sprintf('INSERT INTO db_pacientes_media (cod_pac, id_med) VALUES (%s,%s)',
-							  SSQL($det[pac_cod],'int'),
+							  SSQL($det['pac_cod'],'int'),
 							  SSQL($idT,'int'));
 			if(@mysql_query($qIMP)){
 				$LOG.='* Creo Media Paciente.';

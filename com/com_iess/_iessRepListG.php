@@ -36,8 +36,8 @@ if($tRS>0){
 		$dEmp=detRow('db_empleados','emp_cod',$dRSr['emp_cod']);
 		?>
 		<tr>
-			<td><?php echo $dRSr[id] ?></td>
-        	<td><?php echo infAud($dRSr[id_aud]) ?></td>
+			<td><?php echo $dRSr['id'] ?></td>
+        	<td><?php echo infAud($dRSr['id_aud']) ?></td>
         	<td><?php echo $dPac['pac_nom'].' '.$dPac['pac_ape'] ?></td>
 			<td><?php echo $dSuc['nom_suc'] ?></td>
 			<td><?php echo $dEmp['emp_nom'].' '.$dEmp['emp_ape'] ?></td>

@@ -80,9 +80,9 @@ $tr_RSe=mysql_num_rows($RSe);
 			<?php } ?>
 			<?php if($tEFD>0){ ?>
 			<?php do{ ?>
-			<?php $detEFN=detRow('db_examenes_format_det','id',$dRSltef[idefd]); ?>
+			<?php $detEFN=detRow('db_examenes_format_det','id',$dRSltef['idefd']); ?>
 				<div class="form-group">
-				<label class="control-label col-sm-6"><?php echo $detEFN[nom] ?> 
+				<label class="control-label col-sm-6"><?php echo $detEFN['nom'] ?> 
 				<span class="label label-default"><?php echo $dEF['nom'] ?></span></label>
 				<div class="col-sm-6">
 				<input type="text" class="form-control input-sm setDB" name="res" data-id="<?php echo $dRSltef['id'] ?>" data-rel="exadet" value="<?php echo $dRSltef['res'] ?>" placeholder="resultado"/>

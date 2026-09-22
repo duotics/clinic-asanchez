@@ -1,7 +1,7 @@
 <?php require('../../init.php');
 $dM=vLogin();
 $dC=detRow('db_componentes','mod_ref','CIR');
-$css[body]='cero';
+$css['body']='cero';
 include(RAIZf.'head.php'); ?>
 <?php sLOG('g'); ?>
 <div class="">

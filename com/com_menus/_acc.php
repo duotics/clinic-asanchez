@@ -19,8 +19,8 @@ mysql_query("BEGIN;"); //Inicia la transaccion
 			SSQL($ids,'text'));
 			if(@mysql_query($qry)){
 				$vP=TRUE;
-				$LOG.=$cfg[p]['upd-true'];
-			}else $LOG.=$cfg[p]['upd-false'].mysql_error();
+				$LOG.=$cfg['p']['upd-true'];
+			}else $LOG.=$cfg['p']['upd-false'].mysql_error();
 		}
 		if((isset($acc))&&($acc==md5(INSmc))){
 			$qry=sprintf('INSERT INTO db_menus (nom, ref, stat) 
@@ -32,8 +32,8 @@ mysql_query("BEGIN;"); //Inicia la transaccion
 				$vP=TRUE;
 				$id=@mysql_insert_id();
 				$ids=md5($id);
-				$LOG.=$cfg[p]['ins-true'];
-			}else $LOG.=$cfg[p]['ins-false'].mysql_error();
+				$LOG.=$cfg['p']['ins-true'];
+			}else $LOG.=$cfg['p']['ins-false'].mysql_error();
 		}
 		$goTo.='?ids='.$ids;
 	}
@@ -56,7 +56,7 @@ mysql_query("BEGIN;"); //Inicia la transaccion
 			SSQL($det['dMod'],'int'),
 			SSQL($ids,'text'));
 			if(@mysql_query($qry)){
-				$LOG.=$cfg[p]['upd-true'];
+				$LOG.=$cfg['p']['upd-true'];
 				$qry=sprintf('UPDATE db_menus_items SET men_idc=%s WHERE men_padre=%s',			
 				SSQL($det['dIDC'],'int'),
 				SSQL($id,'int'));
@@ -64,7 +64,7 @@ mysql_query("BEGIN;"); //Inicia la transaccion
 					$vP=TRUE;
 					$LOG.="<h4>Sub-items Actualizados Correctamente.</h4>";
 				}else $LOG.='<h4>Error al Actualizar Hijos</h4>';
-			}else $LOG.=$cfg[p]['upd-false'];
+			}else $LOG.=$cfg['p']['upd-false'];
 		}
 		if((isset($acc))&&($acc==md5(INSmi))){
 			$qry=sprintf('INSERT INTO db_menus_items (men_idc, men_padre, men_nombre, men_tit, men_link, men_icon, men_orden, men_stat, men_css, men_precode, men_postcode, mod_cod) 
@@ -86,8 +86,8 @@ mysql_query("BEGIN;"); //Inicia la transaccion
 				$vP=TRUE;
 				$id=@mysql_insert_id();
 				$ids=md5($id);
-				$LOG.=$cfg[p]['ins-true'];
-			}else $LOG.=$cfg[p]['ins-false'].mysql_error();
+				$LOG.=$cfg['p']['ins-true'];
+			}else $LOG.=$cfg['p']['ins-false'].mysql_error();
 		}
 		$goTo.='?ids='.$ids;
 	}
@@ -100,12 +100,12 @@ mysql_query("BEGIN;"); //Inicia la transaccion
 				SSQL($ids,'text'));
 			if(@mysql_query($qry)){
 				$vP=TRUE;
-				$LOG.=$cfg[p]['del-true'];
+				$LOG.=$cfg['p']['del-true'];
 			}else{
-				$LOG.=$cfg[p]['del-false'].mysql_error();
+				$LOG.=$cfg['p']['del-false'].mysql_error();
 			}
 		}else{
-			$LOG.=$cfg[p]['del-false'].'<p>Items relacionados</p>'.mysql_error();
+			$LOG.=$cfg['p']['del-false'].'<p>Items relacionados</p>'.mysql_error();
 		}
 	}
 	if((isset($acc))&&($acc==md5('STmc'))){
@@ -114,8 +114,8 @@ mysql_query("BEGIN;"); //Inicia la transaccion
 			SSQL($ids,'text'));
 		if(@mysql_query($qry)){
 			$vP=TRUE;
-			$LOG.=$cfg[p]['est-true'];
-		}else $LOG.=$cfg[p]['est-false'].mysql_error();
+			$LOG.=$cfg['p']['est-true'];
+		}else $LOG.=$cfg['p']['est-false'].mysql_error();
 	}
 	if((isset($acc))&&($acc==md5('STmi'))){
 		$qry=sprintf('UPDATE db_menus_items SET men_stat=%s WHERE md5(men_id)=%s LIMIT 1',
@@ -123,8 +123,8 @@ mysql_query("BEGIN;"); //Inicia la transaccion
 			SSQL($ids,'text'));
 		if(@mysql_query($qry)){
 			$vP=TRUE;
-			$LOG.=$cfg[p]['est-true'];
-		}else $LOG.=$cfg[p]['est-false'].mysql_error();
+			$LOG.=$cfg['p']['est-true'];
+		}else $LOG.=$cfg['p']['est-false'].mysql_error();
 	}
 	if((isset($acc))&&($acc==md5('DELmi'))){
 		$qry=sprintf('DELETE FROM db_menus_user WHERE md5(men_id)=%s LIMIT 1',
@@ -134,8 +134,8 @@ mysql_query("BEGIN;"); //Inicia la transaccion
 			SSQL($ids,'text'));
 			if(@mysql_query($qry)){
 				$vP=TRUE;
-				$LOG.=$cfg[p]['del-true'];
-			}else $LOG.=$cfg[p]['del-false'].mysql_error();
+				$LOG.=$cfg['p']['del-true'];
+			}else $LOG.=$cfg['p']['del-false'].mysql_error();
 		
 		}	
 		//$accjs=TRUE;

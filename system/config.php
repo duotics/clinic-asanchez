@@ -22,6 +22,6 @@ $_SESSION['urlc']=basename($_SERVER['SCRIPT_FILENAME']);//URL clean Current;
 $urlc=$_SESSION['urlc'];
 $urlp=$_SESSION['urlp'];
 //TEMA BOOTSTRAP
-if($_SESSION[dU][u_theme]) $bsTheme=$_SESSION[dU][u_theme];
+if($_SESSION['dU']['u_theme']) $bsTheme=$_SESSION['dU']['u_theme'];
 else $bsTheme='yeti';
 ?>

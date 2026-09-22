@@ -10,13 +10,13 @@ if($dCon){//SI EXISTE CONSULTA
 	$tRSld=mysql_num_rows($RSld);
 	if($tRSld>0){
 		do{
-			if($dRSld[id_diag]>1){
-				$dDiag=detRow('db_diagnosticos','id_diag',$dRSld[id_diag]);
-				$dDiag_cod=$dDiag[codigo];
-				$dDiag_nom=$dDiag[nombre];
+			if($dRSld['id_diag']>1){
+				$dDiag=detRow('db_diagnosticos','id_diag',$dRSld['id_diag']);
+				$dDiag_cod=$dDiag['codigo'];
+				$dDiag_nom=$dDiag['nombre'];
 			}else{
 				$dDiag_cod=NULL;
-				$dDiag_nom=$dRSld[obs];
+				$dDiag_nom=$dRSld['obs'];
 			}
 			$resDiag.='<tr>';
 			$resDiag.='<td>'.$dDiag_cod.'</td>';
@@ -36,18 +36,18 @@ if($dCon){//SI EXISTE CONSULTA
 	//BUSCO DATOS PACIENTE
 	$dPac=detRow('db_pacientes','pac_cod',$dCon['pac_cod']);
 	$dPac_edad=edad($dPac['pac_fec']);
-	$dPacSig=detSigLast($dCon[pac_cod]);
+	$dPacSig=detSigLast($dCon['pac_cod']);
 }
-$css[body]='cero';
+$css['body']='cero';
 include(RAIZf.'head.php'); ?>
 <link rel="stylesheet" type="text/css" href="<?php echo $RAIZa ?>css/cssPrint_01.css" />
 <?php if($tRSle>0){ ?>
 <?php do{ ?>
 <?php
-$ide=$dRSle[id_exa];
+$ide=$dRSle['id_exa'];
 $dRSle_fecha=date_ame2euro($dRSle['fechae']);
 //BUSCO FORMATO EXAMEN
-$dRSleF=detRow('db_examenes_format','id',$dRSle[id_ef]);
+$dRSleF=detRow('db_examenes_format','id',$dRSle['id_ef']);
 $qlED=sprintf('SELECT db_examenes_det.res as eRes, db_examenes_format_det.nom as eNom
 FROM db_examenes_det 
 INNER JOIN db_examenes_format_det ON db_examenes_det.idefd=db_examenes_format_det.id
@@ -106,7 +106,7 @@ $tRSled=mysql_num_rows($RSled);
 	$resED=NULL;
 	do{
 		$resED.='<tr>';
-		$resED.='<td><span style="font-size:10px; color:#ccc">'.$dRSleF[nom].'</span></td>';
+		$resED.='<td><span style="font-size:10px; color:#ccc">'.$dRSleF['nom'].'</span></td>';
 		$resED.='<td style="text-align:center; font-size:14px;">'.$dRSled['eNom'].'</td>';
 		$resED.='<td></td>';
 		$resED.='</tr>';
@@ -127,19 +127,19 @@ $tRSled=mysql_num_rows($RSled);
 		<?php echo $resED ?>
 	</table>
 	<?php } ?>
-	<?php if($dRSleF[enc]){ ?>
+	<?php if($dRSleF['enc']){ ?>
 	<div>
-		<?php echo $dRSleF[enc] ?>
+		<?php echo $dRSleF['enc'] ?>
 	</div>
 	<?php } ?>
-	<?php if($dRSle[des]){ ?>
+	<?php if($dRSle['des']){ ?>
 	<div style="padding: 0px; font-size: 10px">
-		<div style="padding: 20px; margin: 20px; border: 1px solid #eee"><?php echo $dRSle[des] ?></div>
+		<div style="padding: 20px; margin: 20px; border: 1px solid #eee"><?php echo $dRSle['des'] ?></div>
 	</div>
 	<?php } ?>
-	<?php if($dRSleF[pie]){ ?>
-	<?php $dRSleF[pie] = str_replace('{RAIZ}',$RAIZ,$dRSleF[pie]); ?>
-	<?php echo $dRSleF[pie] ?>
+	<?php if($dRSleF['pie']){ ?>
+	<?php $dRSleF['pie'] = str_replace('{RAIZ}',$RAIZ,$dRSleF['pie']); ?>
+	<?php echo $dRSleF['pie'] ?>
 	<?php } ?>
 	<div class="sello">
 		<div class="selloEA"><img src="<?php echo $RAIZa ?>images/struct/selloA-02.jpg" alt="" style="width: 100%"></div>

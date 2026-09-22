@@ -29,7 +29,7 @@ if((isset($form))&&($form==md5(fFormat))){
 		break;
 		case md5(UPDf):
 			$detF=detRow('db_documentos_formato','md5(id_df)',$ids);
-			$id=$detF[id_df];
+			$id=$detF['id_df'];
 			$idA=AUD($detF['idA'],'Actualización formato examen');
 			$qry=sprintf('UPDATE db_documentos_formato SET nombre=%s, formato=%s, status=%s, idA=%s WHERE id_df=%s LIMIT 1',
 						SSQL($data['iNom'],'text'),

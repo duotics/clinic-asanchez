@@ -96,7 +96,7 @@ if ((isset($data['form'])) && ($data['form'] == 'tratdet')){
 			
 			$vP=TRUE;
 			do{
-				$detMedG=detRow('db_medicamentos','id_form',$dRSlmg[idm]);
+				$detMedG=detRow('db_medicamentos','id_form',$dRSlmg['idm']);
 				
 				$qIMG=sprintf('INSERT INTO db_tratamientos_detalle (tid, idref, tip, generico, comercial, presentacion, cantidad, numero, descripcion)
 				VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)',

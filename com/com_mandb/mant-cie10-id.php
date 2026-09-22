@@ -22,7 +22,7 @@ include(RAIZf.'head.php');
 	</tr>
 <?php do{ ?>
 <?php
-	$cadT=$dRS[id10];
+	$cadT=$dRS['id10'];
 	$vUpd=FALSE;
 	$LOG=NULL;
 	$LOG.=$cadT.'<br>';
@@ -34,7 +34,7 @@ include(RAIZf.'head.php');
 		if($vUpd==TRUE){
 			$qryU=sprintf('UPDATE db29179_cie10 SET id10=%s WHERE id10=%s LIMIT 1',
 						 SSQL($cadN,'text'),
-						 SSQL($dRS[id10],'text'));
+						 SSQL($dRS['id10'],'text'));
 			$LOG.=$qryU.'<br>';
 			if(@mysql_query($qryU)){
 				$LOG.='antes: '.$cadT. ' - ahora. '.$cadN;
@@ -50,8 +50,8 @@ include(RAIZf.'head.php');
 ?>
 	<tr>
 		<td><?php echo $cadT ?></td>
-		<td><?php echo $dRS[dec10] ?></td>
-		<td><?php echo $dRS[grp10] ?></td>
+		<td><?php echo $dRS['dec10'] ?></td>
+		<td><?php echo $dRS['grp10'] ?></td>
 		<td><?php echo $LOG ?></td>
 	</tr>
 <?php }while($dRS=mysql_fetch_assoc($RS)); ?>

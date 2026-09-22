@@ -1,7 +1,7 @@
 <?php
 $param=$_POST;
 if($p){
-	if($param[nom]) $paramSQL.=' AND des LIKE "%'.$param[nom].'%"';
+	if($param['nom']) $paramSQL.=' AND des LIKE "%'.$param['nom'].'%"';
 	
 }
 $TR=totRowsTab('db_indicaciones');
@@ -28,7 +28,7 @@ $btnNew='<a href="indicacionesForm.php" class="btn btn-default fancybox fancybox
 		<fieldset class="form-inline">
 			<span class="label label-default">Filtros</span>
 			<label class="control-label">Nombre</label>
-			<input type="text" name="nom" value="<?php echo $p[nom] ?>" class="form-control input-sm">
+			<input type="text" name="nom" value="<?php echo $p['nom'] ?>" class="form-control input-sm">
 			<button type="submit" class="btn btn-info btn-xs"><i class="fa fa-search" aria-hidden="true"></i> Consultar</button>
 			<a class="btn btn-default btn-xs" href="<?php echo $urlc ?>">Eliminar Parámetros</a>
 		</fieldset>
@@ -51,12 +51,12 @@ $btnNew='<a href="indicacionesForm.php" class="btn btn-default fancybox fancybox
 	<tbody>
 	<?php do{?>
 		<?php
-		$id=$dRSd[id];
+		$id=$dRSd['id'];
 		$ids=md5($id);
 		$TMC=NULL;
 		if($tr_RSd<=10) $TMC=totRowsTabP('db_tratamientos_detalle','AND idref='.$id.' AND tip="I"');	
-		$btnStat=genStatus('actions.php',array('ids'=>$ids, 'val'=>$dRSd[est],'acc'=>md5(STi),"url"=>$urlc));
-		$btnFeat=genStatus('actions.php',array('ids'=>$ids, 'val'=>$dRSd[feat],'acc'=>md5(FTi),"url"=>$urlc));
+		$btnStat=genStatus('actions.php',array('ids'=>$ids, 'val'=>$dRSd['est'],'acc'=>md5(STi),"url"=>$urlc));
+		$btnFeat=genStatus('actions.php',array('ids'=>$ids, 'val'=>$dRSd['feat'],'acc'=>md5(FTi),"url"=>$urlc));
 		?>
 		<tr>
 			<td><?php echo $id ?></td>

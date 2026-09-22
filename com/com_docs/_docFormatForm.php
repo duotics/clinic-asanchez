@@ -29,17 +29,17 @@ $btnNew = '<a href="' . $urlc . '" class="btn btn-default"><i class="fas fa-plus
 						<div class="form-group">
 							<label class="control-label col-sm-4" for="iNom">NOMBRE FORMATO</label>
 							<div class="col-sm-8">
-								<input name="iNom" id="iNom" type="text" class="form-control" placeholder="Nombre del Formato" value="<?php echo $dF[nombre] ?>" autofocus>
+								<input name="iNom" id="iNom" type="text" class="form-control" placeholder="Nombre del Formato" value="<?php echo $dF['nombre'] ?>" autofocus>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="" class="control-label col-sm-4">ACTIVO</label>
 							<div class="col-sm-8">
 								<label class="radio-inline">
-									<input type="radio" name="iStat" value="1" <?php if ($dF[status] == 1) echo 'checked' ?>> SI
+									<input type="radio" name="iStat" value="1" <?php if ($dF['status'] == 1) echo 'checked' ?>> SI
 								</label>
 								<label class="radio-inline">
-									<input type="radio" name="iStat" value="0" <?php if ($dF[status] == 0) echo 'checked' ?>> NO
+									<input type="radio" name="iStat" value="0" <?php if ($dF['status'] == 0) echo 'checked' ?>> NO
 								</label>
 							</div>
 						</div>
@@ -83,7 +83,7 @@ $btnNew = '<a href="' . $urlc . '" class="btn btn-default"><i class="fas fa-plus
 			</div>
 			<div class="col-sm-6">
 				<div>
-					<textarea name="iFor" class="form-control tinymce" style="min-height: 650px"><?php echo $dF[formato] ?></textarea>
+					<textarea name="iFor" class="form-control tinymce" style="min-height: 650px"><?php echo $dF['formato'] ?></textarea>
 				</div>
 			</div>
 		</div>

@@ -20,8 +20,8 @@ $row_RSlr=mysql_fetch_assoc($RSlr);
 $tr_RSlr=mysql_num_rows($RSlr); ?>
 <div>
 	<?php
-	$pHead[des]=$dPac['pac_nom'].' '.$dPac['pac_ape'].' <span class="label label-info">'.$dPac['pac_cod'].'</span>';
-	echo genPageHeader(null,'page-header',$dC[mod_nom],'h1',null,$pHead[des],$dC[mod_icon],null,null) ?>
+	$pHead['des']=$dPac['pac_nom'].' '.$dPac['pac_ape'].' <span class="label label-info">'.$dPac['pac_cod'].'</span>';
+	echo genPageHeader(null,'page-header',$dC['mod_nom'],'h1',null,$pHead['des'],$dC['mod_icon'],null,null) ?>
 <div class="row">
 	<div class="col-sm-7">
     	<form action="actions.php" method="post">
@@ -34,11 +34,11 @@ $tr_RSlr=mysql_num_rows($RSlr); ?>
 		</fieldset>
 		
 		<?php
-		$pHead[conL]='<ul class="nav navbar-nav">
+		$pHead['conL']='<ul class="nav navbar-nav">
       	<li><a><span class="label label-primary">'.$id.'</span></a></li>
-        <li><a>'.$dRes[fechai].'</a></li>
+        <li><a>'.$dRes['fechai'].'</a></li>
     </ul>';
-		echo genPageHeader($dC[mod_cod],'navbar',null,null,null,null,null,$pHead[conL],$btnAcc.$btnNew) ?>
+		echo genPageHeader($dC['mod_cod'],'navbar',null,null,null,null,null,$pHead['conL'],$btnAcc.$btnNew) ?>
 		<div class="row">
 				<div class="col-sm-5">
 					<fieldset>

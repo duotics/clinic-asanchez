@@ -3,8 +3,8 @@ $id=vParam('id',$_GET['id'],$_POST['id']);
 $det=detRow('db_examenes','id_exa',$id);//fnc_dataexam($ide);
 
 if($det){
-	$dPac=detRow('db_pacientes','pac_cod',$det[pac_cod]);
-	$dSig=detRow('db_signos','pac_cod',$det[pac_cod],'id','DESC');
+	$dPac=detRow('db_pacientes','pac_cod',$det['pac_cod']);
+	$dSig=detRow('db_signos','pac_cod',$det['pac_cod'],'id','DESC');
 	//var_dump($dSig);
 }
 
@@ -13,7 +13,7 @@ include(RAIZf.'head.php'); ?>
 <div class="container">
 	<div class="panel panel-primary">
     <div class="panel-heading">
-		<h3 class="panel-title">Vista Previa de Examen <span class="badge"><?php echo $id ?></span> <small><?php echo $dPac[pac_nom].' '.$dPac[pac_ape] ?></small></h3>
+		<h3 class="panel-title">Vista Previa de Examen <span class="badge"><?php echo $id ?></span> <small><?php echo $dPac['pac_nom'].' '.$dPac['pac_ape'] ?></small></h3>
     </div>
     <div class="panel-body">
 		<?php if($det){ ?>
@@ -23,11 +23,11 @@ include(RAIZf.'head.php'); ?>
 				<td width="40%">
 					<table class="table cero">
 						<tr>
-							<td><?php echo $det[fecha] ?></td>
-							<td>Ficha. <?php echo $det[pac_cod] ?></td>
+							<td><?php echo $det['fecha'] ?></td>
+							<td>Ficha. <?php echo $det['pac_cod'] ?></td>
 						</tr>
 						<tr>
-							<td colspan="2"><?php echo $dPac[pac_nom].' '.$dPac[pac_ape] ?></td>
+							<td colspan="2"><?php echo $dPac['pac_nom'].' '.$dPac['pac_ape'] ?></td>
 						</tr>
 					</table>
 				</td>
@@ -35,10 +35,10 @@ include(RAIZf.'head.php'); ?>
 				<td width="35%">
 					<table class="table cero">
 						<tr>
-							<td><?php echo $dPac[pac_fec] ?></td>
+							<td><?php echo $dPac['pac_fec'] ?></td>
 						</tr>
 						<tr>
-							<td><?php echo 'Peso. '.$dSig[peso].' / Talla. '.$dSig[talla] ?></td>
+							<td><?php echo 'Peso. '.$dSig['peso'].' / Talla. '.$dSig['talla'] ?></td>
 						</tr>
 					</table>
 				</td>

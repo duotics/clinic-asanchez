@@ -13,6 +13,7 @@ function detRowNP($table,$params){ //v1.0
 }
 //Verifico la Reserva para Eliminarla
 function verifyRESid($id){
+	$LOG='';
 	$detRes=detRow('db_fullcalendar','id',$id);
 	if($detRes){
 		$qryUpd=sprintf('UPDATE db_fullcalendar SET est=%s WHERE id=%s LIMIT 1',
@@ -29,6 +30,7 @@ function verifyRESid($id){
 
 //Verifico la Reserva para Eliminarla el dia actual
 function verifyREShis($idp){
+	$LOG='';
 	//$qry=sprintf('SELECT * FROM ');
 	//$detRes=detRow('db_fullcalendar','id',$id);
 	//if($detRes){
@@ -51,6 +53,7 @@ function verifyREShis($idp){
 
 //Verifico la Reserva para Eliminarla
 function verifyRES($idp){
+	$LOG='';
 	$detRes=detRow2P('db_fullcalendar','pac_cod',$idp,'est','1',' AND ');
 	if($detRes){
 		$qryUpd=sprintf('UPDATE db_fullcalendar SET est=%s WHERE id=%s LIMIT 1',
@@ -561,6 +564,7 @@ function totRowsTab_ant($table,$field,$param){
 	return ($totalRows_RS_datos);
 }
 function getParamSQLA($params){
+	$qryParam='';
 	if($params){
 		foreach($params as $val){
 			if(!$val[3]) $val[3]=' AND ';

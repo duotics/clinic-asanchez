@@ -15,7 +15,7 @@ $tr_RSo=mysql_num_rows($RSo);
   <div class="panel-body">
     <?php if ($tr_RSo>0){
         $classlast=TRUE;
-        $classtr;
+        $classtr='';
         ?>
         <div>
             <table class="table table-striped table-bordered table-condensed">

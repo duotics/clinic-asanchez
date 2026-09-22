@@ -7,9 +7,9 @@ mysql_query("SET AUTOCOMMIT=0;"); //Desabilita el autocommit
 mysql_query("BEGIN;"); //Inicia la transaccion
 //BEG IF form=formPass
 if(($dat['form'])&&($dat['form']==md5(formPass))){
-$GoTo=$dat[url];
+$GoTo=$dat['url'];
 //Valid Token
-$datUsu=detRow('db_user_system','user_cod',$_SESSION[dU][u_id]);
+$datUsu=detRow('db_user_system','user_cod',$_SESSION['dU']['u_id']);
 if($datUsu){//BEG IF $datUsu
 	//Usuario Valido
 	$datUsu_passAnt=$datUsu['user_password'];
@@ -25,7 +25,7 @@ if($datUsu){//BEG IF $datUsu
 				$qry=sprintf('UPDATE db_user_system SET user_password=%s, id_aud=%s WHERE user_cod=%s LIMIT 1',
 				SSQL($passNew,'text'),
 				SSQL($id_aud,'int'),
-				SSQL($_SESSION[dU][u_id],'int'));
+				SSQL($_SESSION['dU']['u_id'],'int'));
 				if(mysql_query($qry)){
 					//Contraseña Modificada
 					$vP=TRUE;
@@ -52,7 +52,7 @@ if($datUsu){//BEG IF $datUsu
 if(($dat['form'])&&($dat['form']=='formPerfil')){
 	$GoTo=$RAIZc.'com_usersystem/userPerfil.php';
 
-	$datUsu=detRow('db_user_system','user_cod',$_SESSION[dU][u_id]);
+	$datUsu=detRow('db_user_system','user_cod',$_SESSION['dU']['u_id']);
 	$datEmp=detRow('db_empleados','emp_cod',$datUsu['emp_cod']);
 	$id_aud=AUD($datUsu['id_aud'],'Actualización Usuario');
 	//UPDATE db_user_system
@@ -60,7 +60,7 @@ if(($dat['form'])&&($dat['form']=='formPerfil')){
 	SSQL($dat['user_nombre'],'text'),
 	SSQL($dat['user_theme'],'text'),
 	SSQL($id_aud,'int'),
-	SSQL($_SESSION[dU][u_id],'int'));
+	SSQL($_SESSION['dU']['u_id'],'int'));
 	if(@mysql_query($qryUpdUsr)){
 		$LOG.='<p>Usuario Actualizado</p>';
 		//UPDATE db_empleados
@@ -95,7 +95,7 @@ if((!mysql_error())&&($vP==TRUE)){
 	$_SESSION['LOG']['t']='OPERACIÓN EXITOSA';	
 	$_SESSION['LOG']['c']='info';
 	$_SESSION['LOG']['i']=$RAIZa.'images/icons/Ok-48.png';
-	$_SESSION[dU][u_theme]=$dat['user_theme'];
+	$_SESSION['dU']['u_theme']=$dat['user_theme'];
 }else{
 	mysql_query("ROLLBACK;");
 	$_SESSION['LOG']['t']='ERROR';	

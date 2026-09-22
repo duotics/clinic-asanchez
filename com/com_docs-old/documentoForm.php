@@ -41,7 +41,7 @@ if($detdoc){
 	$dat['nom']=$detpac_nom;
 	$dat['doc']=$detpac['pac_ced'];
 	$dat['edad']=edad($detpac['pac_fec'],' Años');
-	$dat[idc]=$idc;
+	$dat['idc']=$idc;
 	$doc_conG=genDoc($doc_nom,$dat);
 	$doc_con=$doc_conG['format'];
 	$btnAcc='<button type="submit" class="btn btn-info" name="btnA"><i class="fas fa-save fa-lg"></i> GUARDAR</button>';
@@ -51,7 +51,7 @@ if($detdoc){
 $NE=new EnLetras();
 $NumD=$NE->ValorEnLetras(date('d'),'');
 $NumA=$NE->ValorEnLetras(date('Y'),'');
-$css[body]='cero';
+$css['body']='cero';
 include(RAIZf.'head.php'); ?>
 <form action="_fncts.php" method="post" enctype="multipart/form-data" style="margin-bottom:0px;">
 <fieldset class="pull-right">

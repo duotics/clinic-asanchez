@@ -73,7 +73,7 @@ if($banSR==TRUE){
 </thead>
 <tbody> 
 	<?php
-    	$dataG;
+    	$dataG=array();
 		$contDataG=0;
 		do{
 		$det_typcod=$row_RSprs['typ_cod'];

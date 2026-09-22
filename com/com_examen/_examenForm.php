@@ -11,7 +11,7 @@ if($dExa){
 	$acc=md5('UPDe');
 	$dExa_fec=$dExa['fechae'];
 	$dEF=detRow('db_examenes_format','id',$dExa['id_ef']);
-	$idef=$dEF[id];
+	$idef=$dEF['id'];
 	$btnAcc='<button type="button" id="vAcc" name="btnA" class="btn btn-success"><i class="fas fa-save fa-lg"></i> GUARDAR</button>';
 	$btnAccJS='<button type="submit" name="btnJ" class="btn btn-default" id=""><i class="fas fa-window-close"></i> GUARDAR & CERRAR</button>';
 	//$btnPrint='<button type="submit" name="btnP" class="btn btn-info" id=""><i class="fas fa-save fa-lg"></i> GUARDAR & IMPRIMIR</button>';
@@ -68,7 +68,7 @@ $btnNew='<a href="'.$urlc.'?idp='.$idp.'&idc='.$idc.'" class="btn btn-default na
 				<div class="form-group">
 					<label class="control-label col-sm-3" for="resultado">Formato</label>
 					<div class="col-sm-9">
-					<input type="text" class="form-control disabled" value="<?php echo $dEF[nom] ?>" disabled>
+					<input type="text" class="form-control disabled" value="<?php echo $dEF['nom'] ?>" disabled>
 					<?php //genSelect('idef', $RSe, $dExa['id_ef'], 'form-control', NULL, 'idEf', NULL, TRUE, NULL, "- Seleccione Formato -")?>
 					</div>
 				</div>
@@ -94,14 +94,14 @@ $btnNew='<a href="'.$urlc.'?idp='.$idp.'&idc='.$idc.'" class="btn btn-default na
 			$dRSltef=mysql_fetch_assoc($RSltef);
 			$tRSltef=mysql_num_rows($RSltef);
 			if($tRSltef>0){
-				$spanE[a]=4;
-				$spanE[b]=5;
+				$spanE['a']=4;
+				$spanE['b']=5;
 			}else{
-				$spanE[a]=2;
-				$spanE[b]=7;
+				$spanE['a']=2;
+				$spanE['b']=7;
 			}
 			?>
-			<div class="col-sm-<?php echo $spanE[a] ?>">
+			<div class="col-sm-<?php echo $spanE['a'] ?>">
 				<?php if($tRSltef>0){ ?>
 				<table class="table table-condensed">
 					<tr>
@@ -112,7 +112,7 @@ $btnNew='<a href="'.$urlc.'?idp='.$idp.'&idc='.$idc.'" class="btn btn-default na
 					<?php 
 						$paramsN=NULL;
 						$paramsN[]=array(
-							array("cond"=>"AND","field"=>"idefd","comp"=>"=","val"=>$dRSltef[id]),
+							array("cond"=>"AND","field"=>"idefd","comp"=>"=","val"=>$dRSltef['id']),
 							array("cond"=>"AND","field"=>"ide","comp"=>'=',"val"=>$ide)
 						);
 						$dEFDS=detRowNP('db_examenes_det',$paramsN);
@@ -128,13 +128,13 @@ $btnNew='<a href="'.$urlc.'?idp='.$idp.'&idc='.$idc.'" class="btn btn-default na
 						<td>
 						<div class="checkbox cero">
 							<label>
-							<input type="checkbox" name="lefs[<?php echo $dRSltef[id] ?>]" value="<?php echo $dRSltef[id] ?>" <?php echo $checkSel ?>> 
+							<input type="checkbox" name="lefs[<?php echo $dRSltef['id'] ?>]" value="<?php echo $dRSltef['id'] ?>" <?php echo $checkSel ?>> 
 							<?php echo $dRSltef['nom'] ?>
 							</label>
 						</div>
 						</td>
 						<td>
-							<input type="text" class="form-control input-sm" name="lefsR[<?php echo $dRSltef[id] ?>]" data-id="<?php echo $dEFDS['id'] ?>" value="<?php echo $dEFDS['res'] ?>" <?php echo $enabRes ?> style="height: 25px"/>
+							<input type="text" class="form-control input-sm" name="lefsR[<?php echo $dRSltef['id'] ?>]" data-id="<?php echo $dEFDS['id'] ?>" value="<?php echo $dEFDS['res'] ?>" <?php echo $enabRes ?> style="height: 25px"/>
 						</td>
 					</tr>
 					<?php }while($dRSltef=mysql_fetch_assoc($RSltef)); ?>
@@ -143,7 +143,7 @@ $btnNew='<a href="'.$urlc.'?idp='.$idp.'&idc='.$idc.'" class="btn btn-default na
 				<div><span class="label label-default">No Existen sub-examenes</span></div>
 				<?php } ?>
 			</div>
-			<div class="col-sm-<?php echo $spanE[b] ?>">
+			<div class="col-sm-<?php echo $spanE['b'] ?>">
 				<div class="form-group">
 					<label for="">Descripción / Instrucciones para examen</label>
 					<!--<textarea name="iDes" class="form-control tmceExamE" id="iDes" placeholder="Detalle" style="height: 200px"><?php //echo $dExa['des'] ?></textarea>-->

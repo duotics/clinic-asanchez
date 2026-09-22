@@ -56,12 +56,12 @@ if(isset($_SESSION['tab']['examf'])){
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation"  class="<?php echo $tabS[tabA] ?>"><a href="#tabA" aria-controls="home" role="tab" data-toggle="tab">Datos</a></li>
-    <li role="presentation"  class="<?php echo $tabS[tabB] ?>"><a href="#tabB" aria-controls="profile" role="tab" data-toggle="tab">Tipos</a></li>
+    <li role="presentation"  class="<?php echo $tabS['tabA'] ?>"><a href="#tabA" aria-controls="home" role="tab" data-toggle="tab">Datos</a></li>
+    <li role="presentation"  class="<?php echo $tabS['tabB'] ?>"><a href="#tabB" aria-controls="profile" role="tab" data-toggle="tab">Tipos</a></li>
   </ul>
   <!-- Tab panes -->
   <div class="tab-content panel panel-default panel-body">
-    <div role="tabpanel" class="tab-pane <?php echo $tabS[tabA] ?>" id="tabA">
+    <div role="tabpanel" class="tab-pane <?php echo $tabS['tabA'] ?>" id="tabA">
     	<form action="actions.php" method="post" id="formexam" enctype="multipart/form-data">
 		<fieldset>
 			<input name="id" type="hidden" id="id" value="<?php echo $id ?>">
@@ -101,7 +101,7 @@ if(isset($_SESSION['tab']['examf'])){
     	</form>
     	
     </div>
-    <div role="tabpanel" class="tab-pane <?php echo $tabS[tabB] ?>" id="tabB">
+    <div role="tabpanel" class="tab-pane <?php echo $tabS['tabB'] ?>" id="tabB">
     	<form action="actions.php" method="post">
         <fieldset>
         	<input type="hidden" name="form" value="<?php echo md5('fexamenfd') ?>">
@@ -123,23 +123,23 @@ if(isset($_SESSION['tab']['examf'])){
     				<div class="form-group">
     					<label for="" class="control-label col-sm-4">NOMBRE DEL EXAMEN</label>
     					<div class="col-sm-8">
-    						<input type="text" class="form-control" name="iNom" value="<?php echo $dEFD[nom] ?>">
+    						<input type="text" class="form-control" name="iNom" value="<?php echo $dEFD['nom'] ?>">
     					</div>
     				</div>
     				<div class="form-group">
     					<label for="" class="control-label col-sm-4">DESCRIPCION ADICIONAL DEL EXAMEN</label>
     					<div class="col-sm-8">
-    						<textarea name="iVal" cols="30" rows="5" class="form-control"><?php echo $dEFD[val] ?></textarea>
+    						<textarea name="iVal" cols="30" rows="5" class="form-control"><?php echo $dEFD['val'] ?></textarea>
     					</div>
     				</div>
     				<div class="form-group">
     					<label for="" class="control-label col-sm-4">MARCADO</label>
     					<div class="col-sm-8">
     						<label class="radio-inline">
-							  <input type="radio" name="isCheck" value="1" <?php if($dEFD[act]==1) echo 'checked' ?>> SI
+							  <input type="radio" name="isCheck" value="1" <?php if($dEFD['act']==1) echo 'checked' ?>> SI
 							</label>
 							<label class="radio-inline">
-							  <input type="radio" name="isCheck" value="0" <?php if($dEFD[act]==0) echo 'checked' ?>> NO
+							  <input type="radio" name="isCheck" value="0" <?php if($dEFD['act']==0) echo 'checked' ?>> NO
 							</label>
     					</div>
     				</div>
@@ -147,10 +147,10 @@ if(isset($_SESSION['tab']['examf'])){
     					<label for="" class="control-label col-sm-4">ESTADO</label>
     					<div class="col-sm-8">
     						<label class="radio-inline">
-							  <input type="radio" name="isAct" value="1" <?php if($dEFD[est]==1) echo 'checked' ?>> SI
+							  <input type="radio" name="isAct" value="1" <?php if($dEFD['est']==1) echo 'checked' ?>> SI
 							</label>
 							<label class="radio-inline">
-							  <input type="radio" name="isAct" value="0" <?php if($dEFD[est]==0) echo 'checked' ?>> NO
+							  <input type="radio" name="isAct" value="0" <?php if($dEFD['est']==0) echo 'checked' ?>> NO
 							</label>
     					</div>
     				</div>
@@ -177,18 +177,18 @@ if(isset($_SESSION['tab']['examf'])){
     				<tbody>
     				<?php do{ ?>
     				<?php
-						$btnView=fncStat('actions.php',array("id"=>$id, "idefd"=>$dRSlefd[id], "val"=>$dRSlefd[act],"acc"=>md5('SELefd'),"url"=>$urlc));
-						$btnStat=fncStat('actions.php',array("id"=>$id, "idefd"=>$dRSlefd[id], "val"=>$dRSlefd[est],"acc"=>md5('STefd'),"url"=>$urlc));
+						$btnView=fncStat('actions.php',array("id"=>$id, "idefd"=>$dRSlefd['id'], "val"=>$dRSlefd['act'],"acc"=>md5('SELefd'),"url"=>$urlc));
+						$btnStat=fncStat('actions.php',array("id"=>$id, "idefd"=>$dRSlefd['id'], "val"=>$dRSlefd['est'],"acc"=>md5('STefd'),"url"=>$urlc));
 					?>
     				<tr>
-    					<td><?php echo $dRSlefd[id] ?></td>
-    					<td><?php echo $dRSlefd[nom] ?></td>
+    					<td><?php echo $dRSlefd['id'] ?></td>
+    					<td><?php echo $dRSlefd['nom'] ?></td>
     					<td><?php echo $btnView ?></td>
     					<td><?php echo $btnStat ?></td>
     					<td>
-    					<a href="<?php echo $urlc ?>?id=<?php echo $id ?>&idefd=<?php echo $dRSlefd[id] ?>" class="btn btn-primary btn-xs">
+    					<a href="<?php echo $urlc ?>?id=<?php echo $id ?>&idefd=<?php echo $dRSlefd['id'] ?>" class="btn btn-primary btn-xs">
     					<i class="fas fa-edit fa-lg"></i></a>
-    					<a href="actions.php?id=<?php echo $id ?>&idefd=<?php echo $dRSlefd[id] ?>&acc=<?php echo md5(DELefd) ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs">
+    					<a href="actions.php?id=<?php echo $id ?>&idefd=<?php echo $dRSlefd['id'] ?>&acc=<?php echo md5(DELefd) ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs">
     					<i class="fas fa-trash fa-lg"></i></a>
     					</td>
     				</tr>

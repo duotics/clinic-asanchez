@@ -12,6 +12,7 @@ function detRepEco_hall(){
 }
 
 function detRepEco_Ohall($obt){
+	$valOHall='';
 	
 		//"Quiste der.","Quiste izq.","Folículos der.","Folículos izq.","Masa 1","Masa 2","Masa 3","Pólipo endo",
 	//"Masa ovárica der.","Masa ovárica izq.","Tumor Uterino 1","Tumor Uterino 2","Tumor Uterino 3","Tumor Cervical","Embarazo Ectópico"
@@ -78,6 +79,7 @@ function detRepEco_Ohall($obt){
 
 //FUNCIONES REPORTE OBSTETRICO
 function delRepObs($idr){
+	$LOG='';
 	$qryDel=sprintf('DELETE FROM db_rep_obs_detalle WHERE id_rep=%s',
 	GetSQLValueString($idr,'int'));
 	if(@mysql_query($qryDel)){
@@ -90,6 +92,7 @@ function delRepObs($idr){
 	return $det;
 }
 function updRepObs($idr,$obt){
+	$LOG='';
 	$qryUpdRep=sprintf('UPDATE db_rep_obs SET fechar=%s, fechae=%s, fum=%s, file=%s, est=%s WHERE id=%s',
 	GetSQLValueString($GLOBALS['sdate'],'date'),//recha registro
 	GetSQLValueString($GLOBALS['sdate'],'date'),//recha ecografia
@@ -115,6 +118,7 @@ function updRepObs($idr,$obt){
 return $det; 
 }
 function updRepEco($idr,$obt){
+	$LOG='';
 	$valHall=detRepEco_hall();
 	$valOHall=detRepEco_Ohall($obt);
 	
@@ -144,6 +148,7 @@ function updRepEco($idr,$obt){
 return $det; 
 }
 function insRepObs($idc,$idp,$obt){
+	$LOG='';
 	if($obt['1_FUM']['val']) $obt_FUM=datefRO(clsRO($obt['1_FUM']['val']));
 	$qryInsRep=sprintf('INSERT INTO db_rep_obs (con_num, pac_cod, fechar, fechae, fum, file, est) 
 	VALUES (%s,%s,%s,%s,%s,%s,%s)',
@@ -176,9 +181,10 @@ return $det;
 }
 
 function insRepObsDet($idr,$obt,$contRows){
+	$LOG='';
 	for($x=1;$x<=$contRows;$x++){
-		$obt_FEP_FUM;
-		$obt_FEP_EEUS;
+		$obt_FEP_FUM=NULL;
+		$obt_FEP_EEUS=NULL;
 		if($obt[$x.'_FEP(FUM)']['val']) $obt_FEP_FUM=datefRO(clsRO($obt[$x.'_FEP(FUM)']['val']));
 		if($obt[$x.'_FEP(EEUS)']['val']) $obt_FEP_EEUS=datefRO(clsRO($obt[$x.'_FEP(EEUS)']['val']));
 		
@@ -231,6 +237,7 @@ function insRepObsDet($idr,$obt,$contRows){
 
 //FUNCIONES REPORTE ECOGRAFIA
 function insRepEco($idc,$idp,$obt){
+	$LOG='';
 	$valHall=detRepEco_hall();
 	$valOHall=detRepEco_Ohall($obt);
 	$qryInsRep=sprintf('INSERT INTO db_rep_eco (con_num, pac_cod, fechar, fechae, 
@@ -269,6 +276,7 @@ return $det;
 //Verifico la Reserva para Eliminarla
 /*
 function verifyRES($id_pac){
+	$LOG='';
 	$detRes=detRow2P('db_fullcalendar','pac_cod',$id_pac,'est','1',' AND ');
 	if($detRes){
 		$qryUpd=sprintf('UPDATE db_fullcalendar SET est=%s WHERE id=%s LIMIT 1',
@@ -284,6 +292,7 @@ function verifyRES($id_pac){
 */
 //Verifico La Existencia de GINECOLOGIA
 function verifyGIN($id_pac,$data){
+	$LOG='';
 	$detGIN=detRow('db_pacientes_gin','pac_cod',$id_pac);
 	if($detGIN){
 		$qryUpd=sprintf('UPDATE db_pacientes_gin SET 
@@ -332,6 +341,7 @@ function verifyGIN($id_pac,$data){
 
 //Verifico La Existencia de Historia Clinica
 function verifyHC($id_pac,$data){
+	$LOG='';
 	$detHC=detRow('db_paciente_hc','pac_cod',$id_pac);
 	if($detHC){
 		$qryUpd=sprintf('UPDATE db_paciente_hc SET hc_cir_pre=%s, hc_antf=%s, hc_antf=%s, hc_antp=%s, hc_hab=%s, hc_ale=%s, hc_cau_inf=%s, hc_cic_ra=%s, hc_obs=%s WHERE hc_id=%s',
@@ -397,7 +407,7 @@ function AUD($id=NULL,$des=NULL,$eve=NULL){
 			$qry=sprintf('INSERT INTO db_auditoria_detalle (id_aud, user_cod, audd_datet, audd_eve, audd_des) 
 			VALUES (%s,%s,%s,%s,%s)',
 			SSQL($id,'int'),
-			SSQL($_SESSION[dU][u_id],'int'),
+			SSQL($_SESSION['dU']['u_id'],'int'),
 			SSQL($GLOBALS['sdatet'],'text'),
 			SSQL($eve,'text'),
 			SSQL($des,'text'));
@@ -415,7 +425,7 @@ function AUD($id=NULL,$des=NULL,$eve=NULL){
 		$qryAudDet=sprintf('INSERT INTO db_auditoria_detalle (id_aud, user_cod, audd_datet, audd_eve, audd_des) 
 		VALUES (%s,%s,%s,%s,%s)',
 		SSQL($id_aud,'int'),
-		SSQL($_SESSION[dU][u_id],'int'),
+		SSQL($_SESSION['dU']['u_id'],'int'),
 		SSQL($GLOBALS['sdatet'],'text'),
 		SSQL($eve,'text'),
 		SSQL($des,'text'));

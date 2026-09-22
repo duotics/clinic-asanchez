@@ -1,6 +1,6 @@
 <?php
 function genDoc($sel,$dat=NULL){
-	$dCon=detRow('db_consultas','con_num',$dat[idc]);
+	$dCon=detRow('db_consultas','con_num',$dat['idc']);
 	if($dCon){
 		$qLD=sprintf('SELECT * FROM db_consultas_diagostico WHERE con_num=%s ORDER BY id ASC LIMIT 2',
 					SSQL($dCon['con_num'],'int'));
@@ -10,13 +10,13 @@ function genDoc($sel,$dat=NULL){
 		
 		if($tRSld>0){
 			do{
-				if($dRSld[id_diag]>1){
-					$dDiag=detRow('db_diagnosticos','id_diag',$dRSld[id_diag]);
-					$dDiag_cod=' ('.$dDiag[codigo].') ';
-					$dDiag_nom=$dDiag[nombre];
+				if($dRSld['id_diag']>1){
+					$dDiag=detRow('db_diagnosticos','id_diag',$dRSld['id_diag']);
+					$dDiag_cod=' ('.$dDiag['codigo'].') ';
+					$dDiag_nom=$dDiag['nombre'];
 				}else{
 					$dDiag_cod=NULL;
-					$dDiag_nom=$dRSld[obs];
+					$dDiag_nom=$dRSld['obs'];
 				}
 				$resDiag.=' <span>'.$dDiag_nom.$dDiag_cod.'</span>';
 				if($contDE>0) $resDiag.=$contDE.',';

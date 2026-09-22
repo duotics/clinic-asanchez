@@ -2,7 +2,7 @@
 
 $_SESSION['MODSEL']="RPPP";
 
-$idU = $_SESSION[dU][u_id];
+$idU = $_SESSION['dU']['u_id'];
 fnc_autentificacion();
 $URL_Visita_Ult=basename($_SERVER['REQUEST_URI'], "/");
 $url_autorizado=fnc_datURLv($URL_Visita_Ult, $idU);

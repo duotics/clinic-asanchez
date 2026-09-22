@@ -24,11 +24,11 @@ if(isset($_SESSION['tab']['medf'])){
 <?php echo genPageHeader($dC['mod_cod'],'navbar',null,null,null,null,null,null,$btnNew) ?>
 <div>
 	<ul class="nav nav-tabs" role="tablist">
-		<li role="presentation" class="<?php echo $tabS[tabA] ?>"><a href="#tabA" aria-controls="home" role="tab" data-toggle="tab">Datos del Medicamento</a></li>
-		<li role="presentation" class="<?php echo $tabS[tabB] ?>"><a href="#tabB" aria-controls="profile" role="tab" data-toggle="tab">Agrupación de Medicamentos</a></li>
+		<li role="presentation" class="<?php echo $tabS['tabA'] ?>"><a href="#tabA" aria-controls="home" role="tab" data-toggle="tab">Datos del Medicamento</a></li>
+		<li role="presentation" class="<?php echo $tabS['tabB'] ?>"><a href="#tabB" aria-controls="profile" role="tab" data-toggle="tab">Agrupación de Medicamentos</a></li>
 	</ul>
 	<div class="tab-content panel panel-default">
-		<div role="tabpanel" class="<?php echo $tabS[tabA] ?> tab-pane panel-body" id="tabA">
+		<div role="tabpanel" class="<?php echo $tabS['tabA'] ?> tab-pane panel-body" id="tabA">
 			<form method="post" action="actions.php" role="form">
 			 <?php echo $btnAcc ?>
 			 <?php echo $btnClon ?>
@@ -96,7 +96,7 @@ if(isset($_SESSION['tab']['medf'])){
 			</div>
 			</form>
 		</div>
-		<div role="tabpanel" class="<?php echo $tabS[tabB] ?> tab-pane panel-body" id="tabB">
+		<div role="tabpanel" class="<?php echo $tabS['tabB'] ?> tab-pane panel-body" id="tabB">
 			<div class="form-horizontal">
 
 			<div class="form-group">
@@ -149,12 +149,12 @@ if(isset($_SESSION['tab']['medf'])){
 			<tbody>
 			<?php do{ ?>
 			<?php
-			$dMRG=detRow('db_medicamentos','id_form',$dRSlmg[idm]);
+			$dMRG=detRow('db_medicamentos','id_form',$dRSlmg['idm']);
 			$accMG=md5(DELmg);
 			$btnDelMG="<a href='actions.php?id=$id&idr=$dRSlmg[id]&acc=$accMG&url=$urlc' class='btn btn-danger btn-xs'><i class='fas fa-trash fa-lg'></i> Eliminar</a>";
 			?>
 			<tr>
-				<td><?php echo $dRSlmg[id] ?></td>
+				<td><?php echo $dRSlmg['id'] ?></td>
 				<td><?php echo "$dMRG[generico] ( $dMRG[comercial] ) $dMRG[presentacion] $dMRG[cantidad] <br><small>$dMRG[descripcion]</small>" ?></td>
 				<td><?php echo $btnDelMG ?></td>
 			</tr>

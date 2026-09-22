@@ -53,7 +53,7 @@ if($dPac){
                         <div class="col-sm-12 col-md-6">
                         <div class="thumbnail">
                         <a href="<?php echo $dMed_img ?>" class="fancybox"><img src="<?php echo $dMed_img ?>"/></a>
-						<a id="vAccL" href="_acc.php?acc=<?php echo md5(delI) ?>&id=<?php echo $dRSip[id] ?>&idp=<?php echo $id ?>" class="btn btn-default btn-xs btn-block">
+						<a id="vAccL" href="_acc.php?acc=<?php echo md5(delI) ?>&id=<?php echo $dRSip['id'] ?>&idp=<?php echo $id ?>" class="btn btn-default btn-xs btn-block">
 							<i class="fas fa-trash fa-lg"></i> Eliminar
 						</a>
                         <!--<a onclick="deleteimg_history(<?php echo $dRSip['id'] ?>)" class="btn btn-default btn-xs btn-block"><i class="fas fa-trash fa-lg"></i> Eliminar</a>-->
