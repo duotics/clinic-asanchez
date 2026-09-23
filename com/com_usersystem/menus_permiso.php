@@ -27,7 +27,7 @@ include(RAIZf.'head.php') ?>
       </button>
       <a class="navbar-brand" href="#">Permisos Usuarios 
       <small class="label label-default"><?php echo $id ?></small> 
-      <small class="label label-primary"><?php echo $detUsu['usr_nombre'] ?></small> 
+      <small class="label label-primary"><?php echo $detUsu['user_username'] ?></small>
       <small class="label label-info"><?php echo $detEmp['emp_nom'].' '.$detEmp['emp_ape'] ?></small></a>
     </div>
     
