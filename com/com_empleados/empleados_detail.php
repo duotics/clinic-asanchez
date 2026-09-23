@@ -47,7 +47,7 @@ $_SESSION['id_emp']=$row_RS_emp_sel['emp_cod'];
 ?>
 <table class="bord_gray_4cornes" align="center">
   <tr>
-    <td rowspan="3" style="padding-right:6px;"><img src="<?php fncImgExist($pathimag_db_emp,$row_RS_emp_sel['emp_img']) ; ?>" height="110" class="img_form_pac_min" /></td>
+    <td rowspan="3" style="padding-right:6px;"><img src="<?php fncImgExist('images/db/emp/',$row_RS_emp_sel['emp_img']) ; ?>" height="110" class="img_form_pac_min" /></td>
    	  <td>Nombre:</td>
         <td><?php echo $row_RS_emp_sel['emp_nom']; ?> <?php echo $row_RS_emp_sel['emp_ape']; ?></td>
         <td rowspan="5" valign="bottom"><a onclick="$('#cont_emp').slideUp();">UP</a></td>

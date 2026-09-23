@@ -104,8 +104,8 @@ do {
         	<table width="100%">
             	<tr>
 				<td align="center" bgcolor="#FFFFFF">
-                <a href="<?php fncImgExist($pathimag_db_prod,$row_RS_prod_det['prod_img']) ; ?>" rel="shadowbox">
-                <img src="<?php fncImgExist($pathimag_db_prod,$row_RS_prod_det['prod_img']) ; ?>" height="110" /></a>
+                <a href="<?php fncImgExist('images/db/prod/',$row_RS_prod_det['prod_img']) ; ?>" rel="shadowbox">
+                <img src="<?php fncImgExist('images/db/prod/',$row_RS_prod_det['prod_img']) ; ?>" height="110" /></a>
                 </td>
 				<td align="center" bgcolor="#FFFFFF">
                 	Imagen<br />

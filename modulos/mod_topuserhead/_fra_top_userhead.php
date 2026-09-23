@@ -30,8 +30,8 @@ $dataemp=dataEmp($datausr['emp_cod']);
     </td>
     <!--Foto Usuario-->
     <td>
-    	<a href="<?php fncImgExist($pathimag_db_emp,$row_RS_user_detail['emp_img']) ; ?>" rel="shadowbox">
-        <img src="<?php fncImgExist($pathimag_db_emp,$row_RS_user_detail['emp_img']) ; ?>" height="65" />
+    	<a href="<?php fncImgExist('images/db/emp/',$row_RS_user_detail['emp_img']) ; ?>" rel="shadowbox">
+        <img src="<?php fncImgExist('images/db/emp/',$row_RS_user_detail['emp_img']) ; ?>" height="65" />
         </a>
 	</td>
 </tr>

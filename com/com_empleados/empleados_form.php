@@ -23,7 +23,7 @@ include(RAIZf.'head.php');
    <tr>
    <td>
    <div style="width:250px; height:190px;">
-    <a href="<?php fncImgExist($pathimag_db_emp,$row_RS_empleado['emp_img']);?>" rel="shadowbox"><img src="<?php fncImgExist($pathimag_db_emp,$row_RS_empleado['emp_img']);?>" height="130" class="img_form_emp"/></a>
+    <a href="<?php fncImgExist('images/db/emp/',$row_RS_empleado['emp_img']);?>" rel="shadowbox"><img src="<?php fncImgExist('images/db/emp/',$row_RS_empleado['emp_img']);?>" height="130" class="img_form_emp"/></a>
     <input name="userfile" type="file" class="txt_values-sec" id="userfile" size="0" />
    </div>
    </td>

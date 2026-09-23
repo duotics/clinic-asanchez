@@ -13,8 +13,8 @@ $detPac=dataPac($idPac);
     	<td>OCn FOto<?php echo $detPac['pac_cod']; ?></td>
   </tr>
   <tr>
-  	<td align="center"><a href="<?php echo $detPac['../../pac_image']; ?>" rel="shadowbox">
-    <img src="<?php fncImgExist($pathimag_db_pac,lastImgPac($detPac['pac_cod'])) ; ?>" class="detMinPacI" style="max-width:300px; max-height:250px;"/></a></td>
+  	<td align="center"><a href="<?php fncImgExist('data/db/pac/',lastImgPac($detPac['pac_cod'])); ?>" rel="shadowbox">
+    <img src="<?php fncImgExist('data/db/pac/',lastImgPac($detPac['pac_cod'])) ; ?>" class="detMinPacI" style="max-width:300px; max-height:250px;"/></a></td>
   </tr>
 </table>
 <table class="bord_gray_4cornes" align="center">
