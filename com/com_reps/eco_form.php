@@ -29,7 +29,7 @@ include(RAIZf.'head.php');
 	<input name="idr" type="hidden" id="idr" value="<?php echo $idr ?>">
     <input name="idp" type="hidden" id="idp" value="<?php echo $idp ?>">
 	<input name="idc" type="hidden" id="idc" value="<?php echo $idc ?>">
-	<input name="acc" type="hidden" id="acc" value="<? echo md5($action)?>">
+	<input name="acc" type="hidden" id="acc" value="<?php echo md5($action)?>">
 	<input name="form" type="hidden" id="form" value="repEco">
 </fieldset>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">

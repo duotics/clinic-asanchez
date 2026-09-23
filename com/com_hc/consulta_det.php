@@ -64,7 +64,7 @@ $detCon=detRow('db_consultas','con_num',$idc);
 							//var_dump($listCats);
 							   ?>
 							<div class="form-group">
-							<? genSelect("diagSel[]",$RSd,NULL,'form-control', '', 'chosDiag',NULL,TRUE,NULL,'- Seleccione Diagnóstico -');?>
+							<?php genSelect("diagSel[]",$RSd,NULL,'form-control', '', 'chosDiag',NULL,TRUE,NULL,'- Seleccione Diagnóstico -');?>
 							</div>
 							<div class="form-group">
 								<input type="text" class="form-control" name="diagD" id="diagD" placeholder="Otros Diagnósticos">

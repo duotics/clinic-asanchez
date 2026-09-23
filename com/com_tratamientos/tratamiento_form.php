@@ -50,8 +50,8 @@ include(RAIZf.'head.php'); ?>
     <input name="idt" type="hidden" id="idt" value="<?php echo $idt ?>">
     <input name="idc" type="hidden" id="idc" value="<?php echo $idc ?>">
     <input name="idp" type="hidden" id="idp" value="<?php echo $idp ?>">
-    <input name="acc" type="hidden" id="acc" value="<? echo $acc?>">
-    <input name="url" type="hidden" id="url" value="<? echo $urlc?>">
+    <input name="acc" type="hidden" id="acc" value="<?php echo $acc?>">
+    <input name="url" type="hidden" id="url" value="<?php echo $urlc?>">
     <input name="form" type="hidden" id="form" value="tratdet">
 </fieldset>
 <nav class="navbar navbar-default" role="navigation">

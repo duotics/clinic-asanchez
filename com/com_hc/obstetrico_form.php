@@ -41,7 +41,7 @@ include(RAIZf.'head.php');
 <fieldset>
 	<input name="ido" type="hidden" id="ido" value="<?php echo $ido ?>">
 	<input name="idp" type="hidden" id="idp" value="<?php echo $idp ?>">
-	<input name="action" type="hidden" id="action" value="<? echo $action?>">
+	<input name="action" type="hidden" id="action" value="<?php echo $action?>">
 	<input name="form" type="hidden" id="form" value="obsdet">
 </fieldset>
 <nav class="navbar navbar-default" role="navigation">
