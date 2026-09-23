@@ -6,9 +6,9 @@
     	<div id="cont_cli">
         <form class="form-inline" method="get">
     		<div class="form-group"><label for="exampleInputEmail2">Fecha Inicial</label>  
-                <input name="FI" type="date" class="form-control" id="FI" value="<?php echo $_GET['FI'] ?>" /></div>
+                <input name="FI" type="date" class="form-control" id="FI" value="<?php echo (isset($_GET['FI']) ? $_GET['FI'] : NULL) ?>" /></div>
             <div class="form-group"><label for="exampleInputEmail2">Fecha Final</label> 
-                <input name="FF" type="date" class="form-control" id="FF" value="<?php echo $_GET['FF'] ?>" /></div>
+                <input name="FF" type="date" class="form-control" id="FF" value="<?php echo (isset($_GET['FF']) ? $_GET['FF'] : NULL) ?>" /></div>
             <button type="submit" class="btn btn-primary">Consultar</button>
             
 		</form>

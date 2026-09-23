@@ -1,4 +1,9 @@
 <?php include('../../init.php');
+$RES='';
+$contC=0;
+$contO=0;
+$contT=0;
+$contTO=0;
 include(RAIZf.'head.php');?>
 <body class="cero">
 <div class="container">

@@ -3,8 +3,8 @@ require_once('../../init.php');
 include_once(RAIZf.'headPrint.php') ?>
 <div>
     <?php
-$dFI=vParam('FI', $_GET['FI'], $_POST['FI'],FALSE);
-$dFF=vParam('FF', $_GET['FF'], $_POST['FF'],FALSE);
+$dFI=vParam('FI', (isset($_GET['FI']) ? $_GET['FI'] : NULL), (isset($_POST['FI']) ? $_POST['FI'] : NULL),FALSE);
+$dFF=vParam('FF', (isset($_GET['FF']) ? $_GET['FF'] : NULL), (isset($_POST['FF']) ? $_POST['FF'] : NULL),FALSE);
 $qryPR=sprintf('SELECT * FROM db_pacientes WHERE pac_fecr>=%s AND pac_fecr<=%s',
 SSQL($dFI,'date'),
 SSQL($dFF,'date'));

@@ -1,4 +1,7 @@
 <?php include('../../init.php');
+$LOG='';
+$contI=0;
+$contU=0;
 
 set_time_limit(120);
 

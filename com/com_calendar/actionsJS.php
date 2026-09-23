@@ -1,7 +1,8 @@
 <?php include('../../init.php');
-$id=$_REQUEST['id'];
-$fi=$_REQUEST['start'];
-$ff=$_REQUEST['end'];
+$LOG='';
+$id=(isset($_REQUEST['id']) ? $_REQUEST['id'] : NULL);
+$fi=(isset($_REQUEST['start']) ? $_REQUEST['start'] : NULL);
+$ff=(isset($_REQUEST['end']) ? $_REQUEST['end'] : NULL);
 
 $fi=explode('T',$fi);
 $ff=explode('T',$ff);

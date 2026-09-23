@@ -1,5 +1,5 @@
 <?php require_once('../../init.php');
-    $selr=vParam('selr',$_GET['selr'],$_POST['selr'],FALSE);
+    $selr=vParam('selr',(isset($_GET['selr']) ? $_GET['selr'] : NULL),(isset($_POST['selr']) ? $_POST['selr'] : NULL),FALSE);
 	// GET HTML
 	ob_start();
     if($selr=="1"){

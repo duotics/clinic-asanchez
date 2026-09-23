@@ -1,4 +1,5 @@
 <?php include('../../init.php');
+$qry='';
 set_time_limit(1800);//30minutos*60segundo=1800
 $fecBP=$sdatet;
 function convIDtoANTID($ID){
@@ -12,8 +13,8 @@ function convIDtoANTID($ID){
 $vP=FALSE;
 $contGen=0;
 
-$ini=$_GET['i'];
-$lim=$_GET['l'];
+$ini=(isset($_GET['i']) ? $_GET['i'] : NULL);
+$lim=(isset($_GET['l']) ? $_GET['l'] : NULL);
 if($lim>0){
 $qryS='SELECT id_ant,pac_cod,con_num FROM db_consultas LIMIT '.intval($ini).','.intval($lim);
 	echo $qryS;

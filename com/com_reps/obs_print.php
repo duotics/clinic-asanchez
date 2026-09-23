@@ -1,5 +1,5 @@
 <?php require_once('../../init.php');
-$idt=vParam('idt',$_GET['idt'],$_POST['idt']);
+$idt=vParam('idt', isset($_GET['idt']) ? $_GET['idt'] : NULL, isset($_POST['idt']) ? $_POST['idt'] : NULL);
     // GET HTML
 	ob_start();
     include('reporteObs.php');

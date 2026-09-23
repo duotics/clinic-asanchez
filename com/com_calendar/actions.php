@@ -1,8 +1,9 @@
 <?php include('../../init.php');
-$id=vParam('id',$_GET['id'],$_POST['id']);
-$idp=vParam('idp',$_GET['idp'],$_POST['idp']);
-$acc=vParam('acc',$_GET['acc'],$_POST['acc']);
-$goTo=vParam('url',$_GET['url'],$_POST['url']);;
+$LOG='';
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
+$idp=vParam('idp', isset($_GET['idp']) ? $_GET['idp'] : NULL, isset($_POST['idp']) ? $_POST['idp'] : NULL);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
+$goTo=vParam('url', isset($_GET['url']) ? $_GET['url'] : NULL, isset($_POST['url']) ? $_POST['url'] : NULL);;
 $accjs=FALSE;
 $dat=$_POST;
 if(!$dat['est'])$dat['est']=1;
@@ -10,9 +11,9 @@ if(!$dat['est'])$dat['est']=1;
 mysql_query("SET AUTOCOMMIT=0;");
 mysql_query("BEGIN;");
 
-if(($dat['form'])&&($dat['form']==md5(AGE))){
+if(($dat['form'])&&($dat['form']==md5('AGE'))){
 	switch($acc){
-		case md5(INSr):
+		case md5('INSr'):
 			if(!$est) $est=1;
 			$id_aud=AUD(NULL,'Creación Reserva');
 			$qryIns=sprintf('INSERT INTO db_fullcalendar (fechai,fechaf,horai,horaf,pac_cod,typ_cod,obs,est,id_aud)
@@ -36,7 +37,7 @@ if(($dat['form'])&&($dat['form']==md5(AGE))){
 			}
 			$goTo.='?id='.$id;
 		break;
-		case md5(UPDr):
+		case md5('UPDr'):
 			$detRes=detRow('db_fullcalendar','id',$id);
 			$id_aud=AUD($detRes['id_aud'],'Actualización Reserva');
 			$qryUpd=sprintf('UPDATE db_fullcalendar 
@@ -65,7 +66,7 @@ if(($dat['form'])&&($dat['form']==md5(AGE))){
 }//else echo '<p>NO FORM AGE</p>';
 
 
-if($acc==md5(DELr)){
+if($acc==md5('DELr')){
 	$qryUpd=sprintf('UPDATE db_fullcalendar SET est=0 WHERE id=%s LIMIT 1',
 	SSQL($id,'int'));
 	//$qryDel=sprintf('DELETE FROM db_fullcalendar WHERE id=%s',
@@ -80,7 +81,7 @@ if($acc==md5(DELr)){
 	}
 }
 
-if($acc==md5(DELEL)){
+if($acc==md5('DELEL')){
 	$detRes=detRow('db_fullcalendar','id',$id);
 	$idp=$detRes['pac_cod'];
 	$qryUpd=sprintf('UPDATE db_fullcalendar SET est=0 WHERE id=%s LIMIT 1',
@@ -101,12 +102,12 @@ if((!mysql_error())&&($vP==TRUE)){
 	mysql_query("COMMIT;");
 	$LOGt='Operación Exitosa';
 	$LOGc='alert-success';
-	$LOGi=$RAIZa.$_SESSION['conf']['i']['ok'];
+	$LOGi=$RAIZa.(isset($_SESSION['conf']['i']['ok']) ? $_SESSION['conf']['i']['ok'] : NULL);
 }else{
 	mysql_query("ROLLBACK;");
 	$LOGt='Solicitud no Procesada';
 	$LOGc='alert-danger';
-	$LOGi=$RAIZa.$_SESSION['conf']['i']['fail'];
+	$LOGi=$RAIZa.(isset($_SESSION['conf']['i']['fail']) ? $_SESSION['conf']['i']['fail'] : NULL);
 }
 mysql_query("SET AUTOCOMMIT=1;"); //Habilita el autocommit
 $_SESSION['LOG']['m']=$LOG;
@@ -120,7 +121,7 @@ if($accjs==TRUE){
 	<script type="text/javascript">
 		$("#alert").slideDown( 300 ).delay( 2000 ).fadeIn( 300 );
 		parent.$.fancybox.close();
-		parent.logGritter("<?php echo $_SESSION['LOG']['t']?>","<?php echo $_SESSION['LOG']['m']?>","<?php echo $_SESSION['LOG']['i']?>");
+		parent.logGritter("<?php echo (isset($_SESSION['LOG']['t']) ? $_SESSION['LOG']['t'] : NULL)?>","<?php echo (isset($_SESSION['LOG']['m']) ? $_SESSION['LOG']['m'] : NULL)?>","<?php echo (isset($_SESSION['LOG']['i']) ? $_SESSION['LOG']['i'] : NULL)?>");
 	</script>
     <?php unset($_SESSION['LOG']);
 	unset($_SESSION['LOG']['m']);?>

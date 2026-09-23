@@ -1,8 +1,8 @@
 <?php require('../../init.php');
 $_SESSION['tab']['con']='cECO';
-$idp=vParam('idp',$_GET['idp'],$_POST['idp']);
-$idc=vParam('idc',$_GET['idc'],$_POST['idc']);
-$idr=vParam('idr',$_GET['idr'],$_POST['idr']);
+$idp=vParam('idp', isset($_GET['idp']) ? $_GET['idp'] : NULL, isset($_POST['idp']) ? $_POST['idp'] : NULL);
+$idc=vParam('idc', isset($_GET['idc']) ? $_GET['idc'] : NULL, isset($_POST['idc']) ? $_POST['idc'] : NULL);
+$idr=vParam('idr', isset($_GET['idr']) ? $_GET['idr'] : NULL, isset($_POST['idr']) ? $_POST['idr'] : NULL);
 $detRep=detRow('db_rep_eco','id',$idr);
 $idD=$idr;//IDd para pasar al setDB en jquery
 if(!$detRep){
@@ -55,7 +55,7 @@ include(RAIZf.'head.php');
         <?php if($idr){ ?>
 		<a href="<?php echo $RAIZc ?>com_reps/eco_print.php?id=<?php echo $idr ?>" class="btn btn-info"><i class="fas fa-print fa-lg"></i></a>
         <?php } ?>
-		<a href="<?php echo $_SESSION['urlc'] ?>?idp=<?php echo $idp ?>&idc=<?php echo $idc ?>" class="btn btn-default"><col-md- class="glyphicon glyphicon-plus-sign"></col-md-></a>
+		<a href="<?php echo (isset($_SESSION['urlc']) ? $_SESSION['urlc'] : NULL) ?>?idp=<?php echo $idp ?>&idc=<?php echo $idc ?>" class="btn btn-default"><col-md- class="glyphicon glyphicon-plus-sign"></col-md-></a>
 		</li>
 	</div>
     <ul class="nav navbar-nav navbar-right">

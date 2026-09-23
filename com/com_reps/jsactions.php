@@ -1,8 +1,9 @@
 <?php include('../../init.php');
-$tbl=$_REQUEST['tbl'];
-$field=$_REQUEST['campo'];
-$param=$_REQUEST['valor'];
-$id=$_REQUEST['cod'];
+$LOG='';
+$tbl=(isset($_REQUEST['tbl']) ? $_REQUEST['tbl'] : NULL);
+$field=(isset($_REQUEST['campo']) ? $_REQUEST['campo'] : NULL);
+$param=(isset($_REQUEST['valor']) ? $_REQUEST['valor'] : NULL);
+$id=(isset($_REQUEST['cod']) ? $_REQUEST['cod'] : NULL);
 
 if($tbl=='repObs'){
 	$qryInsRepDet=sprintf('UPDATE db_rep_obs_detalle SET %s=%s WHERE id=%s',

@@ -3,8 +3,8 @@ $qryJson=sprintf("SELECT * FROM db_fullcalendar
 LEFT JOIN db_pacientes ON db_fullcalendar.pac_cod=db_pacientes.pac_cod 
 LEFT JOIN db_types ON db_fullcalendar.typ_cod=db_types.typ_cod 
 WHERE fechai>=%s AND fechaf<=%s AND est<>0",
-SSQL($_GET['start'],'date'),
-SSQL($_GET['end'],'date'));
+SSQL((isset($_GET['start']) ? $_GET['start'] : NULL),'date'),
+SSQL((isset($_GET['end']) ? $_GET['end'] : NULL),'date'));
 $RSjson = mysql_query($qryJson) or die(mysql_error());
 while($row = mysql_fetch_array($RSjson)){
 	$det_tit=NULL;

@@ -1,18 +1,18 @@
 <?php include('../../init.php');
-$datefc=vParam('datefc',$_GET['datefc'],$_POST['datefc']);//start
-$datefe=vParam('datefe',$_GET['datefe'],$_POST['datefe']);//end
-$id=vParam('id',$_GET['id'],$_POST['id']);
+$datefc=vParam('datefc', isset($_GET['datefc']) ? $_GET['datefc'] : NULL, isset($_POST['datefc']) ? $_POST['datefc'] : NULL);//start
+$datefe=vParam('datefe', isset($_GET['datefe']) ? $_GET['datefe'] : NULL, isset($_POST['datefe']) ? $_POST['datefe'] : NULL);//end
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
 $detRes=detRow('db_fullcalendar','id',$id);
 if($detRes){
-	$acc=md5(UPDr);
+	$acc=md5('UPDr');
 	$accBtn='<button type="button" class="btn btn-success navbar-btn" id="vAcc"><i class="fas fa-save fa-lg"></i> ACTUALIZAR</button>';
-	$accBtn.='<a class="btn btn-danger navbar-btn vAccL" href="actions.php?id='.$id.'&acc='.md5(DELr).'"><i class="fas fa-trash fa-lg"></i> ELIMINAR</a>';
+	$accBtn.='<a class="btn btn-danger navbar-btn vAccL" href="actions.php?id='.$id.'&acc='.md5('DELr').'"><i class="fas fa-trash fa-lg"></i> ELIMINAR</a>';
 	$dfc_fechai=$detRes['fechai'];
 	$dfc_horai=$detRes['horai'];
 	$dfc_fechaf=$detRes['fechaf'];
 	$dfc_horaf=$detRes['horaf'];
 }else{
-	$acc=md5(INSr);
+	$acc=md5('INSr');
 	$accBtn='<button type="button" class="btn btn-primary navbar-btn" id="vAcc"><i class="fas fa-save fa-lg"></i> GRABAR</button>';
 	$dfc=explode("T", $datefc);
 	$dfe=explode("T", $datefe);	
@@ -36,7 +36,7 @@ include(RAIZf.'head.php');
 <?php sLOG('g') ?>
 <form action="actions.php" method="post">
 <fieldset>
-	<input name="form" type="hidden" id="form" value="<?php echo md5(AGE)?>">
+	<input name="form" type="hidden" id="form" value="<?php echo md5('AGE')?>">
 	<input name="acc" type="hidden" id="acc" value="<?php echo $acc?>">
 	<input name="id" type="hidden" id="id" value="<?php echo $id?>">
     <input name="url" type="hidden" id="url" value="<?php echo $urlc ?>">
