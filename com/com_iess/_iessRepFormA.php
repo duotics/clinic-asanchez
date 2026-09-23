@@ -122,28 +122,28 @@
 				$dRSs=mysql_fetch_assoc($RSs);
 				$tRSs=mysql_num_rows($RSs);
 				$btnDelSig=NULL;
-				if($tRSs>0) $btnDelSig='<a class="btn btn-danger btn-xs" href="acc.php?id='.$idr.'&ids='.$dRSs['ID'].'&acc='.md5('DELrepSIG').'"><i class="fa fa-trash fa-lg"></i></a>';
+				if($tRSs>0) $btnDelSig='<a class="btn btn-danger btn-xs" href="acc.php?id='.$idr.'&ids='.(isset($dRSs['ID']) ? $dRSs['ID'] : NULL).'&acc='.md5('DELrepSIG').'"><i class="fa fa-trash fa-lg"></i></a>';
 			?>
 
 			<tr>
-				<td><input type="hidden" name="sigID[]" value="<?php echo $dRSs['ID'] ?>">
+				<td><input type="hidden" name="sigID[]" value="<?php echo (isset($dRSs['ID']) ? $dRSs['ID'] : NULL) ?>">
 					<?php echo $btnDelSig ?></td>
-				<td><input type="date" class="form-control" name="sigFEC[]" value="<?php echo $dRSs['FEC'] ?>"></td>
-				<td><input type="text" class="form-control" name="sigTEMP[]" value="<?php echo $dRSs['TEMP'] ?>"></td>
+				<td><input type="date" class="form-control" name="sigFEC[]" value="<?php echo (isset($dRSs['FEC']) ? $dRSs['FEC'] : NULL) ?>"></td>
+				<td><input type="text" class="form-control" name="sigTEMP[]" value="<?php echo (isset($dRSs['TEMP']) ? $dRSs['TEMP'] : NULL) ?>"></td>
 				<td>
 					<div class="row">
 						<div class="col-xs-6">
-							<input type="number" class="form-control" name="sigPA[]" value="<?php echo $dRSs['PA'] ?>">
+							<input type="number" class="form-control" name="sigPA[]" value="<?php echo (isset($dRSs['PA']) ? $dRSs['PA'] : NULL) ?>">
 						</div>
 						<div class="col-xs-6">
-							<input type="number" class="form-control" name="sigPB[]" value="<?php echo $dRSs['PB'] ?>">
+							<input type="number" class="form-control" name="sigPB[]" value="<?php echo (isset($dRSs['PB']) ? $dRSs['PB'] : NULL) ?>">
 						</div>
 					</div>
 				</td>
-				<td><input type="number" class="form-control" name="sigPULS[]" value="<?php echo $dRSs['PUL'] ?>"></td>
-				<td><input type="number" class="form-control" name="sigFREC[]" value="<?php echo $dRSs['FREC'] ?>"></td>
-				<td><input type="text" class="form-control" name="sigPESO[]" value="<?php echo $dRSs['PESO'] ?>"></td>
-				<td><input type="text" class="form-control" name="sigTALLA[]" value="<?php echo $dRSs['TALLA'] ?>"></td>
+				<td><input type="number" class="form-control" name="sigPULS[]" value="<?php echo (isset($dRSs['PUL']) ? $dRSs['PUL'] : NULL) ?>"></td>
+				<td><input type="number" class="form-control" name="sigFREC[]" value="<?php echo (isset($dRSs['FREC']) ? $dRSs['FREC'] : NULL) ?>"></td>
+				<td><input type="text" class="form-control" name="sigPESO[]" value="<?php echo (isset($dRSs['PESO']) ? $dRSs['PESO'] : NULL) ?>"></td>
+				<td><input type="text" class="form-control" name="sigTALLA[]" value="<?php echo (isset($dRSs['TALLA']) ? $dRSs['TALLA'] : NULL) ?>"></td>
 			</tr>
 			<?php } ?>
 			</tbody>

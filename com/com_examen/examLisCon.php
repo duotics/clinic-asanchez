@@ -13,7 +13,7 @@
 		<?php if($tRSlef>0){ ?>
 			<ul class="dropdown-menu">
 				<?php do{ ?>
-					<li><a href="<?php echo $RAIZc ?>com_examen/_fncts.php?idp=<?php echo $idp ?>&idc=<?php echo $idc ?>&idef=<?php echo $dRSlef['id'] ?>&acc=<?php echo md5(NEWe) ?>" class="fancyR" data-type="iframe"><?php echo $dRSlef['nom'] ?></a></li>
+					<li><a href="<?php echo $RAIZc ?>com_examen/_fncts.php?idp=<?php echo $idp ?>&idc=<?php echo $idc ?>&idef=<?php echo $dRSlef['id'] ?>&acc=<?php echo md5('NEWe') ?>" class="fancyR" data-type="iframe"><?php echo $dRSlef['nom'] ?></a></li>
 				<?php }while($dRSlef=mysql_fetch_assoc($RSlef)); ?>
 			</ul>
 		<?php } ?>

@@ -1,11 +1,13 @@
 <?php require_once('../../init.php');
-$id=vParam('id',$_GET['id'],$_POST['id']);
-$ide=vParam('ide',$_GET['ide'],$_POST['ide']);
-$idefd=vParam('idefd',$_GET['idefd'],$_POST['idefd']);
-$acc=vParam('acc',$_GET['acc'],$_POST['acc']);
-$val=vParam('val',$_GET['val'],$_POST['val']);
-$form=vParam('form',$_GET['form'],$_POST['form']);
-$goTo=vParam('url',$_GET['url'],$_POST['url']);
+$LOGt='';
+$goToP='';
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
+$ide=vParam('ide', isset($_GET['ide']) ? $_GET['ide'] : NULL, isset($_POST['ide']) ? $_POST['ide'] : NULL);
+$idefd=vParam('idefd', isset($_GET['idefd']) ? $_GET['idefd'] : NULL, isset($_POST['idefd']) ? $_POST['idefd'] : NULL);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
+$val=vParam('val', isset($_GET['val']) ? $_GET['val'] : NULL, isset($_POST['val']) ? $_POST['val'] : NULL);
+$form=vParam('form', isset($_GET['form']) ? $_GET['form'] : NULL, isset($_POST['form']) ? $_POST['form'] : NULL);
+$goTo=vParam('url', isset($_GET['url']) ? $_GET['url'] : NULL, isset($_POST['url']) ? $_POST['url'] : NULL);
 $data=$_POST;
 mysql_query("SET AUTOCOMMIT=0;"); //Desabilita el autocommit
 mysql_query("BEGIN;"); //Inicia la transaccion

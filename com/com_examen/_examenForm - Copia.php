@@ -1,8 +1,8 @@
 <?php 
-$idp=vParam('idp',$_GET['idp'],$_POST['idp']);
-$idc=vParam('idc',$_GET['idc'],$_POST['idc']);
-$ide=vParam('ide',$_GET['ide'],$_POST['ide']);
-$acc=vParam('acc',$_GET['acc'],$_POST['acc']);
+$idp=vParam('idp', isset($_GET['idp']) ? $_GET['idp'] : NULL, isset($_POST['idp']) ? $_POST['idp'] : NULL);
+$idc=vParam('idc', isset($_GET['idc']) ? $_GET['idc'] : NULL, isset($_POST['idc']) ? $_POST['idc'] : NULL);
+$ide=vParam('ide', isset($_GET['ide']) ? $_GET['ide'] : NULL, isset($_POST['ide']) ? $_POST['ide'] : NULL);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
 $dExa=detRow('db_examenes','id_exa',$ide);//fnc_dataexam($ide);
 if($ide) {$idp=$dExa['pac_cod']; $idc=$dExa['con_num'];}
 
@@ -52,7 +52,7 @@ if($dExa){
       </ul>
       <div class="navbar-right btn-group navbar-btn">
       <?php echo $btnAcc ?>
-      <a href="<?php echo $_SESSION['urlc'] ?>?idp=<?php echo $idp ?>&idc=<?php echo $idc ?>" class="btn btn-default"><col-md- class="glyphicon glyphicon-plus-sign"></col-md-> NUEVO</a>
+      <a href="<?php echo (isset($_SESSION['urlc']) ? $_SESSION['urlc'] : NULL) ?>?idp=<?php echo $idp ?>&idc=<?php echo $idc ?>" class="btn btn-default"><col-md- class="glyphicon glyphicon-plus-sign"></col-md-> NUEVO</a>
       </div>
 	</div>
 </div>

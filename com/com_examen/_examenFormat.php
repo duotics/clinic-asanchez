@@ -55,7 +55,7 @@ if($TR>0){
 			<td align="center"><div class="btn-group">
 			  <a href="examenFormatForm.php?id=<?php echo $id ?>" class="btn btn-primary btn-xs fancyR" data-type="iframe">
 				<i class="fa fa-edit fa-lg"></i> Editar</a>
-			  <a href="actions.php?id=<?php echo $id ?>&acc=<?php echo md5(DELef) ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs fancyR vAccL" data-type="iframe">
+			  <a href="actions.php?id=<?php echo $id ?>&acc=<?php echo md5('DELef') ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs fancyR vAccL" data-type="iframe">
 				<i class="fas fa-trash fa-lg"></i></a></div>
 			</td>
 			</tr>

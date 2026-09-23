@@ -1,7 +1,7 @@
 <?php require_once('../../init.php');
 
-$idp=vParam('idp', $_GET['idp'], $_POST['idp']);
-$field=vParam('field', $_GET['field'], $_POST['field']);
+$idp=vParam('idp', isset($_GET['idp']) ? $_GET['idp'] : NULL, isset($_POST['idp']) ? $_POST['idp'] : NULL);
+$field=vParam('field', isset($_GET['field']) ? $_GET['field'] : NULL, isset($_POST['field']) ? $_POST['field'] : NULL);
 
 $qS = sprintf("SELECT * FROM db_signos WHERE pac_cod = %s ORDER BY id ASC",
 			 SSQL($idp,'int'));

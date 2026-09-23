@@ -1,5 +1,6 @@
 <?php include_once('../../init.php');
-$id=vParam('id',$_GET['id'],$_POST['id']);
+$resDiag='';
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
 $dCon=detRow('db_consultas','con_num',$id);
 if($dCon){//SI EXISTE CONSULTA
 	//BUSCO LOS DIAGNOSTICOS

@@ -1,5 +1,5 @@
 <?php require('../../init.php');
-$id=vParam('id',$_GET['id'],$_POST['id']);
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
 $dExamF=detRow('db_examenes_format','id',$id);//fnc_dataexam($ide);
 $css['body']='cero';
 include(RAIZf.'head.php'); ?>

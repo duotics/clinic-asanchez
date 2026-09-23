@@ -1,6 +1,6 @@
 <?php include('../../init.php');
 $_SESSION['MODSEL']="SIG";
-$rowMod=fnc_datamod($_SESSION['MODSEL']);
+$rowMod=fnc_datamod((isset($_SESSION['MODSEL']) ? $_SESSION['MODSEL'] : NULL));
 include(RAIZf.'head.php');?>
 <?php include(RAIZm.'mod_menu/menuMain.php'); ?>
 <div class="container">
