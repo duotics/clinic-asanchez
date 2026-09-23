@@ -293,6 +293,11 @@
 
 		selector: "textarea.tinymce",
 
+		// Save absolute URLs: relative ones ("../../assets/...") trip ModSecurity's path traversal rule (HTTP 406)
+		relative_urls: false,
+
+		remove_script_host: false,
+
 		plugins: [
 
 			"advlist autolink lists link image charmap print preview anchor",

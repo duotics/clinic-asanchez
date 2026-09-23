@@ -10,6 +10,11 @@ El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y e
 
 La versión actual, su fecha y su estado (`alpha`, `beta`, `rc`, `stable`) están en [`docs/VERSION`](VERSION).
 
+## [1.1.1] - 2026-09-23 - beta
+
+### Corregido
+- Los documentos con imagen (firma y sello) ya se pueden guardar en el servidor. Antes el filtro de seguridad del hosting (ModSecurity) los bloqueaba con el error "Not Acceptable" porque el editor guardaba la ruta de la imagen como `../../assets/...`. Ahora guarda la dirección completa. Los documentos anteriores se corrigen al abrirlos y presionar ACTUALIZAR.
+
 ## [1.1.0] - 2026-09-23 - beta
 
 ### Agregado
