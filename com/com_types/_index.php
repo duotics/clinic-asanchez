@@ -24,7 +24,7 @@ if($TR>0){
 	<?php genSelect('typ_cod', detRowGSel('db_types','typ_ref','DISTINCT (typ_ref)','1','1'), $rTyp, 'form-control', 'required', NULL, 'Seleccione', TRUE,NULL,'Todos')?>
 </form>
 </div>
-<? if($tRSl>0){?>
+<?php if($tRSl>0){?>
 <div>
 <?php sLOG('g'); ?>
 <div class="well well-sm">

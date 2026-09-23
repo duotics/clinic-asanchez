@@ -353,4 +353,4 @@ if(!$accJS){
 	?>
     <div id="alert" class="alert alert-info"><h2>Procesando</h2></div>
 	<script type="text/javascript">parent.location.reload();</script>
-<? } ?>
+<?php } ?>
