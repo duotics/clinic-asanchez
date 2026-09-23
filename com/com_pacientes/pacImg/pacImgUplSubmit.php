@@ -25,8 +25,8 @@ $pathToMove = "../../../data/db/pac/";
 $imagePathParameterName = "uploadedImagePath";
 $imageDescriptionParameterName = "imageDescription"; 
 
-$imagePath = $_POST[$imagePathParameterName]; 
-$description = $_POST[$imageDescriptionParameterName]; 
+$imagePath = (isset($_POST[$imagePathParameterName]) ? $_POST[$imagePathParameterName] : NULL); 
+$description = (isset($_POST[$imageDescriptionParameterName]) ? $_POST[$imageDescriptionParameterName] : NULL); 
 
 // the funtion file_exists doesn't find files whose name has special 
 // characters, like tildes 

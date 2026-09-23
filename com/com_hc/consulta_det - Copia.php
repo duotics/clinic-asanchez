@@ -1,5 +1,5 @@
 <?php include_once('../../init.php');
-if(!$vVT) $idc=vParam('idc', $_GET['idc'], $_POST['idc']);
+if(!$vVT) $idc=vParam('idc', isset($_GET['idc']) ? $_GET['idc'] : NULL, isset($_POST['idc']) ? $_POST['idc'] : NULL);
 $detCon=detRow('db_consultas','con_num',$idc);
 ?>
 <?php if($idc){ ?>

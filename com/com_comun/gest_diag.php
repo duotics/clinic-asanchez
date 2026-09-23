@@ -1,11 +1,11 @@
 <?php require('../../init.php');
-$id=vParam('id',$_GET['id'],$_POST['id']);
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
 $detDiag=detRow('db_diagnosticos','id_diag',$id);
 if($detDiag){
 	$id=$detDiag['id_diag'];
 	$action='UPD';
 	$btn_action='<button type="submit" class="btn btn-success btn-large"><span class="glyphicon glyphicon-floppy-save"></span> Modificar Diagnostico</button>';
-	$btn_new='<a href="'.$_SESSION['urlc'].'" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Nuevo Diagnostico</a>';
+	$btn_new='<a href="'.(isset($_SESSION['urlc']) ? $_SESSION['urlc'] : NULL).'" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Nuevo Diagnostico</a>';
 }else{
 	$action='INS';
 	$btn_action='<button type="submit" class="btn btn-primary btn-large"><span class="glyphicon glyphicon-floppy-save"></span> Grabar Diagnostico</button>';
@@ -74,7 +74,7 @@ include(RAIZf.'head.php');
 			<td><?php echo $row_RSd['nombre']?></td>
 			<td><?php echo totRowsTab('db_consultas_diagostico','id_diag',$row_RSd['id_diag']) ?></td>
 			<td><div class="btn-group">
-				<a href="<?php echo $_SESSION['urlc'] ?>?id=<?php echo $row_RSd['id_diag'] ?>" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-edit"></i> Modificar</a>
+				<a href="<?php echo (isset($_SESSION['urlc']) ? $_SESSION['urlc'] : NULL) ?>?id=<?php echo $row_RSd['id_diag'] ?>" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-edit"></i> Modificar</a>
 				<a href="_fncts.php?id=<?php echo $row_RSd['id_diag'] ?>&action=DEL" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Eliminar</a>
 			</div></td>
 		</tr>

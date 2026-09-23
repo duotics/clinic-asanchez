@@ -1,15 +1,18 @@
 <?php include('../../../init.php');
+$LOG='';
+$LOGt='';
+$goToP='';
 $dM=vLogin('PACIENTE');
-$goTo=vParam('url', $_GET['url'], $_POST['url']);
-$acc=vParam('acc', $_GET['acc'], $_POST['acc']);
-$id=vParam('id', $_GET['id'], $_POST['id']);
-$idp=vParam('idp', $_GET['idp'], $_POST['idp']);
+$goTo=vParam('url', isset($_GET['url']) ? $_GET['url'] : NULL, isset($_POST['url']) ? $_POST['url'] : NULL);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
+$idp=vParam('idp', isset($_GET['idp']) ? $_GET['idp'] : NULL, isset($_POST['idp']) ? $_POST['idp'] : NULL);
 $vP=FALSE;
 $data=$_POST;
 mysql_query("SET AUTOCOMMIT=0;"); //Desabilita el autocommit
 mysql_query("BEGIN;"); //Inicia la transaccion
 
-if(isset($acc)&$acc==md5(delI)){
+if(isset($acc)&$acc==md5('delI')){
 	$qry=sprintf('DELETE FROM db_pacientes_media WHERE id=%s LIMIT 1',
 				 SSQL($id,int));
 	if(@mysql_query($qry)){

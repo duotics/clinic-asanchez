@@ -1,6 +1,6 @@
 <?php require('../../init.php');
-$idpac=vParam('idpac', $_GET['idpac'], $_POST['idpac']);
-$idcon=vParam('idcon', $_GET['idcon'], $_POST['idcon']);
+$idpac=vParam('idpac', isset($_GET['idpac']) ? $_GET['idpac'] : NULL, isset($_POST['idpac']) ? $_POST['idpac'] : NULL);
+$idcon=vParam('idcon', isset($_GET['idcon']) ? $_GET['idcon'] : NULL, isset($_POST['idcon']) ? $_POST['idcon'] : NULL);
 $detpac=dataPac($idpac);
 $detcon=fnc_datacons($id_cons_det, $id_pac_det);
 
