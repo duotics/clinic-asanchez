@@ -5,4 +5,4 @@ include(RAIZf.'head.php'); ?>
 <div>
 	<?php include('_form.php') ?>
 </div>
-<?php include(RAIZf.'footerc.php'); ?>
+<?php include(RAIZf.'footerC.php'); ?>

@@ -20,7 +20,7 @@ $btnNew='<a href="'.$urlc.'" class="btn btn-default"><i class="fas fa-plus-squar
 	<input name="url" type="hidden" value="<?php echo $urlc ?>" />
 	</fieldset>
 	<div class="container">
-	<?php echo genPageHeader(null,'page-header',$det['nom'],'h2',$id,null,null,null,$btnAcc.$btnNew) ?>	
+	<?php echo genPageHeader(null,'page-header',$det['nom'],'h2',$det['id'],null,null,null,$btnAcc.$btnNew) ?>
 	
 	<div class="row">
 	<div class="col-sm-6">
