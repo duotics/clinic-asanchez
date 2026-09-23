@@ -174,7 +174,7 @@ if((isset($dat['acc']))&&($dat['acc']==md5('STAT'))){
 
 if((!mysql_error())&&($vP==TRUE)){
 	mysql_query("COMMIT;");
-	$_SESSION['sBr']=$_POST['pac_nom'].' '.$_POST['pac_ape'];
+	$_SESSION['sBr']=$dat['inpUserNom'];
 	$_SESSION['LOG']['t']='OPERACIÓN EXITOSA';	
 	$_SESSION['LOG']['c']='info';
 	$_SESSION['LOG']['i']=$RAIZa.'images/icons/Ok-48.png';

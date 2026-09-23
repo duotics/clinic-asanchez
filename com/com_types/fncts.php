@@ -95,7 +95,7 @@ if((isset($acc))&&($acc==md5('CLONEt'))){
 $LOG.=mysql_error();
 if($vD==TRUE) $LOG.=$LOGd;
 if((!mysql_error())&&($vP==TRUE)){
-	$_SESSION['sBr']=$data['pac_nom'].' '.$data['pac_ape'];
+	$_SESSION['sBr']=$data['iNom'];
 	mysql_query("COMMIT;");
 	$LOGt.=$cfg['p']['m-ok'];
 	$LOGc=$cfg['p']['c-ok'];

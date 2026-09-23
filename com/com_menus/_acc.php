@@ -1,5 +1,6 @@
 <?php include('../../init.php');
 $LOG='';
+$LOGd='';
 $LOGt='';
 $id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
 $ids=vParam('ids', isset($_GET['ids']) ? $_GET['ids'] : NULL, isset($_POST['ids']) ? $_POST['ids'] : NULL);
@@ -9,6 +10,7 @@ $goTo=vParam('url', isset($_GET['url']) ? $_GET['url'] : NULL, isset($_POST['url
 $det=$_POST;
 $vP=FALSE;
 $accjs=FALSE;
+$vD=FALSE;
 
 mysql_query("SET AUTOCOMMIT=0;"); //Desabilita el autocommit
 mysql_query("BEGIN;"); //Inicia la transaccion
@@ -148,7 +150,7 @@ $LOG.=mysql_error();
 if($vD==TRUE) $LOG.=$LOGd;
 
 if((!mysql_error())&&($vP==TRUE)){
-	$_SESSION['sBr']=$data['pac_nom'].' '.$data['pac_ape'];
+	$_SESSION['sBr']=$det['iNom'];
 	mysql_query("COMMIT;");
 	$LOGt.='Operación Exitosa';
 	$LOGc='alert-success';
