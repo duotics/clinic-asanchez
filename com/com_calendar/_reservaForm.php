@@ -1,14 +1,14 @@
 <?php 
-$idp=vParam('idp',$_GET['idp'],$_POST['idp'],FALSE);
-$id=vParam('id',$_GET['id'],$_POST['id'],FALSE);
+$idp=vParam('idp',isset($_GET['idp'])?$_GET['idp']:NULL,isset($_POST['idp'])?$_POST['idp']:NULL,FALSE);
+$id=vParam('id',isset($_GET['id'])?$_GET['id']:NULL,isset($_POST['id'])?$_POST['id']:NULL,FALSE);
 $dRes=detRow('db_fullcalendar','id',$id);
 if($dRes){
 	$idp=$dRes['pac_cod'];
-	$acc=md5(UPDr);
+	$acc=md5('UPDr');
 	$btnAcc='<button class="btn btn-success btn-xs navbar-btn"><i class="fas fa-save fa-lg"></i></button>';
-	$btnAcc.='<a class="btn btn-danger btn-xs navbar-btn" href="actions.php?id='.$id.'&acc='.md5(DELE).'"><i class="fas fa-trash fa-lg"></i></a>';
+	$btnAcc.='<a class="btn btn-danger btn-xs navbar-btn" href="actions.php?id='.$id.'&acc='.md5('DELE').'"><i class="fas fa-trash fa-lg"></i></a>';
 }else{
-	$acc=md5(INSr);
+	$acc=md5('INSr');
 	$btnAcc='<button class="btn btn-primary btn-xs navbar-btn"><i class="fas fa-save fa-lg"></i></button>';
 }
 $btnNew='<a href="'.$urlc.'?idp='.$idp.'" class="btn btn-default btn-xs navbar-btn "><i class="fas fa-plus-square fa-lg"></i></a>';
@@ -28,7 +28,7 @@ $tr_RSlr=mysql_num_rows($RSlr); ?>
 		<fieldset>
 			<input name="id" type="hidden" value="<?php echo $id?>">
 			<input name="acc" type="hidden" value="<?php echo $acc?>">
-			<input name="form" type="hidden" value="<?php echo md5(AGE) ?>">
+			<input name="form" type="hidden" value="<?php echo md5('AGE') ?>">
 			<input name="idp" type="hidden" value="<?php echo $idp?>">
 			<input name="url" type="hidden" value="<?php echo $urlc?>">
 		</fieldset>
@@ -71,7 +71,7 @@ $tr_RSlr=mysql_num_rows($RSlr); ?>
 							array("cond"=>"AND","field"=>"typ_stat","comp"=>'=',"val"=>1)
 							);
 							$RS=detRowGSelNP('db_types','typ_cod','typ_val',$paramsN,TRUE,'typ_val','ASC');
-							genSelect('typ_cod',$RS,$detRes['typ_cod'],' form-control ');
+							genSelect('typ_cod',$RS,$dRes['typ_cod'],' form-control ');
 							?>
 						<?php //genSelect('typ_cod',detRowGSel('db_types','typ_cod','typ_val','typ_ref','TIPVIS'),$dRes['typ_cod'],' form-control '); ?>
 						</div>
@@ -144,7 +144,7 @@ $tr_RSlr=mysql_num_rows($RSlr); ?>
 					$valEst='<span class="label label-default">Pendiente</span>';
 					$btnAcc='<a href="reservaForm.php?idp='.$row_RSlr['pac_cod'].'&id='.$row_RSlr['id'].'" class="btn btn-info btn-xs">
 						<i class="fas fa-edit fa-lg"></i></a>';
-					$btnAcc.='<a href="actions.php?id='.$row_RSlr['id'].'&acc='.md5(DELEL).'" class="btn btn-danger btn-xs">
+					$btnAcc.='<a href="actions.php?id='.$row_RSlr['id'].'&acc='.md5('DELEL').'" class="btn btn-danger btn-xs">
 						<i class="fas fa-trash fa-lg"></i></a>';
 				}else if($estado==2){
 					$valEst='<span class="label label-success">Atendido</span>';

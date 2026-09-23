@@ -1,11 +1,11 @@
 <?php require('../../init.php');
 $dM=vLogin('RIESS');
-$idp=vParam('idp',$_GET['idp'],$_POST['idp']);
-$idc=vParam('idc',$_GET['idc'],$_POST['idc']);
-$idr=vParam('idr',$_GET['idr'],$_POST['idr']);
-$ids=vParam('ids',$_GET['ids'],$_POST['ids']);
-$acc=vParam('acc',$_GET['acc'],$_POST['acc']);
-$tabS=$_SESSION['tab']['riess'];//TAB SEL
+$idp=vParam('idp',isset($_GET['idp'])?$_GET['idp']:NULL,isset($_POST['idp'])?$_POST['idp']:NULL);
+$idc=vParam('idc',isset($_GET['idc'])?$_GET['idc']:NULL,isset($_POST['idc'])?$_POST['idc']:NULL);
+$idr=vParam('idr',isset($_GET['idr'])?$_GET['idr']:NULL,isset($_POST['idr'])?$_POST['idr']:NULL);
+$ids=vParam('ids',isset($_GET['ids'])?$_GET['ids']:NULL,isset($_POST['ids'])?$_POST['ids']:NULL);
+$acc=vParam('acc',isset($_GET['acc'])?$_GET['acc']:NULL,isset($_POST['acc'])?$_POST['acc']:NULL);
+$tabS=isset($_SESSION['tab']['riess'])?$_SESSION['tab']['riess']:NULL;//TAB SEL
 //BEG DEL REPORT
 if($acc==md5('DELRI')){
 	header(sprintf("Location: %s", 'acc.php?ids='.$ids.'&acc='.$acc.'&accJS=TRUE'));

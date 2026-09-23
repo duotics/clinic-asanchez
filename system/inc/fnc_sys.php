@@ -274,7 +274,7 @@ function edadC($dateBorn){
 
 	$ret=$anos." años <br> ".$meses." meses <br> ".$dias." días ";
 
-	}else $ret;
+	}else $ret='';
 
 	return($ret);
 

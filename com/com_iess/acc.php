@@ -1,13 +1,15 @@
 <?php require('../../init.php');
 $data=$_REQUEST;
-$mod=$data['mod'];
-$acc=$data['acc'];
-$id=$data['id'];
-$ids=$data['ids'];
-$idp=$data['idp'];
-$idc=$data['idc'];
-$accJS=$data['accJS'];
-$goTo=$data['url'];
+$mod=isset($data['mod'])?$data['mod']:NULL;
+$acc=isset($data['acc'])?$data['acc']:NULL;
+$id=isset($data['id'])?$data['id']:NULL;
+$ids=isset($data['ids'])?$data['ids']:NULL;
+$idp=isset($data['idp'])?$data['idp']:NULL;
+$idc=isset($data['idc'])?$data['idc']:NULL;
+$accJS=isset($data['accJS'])?$data['accJS']:NULL;
+$goTo=isset($data['url'])?$data['url']:NULL;
+$LOG='';
+$LOGd='';
 //BEG TRANSACTION
 mysql_query("SET AUTOCOMMIT=0;"); //Desabilita el autocommit
 mysql_query("BEGIN;"); //Inicia la transaccion

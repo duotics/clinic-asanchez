@@ -1,5 +1,5 @@
 <?php include('../../init.php');
-$dM=vLogin(RIESS);
+$dM=vLogin('RIESS');
 include(RAIZf."head.php");
 include(RAIZm.'mod_menu/menuMain.php'); ?>
 <div class="container">

@@ -1,5 +1,5 @@
 <?php require_once('../../init.php');
-$dM=vLogin(SIGNOS);
+$dM=vLogin('SIGNOS');
 $css['body']='cero';
 include(RAIZf.'head.php') ?>
 <div>

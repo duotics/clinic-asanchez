@@ -1,4 +1,6 @@
-<?php 
+<?php
+$vE=FALSE;
+$btnPrt=NULL;
 if($idr){
 	$det=detRow('db_iess','id',$idr);
 	if($det){

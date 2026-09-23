@@ -1,4 +1,5 @@
-<?php 
+<?php
+$id_ant=NULL;
 $qry=sprintf('SELECT * FROM db_examenes WHERE con_num=%s OR pac_cod=%s ORDER BY con_num DESC, id_exa DESC',
 SSQL($idc,'int'),
 SSQL($idp,'int'));
@@ -102,7 +103,7 @@ $tr_RSe=mysql_num_rows($RSe);
 				<a class="printerButton btn btn-default btn-xs" data-id="<?php echo $dRSe['id_exa'] ?>" data-rel="<?php echo $RAIZc ?>com_examen/examenPrintJS.php">
 				<i class="fas fa-print fa-lg"></i></a>
 				
-				<a class="btn btn-danger btn-xs fancyRP" data-type="iframe" href="<?php echo $RAIZc; ?>com_examen/_fncts.php?ide=<?php echo $dRSe['id_exa'] ?>&acc=<?php echo md5(DELe) ?>">
+				<a class="btn btn-danger btn-xs fancyRP" data-type="iframe" href="<?php echo $RAIZc; ?>com_examen/_fncts.php?ide=<?php echo $dRSe['id_exa'] ?>&acc=<?php echo md5('DELe') ?>">
 					<i class="fas fa-trash fa-lg"></i>
 				</a>
 				

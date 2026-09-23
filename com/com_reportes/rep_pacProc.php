@@ -1,13 +1,7 @@
 <?php include('../../init.php');
 
 $_SESSION['MODSEL']="RPPP";
-
-$idU = $_SESSION['dU']['u_id'];
-fnc_autentificacion();
-$URL_Visita_Ult=basename($_SERVER['REQUEST_URI'], "/");
-$url_autorizado=fnc_datURLv($URL_Visita_Ult, $idU);
-if((basename($url_autorizado['men_link'],"/"))==$URL_Visita_Ult){
-
+$dM=vLogin('RPPP');
 
 include(RAIZf."head.php");?>
 <body>
@@ -19,12 +13,3 @@ include(RAIZf."head.php");?>
 </div>
 </body>
 <?php include(RAIZf.'footer.php');?>
-
-<?php }else
-	{		
-		$_SESSION['MSG'] = 'Acceso no Autorizado';
-		$_SESSION['MSGdes'] = 'PERMISOS INSUFICIENTES';
-		$_SESSION['MSGimg'] = $RUTAi.'noautorizado.png';
-		header("Location: ".$RAIZ);	
-	}
-?>

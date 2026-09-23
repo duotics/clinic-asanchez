@@ -5,7 +5,7 @@ $RSre=mysql_query($qryRE);
 $dRSre=mysql_fetch_assoc($RSre);
 $tRSre=mysql_num_rows($RSre);
 
-$idRe=$_REQUEST['idrE'];
+$idRe=isset($_REQUEST['idrE'])?$_REQUEST['idrE']:NULL;
 $btnAccReS='<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o fa-lg"></i> GRABAR REGISTRO</button>';
 $accReS=md5('INSres');
 if($idRe){

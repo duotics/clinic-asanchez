@@ -442,6 +442,8 @@ function infAud($id){
 
 	$detAudf=dataAud($id,'DESC');
 	$detAudf_id=$detAudf['id'];
+
+	$detAudf_inf=NULL;
 	
 	if($detAudi_id!=$detAudf_id){
 		$detAudf_user=$detAudf['emp_nom'].' '.$detAudf['emp_ape'];

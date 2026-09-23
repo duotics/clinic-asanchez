@@ -1,5 +1,5 @@
 <?php include_once('../../init.php');
-if(!$id) $id=vParam('id',$_GET['id'],$_POST['id']);
+if(!$id) $id=vParam('id',isset($_GET['id'])?$_GET['id']:NULL,isset($_POST['id'])?$_POST['id']:NULL);
 $det=detRow('db_iess','id',$id);
 $dPac=detRow('db_pacientes','pac_cod',$det['pac_cod']);
 $dPac_sex=detRow('db_types','typ_cod',$dPac['pac_sexo']);
@@ -100,8 +100,9 @@ tr.trAux{background: #E4E9F7; vertical-align: middle;}
 		</tr>
 
 		<tr>
-			<?php 
+			<?php
 			$arrayEA=explode(',',$det['ant_fam_sel']);
+			$Caf=0;
 			do{
 				$Caf++;
 				echo '<td class="tdMiniC text-center">'.$Caf.'. '.$dRSaf['sVAL'].'</td>';
@@ -220,6 +221,7 @@ tr.trAux{background: #E4E9F7; vertical-align: middle;}
 	$dRSsig=mysql_fetch_assoc($RSsig);
 	$tRSsig=mysql_num_rows($RSsig);
 	$Csig=0;
+	$arraySIG=array('fecha'=>array(),'temp'=>array(),'presA'=>array(),'presB'=>array(),'puls'=>array(),'frec'=>array(),'peso'=>array(),'talla'=>array());
 	if($tRSsig>0){
 		do{
 			$arraySIG['fecha'][$Csig]=$dRSsig['fecha'];
@@ -252,7 +254,7 @@ tr.trAux{background: #E4E9F7; vertical-align: middle;}
 			<td colspan="2" class="tdMiniB">FECHA DE MEDICIÓN</td>
    			<?php
 				for($xSF=0;$xSF<=3;$xSF++){
-					echo '<td colspan="2">'.$arraySIG['fecha'][$xSF].'</td>';
+					echo '<td colspan="2">'.(isset($arraySIG['fecha'][$xSF])?$arraySIG['fecha'][$xSF]:'').'</td>';
 				}
 			?>
 	   	</tr>
@@ -260,7 +262,7 @@ tr.trAux{background: #E4E9F7; vertical-align: middle;}
 			<td colspan="2" class="tdMiniB">TEMPERATURA °C</td>
    			<?php
 				for($xST=0;$xST<=3;$xST++){
-					echo '<td colspan="2">'.$arraySIG['temp'][$xST].'</td>';
+					echo '<td colspan="2">'.(isset($arraySIG['temp'][$xST])?$arraySIG['temp'][$xST]:'').'</td>';
 				}
 			?>
 	   	</tr>
@@ -268,8 +270,8 @@ tr.trAux{background: #E4E9F7; vertical-align: middle;}
 			<td colspan="2" class="tdMiniB">PRESIÓN ARTERIAL</td>
    			<?php
 				for($xSP=0;$xSP<=3;$xSP++){
-					echo '<td>'.$arraySIG['presA'][$xSP].'</td>';
-					echo '<td>'.$arraySIG['presB'][$xSP].'</td>';
+					echo '<td>'.(isset($arraySIG['presA'][$xSP])?$arraySIG['presA'][$xSP]:'').'</td>';
+					echo '<td>'.(isset($arraySIG['presB'][$xSP])?$arraySIG['presB'][$xSP]:'').'</td>';
 				}
 			?>
 	   	</tr>
@@ -278,8 +280,8 @@ tr.trAux{background: #E4E9F7; vertical-align: middle;}
 			<td class="tdMiniB">FRECUENCIA RESPIRATORIA</td>
    			<?php
 				for($xSPF=0;$xSPF<=3;$xSPF++){
-					echo '<td>'.$arraySIG['puls'][$xSPF].'</td>';
-					echo '<td>'.$arraySIG['frec'][$xSPF].'</td>';
+					echo '<td>'.(isset($arraySIG['puls'][$xSPF])?$arraySIG['puls'][$xSPF]:'').'</td>';
+					echo '<td>'.(isset($arraySIG['frec'][$xSPF])?$arraySIG['frec'][$xSPF]:'').'</td>';
 				}
 			?>
 	   	</tr>
@@ -288,8 +290,8 @@ tr.trAux{background: #E4E9F7; vertical-align: middle;}
 			<td class="tdMiniB">TALLA / cm</td>
    			<?php
 				for($xSPT=0;$xSPT<=3;$xSPT++){
-					echo '<td>'.$arraySIG['peso'][$xSPT].'</td>';
-					echo '<td>'.$arraySIG['talla'][$xSPT].'</td>';
+					echo '<td>'.(isset($arraySIG['peso'][$xSPT])?$arraySIG['peso'][$xSPT]:'').'</td>';
+					echo '<td>'.(isset($arraySIG['talla'][$xSPT])?$arraySIG['talla'][$xSPT]:'').'</td>';
 				}
 			?>
 	   	</tr>
@@ -379,12 +381,13 @@ tr.trAux{background: #E4E9F7; vertical-align: middle;}
 	$dRSd=mysql_fetch_assoc($RSd);
 	$tRSd=mysql_num_rows($RSd);
 	$Cd=0;
+	$arrayDIAG=array('diag'=>array('','','',''),'cie'=>array('','','',''),'tip'=>array('','','',''));
 	if($tRSd>0){
 		do{
 			$arrayDIAG['diag'][$Cd]=$dRSd['diag'];
 			$arrayDIAG['cie'][$Cd]=$dRSd['cie'];
 			$arrayDIAG['tip'][$Cd]=$dRSd['tip'];
-			$Cd++;	
+			$Cd++;
 		}while($dRSd=mysql_fetch_assoc($RSd));
 	}
 	?>
@@ -442,24 +445,6 @@ tr.trAux{background: #E4E9F7; vertical-align: middle;}
 			<td><?php if($arrayDIAG['tip'][3]=='P') echo 'X' ?></td>
 			<td><?php if($arrayDIAG['tip'][3]=='D') echo 'X' ?></td>
 		</tr>
-		<!--
-		<tr>
-			<td colspan="2" class="tdMiniB">FECHA DE MEDICIÓN</td>
-   			<?php
-				for($xSF=0;$xSF<=3;$xSF++){
-					echo '<td colspan="2">'.$arraySIG['fecha'][$xSF].'</td>';
-				}
-			?>
-	   	</tr>
-	   	<tr>
-			<td colspan="2" class="tdMiniB">TEMPERATURA °C</td>
-   			<?php
-				for($xST=0;$xST<=3;$xST++){
-					echo '<td colspan="2">'.$arraySIG['temp'][$xST].'</td>';
-				}
-			?>
-	   	</tr>
-	   	-->
 	</table>
 	<br>
 	<!--9 PLANES DE TRATAMIENTO-->
@@ -514,12 +499,12 @@ tr.trAux{background: #E4E9F7; vertical-align: middle;}
 </page>
 <page>
 	<!--BEG REPORTE IESS POSTERIOR-->
-	<table style="height: 92%">
+	<table>
 		<col style="width: 55%">
     	<col style="width: 45%">
 		<tr>
 			<!--10 EVOLUCION-->
-			<td style="height: 100%; vertical-align: top;">
+			<td style="vertical-align: top;">
 				<?php
 				$qEVO=sprintf('SELECT * FROM db_iess_evo WHERE id_rep=%s ORDER BY id ASC LIMIT 40',
 							 SSQL($id,'int'));
@@ -527,7 +512,7 @@ tr.trAux{background: #E4E9F7; vertical-align: middle;}
 				$dRSevo=mysql_fetch_assoc($RSevo);
 				$tRSevo=mysql_num_rows($RSevo);
 				?>
-				<table style="height: 100%" class="tabCont">
+				<table class="tabCont">
 					<col style="width: 20%" class="col1">
 					<col style="width: 10%">
 					<col style="width: 70%">
@@ -540,8 +525,8 @@ tr.trAux{background: #E4E9F7; vertical-align: middle;}
 						<td>HORA</td>
 						<td>NOTAS DE EVOLUCION</td>
 					</tr>
-					<?php if($tRSevo>0){ ?>
 					<?php $Cevo=0; ?>
+					<?php if($tRSevo>0){ ?>
 					<?php do{ ?>
 					<tr>
 						<td class="tdMini"><?php echo $dRSevo['fecha'] ?></td>
@@ -561,7 +546,7 @@ tr.trAux{background: #E4E9F7; vertical-align: middle;}
 				</table>
 			</td>
 			<!--11 PRESCRIPCIONES-->
-			<td style="height: 100%; vertical-align: top;">
+			<td style="vertical-align: top;">
 				<?php
 				$qPRE=sprintf('SELECT * FROM db_iess_pres WHERE id_rep=%s ORDER BY id ASC LIMIT 40',
 							 SSQL($id,'int'));
@@ -569,7 +554,7 @@ tr.trAux{background: #E4E9F7; vertical-align: middle;}
 				$dRSpre=mysql_fetch_assoc($RSpre);
 				$tRSpre=mysql_num_rows($RSpre);
 				?>
-				<table style="height: 100%" class="tabCont">
+				<table class="tabCont">
 					<col style="width: 75%" class="col1">
 					<col style="width: 25%">
 					<tr>
@@ -580,8 +565,8 @@ tr.trAux{background: #E4E9F7; vertical-align: middle;}
 						<td>FARMACOTERAPIA E INDICACIONES</td>
 						<td>ADMINISTR. FARMACOS Y OTROS</td>
 					</tr>
-					<?php if($tRSpre>0){ ?>
 					<?php $Cpre=0; ?>
+					<?php if($tRSpre>0){ ?>
 					<?php do{ ?>
 					<tr>
 						<td class="tdMini"><?php echo $dRSpre['farmaco'] ?></td>

@@ -1,6 +1,6 @@
 <?php 
-$fi=vParam('fi', $_GET['fi'], $_POST['fi'], FALSE);//$_REQUEST[fi];
-$ff=vParam('ff', $_GET['ff'], $_POST['ff'], FALSE);//$_REQUEST[ff];
+$fi=vParam('fi', isset($_GET['fi'])?$_GET['fi']:NULL, isset($_POST['fi'])?$_POST['fi']:NULL, FALSE);//$_REQUEST[fi];
+$ff=vParam('ff', isset($_GET['ff'])?$_GET['ff']:NULL, isset($_POST['ff'])?$_POST['ff']:NULL, FALSE);//$_REQUEST[ff];
 
 if(!$fi) $fi=$sdate;
 if(!$ff) $ff=$sdate;
@@ -52,6 +52,7 @@ if($fi&&$ff){
 		</tr>
 		</thead>
 		<tbody>
+		<?php $sum=0; $contPac=0; ?>
 		<?php do{ ?>
 		<?php $dPac=detRow('db_pacientes','pac_cod',$dRS['pac_cod']);
 		$dTC=detRow('db_types','typ_cod',$dRS['con_typvis']);

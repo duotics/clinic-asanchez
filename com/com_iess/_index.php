@@ -49,7 +49,7 @@ if($tRS>0){
             	<i class="fa fa-edit fa-lg"></i> Modificar</a>
             <a href="<?php echo $RAIZc ?>com_iess/iessRep_print.php?id=<?php echo $id ?>" data-type="iframe" class="btn btn-xs btn-default fancyR">
             	<i class="fa fa-print fa-lg"></i> Imprimir</a>
-            <a href="acc.php?ids=<?php echo $ids ?>&acc=<?php echo md5(DELRI) ?>&url=<?php echo $urlc ?>" class="btn btn-xs btn-danger vAccL">
+            <a href="acc.php?ids=<?php echo $ids ?>&acc=<?php echo md5('DELRI') ?>&url=<?php echo $urlc ?>" class="btn btn-xs btn-danger vAccL">
             	<i class="fa fa-trash fa-lg"></i></a>
             </div>
             </td>

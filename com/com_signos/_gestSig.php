@@ -1,7 +1,7 @@
 <?php 
-$id=vParam('id', $_GET['id'], $_POST['id']);
-$idh=vParam('idh', $_GET['idh'], $_POST['idh']);
-$acc=vParam('acc', $_GET['acc'], $_POST['acc']);
+$id=vParam('id', isset($_GET['id'])?$_GET['id']:NULL, isset($_POST['id'])?$_POST['id']:NULL);
+$idh=vParam('idh', isset($_GET['idh'])?$_GET['idh']:NULL, isset($_POST['idh'])?$_POST['idh']:NULL);
+$acc=vParam('acc', isset($_GET['acc'])?$_GET['acc']:NULL, isset($_POST['acc'])?$_POST['acc']:NULL);
 $dPac=detRow('db_pacientes','pac_cod',$id);//;dataPac($id);
 if($dPac['pac_fec']) $dPac_fec=edad($dPac['pac_fec']).'Años';
 //BEG Verifico si manipulo un registro
@@ -9,8 +9,8 @@ $btnNew='<a href="'.$urlc.'?id='.$id.'" class="btn btn-default btn-sm btn-block"
 $css['body']='cero';
 include(RAIZf.'head.php') ?>
 	<?php
-	$contL.='<ul class="nav navbar-nav">
-      	<li><a><span class="label label-primary">'.$idd.'</span></a></li>
+	$contL='<ul class="nav navbar-nav">
+      	<li><a><span class="label label-primary">'.$id.'</span></a></li>
         <li><a>'.$dPac['pac_nom'].' '.$dPac['pac_ape'].'</a></li>
         <li><a>'.$dPac_fec.'</a></li>
     </ul>';
@@ -19,7 +19,7 @@ include(RAIZf.'head.php') ?>
 	<?php include ('_gestSigForm.php') ?>
 	<?php if($dPac){
 	$qry=sprintf('SELECT * FROM db_signos WHERE pac_cod=%s ORDER BY id DESC',
-				SSQL($id,int));
+				SSQL($id,'int'));
 	$RSh=mysql_query($qry);
 	$dRSh=mysql_fetch_assoc($RSh);
 	$tRSh=mysql_num_rows($RSh);
@@ -66,7 +66,7 @@ include(RAIZf.'head.php') ?>
 				<a href="<?php echo $urlc; ?>?id=<?php echo $id ?>&idh=<?php echo $dRSh['id'] ?>" class="btn btn-info btn-xs">
 					<i class="fas fa-edit fa-lg"></i> Editar
 				</a>
-				<a href="_acc.php?id=<?php echo $id ?>&idh=<?php echo $dRSh['id'] ?>&acc=<?php echo md5(delS) ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs">
+				<a href="_acc.php?id=<?php echo $id ?>&idh=<?php echo $dRSh['id'] ?>&acc=<?php echo md5('delS') ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs">
 					<i class="fas fa-trash fa-lg"></i> Eliminar
 				</a>
 			</td>

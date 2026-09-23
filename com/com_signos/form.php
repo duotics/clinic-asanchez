@@ -1,5 +1,5 @@
 <?php require('../../init.php');
-$dM=vLogin(SIGNOS);
+$dM=vLogin('SIGNOS');
 include(RAIZf."head.php");
 include(RAIZm.'mod_menu/menuMain.php') ?>
 <div class="container">

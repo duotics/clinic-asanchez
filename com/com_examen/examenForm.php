@@ -1,5 +1,5 @@
 <?php require('../../init.php');
-$dM=vLogin(EXAM);
+$dM=vLogin('EXAM');
 $css['body']='cero';
 include(RAIZf.'head.php'); ?>
 <?php sLOG('g'); ?>

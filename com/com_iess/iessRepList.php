@@ -30,7 +30,7 @@ $tRSri=mysql_num_rows($RSri);
 		$dEmp=detRow('db_empleados','emp_cod',$dRSri['emp_cod']);
 		$id_rep=$dRSri['id'];
 		?>
-		<tr <?php echo $classtr?>>
+		<tr>
 				<td><?php echo infAud($dRSri['id_aud']) ?></td>
 				<td><?php echo $dSuc['nom_suc'] ?></td>
 				<td><?php echo $dEmp['emp_nom'].' '.$dEmp['emp_ape'] ?></td>

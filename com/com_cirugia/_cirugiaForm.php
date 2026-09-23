@@ -1,17 +1,18 @@
 <?php
-$idp=vParam('idp',$_GET['idp'],$_POST['idp']);
-$idc=vParam('idc',$_GET['idc'],$_POST['idc']);
-$idr=vParam('idr',$_GET['idr'],$_POST['idr']);
+$idp=vParam('idp',isset($_GET['idp'])?$_GET['idp']:NULL,isset($_POST['idp'])?$_POST['idp']:NULL);
+$idc=vParam('idc',isset($_GET['idc'])?$_GET['idc']:NULL,isset($_POST['idc'])?$_POST['idc']:NULL);
+$idr=vParam('idr',isset($_GET['idr'])?$_GET['idr']:NULL,isset($_POST['idr'])?$_POST['idr']:NULL);
 $dCir=detRow('db_cirugias','id_cir',$idr);
+$btnAccJS=NULL;
 if($idr) {$idp=$dCir['pac_cod']; $idc=$dCir['con_num'];}
 $detpac=detRow('db_pacientes','pac_cod',$idp);//dataPac($idp);
 if($dCir){
-	$acc=md5(UPDc);
+	$acc=md5('UPDc');
 	$btnAcc='<button type="button" id="vAcc" class="btn btn-success navbar-btn"><i class="fas fa-save fa-lg"></i> ACTUALIZAR</button>';
 	//$btnAccJS='<button type="submit" name="btnJ" class="btn btn-default" id=""><i class="fa fa-close fa-lg"></i> ACTUALIZAR & CERRAR</button>';
 	$dCir_fecr=$dCir['fechar'];
 }else{
-	$acc=md5(INSc);
+	$acc=md5('INSc');
 	$btnAcc='<button type="button" id="vAcc" class="btn btn-primary navbar-btn"><i class="fas fa-save fa-lg"></i> GRABAR</button>';
 }
 $btnNew='<a href="'.$urlc.'?idp='.$idp.'&idc='.$idc.'" class="btn btn-default navbar-btn"><i class="fas fa-plus-square fa-lg"></i> NUEVO</a>';
@@ -23,10 +24,10 @@ $btnNew='<a href="'.$urlc.'?idp='.$idp.'&idc='.$idc.'" class="btn btn-default na
     <input name="idc" type="hidden" id="idc" value="<?php echo $idc ?>">
     <input name="acc" type="hidden" id="acc" value="<?php echo $acc?>">
 	<input name="url" type="hidden" id="url" value="<?php echo $urlc?>">
-    <input name="form" type="hidden" id="form" value="<?php echo md5(fCir) ?>">
+    <input name="form" type="hidden" id="form" value="<?php echo md5('fCir') ?>">
 </fieldset>
 <?php
-	$contL.='<ul class="nav navbar-nav">
+	$contL='<ul class="nav navbar-nav">
       	<li><a><span class="label label-primary">'.$idr.'</span></a></li>
         <li><a>'.$detpac['pac_nom'].' '.$detpac['pac_ape'].'</a></li>
         <li><a><span class="label label-default">Consulta</span><span class="label label-primary">'.$idc.'</span></a></li>

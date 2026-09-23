@@ -37,7 +37,25 @@ include(RAIZm.'mod_menu/menuMain.php'); ?>
 	<?php
 	do {
 	$detpac=detRow('db_pacientes','pac_cod',$row_RScl['pac_cod']);
-	$diagd=detRow('db_diagnosticos','id_diag',$row_RScl['con_diagd']);
+	$qLD=sprintf('SELECT * FROM db_consultas_diagostico WHERE con_num=%s ORDER BY id ASC LIMIT 2',
+	SSQL($row_RScl['con_num'],'int'));
+	$RSld=mysql_query($qLD);
+	$dRSld=mysql_fetch_assoc($RSld);
+	$tRSld=mysql_num_rows($RSld);
+	$resDiag=NULL;
+	if($tRSld>0){
+		do{
+			if($dRSld['id_diag']>1){
+				$dDiag=detRow('db_diagnosticos','id_diag',$dRSld['id_diag']);
+				$dDiag_cod=$dDiag['codigo'].'-';
+				$dDiag_nom=$dDiag['nombre'];
+			}else{
+				$dDiag_cod=NULL;
+				$dDiag_nom=$dRSld['obs'];
+			}
+			$resDiag.=' <span class="label label-default">'.$dDiag_cod.$dDiag_nom.'</span> ';
+		}while($dRSld=mysql_fetch_assoc($RSld));
+	}
 	$stat=estCon($row_RScl['con_stat']);
 	?>
 	  <tr>
@@ -47,7 +65,7 @@ include(RAIZm.'mod_menu/menuMain.php'); ?>
 	    <td align="center"><?php echo $row_RScl['con_num']; ?></td>
         <td align="center"><?php echo $row_RScl['pac_cod']; ?></td>
 	    <td><small><?php echo $detpac['pac_nom'].' '.$detpac['pac_ape']; ?></small></td>
-        <td><?php echo $diagd['nombre'] ?></td>
+        <td><?php echo $resDiag ?></td>
 	    <td><?php echo $row_RScl['con_fec']; ?></td>
 	    <td><?php echo $stat['txt'] ?></td>
       </tr>

@@ -1,15 +1,17 @@
 <?php 
-$id=vParam('id', $_GET['id'], $_POST['id'], FALSE);
+$id=vParam('id', isset($_GET['id'])?$_GET['id']:NULL, isset($_POST['id'])?$_POST['id']:NULL, FALSE);
 $dPac=detRow('db_pacientes','pac_cod',$id);
+$idp=$id;
+$dPacSig=array();
 if ($dPac){
-	$idp=$id;
-	$acc=md5(UPDp);
+	$acc=md5('UPDp');
 	$dPacSig=detRow('db_signos','pac_cod',$id,'id','DESC');
-	$IMC=calcIMC($dPacSig['imc'],$dPacSig['peso'],$dPacSig['talla']);
+	if(!$dPacSig) $dPacSig=array();
+	$IMC=calcIMC(isset($dPacSig['imc'])?$dPacSig['imc']:NULL,isset($dPacSig['peso'])?$dPacSig['peso']:NULL,isset($dPacSig['talla'])?$dPacSig['talla']:NULL);
 	$img=vImg("data/db/pac/",lastImgPac($id));
 	$btnAcc='<button type="button" class="btn btn-success" id="vAcc"><i class="fas fa-save fa-lg"></i> ACTUALIZAR</button>';
 }else{
-	$acc=md5(INSp);
+	$acc=md5('INSp');
 	$btnAcc='<button type="button" class="btn btn-info" id="vAcc"><i class="fas fa-save fa-lg"></i> GUARDAR</button>';
 }
 ?>
@@ -109,16 +111,16 @@ if ($dPac){
 					<label class="col-md-2 col-md-3 control-label" for="">Signos</label>
 					<div class="col-md-10">
 					<div class="row">
-						<div class="col-xs-3"><input placeholder="PESO kg" name="" type="text" value="<?php echo $dPacSig['peso']; ?>" class="form-control" disabled/>
+						<div class="col-xs-3"><input placeholder="PESO kg" name="" type="text" value="<?php echo isset($dPacSig['peso'])?$dPacSig['peso']:'' ?>" class="form-control" disabled/>
 						<col-md- class="help-block">Peso en KG.</col-md->
 						</div>
-						<div class="col-xs-3"><input placeholder="TALLA cm" type="text" value="<?php echo $dPacSig['talla']; ?>" class="form-control" disabled/>
+						<div class="col-xs-3"><input placeholder="TALLA cm" type="text" value="<?php echo isset($dPacSig['talla'])?$dPacSig['talla']:'' ?>" class="form-control" disabled/>
 						<col-md- class="help-block">Talla cm.</col-md->
 						</div>
-						<div class="col-xs-3"><input placeholder="IMC" type="text" value="<?php echo $IMC['val']; ?>" class="form-control" disabled/>
+						<div class="col-xs-3"><input placeholder="IMC" type="text" value="<?php echo isset($IMC['val'])?$IMC['val']:'' ?>" class="form-control" disabled/>
 						<col-md- class="help-block">IMC.</col-md->
 						</div>
-						<div class="col-xs-3"><input placeholder="Presion Arterial" type="text" value="<?php echo $dPacSig['pa']; ?>" class="form-control" disabled/>
+						<div class="col-xs-3"><input placeholder="Presion Arterial" type="text" value="<?php echo isset($dPacSig['pa'])?$dPacSig['pa']:'' ?>" class="form-control" disabled/>
 						<col-md- class="help-block">Presion Arterial</col-md->
 						</div>
 					</div>

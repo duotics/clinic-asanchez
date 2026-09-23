@@ -1,5 +1,6 @@
 <?php
 function detRowNP($table,$params){ //v1.0
+	$lP='';
 	if($params){
 		foreach($params as $x => $dat) {
 			foreach($dat as $y => $xVal) $lP.=$xVal['cond'].' '.$xVal['field'].' '.$xVal['comp'].' "'.$xVal['val'].'" ';
@@ -537,6 +538,7 @@ function fnc_datacir($param1){
 function totRowsTab($table,$field=NULL,$param=NULL,$cond='='){//v.1.1
 	// $table -> Table database
 	// $field -> Campo cond
+	$qryCond='';
 	if(($field)&&($param)){
 		$qryCond=sprintf(' WHERE %s %s %s',
 						SSQL($field,''),

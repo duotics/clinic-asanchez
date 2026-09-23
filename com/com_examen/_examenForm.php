@@ -1,8 +1,8 @@
 <?php 
-$idp=vParam('idp',$_GET['idp'],$_POST['idp']);
-$idc=vParam('idc',$_GET['idc'],$_POST['idc']);
-$ide=vParam('ide',$_GET['ide'],$_POST['ide']);
-$acc=vParam('acc',$_GET['acc'],$_POST['acc']);
+$idp=vParam('idp',isset($_GET['idp'])?$_GET['idp']:NULL,isset($_POST['idp'])?$_POST['idp']:NULL);
+$idc=vParam('idc',isset($_GET['idc'])?$_GET['idc']:NULL,isset($_POST['idc'])?$_POST['idc']:NULL);
+$ide=vParam('ide',isset($_GET['ide'])?$_GET['ide']:NULL,isset($_POST['ide'])?$_POST['ide']:NULL);
+$acc=vParam('acc',isset($_GET['acc'])?$_GET['acc']:NULL,isset($_POST['acc'])?$_POST['acc']:NULL);
 
 $dExa=detRow('db_examenes','id_exa',$ide);//fnc_dataexam($ide);
 if($ide) {$idp=$dExa['pac_cod']; $idc=$dExa['con_num'];}
@@ -31,12 +31,12 @@ $btnNew='<a href="'.$urlc.'?idp='.$idp.'&idc='.$idc.'" class="btn btn-default na
 	<input name="idc" type="hidden" value="<?php echo $idc ?>">
 	<input name="idef" type="hidden" value="<?php echo $idef ?>">
 	<input name="acc" type="hidden" value="<?php echo $acc ?>">
-	<input name="form" type="hidden" value="<?php echo md5(fExam) ?>">
+	<input name="form" type="hidden" value="<?php echo md5('fExam') ?>">
 	<input name="url" type="hidden" value="<?php echo $urlc ?>">
 </fieldset>
 
 <?php
-	$contL.='<ul class="nav navbar-nav">
+	$contL='<ul class="nav navbar-nav">
       	<li><a><span class="label label-primary">'.$ide.'</span></a></li>
         <li><a>'.$dPac['pac_nom'].' '.$dPac['pac_ape'].'</a></li>
         <li><a><span class="label label-default">Consulta</span><span class="label label-primary">'.$idc.'</span></a></li>
@@ -117,10 +117,10 @@ $btnNew='<a href="'.$urlc.'?idp='.$idp.'&idc='.$idc.'" class="btn btn-default na
 						);
 						$dEFDS=detRowNP('db_examenes_det',$paramsN);
 						$checkSel=NULL;
-						//$enabRes='disabled';
+						$enabRes='disabled';
 						if($dEFDS){
 							$checkSel='checked';
-							//$enabRes=NULL;
+							$enabRes=NULL;
 							//$valED='ED-'.$dEFDS[id];
 						}//else{ $valED='EF-'.$dRSltef[id]; }
 					?>

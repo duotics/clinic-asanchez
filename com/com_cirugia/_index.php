@@ -1,4 +1,5 @@
 <?php
+$param='';
 $TR=totRowsTabP('db_cirugias',$param);
 $query_RSd=sprintf('SELECT * FROM db_cirugias WHERE 1=1 '.$param.' ORDER BY id_cir DESC');
 ?>
@@ -40,8 +41,6 @@ $pages = new Paginator;
     <tbody>
 	<?php do{ ?>
 	<?php
-    $typexam=fnc_datatyp($dRSc['typ_cod']);
-	$typexam=$typexam['typ_val'];
 	$dPac=detRow('db_pacientes','pac_cod',$dRSc['pac_cod']) ?>
 	<tr>
         	<td><?php echo $dRSc['id_cir'] ?></td>
@@ -57,7 +56,7 @@ $pages = new Paginator;
 				<a class="btn btn-primary btn-xs fancyR" data-type="iframe" href="<?php echo $RAIZc ?>com_cirugia/cirugiaForm.php?idr=<?php echo $dRSc['id_cir'] ?>">
 					<i class="fas fa-edit fa-lg"></i> Editar
 				</a>
-				<a class="btn btn-danger btn-xs fancyRP" data-type="iframe" href="<?php echo $RAIZc; ?>com_cirugia/actions.php?idr=<?php echo $dRSc['id_cir'] ?>&acc=<?php echo md5(DELc) ?>">
+				<a class="btn btn-danger btn-xs fancyRP" data-type="iframe" href="<?php echo $RAIZc; ?>com_cirugia/actions.php?idr=<?php echo $dRSc['id_cir'] ?>&acc=<?php echo md5('DELc') ?>">
 					<i class="fas fa-trash fa-lg"></i>
 				</a>
             </div>

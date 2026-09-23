@@ -5,7 +5,7 @@ $RSrp=mysql_query($qryRP);
 $dRSrp=mysql_fetch_assoc($RSrp);
 $tRSrp=mysql_num_rows($RSrp);
 
-$idRp=$_REQUEST['idrP'];
+$idRp=isset($_REQUEST['idrP'])?$_REQUEST['idrP']:NULL;
 $btnAccRpS='<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o fa-lg"></i> GRABAR REGISTRO</button>';
 $accRpS=md5('INSrps');
 if($idRp){

@@ -57,7 +57,7 @@ $pages = new Paginator;
 		<td><?php echo strtoupper($detPac['pac_nom'])?></td>
 		<td><?php echo strtoupper($detPac['pac_ape'])?></td>
         <td><?php echo $typ_typ ?></td>
-        <td><?php echo $row_RSd['descripcion']; ?></td>
+        <td><?php echo $row_RSd['des']; ?></td>
         <td><div class="readmore"><?php echo $row_RSd['resultado']; ?></div></td>
         <td class="text-center">
         	<a class="btn btn-info btn-xs fancyR" data-type="iframe" href="<?php echo $RAIZc ?>com_examen/examenForm.php?ide=<?php echo $row_RSd['id_exa'];?>">
