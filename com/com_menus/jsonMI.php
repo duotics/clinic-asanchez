@@ -1,6 +1,6 @@
 <?php require('../../init.php');
-$term=$_POST['id'];
-$qry=sprintf('SELECT * FROM db_menus_items WHERE men_idc=%s', SSQL($term,'int'));//detRow('tbl_user','cli_doc',$_REQUEST['term']);
+$term=(isset($_POST['id']) ? $_POST['id'] : NULL);
+$qry=sprintf('SELECT * FROM db_menus_items WHERE men_idc=%s', SSQL($term,'int'));//detRow('tbl_user','cli_doc',(isset($_REQUEST['term']) ? $_REQUEST['term'] : NULL));
 $RS=mysql_query($qry);
 $dRS=mysql_fetch_assoc($RS);
 $TR=mysql_num_rows($RS);

@@ -46,7 +46,7 @@ if($totalRows_RSm>0){ ?>
 	<?php do {
 	$id=$dRSm['id'];
 	$ids=md5($id);
-	$btnStat=fncStat('_acc.php',array("ids"=>$ids, "val"=>$dRSm['stat'],"acc"=>md5(STmc),"url"=>$urlc));
+	$btnStat=fncStat('_acc.php',array("ids"=>$ids, "val"=>$dRSm['stat'],"acc"=>md5('STmc'),"url"=>$urlc));
 	$totI=totRowsTab('db_menus_items','men_idc',$id);
 	?>
 	  <tr>
@@ -60,7 +60,7 @@ if($totalRows_RSm>0){ ?>
 				<i class="fas fa-edit fa-lg"></i> Editar
 			</a>
 			<?php if(!($totI)){ ?>
-        	<a href="_acc.php?ids=<?php echo $ids ?>&acc=<?php echo md5(DELmc) ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs vAccL">
+        	<a href="_acc.php?ids=<?php echo $ids ?>&acc=<?php echo md5('DELmc') ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs vAccL">
             	<i class="fas fa-trash fa-lg"></i>
 			</a>
 			<?php } ?>

@@ -30,7 +30,7 @@ if($trRSc>0){ ?>
 	<?php do {
 	$id=$dRSc['mod_cod'];
 	$ids=md5($id);
-	$btnStat=fncStat('_acc.php',array("ids"=>$ids, "val"=>$dRSc['mod_stat'],"acc"=>md5(STc),"url"=>$urlc));
+	$btnStat=fncStat('_acc.php',array("ids"=>$ids, "val"=>$dRSc['mod_stat'],"acc"=>md5('STc'),"url"=>$urlc));
 	?>
 	  <tr>
         <td><?php echo $id ?></td>
@@ -41,7 +41,7 @@ if($trRSc>0){ ?>
         <td><div class="btn-group">
           <a href="form.php?ids=<?php echo $ids ?>" class="btn btn-primary btn-xs fancyR" data-type="iframe">
             <i class="fas fa-edit fa-lg"></i> Editar</a>
-          <a href="_acc.php?ids=<?php echo $ids ?>&acc=<?php echo md5(DELc) ?>" class="vAccL btn btn-warning btn-xs">
+          <a href="_acc.php?ids=<?php echo $ids ?>&acc=<?php echo md5('DELc') ?>" class="vAccL btn btn-warning btn-xs">
             <i class="fas fa-trash fa-lg"></i></a></div>
         </td>
 	    </tr>

@@ -1,6 +1,6 @@
 <?php require_once('../../init.php');
-$idpac=$_GET['id'];
-$valview=$_GET['val'];
+$idpac=(isset($_GET['id']) ? $_GET['id'] : NULL);
+$valview=(isset($_GET['val']) ? $_GET['val'] : NULL);
 $query_RS_datos = "SELECT * FROM db_signos WHERE pac_cod = '".$idpac."' ORDER BY id ASC";
 $RS_datos = mysql_query($query_RS_datos) or die(mysql_error());
 $row_RS_datos = mysql_fetch_assoc($RS_datos);

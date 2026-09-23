@@ -1,4 +1,5 @@
 <?php require('../../init.php');
+$LOG='';
 vLOGIN();
 $dat=$_REQUEST;
 $id=$dat['id'];

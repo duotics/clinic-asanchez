@@ -1,8 +1,8 @@
 <?php include('../../init.php');
 if (($_GET['id_emp']==null)&&($_GET["action_form"]!="INSERT")) $_GET['id_emp']=$_SESSION['id_emp'];
-$accion =$_GET["action_form"];
-$rowMod=fnc_datamod($_SESSION['MODSEL']);
-$query_empleado ='SELECT * FROM db_empleados INNER JOIN db_types ON db_empleados.typ_cod = db_types.typ_cod WHERE db_empleados.emp_cod="'.$_GET['id_emp'].'"';
+$accion =(isset($_GET["action_form"]) ? $_GET["action_form"] : NULL);
+$rowMod=fnc_datamod((isset($_SESSION['MODSEL']) ? $_SESSION['MODSEL'] : NULL));
+$query_empleado ='SELECT * FROM db_empleados INNER JOIN db_types ON db_empleados.typ_cod = db_types.typ_cod WHERE db_empleados.emp_cod="'.(isset($_GET['id_emp']) ? $_GET['id_emp'] : NULL).'"';
 $RS_empleado = mysql_query($query_empleado);
 $row_RS_empleado = mysql_fetch_assoc($RS_empleado);
 $query_typ ="SELECT * FROM db_types WHERE typ_ref='TIPEMP' ORDER BY typ_val ASC";

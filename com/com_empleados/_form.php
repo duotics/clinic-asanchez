@@ -1,5 +1,5 @@
 <?php 
-$id=vParam('id', $_GET['id'], $_POST['id'], FALSE);
+$id=vParam('id', (isset($_GET['id']) ? $_GET['id'] : NULL), (isset($_POST['id']) ? $_POST['id'] : NULL), FALSE);
 $detE=detRow('db_empleados','emp_cod',$id);
 if($detE){
 	$acc=md5('UPD');

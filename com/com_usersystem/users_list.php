@@ -21,7 +21,7 @@ $tRSu = mysql_num_rows($RSu);
 <tbody> 
 	<?php do { ?>
     <?php
-	$btnStat=fncStat('actions.php',array("id"=>$dRSu['user_cod'], "val"=>$dRSu['user_status'],"acc"=>md5('STAT'),"url"=>$_SESSION['urlc']));?>
+	$btnStat=fncStat('actions.php',array("id"=>$dRSu['user_cod'], "val"=>$dRSu['user_status'],"acc"=>md5('STAT'),"url"=>(isset($_SESSION['urlc']) ? $_SESSION['urlc'] : NULL)));?>
     <tr>
 		<td><?php echo $dRSu['user_cod'] ?></td>
 		<td><?php echo $dRSu['user_username'] ?></td>

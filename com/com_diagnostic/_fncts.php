@@ -1,7 +1,8 @@
 <?php require('../../init.php');
-$id=vParam('id',$_GET['id'],$_POST['id']);
-$acc=vParam('acc',$_GET['acc'],$_POST['acc']);
-$goTo=vParam('url',$_GET['url'],$_POST['url']);
+$LOGt='';
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
+$goTo=vParam('url', isset($_GET['url']) ? $_GET['url'] : NULL, isset($_POST['url']) ? $_POST['url'] : NULL);
 $LOG=NULL;
 $data=$_POST;
 $vD=FALSE;
@@ -10,9 +11,9 @@ mysql_query("BEGIN;"); //Inicia la transaccion
 /**************************************/
 /**************************************/
 $LOGd='acc. '.$acc.'<br>';
-if(($_POST['form'])&&($_POST['form']==md5('fdiag'))){
-	$codigo=$_POST['codigo'];
-	$nombre=$_POST['nombre'];
+if(((isset($_POST['form']) ? $_POST['form'] : NULL))&&((isset($_POST['form']) ? $_POST['form'] : NULL)==md5('fdiag'))){
+	$codigo=(isset($_POST['codigo']) ? $_POST['codigo'] : NULL);
+	$nombre=(isset($_POST['nombre']) ? $_POST['nombre'] : NULL);
 	if($acc==md5('INSd')){
 		$qry=sprintf("INSERT INTO db_diagnosticos (codigo,nombre,ref,val) VALUES (%s,%s,%s,%s)",
 					 SSQL($data['codigo'], 'text'),

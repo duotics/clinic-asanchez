@@ -1,9 +1,10 @@
 <?php include('../../init.php');
+$LOG='';
 vLogin();
-$id=vParam('id',$_GET['id'],$_POST['id']);
-$acc=vParam('acc',$_GET['acc'],$_POST['acc']);
-$form=vParam('form',$_GET['form'],$_POST['form']);
-$url=vParam('url',$_GET['url'],$_POST['url']);
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
+$form=vParam('form', isset($_GET['form']) ? $_GET['form'] : NULL, isset($_POST['form']) ? $_POST['form'] : NULL);
+$url=vParam('url', isset($_GET['url']) ? $_GET['url'] : NULL, isset($_POST['url']) ? $_POST['url'] : NULL);
 $goTo=$url;
 
 $det=$_POST;	
@@ -47,12 +48,12 @@ if((!mysql_error())&&($vP==TRUE)){
 	mysql_query("COMMIT;");
 	$LOGt='Operación Exitosa';
 	$LOGc='alert-success';
-	$LOGi=$RAIZa.$_SESSION['conf']['i']['ok'];
+	$LOGi=$RAIZa.(isset($_SESSION['conf']['i']['ok']) ? $_SESSION['conf']['i']['ok'] : NULL);
 	$LOG.='EJECUTADO.';
 }else{
 	mysql_query("ROLLBACK;");
 	$LOGt='Fallo del Sistema';
-	$LOGi=$RAIZa.$_SESSION['conf']['i']['fail'];
+	$LOGi=$RAIZa.(isset($_SESSION['conf']['i']['fail']) ? $_SESSION['conf']['i']['fail'] : NULL);
 	$LOG.='NO SE REALIZA.';
 }		
 

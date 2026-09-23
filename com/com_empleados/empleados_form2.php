@@ -1,6 +1,6 @@
 <?php require('../../init.php');
 error_reporting(0);
-$id=vParam('id',$_GET['id'],$_POST['id']);
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
 $detMed=detRow('db_empleados','emp_cod',$id);
 
 if($detMed)
@@ -113,7 +113,7 @@ include(RAIZf.'head.php');
             <td><?php echo $row_RSd['emp_cel'] ?></td>
             <td><?php echo $row_RSd['emp_mail'] ?></td>                   			
 			<td>
-				<a href="<?php echo $_SESSION['urlc'] ?>?id=<?php echo $row_RSd['emp_cod'] ?>" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-edit"></i> Modificar</a>
+				<a href="<?php echo (isset($_SESSION['urlc']) ? $_SESSION['urlc'] : NULL) ?>?id=<?php echo $row_RSd['emp_cod'] ?>" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-edit"></i> Modificar</a>
 				<a href="empleados_save.php?id=<?php echo $row_RSd['emp_cod'] ?>&action=DEL" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Eliminar</a>
 			</td>
 		</tr>

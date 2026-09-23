@@ -1,6 +1,6 @@
 <div>
 <form method="post" action="actions.php">
-	<input type="hidden" name="form" value="<?php echo md5(formPass) ?>">
+	<input type="hidden" name="form" value="<?php echo md5('formPass') ?>">
 	<input type="hidden" name="url" value="<?php echo $urlc ?>">
 	<div class="panel panel-primary">
 		<div class="panel-heading">Cambio de Contraseña</div>

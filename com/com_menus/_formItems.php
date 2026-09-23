@@ -1,11 +1,11 @@
 <?php 
-$ids=vParam('ids', $_GET['ids'], $_POST['ids']);
+$ids=vParam('ids', isset($_GET['ids']) ? $_GET['ids'] : NULL, isset($_POST['ids']) ? $_POST['ids'] : NULL);
 $det=detRow('db_menus_items','md5(men_id)',$ids);
 if ($det){ 
-	$acc=md5(UPDmi);
+	$acc=md5('UPDmi');
 	$btnAcc='<button type="submit" class="btn btn-success" id="vAcc"><i class="fas fa-save fa-lg"></i> ACTUALIZAR</button>';
 }else {
-	$acc=md5(INSmi);
+	$acc=md5('INSmi');
 	$btnAcc='<button type="submit" class="btn btn-primary" id="vAcc"><i class="fas fa-save fa-lg"></i> GUARDAR</button>';
 }
 $btnNew='<a href="'.$urlc.'" class="btn btn-default"><i class="fas fa-plus-square fa-lg"></i> NUEVO</a>'
@@ -16,7 +16,7 @@ $btnNew='<a href="'.$urlc.'" class="btn btn-default"><i class="fas fa-plus-squar
 <form enctype="multipart/form-data" method="post" action="_acc.php" class="form-horizontal">
 	<fieldset>
 	<input name="acc" type="hidden" value="<?php echo $acc ?>">
-	<input name="form" type="hidden" value="<?php echo md5(formMI) ?>">
+	<input name="form" type="hidden" value="<?php echo md5('formMI') ?>">
 	<input name="ids" type="hidden" value="<?php echo $ids ?>" />
 	<input name="url" type="hidden" value="<?php echo $urlc ?>" />
 	</fieldset>

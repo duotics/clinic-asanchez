@@ -1,5 +1,5 @@
 <?php 
-$id=vParam('id', $_GET['id'], $_POST['id'], FALSE);
+$id=vParam('id', (isset($_GET['id']) ? $_GET['id'] : NULL), (isset($_POST['id']) ? $_POST['id'] : NULL), FALSE);
 $det=detRow('db_user_system','user_cod',$id);
 if($det){
 	$acc=md5('UPD');
@@ -17,7 +17,7 @@ $btnNew='<a class="btn btn-default" href="form.php"><i class="fas fa-plus-square
     <?php echo genPageNavbar($dM['mod_cod']) ?>
 <form action="actions.php" method="post" role="form">
 <input type="hidden" name="id" value="<?php echo $id ?>">
-<input type="hidden" name="form" value="<?php echo md5(formUsr) ?>">
+<input type="hidden" name="form" value="<?php echo md5('formUsr') ?>">
 <input type="hidden" name="acc" value="<?php echo $acc ?>">
 <div class="btn-group pull-right">
 	<?php echo $btnAcc ?>

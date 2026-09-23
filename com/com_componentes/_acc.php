@@ -1,16 +1,18 @@
 <?php include('../../init.php');
-$id=vParam('id', $_GET['id'], $_POST['id']);
-$ids=vParam('ids', $_GET['ids'], $_POST['ids']);
-$acc=vParam('acc', $_GET['acc'], $_POST['acc']);
-$val=vParam('val', $_GET['val'], $_POST['val']);
-$goTo=vParam('url', $_GET['url'], $_POST['url']);
+$LOG='';
+$LOGd='';
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
+$ids=vParam('ids', isset($_GET['ids']) ? $_GET['ids'] : NULL, isset($_POST['ids']) ? $_POST['ids'] : NULL);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
+$val=vParam('val', isset($_GET['val']) ? $_GET['val'] : NULL, isset($_POST['val']) ? $_POST['val'] : NULL);
+$goTo=vParam('url', isset($_GET['url']) ? $_GET['url'] : NULL, isset($_POST['url']) ? $_POST['url'] : NULL);
 $data=$_POST;
 //TRANSACTION
 mysql_query("SET AUTOCOMMIT=0;"); //Desabilita el autocommit
 mysql_query("BEGIN;"); //Inicia la transaccion
-if((isset($data['form']))&&($data['form']==md5(formC))){
+if((isset($data['form']))&&($data['form']==md5('formC'))){
 	$LOGd.='FORM<br>';
-	if((isset($acc))&&($acc==md5(UPDc))){
+	if((isset($acc))&&($acc==md5('UPDc'))){
 		$LOGd.='acc=UPDc<br>';
 		$qry=sprintf('UPDATE db_componentes SET mod_ref=%s, mod_nom=%s, mod_des=%s, mod_icon=%s, mod_stat=%s WHERE md5(mod_cod)=%s LIMIT 1',
 		SSQL($data['mod_ref'],'text'),
@@ -21,10 +23,10 @@ if((isset($data['form']))&&($data['form']==md5(formC))){
 		SSQL($ids,'text'));
 		if(@mysql_query($qry)){
 			$vP=TRUE;
-			$LOG.=$_SESSION['conf']['p']['upd-true'];
-		}else $LOG.=$_SESSION['conf']['p']['upd-false'].mysql_error();
+			$LOG.=(isset($_SESSION['conf']['p']['upd-true']) ? $_SESSION['conf']['p']['upd-true'] : NULL);
+		}else $LOG.=(isset($_SESSION['conf']['p']['upd-false']) ? $_SESSION['conf']['p']['upd-false'] : NULL).mysql_error();
 	}
-	if((isset($acc))&&($acc==md5(INSc))){
+	if((isset($acc))&&($acc==md5('INSc'))){
 		$LOGd.='acc=INSc<br>';
 		$qry=sprintf('INSERT INTO db_componentes (mod_ref, mod_nom, mod_des, mod_icon, mod_stat) 
 		VALUES (%s,%s,%s,%s,%s)',
@@ -42,7 +44,7 @@ if((isset($data['form']))&&($data['form']==md5(formC))){
 	}
 	$goTo.='?ids='.$ids;
 }
-if((isset($acc))&&($acc==md5(DELc))){//BEG acc DELc
+if((isset($acc))&&($acc==md5('DELc'))){//BEG acc DELc
 	$dR=detRow('db_componentes','md5(mod_cod)',$ids);
 	if($dR){
 		$qry=sprintf('DELETE FROM db_componentes WHERE md5(mod_cod)=%s LIMIT 1',
@@ -53,7 +55,7 @@ if((isset($acc))&&($acc==md5(DELc))){//BEG acc DELc
 		}else $LOG.='<h4>No se pudo Eliminar</h4>'.mysql_error();
 	}else $LOG.='<h4>No existe el registro</h4>'.mysql_error();
 }//END acc DELc
-if((isset($acc))&&($acc==md5(STc))){
+if((isset($acc))&&($acc==md5('STc'))){
 	$dR=detRow('db_componentes','md5(mod_cod)',$ids);
 	if($dR){
 		$qry=sprintf('UPDATE db_componentes SET mod_stat=%s WHERE md5(mod_cod)=%s LIMIT 1',
@@ -72,12 +74,12 @@ if((!mysql_error())&&($vP==TRUE)){
 	mysql_query("COMMIT;");
 	$LOGt='Operación Exitosa';
 	$LOGc='alert-success';
-	$LOGi=$RAIZa.$_SESSION['conf']['i']['ok'];
+	$LOGi=$RAIZa.(isset($_SESSION['conf']['i']['ok']) ? $_SESSION['conf']['i']['ok'] : NULL);
 }else{
 	mysql_query("ROLLBACK;");
 	$LOGt='Solicitud no Procesada';
 	$LOGc='alert-danger';
-	$LOGi=$RAIZa.$_SESSION['conf']['i']['fail'];
+	$LOGi=$RAIZa.(isset($_SESSION['conf']['i']['fail']) ? $_SESSION['conf']['i']['fail'] : NULL);
 }
 mysql_query("SET AUTOCOMMIT=1;"); //Habilita el autocommit
 $_SESSION['LOG']['m']=$LOG;
