@@ -15,7 +15,11 @@ A legacy procedural PHP clinic management app (patients, clinical histories, con
   ```
 - Dependencies are committed/installed in `vendor/` (Composer, only `vlucas/phpdotenv` ^4, platform pinned to PHP 5.6) and `node_modules/` (Bootstrap 3, Bootswatch 3, Font Awesome 6, served directly to the browser). Both are gitignored.
 - Configuration is in `.env` (see `.env.example`): `APP_URL` (the public base URL, which must end in `/`), `DB_*` and branding vars.
-- The DB schema is not in the working tree. It was committed once and then removed, so you can recover it with `git show fa7d438:db/20230901-urologoh_clinic-structure.sql`.
+- The DB schema (structure only, including triggers) is in `docs/schema.sql`, dumped from the live `clinic_asanchez` database in container `myDb5` (MariaDB 11.5). Check column names there before writing SQL. Never commit table data, because it holds patient records. Regenerate it after schema changes:
+  ```sh
+  docker exec -e MYSQL_PWD=<DB_PASS> myDb5 mariadb-dump -uroot --no-data --skip-comments --skip-dump-date clinic_asanchez | sed -e 's/ AUTO_INCREMENT=[0-9]*//' -e '1{/sandbox mode/d}' > docs/schema.sql
+  ```
+  The old `db/20230901-urologoh_clinic-structure.sql` in git history (`fa7d438`) belongs to a different app (`tbl_*` tables). Don't use it.
 
 ## Architecture
 
