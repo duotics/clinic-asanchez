@@ -1,7 +1,7 @@
 <?php
 $idTyp=vParam('typ',isset($_GET['typ']) ? $_GET['typ'] : NULL,isset($_POST['typ']) ? $_POST['typ'] : NULL);
 $param='';
-if($idTyp) $param=' AND id_ef='.$idTyp;
+if($idTyp) $param=' AND id_df='.$idTyp;
 $TR=totRowsTabP('db_documentos',$param);
 $query_RSd=sprintf('SELECT * FROM db_documentos WHERE 1=1 '.$param.' ORDER BY id_doc DESC');
  ?>
@@ -11,7 +11,7 @@ $query_RSd=sprintf('SELECT * FROM db_documentos WHERE 1=1 '.$param.' ORDER BY id
         <span class="label label-default">Filtros</span>
         <div class="form-group">
             <label for="typ_cod">Tipo Examen</label>
-            <?php genSelect('typ_cod',detRowGSel('db_examenes_format','id','nom','1','1'),$idTyp,' form-control input-sm', NULL, NULL, 'Todos'); ?>
+            <?php genSelect('typ_cod',detRowGSel('db_documentos_formato','id_df','nombre','1','1'),$idTyp,' form-control input-sm', NULL, NULL, 'Todos'); ?>
           </div>
         </fieldset>
 </div>
