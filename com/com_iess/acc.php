@@ -10,6 +10,7 @@ $accJS=isset($data['accJS'])?$data['accJS']:NULL;
 $goTo=isset($data['url'])?$data['url']:NULL;
 $LOG='';
 $LOGd='';
+$vD=FALSE;
 //BEG TRANSACTION
 mysql_query("SET AUTOCOMMIT=0;"); //Desabilita el autocommit
 mysql_query("BEGIN;"); //Inicia la transaccion
@@ -262,7 +263,7 @@ if ((isset($acc)) && ($acc == md5('DELRI'))){
 					  SSQL($ids,'text'));
 	$qDELrr4=sprintf('DELETE FROM db_iess_diag WHERE md5(id_rep)=%s',
 					  SSQL($ids,'text'));
-	$LOG.=$qDELrr;
+	if($vD==TRUE) $LOG.=$LOGd;
 	//DEL Execute
 	if((mysql_query($qDELrr1))&&(mysql_query($qDELrr2))&&(mysql_query($qDELrr3))&&(mysql_query($qDELrr4))){
 		//DEL REPORT, main table
@@ -332,7 +333,6 @@ if((!mysql_error())&&($vP==TRUE)){
 	$_SESSION['LOG']['t']='OPERACIÓN EXITOSA';	
 	$_SESSION['LOG']['c']='info';
 	$_SESSION['LOG']['i']=$RAIZa.'imag/icons/Ok-48.png';
-	$_SESSION['bsTheme']=$dat['user_theme'];
 }else{
 	mysql_query("ROLLBACK;");
 	$LOG.=' <div class="label label-warning">NO SE EJECUTO</div>'.mysql_error();

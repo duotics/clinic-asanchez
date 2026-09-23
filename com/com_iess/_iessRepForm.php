@@ -18,7 +18,7 @@ if($idr){
 			$acc=md5('INSr');
 			$btnAcc='<button type="submit" class="btn btn-primary btn-lg btn-block"><i class="fa fa-floppy-o fa-lg"></i> Grabar Reporte</button>';
 			$det['fecha']=$sdate;
-			$det['hora']=$stime;
+			$det['hora']=date('H:i:s');
 			$det['emp_cod']=(isset($_SESSION['MM_EmpID']) ? $_SESSION['MM_EmpID'] : NULL);
 			$vE=TRUE;
 		}else $vM='Paciente Inexistente';
