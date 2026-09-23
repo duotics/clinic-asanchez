@@ -1,9 +1,9 @@
 <?php
 $paramSQL='';
 $param=$_POST;
-if($p){
-	if($param['nom']) $paramSQL.=' AND des LIKE "%'.$param['nom'].'%"';
-	
+if($param){
+	if(isset($param['nom'])) $paramSQL.=' AND des LIKE "%'.$param['nom'].'%"';
+
 }
 $TR=totRowsTab('db_indicaciones');
 if($TR>0){

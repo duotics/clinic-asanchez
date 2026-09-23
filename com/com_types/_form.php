@@ -7,7 +7,7 @@ if($det){
 	$btnAcc='<button type="button" class="btn btn-success" id="vAcc"><i class="fas fa-save fa-lg"></i> ACTUALIZAR</button>';
 	$detRef=$det['typ_ref'];
 	$btnNewR='<a href="'.$urlc.'?ref='.$detRef.'" class="btn btn-default"><i class="fas fa-plus-square fa-lg"></i> NUEVO SIMILAR</a>';
-	$btnClon='<a href="fncts.php?id='.$id.'&acc='.md5(CLONEt	).'&url='.$urlc.'" class="btn btn-info"><i class="fas fa-clone fa-lg"></i> CLONAR</a>';
+	$btnClon='<a href="fncts.php?id='.$id.'&acc='.md5('CLONEt').'&url='.$urlc.'" class="btn btn-info"><i class="fas fa-clone fa-lg"></i> CLONAR</a>';
 }else{
 	$acc=md5("INSt");
 	$btnAcc='<button type="button" class="btn btn-primary" id="vAcc"><i class="fas fa-save fa-lg"></i> GUARDAR</button>';
@@ -25,7 +25,7 @@ $btnNew='<a href="'.$urlc.'" class="btn btn-default"><i class="fas fa-plus-squar
 
 <div class="page-header"><span class="label label-default pull-left">TIPOS DEL SISTEMA</span>
     <h1><span class="label label-info"><?php echo $id ?></span> 
-	<?php echo $dNom ?>
+	<?php echo $det['typ_nom'] ?>
     <div class="btn-group pull-right">
 		<?php
 		echo $btnAcc;

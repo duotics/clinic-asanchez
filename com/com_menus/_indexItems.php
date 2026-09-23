@@ -6,7 +6,8 @@ if($TR>0){
 	$pages->items_total = $TR;
 	$pages->mid_range = 8;
 	$pages->paginate();
-	if($param['idmc']['v']) $param['idmc']['q']='AND men_idc='.$param['idmc']['v']; 
+	$param['idmc']['q']='';
+	if($param['idmc']['v']) $param['idmc']['q']='AND men_idc='.$param['idmc']['v'];
 	$query_RSd = sprintf('SELECT * FROM  db_menus_items WHERE 1=1 %s ORDER BY men_padre ASC, men_id ASC, men_orden ASC '.$pages->limit,
 	SSQL($param['idmc']['q'],''));
 	$RSd = mysql_query($query_RSd) or die(mysql_error());
@@ -29,7 +30,7 @@ if($TR>0){
 <span class="label label-default">Filtros</span> 
 <div class="form-group">
     <label for="exampleInputName2">Menu Contenedor</label>
-    <?php genSelect('idmc',detRowGSel('db_menus','id','nom','stat','1'),$param['idmc'],'form-control input-sm'); ?>
+    <?php genSelect('idmc',detRowGSel('db_menus','id','nom','stat','1'),$param['idmc']['v'],'form-control input-sm'); ?>
   </div>
 	<button type="submit" class="btn btn-default btn-xs">Consultar</button>
 </form>

@@ -2,8 +2,8 @@
 $paramSQL='';
 $param=$_POST;
 if($param){
-	if($param['nomMed']) $paramSQL.=' AND generico LIKE "%'.$param['nomMed'].'%" '.'OR comercial LIKE "%'.$param['nomMed'].'%" ';
-	if($param['nomLab']) $paramSQL.=' AND lab="'.$param['nomLab'].'"';
+	if(isset($param['nomMed']) && $param['nomMed']) $paramSQL.=' AND generico LIKE "%'.$param['nomMed'].'%" '.'OR comercial LIKE "%'.$param['nomMed'].'%" ';
+	if(isset($param['nomLab']) && $param['nomLab']) $paramSQL.=' AND lab="'.$param['nomLab'].'"';
 }
 $TR=totRowsTab('db_medicamentos');
 if($TR>0){
@@ -29,9 +29,9 @@ $btnNew='<a href="medicamentosForm.php" class="btn btn-default fancyR" data-type
 		<fieldset class="form-inline">
 			<span class="label label-default">Filtros</span>
 			<label class="control-label">Nombre</label>
-			<input class="form-control input-sm" type="text" name="nomMed" value="<?php echo $param['nomMed'] ?>">
+			<input class="form-control input-sm" type="text" name="nomMed" value="<?php echo isset($param['nomMed'])?$param['nomMed']:NULL ?>">
 			<label class="control-label">Laboratorio</label>
-			<?php genSelect('nomLab',detRowGSel('db_types','typ_cod','typ_val','typ_ref','LABORATORIO'),$param['nomLab'],' form-control input-sm', NULL,'tlab',NULL, TRUE ,NULL, '- Todos -') ?>
+			<?php genSelect('nomLab',detRowGSel('db_types','typ_cod','typ_val','typ_ref','LABORATORIO'),isset($param['nomLab'])?$param['nomLab']:NULL,' form-control input-sm', NULL,'tlab',NULL, TRUE ,NULL, '- Todos -') ?>
 			<button type="submit" class="btn btn-info btn-xs"><i class="fa fa-search" aria-hidden="true"></i> Consultar</button>
 			<a class="btn btn-default btn-xs" href="<?php echo $urlc ?>">Eliminar Parámetros</a>
 		</fieldset>

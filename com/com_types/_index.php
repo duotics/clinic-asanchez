@@ -1,4 +1,5 @@
 <?php $rTyp=vParam('ref', isset($_GET['ref']) ? $_GET['ref'] : NULL, isset($_POST['ref']) ? $_POST['ref'] : NULL);
+$param=array();
 if($rTyp){
 	$param['typ']=array('typ_ref','=',$rTyp);
 	$uTyp='&ref='.$rTyp;//Parametro para URL
