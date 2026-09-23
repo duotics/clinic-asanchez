@@ -1,7 +1,7 @@
 <?php
 $dFI=vParam('FI', (isset($_GET['FI']) ? $_GET['FI'] : NULL), (isset($_POST['FI']) ? $_POST['FI'] : NULL),FALSE);
 $dFF=vParam('FF', (isset($_GET['FF']) ? $_GET['FF'] : NULL), (isset($_POST['FF']) ? $_POST['FF'] : NULL),FALSE);
-$qryPR=sprintf('SELECT * FROM db_pacientes WHERE pac_fecr>=%s AND pac_fecr<=%s',
+$qryPR=sprintf('SELECT * FROM db_pacientes WHERE pac_reg>=%s AND pac_reg<=%s',
 SSQL($dFI,'date'),
 SSQL($dFF,'date'));
 
@@ -12,7 +12,7 @@ $tr_RSpr = mysql_num_rows($RSpr);
 $qryPRs=sprintf('SELECT db_types.typ_cod,db_types.typ_val,db_types.typ_icon,COUNT(db_pacientes.pac_cod) AS cant FROM db_pacientes
 LEFT JOIN db_types
 ON db_pacientes.publi=db_types.typ_cod
-WHERE db_pacientes.pac_fecr>=%s AND db_pacientes.pac_fecr<=%s
+WHERE db_pacientes.pac_reg>=%s AND db_pacientes.pac_reg<=%s
 GROUP BY typ_val',
 SSQL($dFI,'date'),
 SSQL($dFF,'date'));
@@ -132,7 +132,7 @@ if($banSR==TRUE){
 	?>
     <tr>
 		<td><?php echo $cod_pac ?></td>
-        <td><?php echo $detPac['pac_fecr'] ?></td>
+        <td><?php echo $detPac['pac_reg'] ?></td>
 		<td><?php echo strtoupper($detPac['pac_nom'])?></td>
 		<td><?php echo strtoupper($detPac['pac_ape'])?></td>
         

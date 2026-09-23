@@ -5,7 +5,7 @@ include_once(RAIZf.'headPrint.php') ?>
     <?php
 $dFI=vParam('FI', (isset($_GET['FI']) ? $_GET['FI'] : NULL), (isset($_POST['FI']) ? $_POST['FI'] : NULL),FALSE);
 $dFF=vParam('FF', (isset($_GET['FF']) ? $_GET['FF'] : NULL), (isset($_POST['FF']) ? $_POST['FF'] : NULL),FALSE);
-$qryPR=sprintf('SELECT * FROM db_pacientes WHERE pac_fecr>=%s AND pac_fecr<=%s',
+$qryPR=sprintf('SELECT * FROM db_pacientes WHERE pac_reg>=%s AND pac_reg<=%s',
 SSQL($dFI,'date'),
 SSQL($dFF,'date'));
 
@@ -62,7 +62,7 @@ if($banSR==TRUE){
 	?>
     <tr>
 		<td style="width:5%"><?php echo $row_RSpr['pac_cod'] ?></td>
-        <td style="width:15%"><?php echo $row_RSpr['pac_fecr'] ?></td>
+        <td style="width:15%"><?php echo $row_RSpr['pac_reg'] ?></td>
 		<td style="width:25%"><?php echo strtoupper($row_RSpr['pac_nom'])?></td>
 		<td style="width:25%"><?php echo strtoupper($row_RSpr['pac_ape'])?></td>
 		<td style="width:10%"><?php echo edad($row_RSpr['pac_fec']); ?></td>
