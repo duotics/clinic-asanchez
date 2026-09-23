@@ -2,6 +2,7 @@
 $LOG='';
 $LOGd='';
 $vP=FALSE;//Inicializa Estado Transaccion
+$vD=FALSE;
 $id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL); //ID STANDAR
 $idp=vParam('idp', isset($_GET['idp']) ? $_GET['idp'] : NULL, isset($_POST['idp']) ? $_POST['idp'] : NULL); //ID PACIENTE
 $idc=vParam('idc', isset($_GET['idc']) ? $_GET['idc'] : NULL, isset($_POST['idc']) ? $_POST['idc'] : NULL); //ID CONSULTA

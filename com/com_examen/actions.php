@@ -1,6 +1,9 @@
 <?php require_once('../../init.php');
+$LOG='';
+$LOGd='';
 $LOGt='';
 $goToP='';
+$vD=FALSE;
 $id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
 $ide=vParam('ide', isset($_GET['ide']) ? $_GET['ide'] : NULL, isset($_POST['ide']) ? $_POST['ide'] : NULL);
 $idefd=vParam('idefd', isset($_GET['idefd']) ? $_GET['idefd'] : NULL, isset($_POST['idefd']) ? $_POST['idefd'] : NULL);

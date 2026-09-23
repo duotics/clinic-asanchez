@@ -10,6 +10,7 @@ $url=vParam('url', isset($_GET['url']) ? $_GET['url'] : NULL, isset($_POST['url'
 $goTo=$url;
 $data=$_POST;
 $vP=FALSE;
+$vD=FALSE;
 $LOGd.='actions.php<br>';
 mysql_query("SET AUTOCOMMIT=0;"); //Desabilita el autocommit
 mysql_query("BEGIN;"); //Inicia la transaccion

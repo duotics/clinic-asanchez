@@ -1,7 +1,9 @@
 <?php include('../../init.php');
 $LOG='';
+$LOGd='';
 $LOGt='';
 $goToP='';
+$vD=FALSE;
 //$dM=vLogin('PACIENTE');
 $goTo=vParam('url', isset($_GET['url']) ? $_GET['url'] : NULL, isset($_POST['url']) ? $_POST['url'] : NULL);
 $acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
