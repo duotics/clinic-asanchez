@@ -24,6 +24,7 @@ A legacy procedural PHP clinic management app (patients, clinical histories, con
   ```sh
   docker exec -e MYSQL_PWD=<DB_PASS> myDb5 mariadb-dump -uroot --no-data --skip-comments --skip-dump-date clinic_asanchez | sed -e 's/ AUTO_INCREMENT=[0-9]*//' -e '1{/sandbox mode/d}' > docs/schema.sql
   ```
+  `docs/.htaccess` blocks web access to `docs/`, so the schema can't be downloaded. Don't remove it, and read files there from PHP through the filesystem, never by URL.
   The old `db/20230901-urologoh_clinic-structure.sql` in git history (`fa7d438`) belongs to a different app (`tbl_*` tables). Don't use it.
 
 ## Architecture
@@ -48,3 +49,16 @@ A legacy procedural PHP clinic management app (patients, clinical histories, con
 
 - Escape every value that goes into SQL through `SSQL($value, 'text'|'int'|'date'|…)` (the Dreamweaver-style `GetSQLValueString`) inside `sprintf`. Table names are prefixed `db_` (e.g. `db_pacientes`, `db_paciente_hc`, `db_consultas`).
 - Recent work fixes PHP notices and fatal errors across modules. Commits are small and scoped, with messages like `fix <what> in <module>`. Follow the same style: initialize variables, use `isset(...) ? ... : NULL` rather than `??`, and quote array keys. Never rely on `short_open_tag` (`<?`); always use `<?php`.
+
+## Versioning, commits and pushes
+
+- `docs/VERSION` is the only source of truth for the app version. `init.php` loads it into the constants `APP_VERSION`, `APP_VERSION_DATE` and `APP_VERSION_STATUS`, which `frames/bottom.php` shows in the footer of every page and on the login page. The status is hidden when it is `stable`. It is an INI file (readable with `parse_ini_file`) with `version` (SemVer `MAJOR.MINOR.PATCH`), `date` (release date, `YYYY-MM-DD`) and `status` (`alpha` | `beta` | `rc` | `stable`). The `version` field in `package.json` means nothing; don't touch it.
+- `docs/CHANGELOG.md` follows Keep a Changelog, written in Spanish, with the sections `Agregado`, `Cambiado`, `Corregido`, `Eliminado` and `Seguridad`. Each version heading is `## [X.Y.Z] - YYYY-MM-DD - status`. Write entries for someone who uses the app, not as commit messages.
+- **Never commit or push without the user's explicit approval**, even for small changes. Approval for one commit doesn't cover the next, and approval to commit doesn't include push. When the work is done, show a summary of the changes and ask.
+- Once the user approves a commit that changes the app (PHP, JS, CSS, config, `.env.example`, DB schema), bump the version in the same commit:
+  1. Pick the bump from the changes. **PATCH** is for bug fixes only. **MINOR** is for new backwards-compatible features, screens, reports, `.env` variables or DB columns. **MAJOR** is for breaking changes, such as a schema change that needs a data migration, a new PHP/MySQL requirement or a new deployment method. Tell the user which bump you picked and why.
+  2. Update `version` and `date` in `docs/VERSION`. Keep `status` unless the user says otherwise.
+  3. Add the new version entry at the top of `docs/CHANGELOG.md`.
+  4. Commit the code together with `docs/VERSION` and `docs/CHANGELOG.md`.
+  5. Push only if the user authorized the push.
+- Changes that only touch docs or tooling (`CLAUDE.md`, `README.md`, `.gitignore`) don't bump the version. They still need approval before they are committed.
