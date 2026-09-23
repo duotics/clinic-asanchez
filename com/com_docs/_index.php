@@ -59,7 +59,7 @@ $pages = new Paginator;
 				<div class="btn-group">
 				<a href="<?php echo $RAIZc ?>com_docs/documentoForm.php?idd=<?php echo $idDoc ?>" class="btn btn-primary btn-xs fancyR" data-type="iframe">
 				<i class="fas fa-edit fa-lg"></i> Modificar</a>
-				<a href="<?php echo $RAIZc; ?>com_docs/_acc.php?ids=<?php echo md5($idDoc) ?>&acc=<?php echo md5(DELd) ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs vAccL">
+				<a href="<?php echo $RAIZc; ?>com_docs/_acc.php?ids=<?php echo md5($idDoc) ?>&acc=<?php echo md5('DELd') ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs vAccL">
 				<i class="fas fa-trash fa-lg"></i></a>
 				</div>
 			</td>
