@@ -62,7 +62,6 @@ include(RAIZf.'head.php');
 	</ul>
 	<div class="navbar-right btn-group navbar-btn">
 		<?php echo $btntrat?>
-		<?php echo $btnaction ?>
 		<a href="<?php echo (isset($_SESSION['urlc']) ? $_SESSION['urlc'] : NULL) ?>?idp=<?php echo $idp ?>" class="btn btn-default"><col-md- class="glyphicon glyphicon-plus-sign"></col-md-> NUEVO</a>
 		</li>
 	</div>

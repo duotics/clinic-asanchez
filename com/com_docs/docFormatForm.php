@@ -5,7 +5,7 @@ $id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? 
 $acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
 $dExamF=detRow('db_examenes_format','id',$id);//fnc_dataexam($ide);
 if($acc=='DELEF'){
-	header(sprintf("Location: %s", '_acc.php?ide='.$ide.'&action=DELEF'));
+	header(sprintf("Location: %s", '_acc.php?ide='.$id.'&action=DELEF'));
 }
 $css['body']='cero';
 include(RAIZf.'head.php'); ?>

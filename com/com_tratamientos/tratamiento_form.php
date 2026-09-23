@@ -73,7 +73,6 @@ include(RAIZf.'head.php'); ?>
 	</ul>
 	<div class="navbar-right btn-group navbar-btn">
 		<?php echo $btntrat?>
-		<?php echo $btnaction ?>
         <?php if($idt){ ?>
 		<a href="<?php echo $RAIZc; ?>com_tratamientos/receta_print.php?idt=<?php echo $idt ?>" class="btn btn-info"><i class="fas fa-print fa-lg"></i> Imprimir</a>
         <?php } ?>
