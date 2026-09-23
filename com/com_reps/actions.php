@@ -50,8 +50,8 @@ VALUES (%s,%s,%s,%s,%s,%s)',
 GetSQLValueString($idc,'int'),
 GetSQLValueString($idp,'int'),
 GetSQLValueString($sdate,'date'),
-GetSQLValueString($fechae,'date'),
-GetSQLValueString($fum,'date'),
+GetSQLValueString($det['fechae'],'date'),
+GetSQLValueString($det['fum'],'date'),
 GetSQLValueString('1','date'));
 if(@mysql_query($qryIns)){
 	$LOG.='<p>Reporte Creado Correctamente</p>';
@@ -126,8 +126,8 @@ if(($_FILES['userfile']['name'])){
 
 //BEG UPD MANUAL
 $qryUpd=sprintf('UPDATE db_rep_obs SET fechae=%s, fum=%s WHERE id=%s',
-GetSQLValueString($fechae,'text'),
-GetSQLValueString($fum,'text'),
+GetSQLValueString($det['fechae'],'text'),
+GetSQLValueString($det['fum'],'text'),
 GetSQLValueString($idr,'int'));
 if(@mysql_query($qryUpd)){
 	$LOG.='<p>Reporte Actualizado Correctamente</p>';
@@ -223,18 +223,18 @@ if(($_FILES['userfile']['name'])){
 	GetSQLValueString($idc,'int'),//consulta
 	GetSQLValueString($idp,'int'),//paciente
 	GetSQLValueString($GLOBALS['sdate'],'date'),//recha registro
-	GetSQLValueString($fechae,'date'),//recha ecografia
-	GetSQLValueString($tipo,'int'),//paciente
-	
-	GetSQLValueString($rec_utero,'text'),
-	GetSQLValueString($rec_ovder,'text'),
-	GetSQLValueString($obs_ovder,'text'),
-	GetSQLValueString($rec_ovizq,'text'),
-	GetSQLValueString($obs_ovizq,'text'),
-		
-	GetSQLValueString($eco_hall,'text'),//recha ecografia	
-	GetSQLValueString($eco_ohall,'text'),//recha ecografia	
-	GetSQLValueString($eco_diag,'text'),
+	GetSQLValueString($det['fechae'],'date'),//recha ecografia
+	GetSQLValueString($det['tipo'],'int'),//paciente
+
+	GetSQLValueString($det['rec_utero'],'text'),
+	GetSQLValueString($det['rec_ovder'],'text'),
+	GetSQLValueString($det['obs_ovder'],'text'),
+	GetSQLValueString($det['rec_ovizq'],'text'),
+	GetSQLValueString($det['obs_ovizq'],'text'),
+
+	GetSQLValueString($det['eco_hall'],'text'),//recha ecografia
+	GetSQLValueString($det['eco_ohall'],'text'),//recha ecografia
+	GetSQLValueString($det['eco_diag'],'text'),
 	GetSQLValueString('1','int'));
 	if(mysql_query($qryInsRep)){
 		$LOG.='<h4>Reporte Ginecologico Creado</h4>';
