@@ -32,7 +32,7 @@ $btnNew='<a href="docFormatForm.php" class="btn btn-primary fancyR" data-type="i
 	<?php 
 	$id=$dRSd['id_df'];
 	$ids=md5($id);
-	$dA=dataAud($dRSd['id_aud']);
+	$dA=dataAud($dRSd['idA']);
 	if($dA){
 		$date = date_create($dA['audd_datet']);
 		$date = date_format($date, 'Y-m-d');
