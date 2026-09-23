@@ -1,5 +1,11 @@
 <?php include_once('../../init.php');
-$id=$_GET['id'];
+$SECC1='';
+$SECC2='';
+$SECC3='';
+$SECC4='';
+$SECC5='';
+$SECC6='';
+$id=(isset($_GET['id']) ? $_GET['id'] : NULL);
 $detRep=detRow('db_rep_obs','id',$id);
 $detCon=detRow('db_consultas','con_num',$detRep['con_num']);
 $detPac=detRow('db_pacientes','pac_cod',$detCon['pac_cod']);

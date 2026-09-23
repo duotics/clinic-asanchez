@@ -1,21 +1,21 @@
 <?php
-$ids=vParam('ids',$_GET['ids'],$_POST['ids']);
-$acc=vParam('acc',$_GET['acc'],$_POST['acc']);
+$ids=vParam('ids', isset($_GET['ids']) ? $_GET['ids'] : NULL, isset($_POST['ids']) ? $_POST['ids'] : NULL);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
 $det=detRow('db_medicamentos','md5(id_form)',$ids);
 if($det){
 	$id=$det['id_form'];
-	$acc=md5(UPDm);
+	$acc=md5('UPDm');
 	$btnAcc='<button type="submit" class="btn btn-success btn-large navbar-btn"><i class="fas fa-save fa-lg"></i> ACTUALIZAR</button>';
-	$btnClon='<a class="btn btn-info btn-large navbar-btn" href="actions.php?id='.$id.'&acc='.md5(CLONm).'&url='.$urlc.'"><i class="fa fa-clone" aria-hidden="true"></i> CLONAR</a>';
+	$btnClon='<a class="btn btn-info btn-large navbar-btn" href="actions.php?id='.$id.'&acc='.md5('CLONm').'&url='.$urlc.'"><i class="fa fa-clone" aria-hidden="true"></i> CLONAR</a>';
 	$btnAccTD='<button id="dtAG" class="btn btn-primary btn-block btn-sm" type="submit"><i class="fas fa-save fa-lg"></i> Agregar a la receta</button>';
 }else{
-	$acc=md5(INSm);
+	$acc=md5('INSm');
 	$btnAcc='<button type="submit" class="btn btn-primary btn-large navbar-btn"><i class="fas fa-save fa-lg"></i> CREAR</button>';
 }
 $btnNew='<a href="'.$urlc.'" class="btn btn-default navbar-btn"><i class="fas fa-plus-square fa-lg"></i> NUEVO</a>';
 
 if(isset($_SESSION['tab']['medf'])){
-	$tabS=$_SESSION['tab']['medf'];
+	$tabS=(isset($_SESSION['tab']['medf']) ? $_SESSION['tab']['medf'] : NULL);
 	unset($_SESSION['tab']['medf']);
 }else{
 	$tabS['tabA']='active';
@@ -116,7 +116,7 @@ if(isset($_SESSION['tab']['medf'])){
 				***
 				<fieldset>
 				<input name="form" type="hidden" id="form" value="<?php echo md5('MedGrp') ?>">
-				<input name="acc" type="hidden" id="acc" value="<?php echo md5(INSmg) ?>">
+				<input name="acc" type="hidden" id="acc" value="<?php echo md5('INSmg') ?>">
 				<input name="idref" type="hidden" id="idref" value="">
 				<input name="id" type="hidden" id="id" value="<?php echo $id ?>">
 				<input name="url" type="hidden" value="<?php echo $urlc ?>">
@@ -150,7 +150,7 @@ if(isset($_SESSION['tab']['medf'])){
 			<?php do{ ?>
 			<?php
 			$dMRG=detRow('db_medicamentos','id_form',$dRSlmg['idm']);
-			$accMG=md5(DELmg);
+			$accMG=md5('DELmg');
 			$btnDelMG="<a href='actions.php?id=$id&idr=$dRSlmg[id]&acc=$accMG&url=$urlc' class='btn btn-danger btn-xs'><i class='fas fa-trash fa-lg'></i> Eliminar</a>";
 			?>
 			<tr>

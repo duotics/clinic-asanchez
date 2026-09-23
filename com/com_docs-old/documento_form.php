@@ -5,11 +5,11 @@ $RSdf=mysql_query($qrydf);
 $row_RSdf=mysql_fetch_assoc($RSdf);
 $tr_RSdf=mysql_num_rows($RSdf);
 
-$idp=vParam('idp',$_GET['idp'],$_POST['idp']);
-$idc=vParam('idc',$_GET['idc'],$_POST['idc']);
-$idd=vParam('idd',$_GET['idd'],$_POST['idd']);
-$iddf=vParam('iddf',$_GET['iddf'],$_POST['iddf']);
-$action=vParam('action',$_GET['action'],$_POST['action']);
+$idp=vParam('idp', isset($_GET['idp']) ? $_GET['idp'] : NULL, isset($_POST['idp']) ? $_POST['idp'] : NULL);
+$idc=vParam('idc', isset($_GET['idc']) ? $_GET['idc'] : NULL, isset($_POST['idc']) ? $_POST['idc'] : NULL);
+$idd=vParam('idd', isset($_GET['idd']) ? $_GET['idd'] : NULL, isset($_POST['idd']) ? $_POST['idd'] : NULL);
+$iddf=vParam('iddf', isset($_GET['iddf']) ? $_GET['iddf'] : NULL, isset($_POST['iddf']) ? $_POST['iddf'] : NULL);
+$action=vParam('action', isset($_GET['action']) ? $_GET['action'] : NULL, isset($_POST['action']) ? $_POST['action'] : NULL);
 $detdoc=detRow('db_documentos','id_doc',$idd);//fnc_datadoc($idd);
 $detdocf=fnc_datadocf($iddf);
 if($idd) {$idp=$detdoc['pac_cod']; $idc=$detdoc['con_num'];}

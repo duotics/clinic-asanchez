@@ -1,8 +1,8 @@
 <?php require('../../init.php');
 $_SESSION['tab']['con']='cGIN';
-$idp=vParam('idp',$_GET['idp'],$_POST['idp']);
-$ido=vParam('ido',$_GET['ido'],$_POST['ido']);
-$action=vParam('action',$_GET['action'],$_POST['action']);
+$idp=vParam('idp', isset($_GET['idp']) ? $_GET['idp'] : NULL, isset($_POST['idp']) ? $_POST['idp'] : NULL);
+$ido=vParam('ido', isset($_GET['ido']) ? $_GET['ido'] : NULL, isset($_POST['ido']) ? $_POST['ido'] : NULL);
+$action=vParam('action', isset($_GET['action']) ? $_GET['action'] : NULL, isset($_POST['action']) ? $_POST['action'] : NULL);
 $detObs=fnc_dataObs($ido);
 //Eliminar Seguimiento
 if($action=='DELOF'){
@@ -63,7 +63,7 @@ include(RAIZf.'head.php');
 	<div class="navbar-right btn-group navbar-btn">
 		<?php echo $btntrat?>
 		<?php echo $btnaction ?>
-		<a href="<?php echo $_SESSION['urlc'] ?>?idp=<?php echo $idp ?>" class="btn btn-default"><col-md- class="glyphicon glyphicon-plus-sign"></col-md-> NUEVO</a>
+		<a href="<?php echo (isset($_SESSION['urlc']) ? $_SESSION['urlc'] : NULL) ?>?idp=<?php echo $idp ?>" class="btn btn-default"><col-md- class="glyphicon glyphicon-plus-sign"></col-md-> NUEVO</a>
 		</li>
 	</div>
 	</div><!-- /.navbar-collapse -->

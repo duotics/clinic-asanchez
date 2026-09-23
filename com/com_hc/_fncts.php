@@ -1,32 +1,33 @@
 <?php include('../../init.php');
+$LOG='';
 $_SESSION['LOG']=NULL;//INICIALIZA SESSION LOG
-$id=vParam('id',$_GET['id'],$_POST['id']); //ID STANDAR
-$idp=vParam('idp',$_GET['idp'],$_POST['idp']); //ID PACIENTE
-$idc=vParam('idc',$_GET['idc'],$_POST['idc']); //ID CONSULTA
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL); //ID STANDAR
+$idp=vParam('idp', isset($_GET['idp']) ? $_GET['idp'] : NULL, isset($_POST['idp']) ? $_POST['idp'] : NULL); //ID PACIENTE
+$idc=vParam('idc', isset($_GET['idc']) ? $_GET['idc'] : NULL, isset($_POST['idc']) ? $_POST['idc'] : NULL); //ID CONSULTA
 //Variables para funciones de TRATAMIENTOS
-$idt=vParam('idt',$_GET['idt'],$_POST['idt']);
-$idtd=vParam('idtd',$_GET['idtd'],$_POST['idtd']);
+$idt=vParam('idt', isset($_GET['idt']) ? $_GET['idt'] : NULL, isset($_POST['idt']) ? $_POST['idt'] : NULL);
+$idtd=vParam('idtd', isset($_GET['idtd']) ? $_GET['idtd'] : NULL, isset($_POST['idtd']) ? $_POST['idtd'] : NULL);
 
-$ide=vParam('ide',$_GET['ide'],$_POST['ide']);
-$idr=vParam('idr',$_GET['idr'],$_POST['idr']);
+$ide=vParam('ide', isset($_GET['ide']) ? $_GET['ide'] : NULL, isset($_POST['ide']) ? $_POST['ide'] : NULL);
+$idr=vParam('idr', isset($_GET['idr']) ? $_GET['idr'] : NULL, isset($_POST['idr']) ? $_POST['idr'] : NULL);
 //Variables para funcion de Obstetricia
-$ido=vParam('ido',$_GET['ido'],$_POST['ido']);
+$ido=vParam('ido', isset($_GET['ido']) ? $_GET['ido'] : NULL, isset($_POST['ido']) ? $_POST['ido'] : NULL);
 
 //VARIABLE ACCION Y REDIRECCION
-$action=vParam('action',$_GET['action'],$_POST['action']);
-$urlreturn=$_SESSION['urlp'];
+$action=vParam('action', isset($_GET['action']) ? $_GET['action'] : NULL, isset($_POST['action']) ? $_POST['action'] : NULL);
+$urlreturn=(isset($_SESSION['urlp']) ? $_SESSION['urlp'] : NULL);
 /**********************************************************************/
 //FUNCIONES PARA TRATAMIENTOS
 if ((isset($_POST['form'])) && ($_POST['form'] == 'tratdet')){
 	if($action=='INS'){	
 	$qryinst=sprintf('INSERT INTO db_tratamientos (con_num, pac_cod, fecha, fechap, diagnostico, obs)
 	VALUES (%s,%s,%s,%s,%s,%s)',
-	GetSQLValueString($_POST['idc'], "int"),
-	GetSQLValueString($_POST['idp'], "int"),
-	GetSQLValueString($_POST['fecha'], "date"),
-	GetSQLValueString($_POST['fechap'], "date"),
-	GetSQLValueString($_POST['diagnostico'], "text"),
-	GetSQLValueString($_POST['obs'], "text"));
+	GetSQLValueString((isset($_POST['idc']) ? $_POST['idc'] : NULL), "int"),
+	GetSQLValueString((isset($_POST['idp']) ? $_POST['idp'] : NULL), "int"),
+	GetSQLValueString((isset($_POST['fecha']) ? $_POST['fecha'] : NULL), "date"),
+	GetSQLValueString((isset($_POST['fechap']) ? $_POST['fechap'] : NULL), "date"),
+	GetSQLValueString((isset($_POST['diagnostico']) ? $_POST['diagnostico'] : NULL), "text"),
+	GetSQLValueString((isset($_POST['obs']) ? $_POST['obs'] : NULL), "text"));
 	if(@mysql_query($qryinst)){ $idt = @mysql_insert_id();
 		$LOG.='<h4>Tratamiento Creado</h4> Numero. <strong>'.$idt.'</strong>';
 	}else $LOG.='Error al Insertar';
@@ -35,11 +36,11 @@ if ((isset($_POST['form'])) && ($_POST['form'] == 'tratdet')){
 	
 	if($action=='UPD'){	
 	$qryinst=sprintf('UPDATE db_tratamientos SET diagnostico=%s, fechap=%s, obs=%s WHERE tid=%s',
-	GetSQLValueString($_POST['diagnostico'], "text"),
-	GetSQLValueString($_POST['fechap'], "date"),
-	GetSQLValueString($_POST['obs'], "text"),
-	GetSQLValueString($_POST['idt'], "int"));
-	if(@mysql_query($qryinst)){ $idt = $_POST['idt'];
+	GetSQLValueString((isset($_POST['diagnostico']) ? $_POST['diagnostico'] : NULL), "text"),
+	GetSQLValueString((isset($_POST['fechap']) ? $_POST['fechap'] : NULL), "date"),
+	GetSQLValueString((isset($_POST['obs']) ? $_POST['obs'] : NULL), "text"),
+	GetSQLValueString((isset($_POST['idt']) ? $_POST['idt'] : NULL), "int"));
+	if(@mysql_query($qryinst)){ $idt = (isset($_POST['idt']) ? $_POST['idt'] : NULL);
 		$LOG.='<p>Tratamiento Actualizado</p>';
 	}else $LOG.='<p>Error al Actualizar</p>';
 	$urlreturn.='?idt='.$idt;
@@ -48,29 +49,29 @@ if ((isset($_POST['form'])) && ($_POST['form'] == 'tratdet')){
 	if($action=='INSD'){	
 	$qryins=sprintf('INSERT INTO db_tratamientos_detalle (tid, id_form, generico, comercial, presentacion, cantidad, descripcion)
 	VALUES (%s,%s,%s,%s,%s,%s,%s)',
-	GetSQLValueString($_POST['trat_id'], "int"),
-	GetSQLValueString($_POST['id_form'], "int"),
-	GetSQLValueString($_POST['generico'], "text"),
-	GetSQLValueString($_POST['comercial'], "text"),
-	GetSQLValueString($_POST['presentacion'], "text"),
-	GetSQLValueString($_POST['cantidad'], "int"),
-	GetSQLValueString($_POST['descripcion'], "text"));
+	GetSQLValueString((isset($_POST['trat_id']) ? $_POST['trat_id'] : NULL), "int"),
+	GetSQLValueString((isset($_POST['id_form']) ? $_POST['id_form'] : NULL), "int"),
+	GetSQLValueString((isset($_POST['generico']) ? $_POST['generico'] : NULL), "text"),
+	GetSQLValueString((isset($_POST['comercial']) ? $_POST['comercial'] : NULL), "text"),
+	GetSQLValueString((isset($_POST['presentacion']) ? $_POST['presentacion'] : NULL), "text"),
+	GetSQLValueString((isset($_POST['cantidad']) ? $_POST['cantidad'] : NULL), "int"),
+	GetSQLValueString((isset($_POST['descripcion']) ? $_POST['descripcion'] : NULL), "text"));
 	if(@mysql_query($qryins)) $LOG.='<p>Medicamento Guardado</p>';
 	else $LOG.='<p>Error al Guardar Medicamento</p>';
-	$urlreturn='tratamiento_form.php?idt='.$_POST['trat_id'];
+	$urlreturn='tratamiento_form.php?idt='.(isset($_POST['trat_id']) ? $_POST['trat_id'] : NULL);
 	}
 	
 	if($action=='UPDD'){	
 	$qryUpd=sprintf('UPDATE db_tratamientos_detalle SET generico=%s, comercial=%s, presentacion=%s, cantidad=%s, descripcion=%s WHERE id=%s',
-	GetSQLValueString($_POST['generico'], "text"),
-	GetSQLValueString($_POST['comercial'], "text"),
-	GetSQLValueString($_POST['presentacion'], "text"),
-	GetSQLValueString($_POST['cantidad'], "int"),
-	GetSQLValueString($_POST['descripcion'], "text"),
+	GetSQLValueString((isset($_POST['generico']) ? $_POST['generico'] : NULL), "text"),
+	GetSQLValueString((isset($_POST['comercial']) ? $_POST['comercial'] : NULL), "text"),
+	GetSQLValueString((isset($_POST['presentacion']) ? $_POST['presentacion'] : NULL), "text"),
+	GetSQLValueString((isset($_POST['cantidad']) ? $_POST['cantidad'] : NULL), "int"),
+	GetSQLValueString((isset($_POST['descripcion']) ? $_POST['descripcion'] : NULL), "text"),
 	GetSQLValueString($idtd, "int"));
 	if(@mysql_query($qryUpd)) $LOG.='<p>Medicamento Guardado</p>';
 	else $LOG.='<p>Error al Guardar Medicamento</p>';
-	$urlreturn='tratamiento_form.php?idt='.$_POST['trat_id'];
+	$urlreturn='tratamiento_form.php?idt='.(isset($_POST['trat_id']) ? $_POST['trat_id'] : NULL);
 	}
 	
 }
@@ -81,9 +82,9 @@ if ((isset($_POST['form'])) && ($_POST['form'] == 'obsdet')){
 	$qryINS=sprintf('INSERT INTO db_obstetrico (pac_cod, obs_fec, obs_fec_um, obs_fecf)
 	VALUES (%s,%s,%s,%s)',
 	GetSQLValueString($idp, "int"),
-	GetSQLValueString($_POST['obs_fec'], "date"),
-	GetSQLValueString($_POST['obs_fec_um'], "date"),
-	GetSQLValueString($_POST['obs_fecf'], "date"));
+	GetSQLValueString((isset($_POST['obs_fec']) ? $_POST['obs_fec'] : NULL), "date"),
+	GetSQLValueString((isset($_POST['obs_fec_um']) ? $_POST['obs_fec_um'] : NULL), "date"),
+	GetSQLValueString((isset($_POST['obs_fecf']) ? $_POST['obs_fecf'] : NULL), "date"));
 	if(@mysql_query($qryINS)){
 		$id = @mysql_insert_id();
 		$LOG.='<h4>Seguimiento Obstétrico Creado</h4> Numero. <strong>'.$id.'</strong>';
@@ -93,9 +94,9 @@ if ((isset($_POST['form'])) && ($_POST['form'] == 'obsdet')){
 	
 	if($action=='UPD'){	
 	$qryinst=sprintf('UPDATE db_obstetrico SET obs_fec=%s, obs_fec_um=%s, obs_fecf=%s WHERE obs_id=%s',
-	GetSQLValueString($_POST['obs_fec'], "date"),
-	GetSQLValueString($_POST['obs_fec_um'], "date"),
-	GetSQLValueString($_POST['obs_fecf'], "date"),
+	GetSQLValueString((isset($_POST['obs_fec']) ? $_POST['obs_fec'] : NULL), "date"),
+	GetSQLValueString((isset($_POST['obs_fec_um']) ? $_POST['obs_fec_um'] : NULL), "date"),
+	GetSQLValueString((isset($_POST['obs_fecf']) ? $_POST['obs_fecf'] : NULL), "date"),
 	GetSQLValueString($ido,'int'));
 	if(@mysql_query($qryinst)){
 		$LOG.='<h4>Seguimiento Actualizado</h4>';
@@ -110,8 +111,8 @@ if ((isset($_POST['form'])) && ($_POST['form'] == 'obsdet')){
 		$qryins=sprintf('INSERT INTO db_obstetrico_detalle (obs_id, obs_det, obs_fec)
 		VALUES (%s,%s,%s)',
 		GetSQLValueString($ido, 'int'),
-		GetSQLValueString($_POST['obs_det'], 'text'),
-		GetSQLValueString($_POST['obs_fec'], 'date'));
+		GetSQLValueString((isset($_POST['obs_det']) ? $_POST['obs_det'] : NULL), 'text'),
+		GetSQLValueString((isset($_POST['obs_fec']) ? $_POST['obs_fec'] : NULL), 'date'));
 		if(@mysql_query($qryins)){
 			$LOG.='<h4>Visita Guardada</h4>';
 			$_SESSION['LOG']['t']='OPERACIÓN EXITOSA';	
@@ -155,13 +156,13 @@ if ((isset($_POST['form'])) && ($_POST['form'] == 'fexamen')){
 	if($action=='INS'){	
 	$qryinst=sprintf('INSERT INTO db_examenes (pac_cod,con_num,fecha,fechae,typ_cod,descripcion,resultado)
 	VALUES (%s,%s,%s,%s,%s,%s,%s)',
-	GetSQLValueString($_POST['idp'], "int"),
-	GetSQLValueString($_POST['idc'], "int"),
+	GetSQLValueString((isset($_POST['idp']) ? $_POST['idp'] : NULL), "int"),
+	GetSQLValueString((isset($_POST['idc']) ? $_POST['idc'] : NULL), "int"),
 	GetSQLValueString($sdate, "date"),
-	GetSQLValueString($_POST['fechae'], "date"),
-	GetSQLValueString($_POST['typ_cod'], "int"),
-	GetSQLValueString($_POST['descripcion'], "text"),
-	GetSQLValueString($_POST['resultado'], "text"));
+	GetSQLValueString((isset($_POST['fechae']) ? $_POST['fechae'] : NULL), "date"),
+	GetSQLValueString((isset($_POST['typ_cod']) ? $_POST['typ_cod'] : NULL), "int"),
+	GetSQLValueString((isset($_POST['descripcion']) ? $_POST['descripcion'] : NULL), "text"),
+	GetSQLValueString((isset($_POST['resultado']) ? $_POST['resultado'] : NULL), "text"));
 	if(@mysql_query($qryinst)){ $ide = @mysql_insert_id();
 		$LOG.='<p>Examen Creado</p>';
 	}else $LOG.='Error al Insertar';
@@ -169,11 +170,11 @@ if ((isset($_POST['form'])) && ($_POST['form'] == 'fexamen')){
 	}
 	if($action=='UPD'){	
 	$qryupd=sprintf('UPDATE db_examenes SET fechae=%s,typ_cod=%s,descripcion=%s,resultado=%s WHERE id_exa=%s',
-	GetSQLValueString($_POST['fechae'], "date"),
-	GetSQLValueString($_POST['typ_cod'], "int"),
-	GetSQLValueString($_POST['descripcion'], "text"),
-	GetSQLValueString($_POST['resultado'], "text"),
-	GetSQLValueString($_POST['ide'], "int"));
+	GetSQLValueString((isset($_POST['fechae']) ? $_POST['fechae'] : NULL), "date"),
+	GetSQLValueString((isset($_POST['typ_cod']) ? $_POST['typ_cod'] : NULL), "int"),
+	GetSQLValueString((isset($_POST['descripcion']) ? $_POST['descripcion'] : NULL), "text"),
+	GetSQLValueString((isset($_POST['resultado']) ? $_POST['resultado'] : NULL), "text"),
+	GetSQLValueString((isset($_POST['ide']) ? $_POST['ide'] : NULL), "int"));
 	if(@mysql_query($qryupd)) $LOG.='<p>Examen Actualizado</p>';
 	else $LOG.='Error al Actualizar';
 	$urlreturn.='?ide='.$ide;

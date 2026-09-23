@@ -1,6 +1,7 @@
 <?php require('../../init.php');
-$id=vParam('id',$_GET['id'],$_POST['id']);
-$acc=vParam('acc',$_GET['acc'],$_POST['acc']);
+$LOG='';
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
 $urlr='gest_tratamiento.php';
 $det=$_POST;
 
@@ -12,7 +13,7 @@ if(($acc)&&($acc=='DEL')){
 	if(@mysql_query($qry)) $LOG.="<h4>Eliminado Correctamente</h4>";
 	else $LOG.='<h4>Error al Eliminar</h4>';
 }
-if(($_POST['form'])&&($_POST['form']=='fTtrat')){
+if(((isset($_POST['form']) ? $_POST['form'] : NULL))&&((isset($_POST['form']) ? $_POST['form'] : NULL)=='fTtrat')){
 	if($acc=='INS'){
 		$qry = sprintf("INSERT INTO db_terapiastrata (nom_trat, obs_trat) VALUES (%s,%s)",
 		SSQL($det['nom_trat'], "text"),
@@ -34,11 +35,11 @@ if(!mysql_error()){
 	mysql_query("COMMIT;");
 	$LOGt='Operación Exitosa';
 	$LOGc='alert-success';
-	$LOGi=$RAIZa.$_SESSION['conf']['i']['ok'];
+	$LOGi=$RAIZa.(isset($_SESSION['conf']['i']['ok']) ? $_SESSION['conf']['i']['ok'] : NULL);
 }else{
 	mysql_query("ROLLBACK;");
 	$LOGt='Fallo del Sistema';
-	$LOGi=$RAIZa.$_SESSION['conf']['i']['fail'];
+	$LOGi=$RAIZa.(isset($_SESSION['conf']['i']['fail']) ? $_SESSION['conf']['i']['fail'] : NULL);
 }
 mysql_query("SET AUTOCOMMIT=1;"); //Habilita el autocommit
 $_SESSION['LOG']['t']=$LOGt;

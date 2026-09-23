@@ -4,7 +4,7 @@ include(RAIZf.'head.php'); ?>
 <?php
 $paciente_RS_poliza = "-1";
 if (isset($_GET['id_pac'])) {
-  $paciente_RS_poliza = $_GET['id_pac'];
+  $paciente_RS_poliza = (isset($_GET['id_pac']) ? $_GET['id_pac'] : NULL);
 }
 
 $query_RS_poliza = sprintf("SELECT MAX(cod_pol) as poliza FROM tbl_polizas WHERE  cod_pac=%s", GetSQLValueString($paciente_RS_poliza, "int"));
@@ -14,7 +14,7 @@ $totalRows_RS_poliza = mysql_num_rows($RS_poliza);
 
 $cod_poliza_RS_find_poliza = "-1";
 if (isset($_GET['cod_poliza'])) {
-  $cod_poliza_RS_find_poliza = $_GET['cod_poliza'];
+  $cod_poliza_RS_find_poliza = (isset($_GET['cod_poliza']) ? $_GET['cod_poliza'] : NULL);
 }
 
 $query_RS_find_poliza = sprintf("SELECT * FROM tbl_polizas WHERE cod_pol = %s", GetSQLValueString($cod_poliza_RS_find_poliza, "int"));
@@ -22,16 +22,16 @@ $RS_find_poliza = mysql_query($query_RS_find_poliza) or die(mysql_error());
 $row_RS_find_poliza = mysql_fetch_assoc($RS_find_poliza);
 $totalRows_RS_find_poliza = mysql_num_rows($RS_find_poliza);
 
-$accion = $_GET['accion'];
-$cod_poliza = $_GET['cod_poliza'];
-$idpac=$_GET['id_pac'];
-//secho "ok".$accion."poliza".$cod_poliza."consulta".$_GET['con_num'];
+$accion = (isset($_GET['accion']) ? $_GET['accion'] : NULL);
+$cod_poliza = (isset($_GET['cod_poliza']) ? $_GET['cod_poliza'] : NULL);
+$idpac=(isset($_GET['id_pac']) ? $_GET['id_pac'] : NULL);
+//secho "ok".$accion."poliza".$cod_poliza."consulta".(isset($_GET['con_num']) ? $_GET['con_num'] : NULL);
 
 if ($accion=="GUARDAR")
 {
 	$poliza_num = $row_RS_poliza['poliza']+1;
-	$connum=$_GET['con_num'];
-	$txt_valor=$_POST['txt_valor'];
+	$connum=(isset($_GET['con_num']) ? $_GET['con_num'] : NULL);
+	$txt_valor=(isset($_POST['txt_valor']) ? $_POST['txt_valor'] : NULL);
 	$fec = date("m/d/y");
 	//$est_pol = 'P';
 }
@@ -50,10 +50,10 @@ else
 
 $ext_admitidas = array('.jpg','.gif','.png','.jpeg'); // Extensiones permitidas.
 
-if($_POST["userfile"]){
+if((isset($_POST["userfile"]) ? $_POST["userfile"] : NULL)){
 	echo"Subida IMagen<br />";
-	echo $_POST["userfile"]."<br />";
-	$resfileupload=uploadfile($_POST["userfile"], "img_db/pol/", $ext_admitidas, "2097152");
+	echo (isset($_POST["userfile"]) ? $_POST["userfile"] : NULL)."<br />";
+	$resfileupload=uploadfile((isset($_POST["userfile"]) ? $_POST["userfile"] : NULL), "img_db/pol/", $ext_admitidas, "2097152");
 	echo $resfileupload[0]."<br />";
 	echo $resfileupload[1]."<br />";
 	
@@ -70,7 +70,7 @@ if($_POST["userfile"]){
 		$tempsqlfile[1]="'".$resfileupload[1]."'";
 	}
 }
-if (($_POST["action"]=="GUARDAR")&&($txt_valor!=0)){
+if (((isset($_POST["action"]) ? $_POST["action"] : NULL)=="GUARDAR")&&($txt_valor!=0)){
 	
 	$cadena ="INSERT INTO tbl_polizas (est_pol,val_pol,fec_pol,con_num,cod_pac, file_poliza) VALUES ('$est_pol','$txt_valor','$fec','$connum','$idpac', $tempsqlfile[1])";
 	
@@ -81,7 +81,7 @@ if (($_POST["action"]=="GUARDAR")&&($txt_valor!=0)){
 }
 else
 {
-   if (($_POST["action"]=="ACTUALIZAR")&&($txt_valor!=0))
+   if (((isset($_POST["action"]) ? $_POST["action"] : NULL)=="ACTUALIZAR")&&($txt_valor!=0))
    {
 		//@mysql_query("UPDATE tbl_polizas set val_pol='$txt_valor',fec_pol='$fec' where cod_pac='$idpac' and con_num='$connum'")or($LOG=mysql_error());
 	//$LOG.= "Poliza Actualizada [OK]<br />";	
@@ -95,9 +95,9 @@ else
 <body>
 <div id="head_sec"><a href="#" class="link">POLIZA</a></div>
 <div id="cont_head">
-<form method="post" action="polizas_form.php?id_pac=<?php echo $_GET['id_pac'];?>&cod_poliza=<?php echo $poliza_num;?>&accion=<?php echo $accion;?>&con_num=<?php echo $connum;?>" >
+<form method="post" action="polizas_form.php?id_pac=<?php echo (isset($_GET['id_pac']) ? $_GET['id_pac'] : NULL);?>&cod_poliza=<?php echo $poliza_num;?>&accion=<?php echo $accion;?>&con_num=<?php echo $connum;?>" >
 <?php
-$row_pac = dataPac($_GET['id_pac']); 
+$row_pac = dataPac((isset($_GET['id_pac']) ? $_GET['id_pac'] : NULL)); 
 ?>
 <table border="3" align="center">
 <tr bordercolor="#000000">

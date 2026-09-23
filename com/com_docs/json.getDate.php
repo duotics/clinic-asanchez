@@ -1,4 +1,5 @@
 <?php require_once('../../init.php');
+$val='';
 
 function valMes($mes){
 	switch(intval($mes)){

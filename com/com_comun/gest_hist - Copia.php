@@ -1,24 +1,25 @@
 <?php require('../../init.php');
+$LOG='';
 //INSERT NEW
-if(($_GET['action'])&&($_GET['action']=='DEL')){
-	$idh=$_GET['idh'];
-	$id=$_GET['id'];
+if(((isset($_GET['action']) ? $_GET['action'] : NULL))&&((isset($_GET['action']) ? $_GET['action'] : NULL)=='DEL')){
+	$idh=(isset($_GET['idh']) ? $_GET['idh'] : NULL);
+	$id=(isset($_GET['id']) ? $_GET['id'] : NULL);
 	$qryDEL='DELETE FROM `db_signos` WHERE id='.$idh;
 	if(@mysql_query($qryDEL)) $LOG.="Eliminado Correctamente:: ID = ".$idh;
 	else $LOG.='<b>No se pudo Eliminar</b>';
 	header("Location: ".$urlcurrent.'?id='.$id); 
 }
-if(($_POST['form'])&&($_POST['form']=='hispac')){
-	$id=$_POST['id'];
-	$fecha=$_POST['hfecha'];
-	$peso=$_POST['hpeso'];
-	$paS=$_POST['hpas'];
-	$paD=$_POST['hpad'];
-	$talla=$_POST['htalla'];
-	$temp=$_POST['htemp'];
-	$fc=$_POST['hfc'];
-	$fr=$_POST['hfr'];
-	$sao2=$_POST['hsao2'];
+if(((isset($_POST['form']) ? $_POST['form'] : NULL))&&((isset($_POST['form']) ? $_POST['form'] : NULL)=='hispac')){
+	$id=(isset($_POST['id']) ? $_POST['id'] : NULL);
+	$fecha=(isset($_POST['hfecha']) ? $_POST['hfecha'] : NULL);
+	$peso=(isset($_POST['hpeso']) ? $_POST['hpeso'] : NULL);
+	$paS=(isset($_POST['hpas']) ? $_POST['hpas'] : NULL);
+	$paD=(isset($_POST['hpad']) ? $_POST['hpad'] : NULL);
+	$talla=(isset($_POST['htalla']) ? $_POST['htalla'] : NULL);
+	$temp=(isset($_POST['htemp']) ? $_POST['htemp'] : NULL);
+	$fc=(isset($_POST['hfc']) ? $_POST['hfc'] : NULL);
+	$fr=(isset($_POST['hfr']) ? $_POST['hfr'] : NULL);
+	$sao2=(isset($_POST['hsao2']) ? $_POST['hsao2'] : NULL);
 	
 	$insertSQL = sprintf("INSERT INTO `db_signos`
 	(`pac_cod`,`fecha`,`peso`,`paS`,`paD`,`talla`,`temp`,`fc`,`fr`,`SaO2`) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
@@ -36,7 +37,7 @@ if(($_POST['form'])&&($_POST['form']=='hispac')){
 	header("Location: ".$urlcurrent.'?id='.$id);
 }
 
-$id=vParam('id', $_GET['id'], $_POST['id']);
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
 $detpac=dataPac($id);
 $qry='SELECT * FROM db_signos WHERE pac_cod='.$id.' ORDER BY id DESC';
 $RSh=mysql_query($qry);

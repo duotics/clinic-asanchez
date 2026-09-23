@@ -1,5 +1,6 @@
 <?php include('../../init.php');
-$idcli=vParam('cli_sel_find', $_GET['cli_sel_find'], $_POST['cli_sel_find']);
+$btnAcc='';
+$idcli=vParam('cli_sel_find', isset($_GET['cli_sel_find']) ? $_GET['cli_sel_find'] : NULL, isset($_POST['cli_sel_find']) ? $_POST['cli_sel_find'] : NULL);
 $dPac=dataPac($idcli);
 $dCon=detRow('db_consultas','pac_cod',$idcli,'con_num','DESC');
 $_SESSION['id_pac']=$dPac['pac_cod']; //REVISAR

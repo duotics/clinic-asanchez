@@ -1,5 +1,5 @@
 <?php require_once('../../init.php');
-if($_SESSION['refresh']=='ok'){
+if((isset($_SESSION['refresh']) ? $_SESSION['refresh'] : NULL)=='ok'){
 	$_SESSION['refresh']=null;
 	$insertGoTo = 'pagos_pendientes.php';//REDIRECCION A LA MISMA PAGINA
 	header(sprintf("Location: %s", $insertGoTo));

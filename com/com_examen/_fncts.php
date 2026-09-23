@@ -1,12 +1,14 @@
 <?php include('../../init.php');
-$id=vParam('id',$_GET['id'],$_POST['id']); //ID STANDAR
-$idp=vParam('idp',$_GET['idp'],$_POST['idp']); //ID PACIENTE
-$idc=vParam('idc',$_GET['idc'],$_POST['idc']); //ID CONSULTA
-$ide=vParam('ide',$_GET['ide'],$_POST['ide']);
-$idef=vParam('idef',$_GET['idef'],$_POST['idef']);
+$LOG='';
+$debug='';
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL); //ID STANDAR
+$idp=vParam('idp', isset($_GET['idp']) ? $_GET['idp'] : NULL, isset($_POST['idp']) ? $_POST['idp'] : NULL); //ID PACIENTE
+$idc=vParam('idc', isset($_GET['idc']) ? $_GET['idc'] : NULL, isset($_POST['idc']) ? $_POST['idc'] : NULL); //ID CONSULTA
+$ide=vParam('ide', isset($_GET['ide']) ? $_GET['ide'] : NULL, isset($_POST['ide']) ? $_POST['ide'] : NULL);
+$idef=vParam('idef', isset($_GET['idef']) ? $_GET['idef'] : NULL, isset($_POST['idef']) ? $_POST['idef'] : NULL);
 //VARIABLE ACCION Y REDIRECCION
-$acc=vParam('acc',$_GET['acc'],$_POST['acc']);
-$goTo=vParam('url',$_GET['url'],$_POST['url']);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
+$goTo=vParam('url', isset($_GET['url']) ? $_GET['url'] : NULL, isset($_POST['url']) ? $_POST['url'] : NULL);
 $vD=TRUE;
 $data=$_POST;
 $debug.='<hr>BEGIN<br>';
@@ -244,12 +246,12 @@ if((!mysql_error())&&($vP==TRUE)){
 	mysql_query("COMMIT;");
 	$LOGt='Operación Exitosa';
 	$LOGc='alert-success';
-	$LOGi=$RAIZa.$_SESSION['conf']['i']['ok'];
+	$LOGi=$RAIZa.(isset($_SESSION['conf']['i']['ok']) ? $_SESSION['conf']['i']['ok'] : NULL);
 }else{
 	mysql_query("ROLLBACK;");
 	$LOGt='Solicitud no Procesada';
 	$LOGc='alert-danger';
-	$LOGi=$RAIZa.$_SESSION['conf']['i']['fail'];
+	$LOGi=$RAIZa.(isset($_SESSION['conf']['i']['fail']) ? $_SESSION['conf']['i']['fail'] : NULL);
 }
 mysql_query("SET AUTOCOMMIT=1;"); //Habilita el autocommit
 $_SESSION['LOG']['m']=$LOG;

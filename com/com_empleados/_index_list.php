@@ -24,7 +24,7 @@ $tRSe = mysql_num_rows($RSe);
     <tbody>
 <?php do { ?> 
 <?php
-$btnStat=fncStat('acc.php',array("id"=>$dRSe['emp_cod'], "val"=>$dRSe['emp_status'],"acc"=>md5('STAT'),"url"=>$_SESSION['urlc']));
+$btnStat=fncStat('acc.php',array("id"=>$dRSe['emp_cod'], "val"=>$dRSe['emp_status'],"acc"=>md5('STAT'),"url"=>(isset($_SESSION['urlc']) ? $_SESSION['urlc'] : NULL)));
 $dTip=detRow('db_types','typ_cod',$dRSe['typ_cod']);
 $dU=detRow('db_user_system','emp_cod',$dRSe['emp_cod']);
 if($dU) $btnUser='<a class="btn btn-info btn-xs"><i class="fa fa-user fa-lg"></i></a>';

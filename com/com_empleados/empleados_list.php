@@ -1,5 +1,5 @@
 <?php if (($_GET['id_emp']==null)&&($_GET["action_form"]!="INSERT")) $_GET['id_emp']=$_SESSION['id_emp'];
-$accion =$_GET["action_form"];	
+$accion =(isset($_GET["action_form"]) ? $_GET["action_form"] : NULL);	
 $query_empleados ='SELECT * FROM db_empleados';
 if (mysql_query($query_empleados)){
 $RS_empleados_list = mysql_query($query_empleados);

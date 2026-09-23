@@ -4,7 +4,7 @@ $_SESSION['MODSEL']="CON";
 include(RAIZf."head.php");
 include(RAIZf.'fraTop.php'); ?>
 <div class="container">
-	<?php echo gen_pageTit($_SESSION['MODSEL']) ?>
+	<?php echo gen_pageTit((isset($_SESSION['MODSEL']) ? $_SESSION['MODSEL'] : NULL)) ?>
 	<div class="well well-sm"><?php include(RAIZc.'com_pacientes/pacientes_find.php'); ?></div>
     <div><?php include(RAIZc.'com_pacientes/pacientes_list.php'); ?></div>
 </div>

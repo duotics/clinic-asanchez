@@ -1,6 +1,6 @@
 <?php require('../../init.php');
 $dM=vLogin('TERTRAT');
-$id=vParam('id',$_GET['id'],$_POST['id']);
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
 $dT=detRow('db_terapiastrata','id_trat',$id);
 if($dT){
 	$acc='UPD';
@@ -55,7 +55,7 @@ include(RAIZm.'mod_menu/menuMain.php'); ?>
 			<td><?php echo $row_RSd['nom_trat'] ?></td>
 			<td><?php echo $row_RSd['obs_trat']?></td>                   			
 			<td>
-				<a href="<?php echo $_SESSION['urlc'] ?>?id=<?php echo $row_RSd['id_trat'] ?>" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-edit"></i> Modificar</a>
+				<a href="<?php echo (isset($_SESSION['urlc']) ? $_SESSION['urlc'] : NULL) ?>?id=<?php echo $row_RSd['id_trat'] ?>" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-edit"></i> Modificar</a>
 				<a href="tratamiento_save.php?id=<?php echo $row_RSd['id_trat'] ?>&acc=DEL" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Eliminar</a>
 			</td>
 		</tr>

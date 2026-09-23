@@ -1,10 +1,10 @@
 <?php require('../../init.php');
 $_SESSION['tab']['con']='cHTC';
-$idp=vParam('idp',$_GET['idp'],$_POST['idp']);
-$idc=vParam('idc',$_GET['idc'],$_POST['idc']);
-$idd=vParam('idd',$_GET['idd'],$_POST['idd']);
+$idp=vParam('idp', isset($_GET['idp']) ? $_GET['idp'] : NULL, isset($_POST['idp']) ? $_POST['idp'] : NULL);
+$idc=vParam('idc', isset($_GET['idc']) ? $_GET['idc'] : NULL, isset($_POST['idc']) ? $_POST['idc'] : NULL);
+$idd=vParam('idd', isset($_GET['idd']) ? $_GET['idd'] : NULL, isset($_POST['idd']) ? $_POST['idd'] : NULL);
 $iddf='5';
-$action=vParam('action',$_GET['action'],$_POST['action']);
+$action=vParam('action', isset($_GET['action']) ? $_GET['action'] : NULL, isset($_POST['action']) ? $_POST['action'] : NULL);
 $detdoc=detRow('db_documentos','id_doc',$idd);//fnc_datadoc($idd);
 $detdocf=fnc_datadocf($iddf);
 if($idd) {$idp=$detdoc['pac_cod']; $idc=$detdoc['con_num'];}

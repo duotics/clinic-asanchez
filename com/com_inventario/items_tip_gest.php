@@ -1,6 +1,6 @@
 <?php include('../../init.php');
 $_SESSION['MODSEL']="INVT";
-$rowMod=fnc_datamod($_SESSION['MODSEL']);
+$rowMod=fnc_datamod((isset($_SESSION['MODSEL']) ? $_SESSION['MODSEL'] : NULL));
 $query_RS_list_tip = "SELECT * FROM tbl_prod_tipos";
 $RS_list_tip = mysql_query($query_RS_list_tip) or die(mysql_error());
 $row_RS_list_tip = mysql_fetch_assoc($RS_list_tip);

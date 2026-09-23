@@ -1,10 +1,10 @@
 <?php include('../../init.php');
-$val=$_GET['idsearch'];
+$val=(isset($_GET['idsearch']) ? $_GET['idsearch'] : NULL);
 $query_RScli = "SELECT * FROM db_pacientes";
 $RScli = mysql_query($query_RScli) or die(mysql_error());
 $row_RScli = mysql_fetch_assoc($RScli);
 $totalRows_RScli = mysql_num_rows($RScli);
-$q = strtolower($_GET["q"]);
+$q = strtolower((isset($_GET["q"]) ? $_GET["q"] : NULL));
 if (!$q) return;
 do{
 	if($val=='find_nom') $find_cad=$row_RScli['pac_nom'].' '.$row_RScli['pac_ape'];

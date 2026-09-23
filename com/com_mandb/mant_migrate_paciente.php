@@ -1,4 +1,7 @@
 <?php include('../../init.php');
+$LOG='';
+$contE=0;
+$contN=0;
 set_time_limit(300);
 include(RAIZf.'head.php');php?>
 <body class="cero">

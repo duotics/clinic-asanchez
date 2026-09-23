@@ -1,10 +1,12 @@
 <?php require('../../init.php');
-$id=vParam('id',$_GET['id'],$_POST['id']);
-$idr=vParam('idr',$_GET['idr'],$_POST['idr']);
-$ids=vParam('ids',$_GET['ids'],$_POST['ids']);
-$acc=vParam('acc',$_GET['acc'],$_POST['acc']);
-$val=vParam('val',$_GET['val'],$_POST['val']);
-$url=vParam('url',$_GET['url'],$_POST['url']);
+$LOG='';
+$LOGd='';
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
+$idr=vParam('idr', isset($_GET['idr']) ? $_GET['idr'] : NULL, isset($_POST['idr']) ? $_POST['idr'] : NULL);
+$ids=vParam('ids', isset($_GET['ids']) ? $_GET['ids'] : NULL, isset($_POST['ids']) ? $_POST['ids'] : NULL);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
+$val=vParam('val', isset($_GET['val']) ? $_GET['val'] : NULL, isset($_POST['val']) ? $_POST['val'] : NULL);
+$url=vParam('url', isset($_GET['url']) ? $_GET['url'] : NULL, isset($_POST['url']) ? $_POST['url'] : NULL);
 $goTo=$url;
 $data=$_POST;
 $vP=FALSE;
@@ -14,11 +16,11 @@ mysql_query("SET AUTOCOMMIT=0;"); //Desabilita el autocommit
 mysql_query("BEGIN;"); //Inicia la transaccion
 //////////////////////////////////////////////////////////////
 $LOGd.='antes fmed<br>';
-if(isset($data['form'])&&($data['form']==md5(fmed))){
+if(isset($data['form'])&&($data['form']==md5('fmed'))){
 	$LOGd.='ENTRA  fmed<br>';
 	$_SESSION['tab']['medf']['tabA']='active';
 	$LOGd.="form -> fmed<br>";
-	if($acc==md5(INSm)){
+	if($acc==md5('INSm')){
 		$LOGd.="acc -> INSm<br>";
 		$idA=AUD(NULL,'Crear Medicamento');
 		$qryI = sprintf("INSERT INTO db_medicamentos (lab, generico, comercial, presentacion, cantidad, descripcion, estado, idA) 
@@ -37,7 +39,7 @@ if(isset($data['form'])&&($data['form']==md5(fmed))){
 			$LOG.='<p>Medicamento Creado</p>';
 		}else $LOG.= '<p>Error al Crear Medicamento</p>'.mysql_error();
 	}
-	if($acc==md5(UPDm)){
+	if($acc==md5('UPDm')){
 		$LOGd.="acc -> UPDm<br>";
 		$dMed=detRow('db_medicamentos','id_form',$id);
 		$idA=AUD($dMed['idA'],'Actualizar Medicamento');
@@ -60,9 +62,9 @@ if(isset($data['form'])&&($data['form']==md5(fmed))){
 	$goToP='?id='.$id;
 }
 //////////////////////////////////////////////////////////////
-if(isset($data['form'])&&($data['form']==md5(MedGrp))){
+if(isset($data['form'])&&($data['form']==md5('MedGrp'))){
 	$_SESSION['tab']['medf']['tabB']='active';
-	if($acc==md5(INSmg)){
+	if($acc==md5('INSmg')){
 		$LOG=var_dump($data);
 		$qINS=sprintf('INSERT INTO db_medicamentos_grp (idp,idm) VALUES (%s,%s)',
 						SSQL($id, 'int'),
@@ -76,9 +78,9 @@ if(isset($data['form'])&&($data['form']==md5(MedGrp))){
 	}	
 }
 //////////////////////////////////////////////////////////////
-if(isset($data['form'])&&($data['form']==md5(find))){
+if(isset($data['form'])&&($data['form']==md5('find'))){
 	$LOGd.="form -> fmed<br>";
-	if($acc==md5(INSi)){
+	if($acc==md5('INSi')){
 		$LOGd.="acc -> INSm<br>";
 		$idA=AUD(NULL,'Crear Indicacion');
 		$qryI = sprintf("INSERT INTO db_indicaciones (des, feat, est) 
@@ -92,7 +94,7 @@ if(isset($data['form'])&&($data['form']==md5(find))){
 			$LOG.=$cfg['p']['ins-true'];
 		}else $LOG.= $cfg['p']['ins-false'].mysql_error();
 	}
-	if($acc==md5(UPDi)){
+	if($acc==md5('UPDi')){
 		$LOGd.="acc -> UPDm<br>";
 		$dMed=detRow('db_medicamentos','id_form',$id);
 		$idA=AUD($dMed['idA'],'Actualizar Indicacion');
@@ -110,7 +112,7 @@ if(isset($data['form'])&&($data['form']==md5(find))){
 	$goToP='?id='.$id;
 }
 //////////////////////////////////////////////////////////////
-if(isset($acc)&&($acc==md5(DELm))){
+if(isset($acc)&&($acc==md5('DELm'))){
 	$LOGd.="acc -> DELm<br>";
 	$TMC=totRowsTabP('db_tratamientos_detalle','AND idref='.$id.' AND tip="M"');
 	if($TMC>0){
@@ -125,7 +127,7 @@ if(isset($acc)&&($acc==md5(DELm))){
 	}
 	$url.='?id='.$id;
 }
-if(isset($acc)&&($acc==md5(STm))){
+if(isset($acc)&&($acc==md5('STm'))){
 	$LOGd.="acc -> STm<br>";
 	$qUPD=sprintf('UPDATE db_medicamentos SET estado=%s WHERE id_form=%s LIMIT 1',
 					SSQL($val,'int'),
@@ -135,7 +137,7 @@ if(isset($acc)&&($acc==md5(STm))){
 		$LOG.="<p>Estado Actualizado</p>";
 	}else $LOG.='<p>No se actualizar estado</p>'.mysql_error();
 }
-if(isset($acc)&&($acc==md5(CLONm))){
+if(isset($acc)&&($acc==md5('CLONm'))){
 	$LOGd.="acc -> STm<br>";
 	$detM=detRow('db_medicamentos','id_form',$id);
 	$idA=AUD(NULL,'Crear Medicamento');
@@ -156,7 +158,7 @@ if(isset($acc)&&($acc==md5(CLONm))){
 	}else $LOG.=$cfg['p']['clon-false'].mysql_error();
 	$goToP.='?id='.$id;
 }
-if(isset($acc)&&($acc==md5(DELmg))){
+if(isset($acc)&&($acc==md5('DELmg'))){
 	$_SESSION['tab']['medf']['tabB']='active';
 	$qryD=sprintf('DELETE FROM db_medicamentos_grp WHERE id=%s',
 				  SSQL($idr, "int"));
@@ -167,7 +169,7 @@ if(isset($acc)&&($acc==md5(DELmg))){
 	}else $LOG.=$cfg['p']['del-false'].mysql_error();
 	$goToP.='?id='.$id;
 }
-if(isset($acc)&&($acc==md5(STi))){
+if(isset($acc)&&($acc==md5('STi'))){
 	$LOGd.="acc -> STi<br>";
 	$qUPD=sprintf('UPDATE db_indicaciones SET est=%s WHERE id=%s LIMIT 1',
 					SSQL($val,'int'),
@@ -177,7 +179,7 @@ if(isset($acc)&&($acc==md5(STi))){
 		$LOG.="<p>Estado Actualizado</p>";
 	}else $LOG.='<p>No se actualizar estado</p>'.mysql_error();
 }
-if(isset($acc)&&($acc==md5(FTi))){
+if(isset($acc)&&($acc==md5('FTi'))){
 	$LOGd.="acc -> FTi<br>";
 	$qUPD=sprintf('UPDATE db_indicaciones SET feat=%s WHERE id=%s LIMIT 1',
 					SSQL($val,'int'),

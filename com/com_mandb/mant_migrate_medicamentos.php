@@ -1,4 +1,9 @@
 <?php include('../../init.php');
+$RES='';
+$contMC=0;
+$contMO=0;
+$contMT=0;
+$contMTO=0;
 function findDataMed($cadena){
 	$parte1=explode('(',$cadena);
 	$parte2=explode(')',$parte1[1]);

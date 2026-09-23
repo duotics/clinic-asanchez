@@ -1,6 +1,6 @@
 <?php include('../../init.php');
 $_SESSION['MODSEL']="INVP";
-$rowMod=fnc_datamod($_SESSION['MODSEL']);
+$rowMod=fnc_datamod((isset($_SESSION['MODSEL']) ? $_SESSION['MODSEL'] : NULL));
 $query_RS_list_prod = "SELECT * FROM tbl_productos
 LEFT JOIN tbl_prod_tipos ON tbl_productos.tip_cod=tbl_prod_tipos.tip_cod
 LEFT JOIN tbl_prod_categorias ON tbl_prod_tipos.cat_cod=tbl_prod_categorias.cat_cod

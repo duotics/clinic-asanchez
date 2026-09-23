@@ -1,5 +1,5 @@
 <?php require('../../../init.php');
-$id=$_REQUEST['id'];
+$id=(isset($_REQUEST['id']) ? $_REQUEST['id'] : NULL);
 /* JPEGCam Test Script */
 /* Receives JPEG webcam submission and saves to local file. */
 /* Make sure your directory has permission to write files as your web server user! */

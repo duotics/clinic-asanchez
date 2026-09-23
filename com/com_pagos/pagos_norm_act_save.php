@@ -1,7 +1,7 @@
 <?php require_once('../../init.php');
-$valor=$_GET['valor'];
-$id_pac=$_GET['id_pac'];
-$id_emp=$_SESSION['dU']['u_id'];
+$valor=(isset($_GET['valor']) ? $_GET['valor'] : NULL);
+$id_pac=(isset($_GET['id_pac']) ? $_GET['id_pac'] : NULL);
+$id_emp=(isset($_SESSION['dU']['u_id']) ? $_SESSION['dU']['u_id'] : NULL);
 
 $SQL_bus_pen="SELECT tbl_cta_por_cobrar.num_cta, tbl_cta_por_cobrar.cta_detalle, tbl_cta_por_cobrar.con_num, tbl_cta_por_cobrar.pac_cod,
 (tbl_cta_por_cobrar.cta_valor-tbl_cta_por_cobrar.cta_abono) AS Saldo FROM tbl_cta_por_cobrar

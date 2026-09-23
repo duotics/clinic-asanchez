@@ -32,7 +32,7 @@ function SSQL($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = 
 
 $colname_RS_emp_sel = "-1";
 if (isset($_POST['emp_sel_find'])) {
-  $colname_RS_emp_sel = $_POST['emp_sel_find'];
+  $colname_RS_emp_sel = (isset($_POST['emp_sel_find']) ? $_POST['emp_sel_find'] : NULL);
 }
 
 $query_RS_emp_sel = sprintf("SELECT * FROM db_empleados WHERE emp_cod = %s", SSQL($colname_RS_emp_sel, "int"));

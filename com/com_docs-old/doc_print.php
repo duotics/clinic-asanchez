@@ -1,5 +1,5 @@
 <?php require_once('../../init.php');
-$id=vParam('id',$_GET['id'],$_POST['id']);
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
     // GET HTML
 	ob_start();
     include('reporteDoc.php');

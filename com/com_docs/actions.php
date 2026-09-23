@@ -1,18 +1,21 @@
 <?php require_once('../../init.php');
-$id=vParam('id',$_GET['id'],$_POST['id']);
-$ids=vParam('ids',$_GET['ids'],$_POST['ids']);
-$ide=vParam('ide',$_GET['ide'],$_POST['ide']);
-$idefd=vParam('idefd',$_GET['idefd'],$_POST['idefd']);
-$acc=vParam('acc',$_GET['acc'],$_POST['acc']);
-$val=vParam('val',$_GET['val'],$_POST['val']);
-$form=vParam('form',$_GET['form'],$_POST['form']);
-$goTo=vParam('url',$_GET['url'],$_POST['url']);
+$LOG='';
+$LOGd='';
+$LOGt='';
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
+$ids=vParam('ids', isset($_GET['ids']) ? $_GET['ids'] : NULL, isset($_POST['ids']) ? $_POST['ids'] : NULL);
+$ide=vParam('ide', isset($_GET['ide']) ? $_GET['ide'] : NULL, isset($_POST['ide']) ? $_POST['ide'] : NULL);
+$idefd=vParam('idefd', isset($_GET['idefd']) ? $_GET['idefd'] : NULL, isset($_POST['idefd']) ? $_POST['idefd'] : NULL);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
+$val=vParam('val', isset($_GET['val']) ? $_GET['val'] : NULL, isset($_POST['val']) ? $_POST['val'] : NULL);
+$form=vParam('form', isset($_GET['form']) ? $_GET['form'] : NULL, isset($_POST['form']) ? $_POST['form'] : NULL);
+$goTo=vParam('url', isset($_GET['url']) ? $_GET['url'] : NULL, isset($_POST['url']) ? $_POST['url'] : NULL);
 $data=$_POST;
 mysql_query("SET AUTOCOMMIT=0;"); //Desabilita el autocommit
 mysql_query("BEGIN;"); //Inicia la transaccion
-if((isset($form))&&($form==md5(fFormat))){
+if((isset($form))&&($form==md5('fFormat'))){
 	switch($acc){
-		case md5(INSf):
+		case md5('INSf'):
 			$idA=AUD(NULL,'Creación formato documento');
 			$qry=sprintf('INSERT INTO db_documentos_formato (nombre,formato,status,idA) VALUES (%s,%s,%s,%s)',
 						SSQL($data['iNom'],'text'),
@@ -27,7 +30,7 @@ if((isset($form))&&($form==md5(fFormat))){
 				$LOG.='<p>Formato creado correctamente</p>';
 			}else $LOG.='<p>Error al crear formato</p>'.mysql_error();
 		break;
-		case md5(UPDf):
+		case md5('UPDf'):
 			$detF=detRow('db_documentos_formato','md5(id_df)',$ids);
 			$id=$detF['id_df'];
 			$idA=AUD($detF['idA'],'Actualización formato examen');

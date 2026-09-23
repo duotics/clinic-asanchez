@@ -1,4 +1,5 @@
 <?php require('../../init.php');
+$LOG='';
 vLOGIN();
 $dat=$_REQUEST;
 $id=$dat['id'];
@@ -71,10 +72,10 @@ if(($dat['form'])&&($dat['form']==md5('formUsr'))){
 }//END USER
 
 
-if(($dat['form'])&&($dat['form']==md5(formPass))){
+if(($dat['form'])&&($dat['form']==md5('formPass'))){
 $GoTo=$RAIZc.'com_usersystem/changePass.php';
 //Valid Token
-$datUsu=detRow('db_user_system','user_cod',$_SESSION['dU']['u_id']);
+$datUsu=detRow('db_user_system','user_cod',(isset($_SESSION['dU']['u_id']) ? $_SESSION['dU']['u_id'] : NULL));
 if($datUsu){
 	//Usuario Valido
 	$datUsu_passAnt=$datUsu['user_password'];
@@ -90,7 +91,7 @@ if($datUsu){
 				$qry=sprintf('UPDATE db_user_system SET user_password=%s, id_aud=%s WHERE user_cod=%s',
 				SSQL($passNew,'text'),
 				SSQL($id_aud,'int'),
-				SSQL($_SESSION['dU']['u_id'],'int'));
+				SSQL((isset($_SESSION['dU']['u_id']) ? $_SESSION['dU']['u_id'] : NULL),'int'));
 				if(mysql_query($qry)){
 					//Contraseña Modificada
 					$vP=TRUE;
@@ -122,7 +123,7 @@ if($datUsu){
 if(($dat['form'])&&($dat['form']=='formPerfil')){
 	$GoTo=$RAIZc.'com_usersystem/userPerfil.php';
 
-	$datUsu=detRow('db_user_system','user_cod',$_SESSION['dU']['u_id']);
+	$datUsu=detRow('db_user_system','user_cod',(isset($_SESSION['dU']['u_id']) ? $_SESSION['dU']['u_id'] : NULL));
 	$datEmp=detRow('db_empleados','emp_cod',$datUsu['emp_cod']);
 	$id_aud=AUD($datUsu['id_aud'],'Actualización Usuario');
 	//UPDATE db_user_systema
@@ -130,7 +131,7 @@ if(($dat['form'])&&($dat['form']=='formPerfil')){
 	SSQL($dat['user_nombre'],'text'),
 	SSQL($dat['user_theme'],'text'),
 	SSQL($id_aud,'int'),
-	SSQL($_SESSION['dU']['u_id'],'int'));
+	SSQL((isset($_SESSION['dU']['u_id']) ? $_SESSION['dU']['u_id'] : NULL),'int'));
 	if(@mysql_query($qryUpdUsr)){
 		$LOG.='<p>Usuario Actualizado</p>';
 		//UPDATE db_empleados

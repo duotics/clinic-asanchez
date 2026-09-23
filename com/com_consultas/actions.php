@@ -1,11 +1,12 @@
 <?php include('../../init.php');
+$LOG='';
 //FUNCIONES FORMULARIO CONSULTAS
 //PARAMETROS
-$idp=vParam('idp', $_GET['idp'], $_POST['idp']);//Id que viene de AJAX
-$idc=vParam('idc', $_GET['idc'], $_POST['idc']);//Id que viene de AJAX
-$idr=vParam('idr', $_GET['idr'], $_POST['idr']);//Id que viene de AJAX
-$acc=vParam('acc', $_GET['acc'], $_POST['acc']);//Id que viene de AJAX
-$mod=vParam('mod', $_GET['mod'], $_POST['mod'],FALSE);//mod
+$idp=vParam('idp', isset($_GET['idp']) ? $_GET['idp'] : NULL, isset($_POST['idp']) ? $_POST['idp'] : NULL);//Id que viene de AJAX
+$idc=vParam('idc', isset($_GET['idc']) ? $_GET['idc'] : NULL, isset($_POST['idc']) ? $_POST['idc'] : NULL);//Id que viene de AJAX
+$idr=vParam('idr', isset($_GET['idr']) ? $_GET['idr'] : NULL, isset($_POST['idr']) ? $_POST['idr'] : NULL);//Id que viene de AJAX
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);//Id que viene de AJAX
+$mod=vParam('mod', (isset($_GET['mod']) ? $_GET['mod'] : NULL), (isset($_POST['mod']) ? $_POST['mod'] : NULL),FALSE);//mod
 $dat=$_POST;
 $vP=FALSE;
 mysql_query("SET AUTOCOMMIT=0;"); //Desabilita el autocommit
@@ -62,14 +63,14 @@ if((!mysql_error())&&($vP==TRUE)){
 	mysql_query("COMMIT;");
 	$LOGt='Operación Ejecutada Exitosamente';
 	$LOGc='alert-success';
-	$LOGi=$RAIZa.$_SESSION['conf']['i']['ok'];
+	$LOGi=$RAIZa.(isset($_SESSION['conf']['i']['ok']) ? $_SESSION['conf']['i']['ok'] : NULL);
 	$insertGoTo = 'form.php?idc='.$idc;
 }else{
 	mysql_query("ROLLBACK;");
 	$LOGt='Fallo del Sistema, intente de nuevo';
 	$LOGc='alert-danger';
 	$insertGoTo = 'form.php?idc='.$idc.'&idp='.$idp;
-	$LOGi=$RAIZa.$_SESSION['conf']['i']['fail'];
+	$LOGi=$RAIZa.(isset($_SESSION['conf']['i']['fail']) ? $_SESSION['conf']['i']['fail'] : NULL);
 }
 mysql_query("SET AUTOCOMMIT=1;"); //Habilita el autocommit
 $LOG.=mysql_error();

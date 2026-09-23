@@ -1,5 +1,5 @@
 <?php require('../../init.php');
-$id=vParam('id',$_GET['id'],$_POST['id']);
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
 $det=detRow('db_examenes','id_exa',$id);//fnc_dataexam($ide);
 
 if($det){

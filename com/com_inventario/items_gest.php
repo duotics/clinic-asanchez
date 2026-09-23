@@ -1,7 +1,7 @@
 <?php include('../../init.php');
 $_SESSION['MODSEL']="INV";
 $_SESSION['DIRSEL']="items_gest.php";
-$rowMod=fnc_datamod($_SESSION['MODSEL']);
+$rowMod=fnc_datamod((isset($_SESSION['MODSEL']) ? $_SESSION['MODSEL'] : NULL));
 include(RAIZf."head.php");
 include(RAIZf.'fraTop.php'); ?>
 <div class="container">

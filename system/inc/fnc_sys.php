@@ -308,15 +308,15 @@ function urlr($urlf=NULL){
 
 	//$urlf :: URL proveniente de un FORM
 
-	//$urla :: URL anterior proveniente de una Session declarada en el Header $_SESSION['urlp']
+	//$urla :: URL anterior proveniente de una Session declarada en el Header (isset($_SESSION['urlp']) ? $_SESSION['urlp'] : NULL)
 
 	//$urlc :: URL actual de el archivo que solicita la validacion de url
 
 //echo '<h4>entra a verurlr</h4>';
 
-$urlp=$_SESSION['urlp'];//URL Previa
+$urlp=(isset($_SESSION['urlp']) ? $_SESSION['urlp'] : NULL);//URL Previa
 
-$urlc=$_SESSION['urlc'];//URL Actual
+$urlc=(isset($_SESSION['urlc']) ? $_SESSION['urlc'] : NULL);//URL Actual
 
 //Verifico si tengo una URL retorno de formulario (urlf)
 
@@ -498,7 +498,7 @@ function genMenu($refMC,$css=NULL,$vrfUL=TRUE){
 
 	SSQL('0','int'),
 
-	SSQL($_SESSION['dU']['u_id'],'int'),
+	SSQL((isset($_SESSION['dU']['u_id']) ? $_SESSION['dU']['u_id'] : NULL),'int'),
 
 	SSQL('1','text'));
 
@@ -524,7 +524,7 @@ function genMenu($refMC,$css=NULL,$vrfUL=TRUE){
 
 			SSQL($dRSmp['men_id'],'int'),
 
-			SSQL($_SESSION['dU']['u_id'],'int'),
+			SSQL((isset($_SESSION['dU']['u_id']) ? $_SESSION['dU']['u_id'] : NULL),'int'),
 
 			SSQL(1,'int'));
 
@@ -860,7 +860,7 @@ function vLogin($mSel=NULL){//,$accesscheck=FALSE){
 
 		WHERE db_menus_user.user_cod=%s AND db_menus_items.men_nombre=%s',
 
-		SSQL($_SESSION['dU']['u_id'],'int'),
+		SSQL((isset($_SESSION['dU']['u_id']) ? $_SESSION['dU']['u_id'] : NULL),'int'),
 
 		SSQL($mSel,'text'));
 
@@ -1266,9 +1266,9 @@ function urlReturn($urlr,$urld=NULL){
 
 //$urld -> URL defecto para el Modulo
 
-	$urla=$_SESSION['urlp'];
+	$urla=(isset($_SESSION['urlp']) ? $_SESSION['urlp'] : NULL);
 
-	$urlc=$_SESSION['urlc'];
+	$urlc=(isset($_SESSION['urlc']) ? $_SESSION['urlc'] : NULL);
 
 	if (($urlr)&&($urlr != $urlc)){
 
@@ -1300,7 +1300,7 @@ function vLOG(){
 
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
 
-	'.$_SESSION['LOG'].'</div></div>';
+	'.(isset($_SESSION['LOG']) ? $_SESSION['LOG'] : NULL).'</div></div>';
 
 	unset($_SESSION['LOG']);
 

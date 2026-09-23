@@ -1,12 +1,12 @@
 <?php require('../../init.php');
 $_SESSION['tab']['con']='cTRA';
-$idc=vParam('idc',$_GET['idc'],$_POST['idc']);
-$idp=vParam('idp',$_GET['idp'],$_POST['idp']);
-$idt=vParam('idt',$_GET['idt'],$_POST['idt']);
-$acc=vParam('acc',$_GET['acc'],$_POST['acc']);
+$idc=vParam('idc', isset($_GET['idc']) ? $_GET['idc'] : NULL, isset($_POST['idc']) ? $_POST['idc'] : NULL);
+$idp=vParam('idp', isset($_GET['idp']) ? $_GET['idp'] : NULL, isset($_POST['idp']) ? $_POST['idp'] : NULL);
+$idt=vParam('idt', isset($_GET['idt']) ? $_GET['idt'] : NULL, isset($_POST['idt']) ? $_POST['idt'] : NULL);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
 //Eliminar Tratamiento
-if($acc==md5(DELtf)) header(sprintf("Location: %s", '_fncts.php?idt='.$idt.'&acc='.$acc));
-if($acc==md5(NEWt)) header(sprintf("Location: %s", '_fncts.php?idc='.$idc.'&idp='.$idp.'&acc='.$acc.'&url='.$urlc));
+if($acc==md5('DELtf')) header(sprintf("Location: %s", '_fncts.php?idt='.$idt.'&acc='.$acc));
+if($acc==md5('NEWt')) header(sprintf("Location: %s", '_fncts.php?idc='.$idc.'&idp='.$idp.'&acc='.$acc.'&url='.$urlc));
 //FORM
 $detTrat=detRow('db_tratamientos','tid',$idt);
 if($detTrat){
@@ -21,13 +21,13 @@ if($detTrat){
 	$qRSlm = sprintf('SELECT id_form AS sID, CONCAT_WS(" ",generico," ( ",comercial," ) "," : ",presentacion, cantidad) as sVAL FROM db_medicamentos WHERE estado=1 OR generico IS NULL OR comercial IS NULL OR presentacion IS NULL OR cantidad IS NULL ORDER BY generico ASC');
 	$RSlm = mysql_query($qRSlm) or die(mysql_error());
 	
-	$idtd=vParam('idtd',$_GET['idtd'],$_POST['idtd']);
+	$idtd=vParam('idtd', isset($_GET['idtd']) ? $_GET['idtd'] : NULL, isset($_POST['idtd']) ? $_POST['idtd'] : NULL);
 	$detTD=detRow('db_tratamientos_detalle','id',$idtd);
 	if($detTD){//Detalle Tratamiento
-		$accTD=md5(UPDtd);
+		$accTD=md5('UPDtd');
 		$btnAccTD='<button class="btn btn-success btn-block btn-sm" type="submit"><i class="fas fa-save fa-lg"></i> Actualizar en la receta</button>';
 	}else{
-		$accTD=md5(INStd);
+		$accTD=md5('INStd');
 		$btnAccTD='<button class="btn btn-primary btn-block btn-sm" type="submit"><i class="fas fa-save fa-lg"></i> Agregar a la receta</button>';
 	}
 }else{
@@ -212,7 +212,7 @@ if($tr_RStl>0){
     <td>
     <a href="tratamiento_form.php?idt=<?php echo $idt ?>&idtd=<?php echo $dRStl['id'] ?>" class="btn btn-primary btn-xs">
     <i class="fas fa-edit fa-lg"></i> Editar</a>
-    <a href="_fncts.php?idt=<?php echo $idt ?>&idtd=<?php echo $dRStl['id'] ?>&acc=<?php echo md5(DELtd) ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs">
+    <a href="_fncts.php?idt=<?php echo $idt ?>&idtd=<?php echo $dRStl['id'] ?>&acc=<?php echo md5('DELtd') ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs">
     <i class="fas fa-trash fa-lg"></i> Quitar</a>
     </td>
 </tr>
@@ -223,7 +223,7 @@ if($tr_RStl>0){
     <td>
     <a href="tratamiento_form.php?idt=<?php echo $idt ?>&idtd=<?php echo $dRStl['id'] ?>" class="btn btn-primary btn-xs">
     <i class="fas fa-edit fa-lg"></i> Editar</a>
-    <a href="_fncts.php?idt=<?php echo $idt ?>&idtd=<?php echo $dRStl['id'] ?>&acc=<?php echo md5(DELtd) ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs">
+    <a href="_fncts.php?idt=<?php echo $idt ?>&idtd=<?php echo $dRStl['id'] ?>&acc=<?php echo md5('DELtd') ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs">
     <i class="fas fa-trash fa-lg"></i> Quitar</a>
     </td>
 </tr>

@@ -1,4 +1,4 @@
-<?php $id_user = $_SESSION['dU']['u_id']; ?>
+<?php $id_user = (isset($_SESSION['dU']['u_id']) ? $_SESSION['dU']['u_id'] : NULL); ?>
 <nav class="navbar navbar-inverse navbar-fixed-top">
 <div class="container-fluid">
 	<div class="navbar-header">
@@ -17,7 +17,7 @@
 			<li><a href="#"><div id="loading"><img src="<?php echo $RAIZa ?>images/struct/loader.gif"/></div></a></li>
 			<?php echo genMenu('CONFIGUSER','NULL',FALSE) ?>
             <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION['dU']['u_user'] ?> <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo (isset($_SESSION['dU']['u_user']) ? $_SESSION['dU']['u_user'] : NULL) ?> <b class="caret"></b></a>
             <ul class="dropdown-menu">
             <li><a href="<?php echo $RAIZc?>com_userprofile/userPerfil.php">Informacion Usuario</a></li>
             <li><a href="<?php echo $RAIZc?>com_userprofile/changePass.php" class="fancybox fancybox.iframe fancyreload">Cambiar Contraseña</a></li>

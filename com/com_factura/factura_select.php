@@ -1,16 +1,16 @@
 <?php
 include('../../init.php');
-	if($_GET['LOG']==null)
+	if((isset($_GET['LOG']) ? $_GET['LOG'] : NULL)==null)
 		$_GET['LOG']=$_POST['LOG'];
-	if ($_GET['id_pac']==null)
+	if ((isset($_GET['id_pac']) ? $_GET['id_pac'] : NULL)==null)
 		$_GET['id_pac']=$_SESSION['id_pac'];		
-$id_pac_sel_RS_paciente_Sel2=$_GET['id_pac'];
+$id_pac_sel_RS_paciente_Sel2=(isset($_GET['id_pac']) ? $_GET['id_pac'] : NULL);
 echo $id_pac_sel_RS_paciente_Sel2;
 include(RAIZf.'head.php');
 
 $id_pac_sel_RS_paciente_Sel = "-1";
 if (isset($_GET['id_pac'])) {
-  $id_pac_sel_RS_paciente_Sel = $_GET['id_pac'];
+  $id_pac_sel_RS_paciente_Sel = (isset($_GET['id_pac']) ? $_GET['id_pac'] : NULL);
 }
 $query_RS_paciente_Sel = sprintf("SELECT * FROM db_pacientes WHERE db_pacientes.pac_cod=%s", GetSQLValueString($id_pac_sel_RS_paciente_Sel, "int"));
 $RS_paciente_Sel = mysql_query($query_RS_paciente_Sel) or die(mysql_error());
@@ -19,7 +19,7 @@ $totalRows_RS_paciente_Sel = mysql_num_rows($RS_paciente_Sel);
 
 $colname_rs_cons_cli = "-1";
 if (isset($_GET['pac_cod'])) {
-  $colname_rs_cons_cli = $_GET['pac_cod'];
+  $colname_rs_cons_cli = (isset($_GET['pac_cod']) ? $_GET['pac_cod'] : NULL);
 }
 $query_rs_cons_cli = sprintf("SELECT * FROM tbl_cta_por_cobrar WHERE pac_cod = %s and cta_est='P' order by con_num", GetSQLValueString($id_pac_sel_RS_paciente_Sel, "int"));
 $rs_cons_cli = mysql_query($query_rs_cons_cli) or die(mysql_error());
@@ -39,8 +39,8 @@ do
 }while ($row_rs_cons_cli = mysql_fetch_assoc($rs_cons_cli));
 //tamamos lista de la sesion
 $j=1;
-if(count($_SESSION['b'])>0)
-{ foreach($_SESSION['b'] as $l)
+if(count((isset($_SESSION['b']) ? $_SESSION['b'] : NULL))>0)
+{ foreach((isset($_SESSION['b']) ? $_SESSION['b'] : NULL) as $l)
   { $lista2[$j][0]=$l["num"];
 	$lista2[$j][1]=$l["det"];
 	$lista2[$j][2]=$l["val"];

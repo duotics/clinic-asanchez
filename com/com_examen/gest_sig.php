@@ -1,5 +1,5 @@
 <?php require_once('../../init.php');
-$id=vParam('id', $_GET['id'], $_POST['id']);
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
 $detPac=dPac($id);
 $detPac_nom=$detPac['pac_nom'].' '.$detPac['pac_ape'];
 if($detPac['pac_fec']) $detPac_fec=edad($detPac['pac_fec']).'Años';

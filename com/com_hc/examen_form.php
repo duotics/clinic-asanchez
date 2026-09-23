@@ -1,9 +1,9 @@
 <?php require('../../init.php');
 $_SESSION['tab']['con']='cEXA';
-$idp=vParam('idp',$_GET['idp'],$_POST['idp']);
-$idc=vParam('idc',$_GET['idc'],$_POST['idc']);
-$ide=vParam('ide',$_GET['ide'],$_POST['ide']);
-$action=vParam('action',$_GET['action'],$_POST['action']);
+$idp=vParam('idp', isset($_GET['idp']) ? $_GET['idp'] : NULL, isset($_POST['idp']) ? $_POST['idp'] : NULL);
+$idc=vParam('idc', isset($_GET['idc']) ? $_GET['idc'] : NULL, isset($_POST['idc']) ? $_POST['idc'] : NULL);
+$ide=vParam('ide', isset($_GET['ide']) ? $_GET['ide'] : NULL, isset($_POST['ide']) ? $_POST['ide'] : NULL);
+$action=vParam('action', isset($_GET['action']) ? $_GET['action'] : NULL, isset($_POST['action']) ? $_POST['action'] : NULL);
 $detexam=detRow('db_examenes','id_exa',$ide);//fnc_dataexam($ide);
 if($ide) {$idp=$detexam['pac_cod']; $idc=$detexam['con_num'];}
 if($action=='DELEF'){
@@ -46,7 +46,7 @@ include(RAIZf.'head.php');
       </ul>
       <div class="navbar-right btn-group navbar-btn">
       <?php echo $btnform ?>
-      <a href="<?php echo $_SESSION['urlc'] ?>?idp=<?php echo $idp ?>&idc=<?php echo $idc ?>" class="btn btn-default"><col-md- class="glyphicon glyphicon-plus-sign"></col-md-> NUEVO</a>
+      <a href="<?php echo (isset($_SESSION['urlc']) ? $_SESSION['urlc'] : NULL) ?>?idp=<?php echo $idp ?>&idc=<?php echo $idc ?>" class="btn btn-default"><col-md- class="glyphicon glyphicon-plus-sign"></col-md-> NUEVO</a>
       </div>
 	</div>
 </div>

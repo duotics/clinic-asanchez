@@ -9,7 +9,7 @@ $tr_RSt=mysql_num_rows($RSt);
 <div class="panel panel-primary">
   <div class="panel-heading">
 	<i class="fa fa-columns fa-lg"></i> RECETAS
-    <a href="<?php echo $RAIZc ?>com_tratamientos/tratamientoForm.php?idp=<?php echo $idp ?>&idc=<?php echo $idc ?>&acc=<?php echo md5(NEWt) ?>" class="btn btn-default btn-xs fancybox.iframe fancyreload"> <i class="fas fa-plus-square fa-lg"></i> NUEVA RECETA </a>
+    <a href="<?php echo $RAIZc ?>com_tratamientos/tratamientoForm.php?idp=<?php echo $idp ?>&idc=<?php echo $idc ?>&acc=<?php echo md5('NEWt') ?>" class="btn btn-default btn-xs fancybox.iframe fancyreload"> <i class="fas fa-plus-square fa-lg"></i> NUEVA RECETA </a>
     
   </div>
   <div class="panel-body">
@@ -112,7 +112,7 @@ $tr_RSt=mysql_num_rows($RSt);
             <a class="printerButton btn btn-default btn-xs" data-id="<?php echo $dRSt['tid'] ?>" data-rel="<?php echo $RAIZc ?>com_tratamientos/recetaPrintJS.php">
             <i class="fas fa-print fa-lg"></i> Imprimir</a>
             
-            <a href="<?php echo $RAIZc; ?>com_tratamientos/tratamientoForm.php?idt=<?php echo $dRSt['tid'] ?>&acc=<?php echo md5(DELtf) ?>" class="btn btn-danger btn-xs fancybox fancybox.iframe">
+            <a href="<?php echo $RAIZc; ?>com_tratamientos/tratamientoForm.php?idt=<?php echo $dRSt['tid'] ?>&acc=<?php echo md5('DELtf') ?>" class="btn btn-danger btn-xs fancybox fancybox.iframe">
             <i class="fas fa-trash fa-lg"></i> Eliminar</a>
             </div>
             </td>

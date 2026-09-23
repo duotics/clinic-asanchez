@@ -1,4 +1,6 @@
 <?php include('../../init.php');
+$LOG='';
+$contN=0;
 set_time_limit(300);
 include(RAIZf.'head.php');
 ?>

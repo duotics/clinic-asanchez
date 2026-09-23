@@ -1,6 +1,6 @@
 <?php 
-$id=vParam('id', $_GET['id'], $_POST['id']);
-$ref=vParam('ref', $_GET['ref'], $_POST['ref']);
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
+$ref=vParam('ref', isset($_GET['ref']) ? $_GET['ref'] : NULL, isset($_POST['ref']) ? $_POST['ref'] : NULL);
 $det=detRow('db_types','typ_cod',$id);
 if($det){
 	$acc=md5("UPDt");

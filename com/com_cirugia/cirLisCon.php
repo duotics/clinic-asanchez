@@ -53,7 +53,7 @@ $tr_RSc=mysql_num_rows($RSc);
 				<a class="btn btn-primary btn-xs fancyR" data-type="iframe" href="<?php echo $RAIZc ?>com_cirugia/cirugiaForm.php?idr=<?php echo $dRSc['id_cir'] ?>">
 					<i class="fas fa-edit fa-lg"></i> Modificar
 				</a>
-				<a class="btn btn-danger btn-xs fancyRP" data-type="iframe" href="<?php echo $RAIZc; ?>com_cirugia/actions.php?idr=<?php echo $dRSc['id_cir'] ?>&acc=<?php echo md5(DELc) ?>">
+				<a class="btn btn-danger btn-xs fancyRP" data-type="iframe" href="<?php echo $RAIZc; ?>com_cirugia/actions.php?idr=<?php echo $dRSc['id_cir'] ?>&acc=<?php echo md5('DELc') ?>">
 					<i class="fas fa-trash fa-lg"></i> Eliminar
 				</a>
             </div>

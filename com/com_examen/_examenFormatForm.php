@@ -18,7 +18,7 @@ if($dEFD){
 	$btnAccD='<button type="submit" class="btn btn-primary"><i class="fas fa-save fa-lg"></i> CREAR</button>';
 }
 if(isset($_SESSION['tab']['examf'])){
-	$tabS=$_SESSION['tab']['examf'];
+	$tabS=(isset($_SESSION['tab']['examf']) ? $_SESSION['tab']['examf'] : NULL);
 	unset($_SESSION['tab']['examf']);
 }else{
 	$tabS['tabA']='active';
@@ -188,7 +188,7 @@ if(isset($_SESSION['tab']['examf'])){
     					<td>
     					<a href="<?php echo $urlc ?>?id=<?php echo $id ?>&idefd=<?php echo $dRSlefd['id'] ?>" class="btn btn-primary btn-xs">
     					<i class="fas fa-edit fa-lg"></i></a>
-    					<a href="actions.php?id=<?php echo $id ?>&idefd=<?php echo $dRSlefd['id'] ?>&acc=<?php echo md5(DELefd) ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs">
+    					<a href="actions.php?id=<?php echo $id ?>&idefd=<?php echo $dRSlefd['id'] ?>&acc=<?php echo md5('DELefd') ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs">
     					<i class="fas fa-trash fa-lg"></i></a>
     					</td>
     				</tr>

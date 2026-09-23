@@ -1,14 +1,15 @@
 <?php require('../../init.php');
-$id=vParam('id',$_GET['id'],$_POST['id']);
-$action=vParam('action',$_GET['action'],$_POST['action']);
-$urlreturn=$_SESSION['urlp'];
+$LOGt='';
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
+$action=vParam('action', isset($_GET['action']) ? $_GET['action'] : NULL, isset($_POST['action']) ? $_POST['action'] : NULL);
+$urlreturn=(isset($_SESSION['urlp']) ? $_SESSION['urlp'] : NULL);
 $exec=TRUE;
 mysql_query("SET AUTOCOMMIT=0;"); //Desabilita el autocommit
 mysql_query("BEGIN;"); //Inicia la transaccion
 
 if(($action)&&($action=='DEL')){
 	$LOG=NULL;
-	$id=$_GET['id'];
+	$id=(isset($_GET['id']) ? $_GET['id'] : NULL);
 	$num_diagcon=totRowsTab('db_consultas_diagostico','id_diag',$id);
 	if($num_diagcon>0){
 		$LOG.='<p>No se pudo Eliminar</p>Existen Consultas relacionadas a este diagnostico';
@@ -24,9 +25,9 @@ if(($action)&&($action=='DEL')){
 	}
 	$urlreturn.='?id='.$id;
 }
-if(($_POST['form'])&&($_POST['form']=='fdiag')){
-	$codigo=$_POST['codigo'];
-	$nombre=$_POST['nombre'];
+if(((isset($_POST['form']) ? $_POST['form'] : NULL))&&((isset($_POST['form']) ? $_POST['form'] : NULL)=='fdiag')){
+	$codigo=(isset($_POST['codigo']) ? $_POST['codigo'] : NULL);
+	$nombre=(isset($_POST['nombre']) ? $_POST['nombre'] : NULL);
 	if($action=='INS'){
 		$insertSQL = sprintf("INSERT INTO `db_diagnosticos`
 		(`codigo`,`nombre`) VALUES (%s,%s)",

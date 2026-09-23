@@ -1,6 +1,6 @@
 <?php require_once('../../init.php');
-$idp=$_GET['idp'];
-$field=$_GET['field'];
+$idp=(isset($_GET['idp']) ? $_GET['idp'] : NULL);
+$field=(isset($_GET['field']) ? $_GET['field'] : NULL);
 $qS = sprintf("SELECT * FROM db_signos WHERE pac_cod = %s ORDER BY id ASC",
 			 SSQL($idp,'int'));
 $RS = mysql_query($qS) or die(mysql_error());

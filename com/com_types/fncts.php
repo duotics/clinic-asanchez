@@ -1,10 +1,13 @@
 <?php include('../../init.php');
-$id=vParam('id', $_GET['id'], $_POST['id']);
-$ids=vParam('ids', $_GET['ids'], $_POST['ids']);
-$acc=vParam('acc', $_GET['acc'], $_POST['acc']);
-$goTo=vParam('url', $_GET['url'], $_POST['url']);
-$ref=vParam('ref', $_GET['ref'], $_POST['ref']);
-$val=vParam('val', $_GET['val'], $_POST['val']);
+$LOG='';
+$LOGd='';
+$LOGt='';
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
+$ids=vParam('ids', isset($_GET['ids']) ? $_GET['ids'] : NULL, isset($_POST['ids']) ? $_POST['ids'] : NULL);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
+$goTo=vParam('url', isset($_GET['url']) ? $_GET['url'] : NULL, isset($_POST['url']) ? $_POST['url'] : NULL);
+$ref=vParam('ref', isset($_GET['ref']) ? $_GET['ref'] : NULL, isset($_POST['ref']) ? $_POST['ref'] : NULL);
+$val=vParam('val', isset($_GET['val']) ? $_GET['val'] : NULL, isset($_POST['val']) ? $_POST['val'] : NULL);
 $vP=FALSE;
 $vD=FALSE;
 $data=$_POST;
@@ -12,7 +15,7 @@ mysql_query("SET AUTOCOMMIT=0;"); //Desabilita el autocommit
 mysql_query("BEGIN;"); //Inicia la transaccion
 if((isset($data['form']))&&($data['form']==md5('formType'))){
 	$LOGd.='form<br>acc. '.$acc.'<br>';
-	if((isset($acc))&&($acc==md5(UPDt))){
+	if((isset($acc))&&($acc==md5('UPDt'))){
 		$LOGd.='UPD<br>';
 		$qry=sprintf('UPDATE db_types SET mod_cod=%s, typ_ref=%s, typ_nom=%s, typ_icon=%s, typ_val=%s, typ_aux=%s WHERE typ_cod=%s',			
 		SSQL($data['iMod'],'text'),
@@ -27,7 +30,7 @@ if((isset($data['form']))&&($data['form']==md5('formType'))){
 			$LOG.=$cfg['p']['upd-true'];
 		}else $LOG.=$cfg['p']['upd-false'].mysql_error();
 	}else $LOGd.='no UPD';
-	if((isset($acc))&&($acc==md5(INSt))){
+	if((isset($acc))&&($acc==md5('INSt'))){
 		$LOGd.='INS<br>';
 		$qry=sprintf('INSERT INTO db_types (mod_cod, typ_ref, typ_nom, typ_icon, typ_val, typ_aux, typ_stat) 
 		VALUES (%s,%s,%s,%s,%s,%s,%s)',
@@ -46,7 +49,7 @@ if((isset($data['form']))&&($data['form']==md5('formType'))){
 	}else $LOGd.='no INS';
 	$goTo.='?id='.$id;
 }
-if((isset($acc))&&($acc==md5(DELt))){
+if((isset($acc))&&($acc==md5('DELt'))){
 	$LOGd.='DEL<br>';
 	$qry=sprintf('DELETE FROM db_types WHERE typ_cod=%s LIMIT 1',
 		SSQL($id,'int'));
@@ -57,7 +60,7 @@ if((isset($acc))&&($acc==md5(DELt))){
 	}else $LOG.=$cfg['p']['del-false'].mysql_error();
 	$goTo.='?ref='.$ref;
 }
-if((isset($acc))&&($acc==md5(STt))){
+if((isset($acc))&&($acc==md5('STt'))){
 	$LOGd.='ST<br>';
 	$qry=sprintf('UPDATE db_types SET typ_stat=%s WHERE typ_cod=%s LIMIT 1',
 		SSQL($val,'int'),
@@ -68,7 +71,7 @@ if((isset($acc))&&($acc==md5(STt))){
 	}else $LOG.=$cfg['p']['est-false'].mysql_error();
 	$goTo.='?ref='.$ref;
 }
-if((isset($acc))&&($acc==md5(CLONEt))){
+if((isset($acc))&&($acc==md5('CLONEt'))){
 	$LOGd.='CLONEt<br>';
 	$dT=detRow('db_types','typ_cod',$id);
 	

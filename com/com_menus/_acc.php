@@ -1,9 +1,11 @@
 <?php include('../../init.php');
-$id=vParam('id', $_GET['id'], $_POST['id']);
-$ids=vParam('ids', $_GET['ids'], $_POST['ids']);
-$acc=vParam('acc', $_GET['acc'], $_POST['acc']);
-$val=vParam('val', $_GET['val'], $_POST['val']);
-$goTo=vParam('url', $_GET['url'], $_POST['url']);
+$LOG='';
+$LOGt='';
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
+$ids=vParam('ids', isset($_GET['ids']) ? $_GET['ids'] : NULL, isset($_POST['ids']) ? $_POST['ids'] : NULL);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
+$val=vParam('val', isset($_GET['val']) ? $_GET['val'] : NULL, isset($_POST['val']) ? $_POST['val'] : NULL);
+$goTo=vParam('url', isset($_GET['url']) ? $_GET['url'] : NULL, isset($_POST['url']) ? $_POST['url'] : NULL);
 $det=$_POST;
 $vP=FALSE;
 $accjs=FALSE;
@@ -11,8 +13,8 @@ $accjs=FALSE;
 mysql_query("SET AUTOCOMMIT=0;"); //Desabilita el autocommit
 mysql_query("BEGIN;"); //Inicia la transaccion
 	//ACCIONES formMC (MENUS CONTENEDORES)
-	if((isset($det['form']))&&($det['form']==md5(formMC))){
-		if((isset($acc))&&($acc==md5(UPDmc))){
+	if((isset($det['form']))&&($det['form']==md5('formMC'))){
+		if((isset($acc))&&($acc==md5('UPDmc'))){
 			$qry=sprintf('UPDATE db_menus SET nom=%s, ref=%s WHERE md5(id)=%s',			
 			SSQL($det['iNom'],'text'),
 			SSQL($det['iRef'],'text'),
@@ -22,7 +24,7 @@ mysql_query("BEGIN;"); //Inicia la transaccion
 				$LOG.=$cfg['p']['upd-true'];
 			}else $LOG.=$cfg['p']['upd-false'].mysql_error();
 		}
-		if((isset($acc))&&($acc==md5(INSmc))){
+		if((isset($acc))&&($acc==md5('INSmc'))){
 			$qry=sprintf('INSERT INTO db_menus (nom, ref, stat) 
 			VALUES (%s,%s,%s)',
 			SSQL($det['iNom'],'text'),
@@ -37,8 +39,8 @@ mysql_query("BEGIN;"); //Inicia la transaccion
 		}
 		$goTo.='?ids='.$ids;
 	}
-	if((isset($det['form']))&&($det['form']==md5(formMI))){
-		if((isset($acc))&&($acc==md5(UPDmi))){
+	if((isset($det['form']))&&($det['form']==md5('formMI'))){
+		if((isset($acc))&&($acc==md5('UPDmi'))){
 			$qry=sprintf('UPDATE db_menus_items SET 
 			men_idc=%s, men_padre=%s, men_nombre=%s, men_tit=%s, men_link=%s, men_icon=%s, men_orden=%s, men_stat=%s, men_css=%s, men_precode=%s, men_postcode=%s, mod_cod=%s  
 			WHERE md5(men_id)=%s',			
@@ -66,7 +68,7 @@ mysql_query("BEGIN;"); //Inicia la transaccion
 				}else $LOG.='<h4>Error al Actualizar Hijos</h4>';
 			}else $LOG.=$cfg['p']['upd-false'];
 		}
-		if((isset($acc))&&($acc==md5(INSmi))){
+		if((isset($acc))&&($acc==md5('INSmi'))){
 			$qry=sprintf('INSERT INTO db_menus_items (men_idc, men_padre, men_nombre, men_tit, men_link, men_icon, men_orden, men_stat, men_css, men_precode, men_postcode, mod_cod) 
 			VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',
 			SSQL($det['dIDC'],'int'),

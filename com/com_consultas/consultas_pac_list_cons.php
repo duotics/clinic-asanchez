@@ -1,5 +1,5 @@
 <?php include('../../init.php');
-$idp=vParam('idp', $_GET['idp'], $_POST['idp']);
+$idp=vParam('idp', isset($_GET['idp']) ? $_GET['idp'] : NULL, isset($_POST['idp']) ? $_POST['idp'] : NULL);
 $query_RSlcp = sprintf("SELECT * FROM db_consultas WHERE pac_cod= %s ORDER BY con_num DESC", 
 GetSQLValueString($idp, "int"));
 $RSlcp = mysql_query($query_RSlcp) or die(mysql_error());

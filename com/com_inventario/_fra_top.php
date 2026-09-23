@@ -1,4 +1,4 @@
-<?php $ms=$_GET['ms']; $claseact=' class="active"' ?>
+<?php $ms=(isset($_GET['ms']) ? $_GET['ms'] : NULL); $claseact=' class="active"' ?>
 <div class="navbar navbar-static-top">
 	<div class="navbar-inner">
     <div class="container">

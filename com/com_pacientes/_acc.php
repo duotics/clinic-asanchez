@@ -1,8 +1,11 @@
 <?php include('../../init.php');
+$LOG='';
+$LOGd='';
+$LOGt='';
 $dM=vLogin('PACIENTE');
-$goTo=vParam('url', $_GET['url'], $_POST['url']);
-$acc=vParam('acc', $_GET['acc'], $_POST['acc']);
-$id=vParam('id', $_GET['id'], $_POST['id']);
+$goTo=vParam('url', isset($_GET['url']) ? $_GET['url'] : NULL, isset($_POST['url']) ? $_POST['url'] : NULL);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
 $vP=FALSE;
 //$vD=TRUE;
 $data=$_POST;

@@ -1,9 +1,12 @@
 <?php include('../../init.php');
+$LOG='';
+$LOGt='';
+$goToP='';
 //$dM=vLogin('PACIENTE');
-$goTo=vParam('url', $_GET['url'], $_POST['url']);
-$acc=vParam('acc', $_GET['acc'], $_POST['acc']);
-$id=vParam('id', $_GET['id'], $_POST['id']);
-$idh=vParam('idh', $_GET['idh'], $_POST['idh']);
+$goTo=vParam('url', isset($_GET['url']) ? $_GET['url'] : NULL, isset($_POST['url']) ? $_POST['url'] : NULL);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
+$idh=vParam('idh', isset($_GET['idh']) ? $_GET['idh'] : NULL, isset($_POST['idh']) ? $_POST['idh'] : NULL);
 $vP=FALSE;
 $data=$_POST;
 mysql_query("SET AUTOCOMMIT=0;"); //Desabilita el autocommit
@@ -11,7 +14,7 @@ mysql_query("BEGIN;"); //Inicia la transaccion
 
 if(($data['form'])&&($data['form']=='hispac')){
 	switch($acc){
-		case md5(INSs);
+		case md5('INSs');
 			$qryI = sprintf("INSERT INTO db_signos (pac_cod,fecha,peso,pa,talla,imc,temp,fc,fr,po2,co2) 
 			VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
 						SSQL($id, "int"),
@@ -30,7 +33,7 @@ if(($data['form'])&&($data['form']=='hispac')){
 				$LOG.=$cfg['p']['ins-true'];
 			}else $LOG.=$cfg['p']['ins-false'];
 		break;
-		case md5(UPDs);
+		case md5('UPDs');
 			$qryU = sprintf("UPDATE db_signos SET 
 			peso=%s, pa=%s, talla=%s , imc=%s, temp=%s, fc=%s, fr=%s, po2=%s, co2=%s
 			WHERE id=%s LIMIT 1",
@@ -54,7 +57,7 @@ if(($data['form'])&&($data['form']=='hispac')){
 	$goToP.='?id='.$id;
 }
 
-if(isset($acc)&$acc==md5(delS)){
+if(isset($acc)&$acc==md5('delS')){
 	$qry=sprintf('DELETE FROM db_signos WHERE id=%s LIMIT 1',
 				 SSQL($idh,int));
 	if(@mysql_query($qry)){

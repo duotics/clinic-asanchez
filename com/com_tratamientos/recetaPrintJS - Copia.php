@@ -1,5 +1,7 @@
 <?php include_once('../../init.php');
-$id=vParam('id',$_GET['id'],$_POST['id']);
+$resDiag='';
+$resED='';
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
 $dExa=detRow('db_examenes','id_exa',$id);//fnc_datatrat($idt);
 $detCon=detRow('db_consultas','con_num',$dExa['con_num']);//fnc_datatrat($idt);
 //$detpac=detRow('db_pacientes','pac_cod',$detCon['pac_cod']);//dPac($dExa['pac_cod']);

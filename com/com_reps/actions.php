@@ -1,10 +1,11 @@
 <?php require('../../init.php'); 
-$idr=vParam('idr',$_GET['idr'],$_POST['idr'],NULL);
-$idp=vParam('idp',$_GET['idp'],$_POST['idp'],NULL);
-$idc=vParam('idc',$_GET['idc'],$_POST['idc'],NULL);
-$id=vParam('id',$_GET['id'],$_POST['id'],NULL);
-$acc=vParam('acc',$_GET['acc'],$_POST['acc'],NULL);
-$form=vParam('form',$_GET['form'],$_POST['form'],NULL);
+$LOG='';
+$idr=vParam('idr',(isset($_GET['idr']) ? $_GET['idr'] : NULL),(isset($_POST['idr']) ? $_POST['idr'] : NULL),NULL);
+$idp=vParam('idp',(isset($_GET['idp']) ? $_GET['idp'] : NULL),(isset($_POST['idp']) ? $_POST['idp'] : NULL),NULL);
+$idc=vParam('idc',(isset($_GET['idc']) ? $_GET['idc'] : NULL),(isset($_POST['idc']) ? $_POST['idc'] : NULL),NULL);
+$id=vParam('id',(isset($_GET['id']) ? $_GET['id'] : NULL),(isset($_POST['id']) ? $_POST['id'] : NULL),NULL);
+$acc=vParam('acc',(isset($_GET['acc']) ? $_GET['acc'] : NULL),(isset($_POST['acc']) ? $_POST['acc'] : NULL),NULL);
+$form=vParam('form',(isset($_GET['form']) ? $_GET['form'] : NULL),(isset($_POST['form']) ? $_POST['form'] : NULL),NULL);
 $det=$_POST;
 
 mysql_query("SET AUTOCOMMIT=0;"); //Desabilita el autocommit

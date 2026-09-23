@@ -1,5 +1,5 @@
 <?php require_once('../../init.php');
-$qry=genCadSearchPac($_GET['term']);
+$qry=genCadSearchPac((isset($_GET['term']) ? $_GET['term'] : NULL));
 $RSjson = mysql_query($qry) or die(mysql_error());
 while($row = mysql_fetch_array($RSjson)){
 	$datos[] = array(

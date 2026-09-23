@@ -26,7 +26,7 @@ $().ready(function() {
 <table class="bord_gray_4cornes" style="padding:3px;" align="center">
 <tr>
 	<td>
-		<form autocomplete="off" action="<?php echo $_SESSION['../../DIRSEL']; ?>" method="post">
+		<form autocomplete="off" action="<?php echo (isset($_SESSION['../../DIRSEL']) ? $_SESSION['../../DIRSEL'] : NULL); ?>" method="post">
             <select name="list_tip" id="list_tip" class="list_tip">
 				<option value="find_ape" selected="selected">Apellido Paciente</option>
 				<option value="find_nom">Nombre Paciente</option>

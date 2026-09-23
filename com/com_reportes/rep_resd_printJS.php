@@ -1,5 +1,6 @@
 <?php include('../../init.php');
-$val=$_REQUEST['val'];
+$contPac=0;
+$val=(isset($_REQUEST['val']) ? $_REQUEST['val'] : NULL);
 $valF=explode('/',$val);
 $fi=$valF[0];
 $ff=$valF[1];

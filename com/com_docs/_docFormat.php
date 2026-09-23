@@ -52,7 +52,7 @@ $btnNew='<a href="docFormatForm.php" class="btn btn-primary fancyR" data-type="i
 			<div class="btn-group">
           <a href="docFormatForm.php?ids=<?php echo $ids ?>" class="btn btn-primary btn-xs fancyR" data-type="iframe">
             <i class="fa fa-edit fa-lg"></i> Editar</a>
-          <a href="actions.php?ids=<?php echo $ids ?>&acc=<?php echo md5(DELf) ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs">
+          <a href="actions.php?ids=<?php echo $ids ?>&acc=<?php echo md5('DELf') ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs">
             <i class="fas fa-trash fa-lg"></i> Eliminar</a>
 			</div>
         </td>

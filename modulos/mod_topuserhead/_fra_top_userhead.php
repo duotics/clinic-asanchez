@@ -1,7 +1,7 @@
 <?php
 $emp_ses_username_RS_user_detail = "-1";
 if (isset($_SESSION['dU'])) {
-  $emp_ses_username_RS_user_detail = $_SESSION['dU'];
+  $emp_ses_username_RS_user_detail = (isset($_SESSION['dU']) ? $_SESSION['dU'] : NULL);
 }
 $query_RS_user_detail = "SELECT * FROM db_user_system WHERE user_username='".$emp_ses_username_RS_user_detail."'";
 $RS_user_detail = mysql_query($query_RS_user_detail) or die(mysql_error());
@@ -24,7 +24,7 @@ $dataemp=dataEmp($datausr['emp_cod']);
 			</tr>
             <tr>
             	<td align="left" class="text_sec_blue_min2">Acceso:</td>
-                <td align="left" class="text_sec_gray_min"><?php echo $_SESSION['data_access']; ?></td>
+                <td align="left" class="text_sec_gray_min"><?php echo (isset($_SESSION['data_access']) ? $_SESSION['data_access'] : NULL); ?></td>
 			</tr>
 	</table>
     </td>

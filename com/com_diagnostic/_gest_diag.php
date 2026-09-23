@@ -1,6 +1,6 @@
 <?php 
-$id=vParam('id',$_GET['id'],$_POST['id']);
-$acc=vParam('acc',$_GET['acc'],$_POST['acc']);
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
 $detDiag=detRow('db_diagnosticos','id_diag',$id);
 $btn_new='<a href="'.$urlc.'?acc=NEW" class="btn btn-default"><i class="fas fa-plus-square fa-lg"></i> Nuevo Diagnostico</a>';
 if($acc=='NEW') $vPF=TRUE;
@@ -33,7 +33,7 @@ if($TR>0){
 	<div class="well well-sm" id="panelForm">
 	<form method="post" action="_fncts.php" class="" role="form">
 		<fieldset>
-			<input name="form" type="hidden" id="form" value="<?php echo md5(fdiag) ?>">
+			<input name="form" type="hidden" id="form" value="<?php echo md5('fdiag') ?>">
 			<input name="id" type="hidden" id="id" value="<?php echo $id?>">
 			<input name="acc" type="hidden" id="acc" value="<?php echo md5($acc)?>">
 			<input name="url" type="hidden" id="url" value="<?php echo $urlc?>">

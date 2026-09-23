@@ -152,7 +152,7 @@ function vParam($nompar, $pget, $ppost, $revsess=NULL){
 	return $id_ret;
 	}
 //CREAR TABLA TEMPORAL PARA BUSQUEDA DE PACIENTES
-function fnc_create_temp_pac_OLD(){
+function fnc_create_temp_pac(){
 if(tableExists("db_pacientes_temp")==0){
 	@mysql_query('DROP TABLE db_pacientes_temp');
 }
@@ -180,7 +180,7 @@ function fnc_cutblanck($bus){
 }
 function fnc_gencad_search(){
   session_start();
-  $busqueda=fnc_cutblanck($_SESSION['sBr']);
+  $busqueda=fnc_cutblanck(isset($_SESSION['sBr']) ? $_SESSION['sBr'] : NULL);
   $trozos=explode(" ",$busqueda);
   $numero=count($trozos);
   if ($numero==1) $cadbusca='SELECT * FROM db_pacientes_temp where fullname LIKE "%'.$busqueda.'%" ORDER BY cod_pac DESC'; 
@@ -201,13 +201,13 @@ function fnc_cadsearch($busqueda){
 		//$msg_sys.="TBL.".tableExists("db_pacientes_temp")."//";
 		if(tableExists("db_pacientes_temp")==0){
 			$msg_sys.="Tabla Existe - ";
-			if($busqueda!=$_SESSION['sBr']){
-				$msg_sys.="Busqueda *$busqueda* diferente a la sesion *".$_SESSION['sBr']."*";
+			if($busqueda!=(isset($_SESSION['sBr']) ? $_SESSION['sBr'] : NULL)){
+				$msg_sys.="Busqueda *$busqueda* diferente a la sesion *".(isset($_SESSION['sBr']) ? $_SESSION['sBr'] : NULL)."*";
 				$_SESSION['sBr']=$busqueda;
 				fnc_create_temp_pac();
 				$msg_sys.="Creada Tabla";
 			}else{
-				$msg_sys.=$_SESSION['sBr'];
+				$msg_sys.=(isset($_SESSION['sBr']) ? $_SESSION['sBr'] : NULL);
 				fnc_create_temp_pac();
 				$msg_sys.="Creada Tabla";
 			}

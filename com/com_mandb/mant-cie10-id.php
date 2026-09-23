@@ -1,4 +1,6 @@
 <?php include('../../init.php');
+$LOGt='';
+$contC=0;
 set_time_limit(300);
 $vP=TRUE;
 mysql_query("SET AUTOCOMMIT=0;"); //Desabilita el autocommit

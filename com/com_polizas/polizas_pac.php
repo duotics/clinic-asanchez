@@ -1,7 +1,7 @@
 <?php require_once('../../Connections/conn.php');
 $id_pac_pol_Rs_polizas = "-1";
 if (isset($_GET['id_pac_pol'])) {
-  $id_pac_pol_Rs_polizas = $_GET['id_pac_pol'];
+  $id_pac_pol_Rs_polizas = (isset($_GET['id_pac_pol']) ? $_GET['id_pac_pol'] : NULL);
 }
 
 $query_Rs_polizas = sprintf("SELECT * FROM tbl_polizas WHERE cod_pac = %s", GetSQLValueString($id_pac_pol_Rs_polizas, "int"));
@@ -11,7 +11,7 @@ $totalRows_Rs_polizas = mysql_num_rows($Rs_polizas);
 
 $id_pac_pol_Rs_paciente = "-1";
 if (isset($_GET['id_pac_pol'])) {
-  $id_pac_pol_Rs_paciente = $_GET['id_pac_pol'];
+  $id_pac_pol_Rs_paciente = (isset($_GET['id_pac_pol']) ? $_GET['id_pac_pol'] : NULL);
 }
 
 $query_Rs_paciente = sprintf("SELECT * FROM db_pacientes WHERE db_pacientes.pac_cod = %s", GetSQLValueString($id_pac_pol_Rs_paciente, "int"));

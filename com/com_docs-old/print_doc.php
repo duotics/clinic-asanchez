@@ -1,5 +1,5 @@
 <?php require('../../init.php');
-$idd=vParam('idd',$_GET['idd'],$_POST['idd']);
+$idd=vParam('idd', isset($_GET['idd']) ? $_GET['idd'] : NULL, isset($_POST['idd']) ? $_POST['idd'] : NULL);
 $detdoc=fnc_datadoc($idd);
 include(RAIZf.'head.php');
 ?>

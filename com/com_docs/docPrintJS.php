@@ -1,5 +1,5 @@
 <?php include_once('../../init.php');
-$id=vParam('id',$_GET['id'],$_POST['id']);
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
 $det=detRow('db_documentos','id_doc',$id);//fnc_datatrat($id);
 $detCon=detRow('db_consultas','con_num',$det['con_num']);//fnc_datatrat($id);
 //$detpac=detRow('db_pacientes','pac_cod',$detCon['pac_cod']);//dPac($det['pac_cod']);

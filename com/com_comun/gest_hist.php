@@ -1,7 +1,7 @@
 <?php require_once('../../init.php');
-$id=vParam('id', $_GET['id'], $_POST['id']);
-$idh=vParam('idh', $_GET['idh'], $_POST['idh']);
-$acc=vParam('acc', $_GET['acc'], $_POST['acc']);
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
+$idh=vParam('idh', isset($_GET['idh']) ? $_GET['idh'] : NULL, isset($_POST['idh']) ? $_POST['idh'] : NULL);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
 $detPac=dataPac($id);
 $dSig=detRow('db_signos','id',$idh);
 if($detPac['pac_fec']) $detPac_fec=edad($detPac['pac_fec']).' Años';

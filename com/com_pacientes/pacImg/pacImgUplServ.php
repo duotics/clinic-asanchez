@@ -141,7 +141,7 @@ else if($_FILES[$fileFieldName]["size"] > $maxImageSize) {
   echo "Max allowed size: " . round($maxImageSize / 1000) . " KB"; 
 } 
 else {
-  $filename="pac".$_POST['idpac']."_".date('YmdHis').'.jpg';
+  $filename="pac".(isset($_POST['idpac']) ? $_POST['idpac'] : NULL)."_".date('YmdHis').'.jpg';
   $imagePath = $pathToUpload.$filename; 
   if (file_exists($imagePath)) { 
     unlink($imagePath); 

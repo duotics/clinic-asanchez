@@ -1,5 +1,5 @@
 <?php
-$param['idmc']['v']=vParam('idmc',$_GET['idmc'],$_POST['idmc']);
+$param['idmc']['v']=vParam('idmc', isset($_GET['idmc']) ? $_GET['idmc'] : NULL, isset($_POST['idmc']) ? $_POST['idmc'] : NULL);
 $TR=totRowsTab('db_menus_items','1','1');
 if($TR>0){
 	$pages = new Paginator;
@@ -71,7 +71,7 @@ if($TR>0){
         <td><div class="btn-group">
           <a href="formItems.php?ids=<?php echo $ids ?>" class="btn btn-primary btn-xs fancyR" data-type="iframe">
             <i class="fas fa-edit fa-lg"></i> Editar</a>
-          <a href="_acc.php?ids=<?php echo $ids ?>&acc=<?php echo md5(DELmi) ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs vAccL">
+          <a href="_acc.php?ids=<?php echo $ids ?>&acc=<?php echo md5('DELmi') ?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs vAccL">
             <i class="fas fa-trash fa-lg"></i></a></div>
         </td>
 	    </tr>

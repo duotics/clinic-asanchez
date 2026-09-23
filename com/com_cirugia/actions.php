@@ -1,13 +1,15 @@
 <?php include('../../init.php');
+$LOG='';
+$LOGd='';
 $vP=FALSE;//Inicializa Estado Transaccion
-$id=vParam('id',$_GET['id'],$_POST['id']); //ID STANDAR
-$idp=vParam('idp',$_GET['idp'],$_POST['idp']); //ID PACIENTE
-$idc=vParam('idc',$_GET['idc'],$_POST['idc']); //ID CONSULTA
-$idr=vParam('idr',$_GET['idr'],$_POST['idr']);
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL); //ID STANDAR
+$idp=vParam('idp', isset($_GET['idp']) ? $_GET['idp'] : NULL, isset($_POST['idp']) ? $_POST['idp'] : NULL); //ID PACIENTE
+$idc=vParam('idc', isset($_GET['idc']) ? $_GET['idc'] : NULL, isset($_POST['idc']) ? $_POST['idc'] : NULL); //ID CONSULTA
+$idr=vParam('idr', isset($_GET['idr']) ? $_GET['idr'] : NULL, isset($_POST['idr']) ? $_POST['idr'] : NULL);
 //VARIABLE ACCION Y REDIRECCION
-$form=vParam('form',$_GET['form'],$_POST['form']);
-$acc=vParam('acc',$_GET['acc'],$_POST['acc']);
-$goTo=vParam('url',$_GET['url'],$_POST['url']);
+$form=vParam('form', isset($_GET['form']) ? $_GET['form'] : NULL, isset($_POST['form']) ? $_POST['form'] : NULL);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
+$goTo=vParam('url', isset($_GET['url']) ? $_GET['url'] : NULL, isset($_POST['url']) ? $_POST['url'] : NULL);
 //TRANSACTION
 $vP=FALSE;
 mysql_query("SET AUTOCOMMIT=0;"); //Desabilita el autocommit
@@ -15,7 +17,7 @@ mysql_query("BEGIN;"); //Inicia la transaccion
 $data=$_POST;
 /**********************************************************************/
 //FUNCIONES PARA CIRUGIAS
-if ((isset($form)) && ($form == md5(fCir))){//BEG form fCir
+if ((isset($form)) && ($form == md5('fCir'))){//BEG form fCir
 	
 	if(isset($data['btnJ'])) $accjs=TRUE;//Indica que actue Javascript para cerrar el Fancybox
 	
@@ -52,17 +54,17 @@ if ((isset($form)) && ($form == md5(fCir))){//BEG form fCir
 			$LOG.=$upl['LOG'];
 		}
 	}//END IMAGE UPLOAD
-	if($acc==md5(INSc)){//BEG acc INSERT
+	if($acc==md5('INSc')){//BEG acc INSERT
 		$qryinst=sprintf("INSERT INTO db_cirugias (pac_cod,con_num,fecha,diagnostico,cirugiar,fechar,protocolo,evolucion)
 		VALUES (%s,%s,%s,%s,%s,%s,%s,%s)",
-		SSQL($_POST['idp'], 'int'),
-		SSQL($_POST['idc'], 'int'),
+		SSQL((isset($_POST['idp']) ? $_POST['idp'] : NULL), 'int'),
+		SSQL((isset($_POST['idc']) ? $_POST['idc'] : NULL), 'int'),
 		SSQL($sdate, 'date'),
-		SSQL($_POST['diagnostico'], 'text'),
-		SSQL($_POST['cirugiar'], 'text'),
-		SSQL($_POST['fechar'], 'date'),
-		SSQL($_POST['protocolo'], 'text'),
-		SSQL($_POST['evolucion'], 'text'));
+		SSQL((isset($_POST['diagnostico']) ? $_POST['diagnostico'] : NULL), 'text'),
+		SSQL((isset($_POST['cirugiar']) ? $_POST['cirugiar'] : NULL), 'text'),
+		SSQL((isset($_POST['fechar']) ? $_POST['fechar'] : NULL), 'date'),
+		SSQL((isset($_POST['protocolo']) ? $_POST['protocolo'] : NULL), 'text'),
+		SSQL((isset($_POST['evolucion']) ? $_POST['evolucion'] : NULL), 'text'));
 		if(@mysql_query($qryinst)){
 			$idr = @mysql_insert_id();
 			$LOG.='<p>Cirugia Creada</p>';
@@ -72,14 +74,14 @@ if ((isset($form)) && ($form == md5(fCir))){//BEG form fCir
 		}
 		$goTo.='?idr='.$idr;
 	}//END acc INSERT
-	if($acc==md5(UPDc)){//BEG acc UPDATE
+	if($acc==md5('UPDc')){//BEG acc UPDATE
 		$qryupd=sprintf('UPDATE db_cirugias SET diagnostico=%s,cirugiar=%s,fechar=%s,protocolo=%s,evolucion=%s WHERE id_cir=%s',
-		SSQL($_POST['diagnostico'], "text"),
-		SSQL($_POST['cirugiar'], "text"),
-		SSQL($_POST['fechar'], "date"),
-		SSQL($_POST['protocolo'], "text"),
-		SSQL($_POST['evolucion'], "text"),
-		SSQL($_POST['idr'], "int"));
+		SSQL((isset($_POST['diagnostico']) ? $_POST['diagnostico'] : NULL), "text"),
+		SSQL((isset($_POST['cirugiar']) ? $_POST['cirugiar'] : NULL), "text"),
+		SSQL((isset($_POST['fechar']) ? $_POST['fechar'] : NULL), "date"),
+		SSQL((isset($_POST['protocolo']) ? $_POST['protocolo'] : NULL), "text"),
+		SSQL((isset($_POST['evolucion']) ? $_POST['evolucion'] : NULL), "text"),
+		SSQL((isset($_POST['idr']) ? $_POST['idr'] : NULL), "int"));
 		if(@mysql_query($qryupd)){
 			$LOG.='<p>Cirugia Actualizada</p>';
 			$vP=TRUE;
@@ -92,7 +94,7 @@ if ((isset($form)) && ($form == md5(fCir))){//BEG form fCir
 	}//END acc UPDATE
 }//BEG form fCir
 
-if ((isset($acc)) && ($acc == md5(DELc))){
+if ((isset($acc)) && ($acc == md5('DELc'))){
 	//Action JS
 	$accjs=TRUE;//
 	//Delete Multimedia Cirugia

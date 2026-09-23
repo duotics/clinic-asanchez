@@ -1,13 +1,13 @@
 <?php 
-$ids=vParam('ids',$_GET['ids'],$_POST['ids']);
-$acc=vParam('acc',$_GET['acc'],$_POST['acc']);
+$ids=vParam('ids', isset($_GET['ids']) ? $_GET['ids'] : NULL, isset($_POST['ids']) ? $_POST['ids'] : NULL);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
 $det=detRow('db_indicaciones','md5(id)',$ids);
 if($det){
 	$id=$det['id'];
-	$acc=md5(UPDi);
+	$acc=md5('UPDi');
 	$btnAcc='<button type="submit" class="btn btn-success btn-large navbar-btn" value="btnA"><i class="fas fa-save fa-lg"></i> ACTUALIZAR</button>';
 }else{
-	$acc=md5(INSi);
+	$acc=md5('INSi');
 	$det['feat']=1;
 	$det['est']=1;
 	$btnAcc='<button type="submit" class="btn btn-primary btn-large navbar-btn" value="btnA"><i class="fas fa-save fa-lg"></i> CREAR</button>';
@@ -16,7 +16,7 @@ $btnNew='<a href="'.$urlc.'" class="btn btn-default navbar-btn"><i class="fas fa
 ?>
 <form method="post" action="actions.php" role="form">
 <fieldset>
-	<input name="form" type="hidden" id="form" value="<?php echo md5(find) ?>">
+	<input name="form" type="hidden" id="form" value="<?php echo md5('find') ?>">
 	<input name="id" type="hidden" id="id" value="<?php echo $id ?>">
 	<input name="acc" type="hidden" id="acc" value="<?php echo $acc ?>">
 	<input name="url" type="hidden" id="url" value="<?php echo $urlc ?>">

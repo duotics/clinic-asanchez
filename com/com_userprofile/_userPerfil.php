@@ -1,5 +1,5 @@
 <?php 
-$detU=detRow('db_user_system','user_cod',$_SESSION['dU']['u_id']);
+$detU=detRow('db_user_system','user_cod',(isset($_SESSION['dU']['u_id']) ? $_SESSION['dU']['u_id'] : NULL));
 $detE=dataEmp($detU['emp_cod']);
 $detE_fullname=$detE['emp_nom'].' '.$detE['emp_ape'];
 ?>

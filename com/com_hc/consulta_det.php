@@ -1,4 +1,5 @@
 <?php include_once('../../init.php');
+$resDiag='';
 if(!isset($vVT) || !$vVT){
 	$idc=vParam('idc', isset($_GET['idc']) ? $_GET['idc'] : NULL, isset($_POST['idc']) ? $_POST['idc'] : NULL);
 	$idp=vParam('idp', isset($_GET['idp']) ? $_GET['idp'] : NULL, isset($_POST['idp']) ? $_POST['idp'] : NULL);

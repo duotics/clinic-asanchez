@@ -3,13 +3,13 @@
 $maxRows_RS_pacientes_list = 50;
 $pageNum_RS_pacientes_list = 0;
 if (isset($_GET['pageNum_RS_pacientes_list'])) {
-  $pageNum_RS_pacientes_list = $_GET['pageNum_RS_pacientes_list'];
+  $pageNum_RS_pacientes_list = (isset($_GET['pageNum_RS_pacientes_list']) ? $_GET['pageNum_RS_pacientes_list'] : NULL);
 }
 $startRow_RS_pacientes_list = $pageNum_RS_pacientes_list * $maxRows_RS_pacientes_list;
 
 $colname_RS_pacientes_list = "-1";
 if (isset($_POST['sBr'])) {
-  $colname_RS_pacientes_list = $_POST['sBr'];
+  $colname_RS_pacientes_list = (isset($_POST['sBr']) ? $_POST['sBr'] : NULL);
 }
 
 $query_RS_pacientes_list = sprintf("SELECT * FROM db_pacientes WHERE pac_nom LIKE %s or pac_ape LIKE %s or CONCAT(pac_nom,' ', pac_ape) LIKE %s", GetSQLValueString("%" . $colname_RS_pacientes_list . "%", "text"),GetSQLValueString("%" . $colname_RS_pacientes_list . "%", "text"),GetSQLValueString("%" . $colname_RS_pacientes_list . "%", "text"));
@@ -18,7 +18,7 @@ $RS_pacientes_list = mysql_query($query_limit_RS_pacientes_list) or die(mysql_er
 $row_RS_pacientes_list = mysql_fetch_assoc($RS_pacientes_list);
 
 if (isset($_GET['totalRows_RS_pacientes_list'])) {
-  $totalRows_RS_pacientes_list = $_GET['totalRows_RS_pacientes_list'];
+  $totalRows_RS_pacientes_list = (isset($_GET['totalRows_RS_pacientes_list']) ? $_GET['totalRows_RS_pacientes_list'] : NULL);
 } else {
   $all_RS_pacientes_list = mysql_query($query_RS_pacientes_list);
   $totalRows_RS_pacientes_list = mysql_num_rows($all_RS_pacientes_list);
@@ -51,23 +51,23 @@ $totalPages_RS_pacientes_list = ceil($totalRows_RS_pacientes_list/$maxRows_RS_pa
     <tr>
     	<td align="center">
         <a onclick="show_det_cli_list(<?php echo $row_RS_pacientes_list['pac_cod']; ?>)" title="Ver Detalle"><img src="../../images/struct/img_taskbar/zoom.png" /></a>
-        	<?php if ($_SESSION['MODSEL']=="PAC"){ ?>
+        	<?php if ((isset($_SESSION['MODSEL']) ? $_SESSION['MODSEL'] : NULL)=="PAC"){ ?>
     	   <a href="../com_pacientes/form.php?id_pac=<?php echo $row_RS_pacientes_list['pac_cod']; ?>&amp;action_form=Actualizar" rel="shadowbox;options={relOnClose:true}" title="Modificar Paciente"><img src="../../images/struct/img_taskbar/add_user.png" border="0" alt="Reserva"/></a>
            <?php } ?>
            
-           <?php if ($_SESSION['MODSEL']=="CON"){ ?>
+           <?php if ((isset($_SESSION['MODSEL']) ? $_SESSION['MODSEL'] : NULL)=="CON"){ ?>
            <a href="../com_consultas/consultas_reservaForm.php?id_pac=<?php echo $row_RS_pacientes_list['pac_cod']; ?>" rel="shadowbox;width=660;height=350" title="Nueva Reserva"><img src="../../images/struct/img_taskbar/book_addresses.png" border="0" alt="Reserva"/></a>
            <?php } ?>
            
-            <?php if ($_SESSION['MODSEL']=="POL"){ ?>
+            <?php if ((isset($_SESSION['MODSEL']) ? $_SESSION['MODSEL'] : NULL)=="POL"){ ?>
            <a href="polizas_pac.php?id_pac=<?php echo $row_RS_pacientes_list['pac_cod']; ?>" rel="shadowbox;width=660;height=350" title="Nueva Reserva"><img src="../../images/struct/img_taskbar/book_addresses.png" border="0" alt="Reserva"/></a>
            <?php } ?>
            
-           <?php if ($_SESSION['MODSEL']=="PAG"){ ?>
+           <?php if ((isset($_SESSION['MODSEL']) ? $_SESSION['MODSEL'] : NULL)=="PAG"){ ?>
            <a href="../com_pagos/pagos_form.php?id_pac=<?php echo $row_RS_pacientes_list['pac_cod']; ?>" rel="shadowbox" title="Pagos Pacientes"><img src="../../images/struct/img_taskbar/calculator.png" border="0" alt="Pagos"/></a>
            <?php } ?>
            
-           <?php if ($_SESSION['MODSEL']=="FAC"){ ?>
+           <?php if ((isset($_SESSION['MODSEL']) ? $_SESSION['MODSEL'] : NULL)=="FAC"){ ?>
            <a href="../com_factura/factura_form.php?id_pac=<?php echo $row_RS_pacientes_list['pac_cod']; ?>" rel="shadowbox" title="Facturas Pacientes"><img src="../../images/struct/img_taskbar/calculator.png" border="0" alt="Pagos"/></a>
            <?php } ?>
            </td>
