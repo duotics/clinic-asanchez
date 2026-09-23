@@ -8,6 +8,11 @@ A legacy procedural PHP clinic management app (patients, clinical histories, con
 
 ## Environment and commands
 
+- **Check `APP_ENV` in `.env` before doing anything.** It is either `DEVELOPMENT` or `PRODUCTION`. Any other value, or no value, counts as `PRODUCTION`. `init.php` exposes it as the `APP_ENV` constant and sets the global debug flag `$vD` to TRUE only in `DEVELOPMENT`.
+  - `DEVELOPMENT`: this is a local copy (the `myXampp5` + `myDb5` containers). You may read the database (`SELECT`, schema dumps), but **never write to it** (`INSERT`/`UPDATE`/`DELETE`/DDL, including `db_menus_items` fixes) unless the user explicitly asks for that exact change. Propose data changes as SQL for the user to run.
+  - `PRODUCTION`: this is a live clinic with real patient data. Don't query the database or run anything against the server without explicit permission. Don't enable debug output.
+  - Say which environment you detected when it matters for the task.
+
 - The repo lives at `www/clinic-asanchez` inside the `xampp5-docker` project. `../../docker-compose.yml` runs container `myXampp5` (XAMPP 5 / PHP 5.6.40) with `./www` mounted at `/www`. There is no `php` on the host.
 - There is no build step and no test suite. The check to run after edits is a lint in the container:
   ```sh
