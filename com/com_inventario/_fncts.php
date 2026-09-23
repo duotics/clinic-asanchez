@@ -1,12 +1,14 @@
 <?php 
+$LOG='';
+$resultado='';
 	include('../_config.php');
 	require_once(RAIZ.'Connections/conn.php');
 	session_start();
 	$_SESSION['LOG']=NULL;
 	if(isset($_POST['id_sel'])) $id_sel=$_POST['id_sel'];
-	else $id_sel=$_GET['id_sel'];
+	else $id_sel=(isset($_GET['id_sel']) ? $_GET['id_sel'] : NULL);
 	if(isset($_POST['action'])) $action=$_POST['action'];
-	else $action=$_GET['action'];
+	else $action=(isset($_GET['action']) ? $_GET['action'] : NULL);
 //IF MOD INVENTARIO PRODUCTS
 if ((isset($_SESSION['MOD_SEL_ITEM'])) && ($_SESSION['MOD_SEL_ITEM'] == 'PRODUCTOS')){ $insertGoTo = 'items_prod_gest.php';
 	if((isset($_POST['form']))&&($_POST['form']=='form_prod')){
@@ -24,12 +26,12 @@ if ((isset($_SESSION['MOD_SEL_ITEM'])) && ($_SESSION['MOD_SEL_ITEM'] == 'PRODUCT
 			}
 		}
 		if((isset($action))&&($action=='UPDATE')){
-			$qry='UPDATE tbl_productos SET prod_nom="'.$_POST['txt_nom'].'", mar_id="'.$_POST['id_mar_sel'].'", tip_cod="'.$_POST['id_tip_sel'].'", prod_obs="'.$_POST['txt_obs'].'"'.$valueimage_upd.' WHERE prod_id='.$id_sel;
+			$qry='UPDATE tbl_productos SET prod_nom="'.(isset($_POST['txt_nom']) ? $_POST['txt_nom'] : NULL).'", mar_id="'.(isset($_POST['id_mar_sel']) ? $_POST['id_mar_sel'] : NULL).'", tip_cod="'.(isset($_POST['id_tip_sel']) ? $_POST['id_tip_sel'] : NULL).'", prod_obs="'.(isset($_POST['txt_obs']) ? $_POST['txt_obs'] : NULL).'"'.$valueimage_upd.' WHERE prod_id='.$id_sel;
 			if(@mysql_query($qry)){ $LOG.="Actualizado Correctamente. ID=".$id_sel; $action="UPDATE";}
 			else $LOG.='<b>Error al Actualizar</b><br />';
 		}
 		if((isset($action))&&($action=='INSERT')){
-			$qry='INSERT INTO tbl_productos (prod_nom, mar_id, tip_cod, prod_obs, prod_stat'.$valueimage_ins[1].')VALUES("'.$_POST['txt_nom'].'", "'.$_POST['id_mar_sel'].'", "'.$_POST['id_tip_sel'].'", "'.$_POST['txt_obs'].'", "1"'.$valueimage_ins[2].')';
+			$qry='INSERT INTO tbl_productos (prod_nom, mar_id, tip_cod, prod_obs, prod_stat'.$valueimage_ins[1].')VALUES("'.(isset($_POST['txt_nom']) ? $_POST['txt_nom'] : NULL).'", "'.(isset($_POST['id_mar_sel']) ? $_POST['id_mar_sel'] : NULL).'", "'.(isset($_POST['id_tip_sel']) ? $_POST['id_tip_sel'] : NULL).'", "'.(isset($_POST['txt_obs']) ? $_POST['txt_obs'] : NULL).'", "1"'.$valueimage_ins[2].')';
 			if(@mysql_query($qry)){ $id_sel=@mysql_insert_id(); $LOG.="Creado Correctamente. ID=".$id_sel; $action="UPDATE";
 			}else $LOG.='<b>Error al Grabar</b><br />';
 		}

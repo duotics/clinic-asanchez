@@ -3,24 +3,24 @@ include('../_config.php');
 include(RAIZf.'head.php');
 include('_libs.php');?>
 <?php
-if (count($_SESSION['b'])==0){echo "NO TIENE DETALLE";}
+if (count((isset($_SESSION['b']) ? $_SESSION['b'] : NULL))==0){echo "NO TIENE DETALLE";}
 else{
 //GRABAR CABECERA////////////////////////////
-	$fac_num = $_POST["fac_num"];
-	$fac_tip_pag = $_POST["fac_tip_pag"];
-	$fac_fec = $_POST["fac_fec"];
-	echo 'paciente'.$fac_pac = $_POST["fac_pac"];
-	echo 'empleado'.$fac_emp = $_POST["fac_emp"];
+	$fac_num = (isset($_POST["fac_num"]) ? $_POST["fac_num"] : NULL);
+	$fac_tip_pag = (isset($_POST["fac_tip_pag"]) ? $_POST["fac_tip_pag"] : NULL);
+	$fac_fec = (isset($_POST["fac_fec"]) ? $_POST["fac_fec"] : NULL);
+	echo 'paciente'.$fac_pac = (isset($_POST["fac_pac"]) ? $_POST["fac_pac"] : NULL);
+	echo 'empleado'.$fac_emp = (isset($_POST["fac_emp"]) ? $_POST["fac_emp"] : NULL);
 	$fac_sal = 0;
-	$fac_total = $_SESSION['total'];
+	$fac_total = (isset($_SESSION['total']) ? $_SESSION['total'] : NULL);
 	$inser_cab = "INSERT INTO tbl_factura(fac_num,fac_fech,pac_cod,emp_cod,tip_pag,total,saldo) VALUES('$fac_num','$fac_fec', '$fac_pac', '$fac_emp', '$fac_tip_pag', '$fac_total', '$fac_sal');";
 	@mysql_query($inser_cab)or($LOG=mysql_error());
 //////////////////////////////////////////////	
 	if ($LOG == '')
 	{	
 //GRABAR DETALLE//////////////////////////////
-		if(count($_SESSION['b'])>0)
-		{	foreach($_SESSION['b'] as $l)
+		if(count((isset($_SESSION['b']) ? $_SESSION['b'] : NULL))>0)
+		{	foreach((isset($_SESSION['b']) ? $_SESSION['b'] : NULL) as $l)
 			{	
 					$cuenta = $l["ind"];
 					$detalle = $l["det"];
@@ -64,10 +64,10 @@ else{
                 <td>Valor</td>
             </tr>
         	<?php
-                if(count($_SESSION['b'])>0)
+                if(count((isset($_SESSION['b']) ? $_SESSION['b'] : NULL))>0)
 				  {	?>
 				  	<?php 
-					foreach($_SESSION['b'] as $l)
+					foreach((isset($_SESSION['b']) ? $_SESSION['b'] : NULL) as $l)
 					{
             		?>
                     <tr>

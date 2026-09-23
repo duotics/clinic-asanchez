@@ -1,14 +1,14 @@
 <?php 
-if ($_POST['mod'] == 'cancelar')
+if ((isset($_POST['mod']) ? $_POST['mod'] : NULL) == 'cancelar')
 { 
 session_start();
-$num1 = $_POST['num1'];
-$det1 = $_POST['det1'];
-$val1 = $_POST['val1'];
-$fec1 = $_POST['fec1'];
+$num1 = (isset($_POST['num1']) ? $_POST['num1'] : NULL);
+$det1 = (isset($_POST['det1']) ? $_POST['det1'] : NULL);
+$val1 = (isset($_POST['val1']) ? $_POST['val1'] : NULL);
+$fec1 = (isset($_POST['fec1']) ? $_POST['fec1'] : NULL);
 $_SESSION['c'] = NULL;
-if(count($_SESSION['b'])>0)
-{	foreach($_SESSION['b'] as $l)
+if(count((isset($_SESSION['b']) ? $_SESSION['b'] : NULL))>0)
+{	foreach((isset($_SESSION['b']) ? $_SESSION['b'] : NULL) as $l)
 	{	if(($l["num"]==$num1) && ($l["det"]==$det1)){}
 		else
 		{	$ind1 =	$l["ind"];
@@ -29,14 +29,14 @@ $_SESSION['b'] = $_SESSION['c'];
 $insertGoTo = 'factura_form.php';
 header(sprintf("Location: %s", $insertGoTo));	
 }
-if ($_POST['mod'] == 'sumar')
+if ((isset($_POST['mod']) ? $_POST['mod'] : NULL) == 'sumar')
 {
 	session_start(); 
-	$ind_s = $_POST['ind_sum'];
-	$val_2 = $_POST['val2'];
+	$ind_s = (isset($_POST['ind_sum']) ? $_POST['ind_sum'] : NULL);
+	$val_2 = (isset($_POST['val2']) ? $_POST['val2'] : NULL);
 	$_SESSION['d'] = NULL;
-	if(count($_SESSION['b'])>0)
-	{	foreach($_SESSION['b'] as $v)
+	if(count((isset($_SESSION['b']) ? $_SESSION['b'] : NULL))>0)
+	{	foreach((isset($_SESSION['b']) ? $_SESSION['b'] : NULL) as $v)
 		{	$ind1 =	$v["ind"];
 			$lrd[$ind1]["num"] = $v["num"];
 			$lrd[$ind1]["det"] = $v["det"];

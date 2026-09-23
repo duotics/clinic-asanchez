@@ -2,9 +2,9 @@
 <?php require_once(RAIZ.'Connections/conn.php'); ?>
 <?php
 session_start();
-	if($_POST['id_sel']==null)
+	if((isset($_POST['id_sel']) ? $_POST['id_sel'] : NULL)==null)
 		$_POST['id_sel']=$_GET['id_sel'];
-	if($_POST['action_form']==null)
+	if((isset($_POST['action_form']) ? $_POST['action_form'] : NULL)==null)
 		$_POST['action_form']=$_GET['action_form'];
 ?>
 <?php
@@ -39,7 +39,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
 $id_cat_sel_RS_mar_detail = "-1";
 if (isset($_GET['id_sel'])) {
-  $id_cat_sel_RS_mar_detail = $_GET['id_sel'];
+  $id_cat_sel_RS_mar_detail = (isset($_GET['id_sel']) ? $_GET['id_sel'] : NULL);
 }
 $query_RS_mar_detail = sprintf("SELECT * FROM tbl_marcas WHERE tbl_marcas.mar_id=%s", GetSQLValueString($id_cat_sel_RS_mar_detail, "int"));
 $RS_mar_detail = mysql_query($query_RS_mar_detail) or die(mysql_error());
@@ -48,7 +48,7 @@ $totalRows_RS_mar_detail = mysql_num_rows($RS_mar_detail);
 
 $id_cattip_sel_RS_prod_tip_detail = "-1";
 if (isset($_GET['id_sel'])) {
-  $id_cattip_sel_RS_prod_tip_detail = $_GET['id_sel'];
+  $id_cattip_sel_RS_prod_tip_detail = (isset($_GET['id_sel']) ? $_GET['id_sel'] : NULL);
 }
 $query_RS_prod_tip_detail = sprintf("SELECT * FROM tbl_productos WHERE tbl_productos.mar_id=%s", GetSQLValueString($id_cattip_sel_RS_prod_tip_detail, "int"));
 $RS_prod_tip_detail = mysql_query($query_RS_prod_tip_detail) or die(mysql_error());
@@ -60,10 +60,10 @@ $totalRows_RS_prod_tip_detail = mysql_num_rows($RS_prod_tip_detail);
 <div id="head_sec"><a href="#" class="link">GESTION MARCAS</a></div>
 <?php vLOG(); ?>
 <div id="cont_head">
-<form id="form_cat" name="form" method="post" action="_fncts.php?action=<?php echo $_GET['action_form'];?>">
+<form id="form_cat" name="form" method="post" action="_fncts.php?action=<?php echo (isset($_GET['action_form']) ? $_GET['action_form'] : NULL);?>">
   <table align="center" class="bord_gray_4cornes">
 	<tr>
-    	<td colspan="2" class="text_sec_gray_min" align="center" bgcolor="#666666"><?php echo $_GET['action']; ?> <strong><?php echo $_GET['id_sel']; ?></strong></td>
+    	<td colspan="2" class="text_sec_gray_min" align="center" bgcolor="#666666"><?php echo (isset($_GET['action']) ? $_GET['action'] : NULL); ?> <strong><?php echo (isset($_GET['id_sel']) ? $_GET['id_sel'] : NULL); ?></strong></td>
     </tr>
     <tr>
    	  <td class="txt_name">Nombre:</td>
@@ -97,9 +97,9 @@ do {
     <tr>
     	<td colspan="2" align="center"><label>
     	  <input name="form" type="hidden" id="form" value="form_mar">
-    	  <input name="action" type="hidden" id="action" value="<?php echo $_GET['action']; ?>">
-    	  <input name="id_sel" type="hidden" id="id_sel" value="<?php echo $_GET['id_sel']; ?>" />
-    	  <input type="submit" name="btn_send" id="btn_send" value="<?php echo $_GET['action']; ?>" />
+    	  <input name="action" type="hidden" id="action" value="<?php echo (isset($_GET['action']) ? $_GET['action'] : NULL); ?>">
+    	  <input name="id_sel" type="hidden" id="id_sel" value="<?php echo (isset($_GET['id_sel']) ? $_GET['id_sel'] : NULL); ?>" />
+    	  <input type="submit" name="btn_send" id="btn_send" value="<?php echo (isset($_GET['action']) ? $_GET['action'] : NULL); ?>" />
     	</label></td>
     </tr>
 </table>

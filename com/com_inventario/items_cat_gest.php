@@ -1,6 +1,6 @@
 <?php include('../../init.php');
 $_SESSION['MODSEL']="INVC";
-$rowMod=fnc_datamod($_SESSION['MODSEL']);
+$rowMod=fnc_datamod((isset($_SESSION['MODSEL']) ? $_SESSION['MODSEL'] : NULL));
 $query_RS_list_cat = "SELECT * FROM tbl_prod_categorias";
 $RS_list_cat = mysql_query($query_RS_list_cat) or die(mysql_error());
 $row_RS_list_cat = mysql_fetch_assoc($RS_list_cat);

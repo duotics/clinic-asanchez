@@ -16,17 +16,17 @@ include(RAIZf.'head.php');
        		<td><label>FECHA:</label>
            	<p><?php echo date("Y-m-d ");?></p></td>	     
        		<td><label>PACIENTE:</label>
-           	<p><?php $res=dataPac($_SESSION['id_pac']); 
+           	<p><?php $res=dataPac((isset($_SESSION['id_pac']) ? $_SESSION['id_pac'] : NULL)); 
 			echo $res['pac_nom']." ".$res['pac_ape']; ?></p></td>           
        		<td><label>EMPLEADO:</label>
-	   		<p><?php //$res=dataEmp($_SESSION[dU]); 			echo $res['emp_nom']." ".$res['emp_ape']; ?></p></td>              
+	   		<p><?php //$res=dataEmp((isset($_SESSION[dU]) ? $_SESSION[dU] : NULL)); 			echo $res['emp_nom']." ".$res['emp_ape']; ?></p></td>              
 		</tr>
         </table>       
 </div>
 <div class="fac_det"><label>DETALLE DE FACTURA</label></div>
 <div class="fac_detail">
         	<table>
-            <?php if(count($_SESSION['b'])>0){ ?>
+            <?php if(count((isset($_SESSION['b']) ? $_SESSION['b'] : NULL))>0){ ?>
                 <tr>
                 <td></td>
             	<td><label>Consulta</label></td>
@@ -34,7 +34,7 @@ include(RAIZf.'head.php');
             	<td><label>Valor</label></td>
             	<td><label>Fecha</label></td>
             	</tr>
-            <?php  foreach($_SESSION['b'] as $v){ ?>
+            <?php  foreach((isset($_SESSION['b']) ? $_SESSION['b'] : NULL) as $v){ ?>
             <?php $num1 = $v["num"];$det1 = $v["det"];$val1 = $v["val"];$fec1 = $v["fec"];$ind1 = $v["ind"];?>
                 <tr>
                 	<td>
@@ -86,7 +86,7 @@ include(RAIZf.'head.php');
 <td>
 <input type="submit" name="confirm" id="confirm" value="Facturar"/><input name="fac_num" type="hidden" id="fac_num" value="<?php echo $f_num; ?>" />
          <input name="fac_fec" type="hidden" id="fac_fec" value="<?php echo date("Y-m-d ");?>" />
-         <input name="fac_pac" type="hidden" id="fac_pac" value="<?php echo $_SESSION['id_pac']; ?>" />
+         <input name="fac_pac" type="hidden" id="fac_pac" value="<?php echo (isset($_SESSION['id_pac']) ? $_SESSION['id_pac'] : NULL); ?>" />
          <input type="hidden" name="fac_emp" id="fac_emp" value="<?php echo $res['emp_cod']; ?>" />
 </td>
 </tr>
@@ -97,7 +97,7 @@ include(RAIZf.'head.php');
 </div>
 <div align="center"><a href="factura_select.php" rel="shadowbox; width=400; height=400;options={relOnClose:true}"><img src="../../images/struct/icons/Add-a_32x32.png"/></a> </div>
 </div>
-<?php echo $_GET['LOG']; ?>
+<?php echo (isset($_GET['LOG']) ? $_GET['LOG'] : NULL); ?>
 <script type="text/javascript">
 <?php for ($i=1;$i<$cont; $i++){ ?>
 var sprytextfield<?php echo $i; ?> = new Spry.Widget.ValidationTextField("sprytextfield<?php echo $i; ?>", "currency");

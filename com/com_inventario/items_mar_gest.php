@@ -1,6 +1,6 @@
 <?php include('../../init.php');
 $_SESSION['MODSEL']="INVM";
-$rowMod=fnc_datamod($_SESSION['MODSEL']);
+$rowMod=fnc_datamod((isset($_SESSION['MODSEL']) ? $_SESSION['MODSEL'] : NULL));
 $query_RS_list_mar = "SELECT * FROM tbl_marcas";
 $RS_list_mar = mysql_query($query_RS_list_mar) or die(mysql_error());
 $row_RS_list_mar = mysql_fetch_assoc($RS_list_mar);

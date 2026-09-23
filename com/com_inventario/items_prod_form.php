@@ -1,12 +1,12 @@
 <?php include('../../init.php');
-$rowMod=fnc_datamod($_SESSION['MODSEL']);
+$rowMod=fnc_datamod((isset($_SESSION['MODSEL']) ? $_SESSION['MODSEL'] : NULL));
 
 if(!(isset($_POST['id_sel']))) $_POST['id_sel']=$_GET['id_sel'];
 if(!(isset($_POST['action']))) $_POST['action']=$_GET['action'];
 
 $id_prod_sel_RS_prod_det = "-1";
 if (isset($_GET['id_sel'])) {
-  $id_prod_sel_RS_prod_det = $_GET['id_sel'];
+  $id_prod_sel_RS_prod_det = (isset($_GET['id_sel']) ? $_GET['id_sel'] : NULL);
 }
 $query_RS_prod_det = sprintf("SELECT * FROM tbl_productos LEFT JOIN tbl_prod_tipos  ON tbl_productos.tip_cod=tbl_prod_tipos.tip_cod LEFT JOIN tbl_prod_categorias ON tbl_prod_tipos.cat_cod=tbl_prod_categorias.cat_cod LEFT JOIN tbl_marcas ON tbl_productos.mar_id=tbl_marcas.mar_id WHERE tbl_productos.prod_id=%s", GetSQLValueString($id_prod_sel_RS_prod_det, "int"));
 $RS_prod_det = mysql_query($query_RS_prod_det) or die(mysql_error());
@@ -31,7 +31,7 @@ $totalRows_RS_tip_list = mysql_num_rows($RS_tip_list);
 <form enctype="multipart/form-data" id="form1" name="form1" method="post" action="_fncts.php">
   <table align="center" class="bord_gray_4cornes">
 	<tr>
-    	<td colspan="2" class="text_sec_gray_min" align="center" bgcolor="#666666"><?php echo $_GET['action']; ?> <strong><?php echo $row_RS_prod_det['prod_id']; ?></strong></td>
+    	<td colspan="2" class="text_sec_gray_min" align="center" bgcolor="#666666"><?php echo (isset($_GET['action']) ? $_GET['action'] : NULL); ?> <strong><?php echo $row_RS_prod_det['prod_id']; ?></strong></td>
     </tr>
     <tr>
     	<td class="txt_name">Codigo:</td>
@@ -118,10 +118,10 @@ do {
     <tr>
 
     	<td colspan="2" align="center"><p><label>
-    	  <input name="action" type="hidden" id="action" value="<?php echo $_GET['action']; ?>">
+    	  <input name="action" type="hidden" id="action" value="<?php echo (isset($_GET['action']) ? $_GET['action'] : NULL); ?>">
     	  <input name="form" type="hidden" id="form" value="form_prod">
-    	  <input name="id_sel" type="hidden" id="id_sel" value="<?php echo $_GET['id_sel']; ?>" />
-    	  <input type="submit" name="btn_send" id="btn_send" value="<?php echo $_GET['action']; ?>" />
+    	  <input name="id_sel" type="hidden" id="id_sel" value="<?php echo (isset($_GET['id_sel']) ? $_GET['id_sel'] : NULL); ?>" />
+    	  <input type="submit" name="btn_send" id="btn_send" value="<?php echo (isset($_GET['action']) ? $_GET['action'] : NULL); ?>" />
     	</label></p></td>
     </tr>
 </table>
