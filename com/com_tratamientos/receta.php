@@ -1,4 +1,7 @@
 <?php include_once('../../init.php');
+$proxima='';
+$resDiag='';
+$resReceta='';
 $dettrat=detRow('db_tratamientos','tid',$idt);//fnc_datatrat($idt);
 $detCon=detRow('db_consultas','con_num',$dettrat['con_num']);//fnc_datatrat($idt);
 //$detpac=detRow('db_pacientes','pac_cod',$detCon['pac_cod']);//dPac($dettrat['pac_cod']);

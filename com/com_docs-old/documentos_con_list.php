@@ -73,7 +73,7 @@ $classtr='';
 		<td><div class="btn-group">
 		<a href="<?php echo $RAIZc ?>com_docs/documentoForm.php?idd=<?php echo $idDoc ?>" class="btn btn-primary btn-xs fancybox.iframe fancyreload">
         <i class="fas fa-edit fa-lg"></i> Modificar</a>
-		<a href="<?php echo $RAIZc; ?>com_docs/documentoForm.php?idd=<?php echo $idDoc ?>&acc=<?php echo md5(DELd) ?>" class="btn btn-danger btn-xs fancybox fancybox.iframe fancyreload">
+		<a href="<?php echo $RAIZc; ?>com_docs/documentoForm.php?idd=<?php echo $idDoc ?>&acc=<?php echo md5('DELd') ?>" class="btn btn-danger btn-xs fancybox fancybox.iframe fancyreload">
         <i class="fas fa-trash fa-lg"></i> Eliminar</a>
 		</div></td>
         </tr>

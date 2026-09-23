@@ -1,8 +1,8 @@
 <?php require('../../init.php');
 $_SESSION['tab']['con']='cTRA';
-$idc=vParam('idc',$_GET['idc'],$_POST['idc']);
-$idt=vParam('idt',$_GET['idt'],$_POST['idt']);
-$acc=vParam('action',$_GET['action'],$_POST['action']);
+$idc=vParam('idc', isset($_GET['idc']) ? $_GET['idc'] : NULL, isset($_POST['idc']) ? $_POST['idc'] : NULL);
+$idt=vParam('idt', isset($_GET['idt']) ? $_GET['idt'] : NULL, isset($_POST['idt']) ? $_POST['idt'] : NULL);
+$acc=vParam('action', isset($_GET['action']) ? $_GET['action'] : NULL, isset($_POST['action']) ? $_POST['action'] : NULL);
 //Eliminar Tratamiento
 if($acc=='DELTF'){ header(sprintf("Location: %s", '_fncts.php?idt='.$idt.'&action=DELTF')); }
 //FORM
@@ -17,7 +17,7 @@ if($detTrat){
 	$query_RS_datos = sprintf('SELECT id_form AS sID, CONCAT(generico," ( ",comercial," ) "," : ",presentacion) as sVAL FROM db_medicamentos WHERE estado=1 OR generico IS NULL OR comercial IS NULL OR presentacion IS NULL');
 	$RS_datos = mysql_query($query_RS_datos) or die(mysql_error());
 
-	$idtd=vParam('idtd',$_GET['idtd'],$_POST['idtd']);
+	$idtd=vParam('idtd', isset($_GET['idtd']) ? $_GET['idtd'] : NULL, isset($_POST['idtd']) ? $_POST['idtd'] : NULL);
 	$detTD=detRow('db_tratamientos_detalle','id',$idtd);
 	if($detTD){//Detalle Tratamiento
 		$accTD='UPDD';
@@ -72,7 +72,7 @@ include(RAIZf.'head.php'); ?>
         <?php if($idt){ ?>
 		<a href="<?php echo $RAIZc; ?>com_hc/receta_print.php?idt=<?php echo $idt ?>" class="btn btn-info"><i class="fas fa-print fa-lg"></i> Imprimir</a>
         <?php } ?>
-		<a href="<?php echo $_SESSION['urlc'] ?>?idp=<?php echo $idp ?>&idc=<?php echo $idc ?>&action=NEW" class="btn btn-default"><col-md- class="glyphicon glyphicon-plus-sign"></col-md-> NUEVO</a>
+		<a href="<?php echo (isset($_SESSION['urlc']) ? $_SESSION['urlc'] : NULL) ?>?idp=<?php echo $idp ?>&idc=<?php echo $idc ?>&action=NEW" class="btn btn-default"><col-md- class="glyphicon glyphicon-plus-sign"></col-md-> NUEVO</a>
 		</li>
 	</div>
 	</div><!-- /.navbar-collapse -->

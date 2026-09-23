@@ -1,5 +1,5 @@
 <?php require('../../init.php');
-$id=vParam('id',$_GET['id'],$_POST['id']);
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
 $detMed=detRow('db_medicamentos','id_form',$id);
 if($detMed){
 	$id=$detMed['id_form'];
@@ -88,7 +88,7 @@ include(RAIZf.'head.php');
     	<label for="" class="col-sm-2 control-label"></label>
     	<div class="col-sm-10">
     	<?php echo $btn_action ?>
-    	<a href="<?php echo $_SESSION['urlc']?>" class="btn btn-default navbar-btn"><i class="fas fa-plus-square fa-lg"></i> NUEVO</a>
+    	<a href="<?php echo (isset($_SESSION['urlc']) ? $_SESSION['urlc'] : NULL)?>" class="btn btn-default navbar-btn"><i class="fas fa-plus-square fa-lg"></i> NUEVO</a>
     	</div>
 	</div>
     </fieldset></div>
@@ -133,7 +133,7 @@ include(RAIZf.'head.php');
             <td><?php echo $dRS['descripcion']?></td>
 			<td><?php echo totRowsTab('db_tratamientos_detalle','id_form',$dRS['id_form']) ?></td>
 			<td>
-				<a href="<?php echo $_SESSION['urlc'] ?>?id=<?php echo $dRS['id_form'] ?>" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-edit"></i> Modificar</a>
+				<a href="<?php echo (isset($_SESSION['urlc']) ? $_SESSION['urlc'] : NULL) ?>?id=<?php echo $dRS['id_form'] ?>" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-edit"></i> Modificar</a>
 				<a href="actions.php?id=<?php echo $dRS['id_form'] ?>&acc=<?php echo md5('DELm')?>" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Eliminar</a>
 			</td>
 		</tr>

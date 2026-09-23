@@ -1,12 +1,12 @@
 <?php require('../../init.php');
 
-$idp=vParam('idp',$_GET['idp'],$_POST['idp']);
-$idc=vParam('idc',$_GET['idc'],$_POST['idc']);
-$idd=vParam('idd',$_GET['idd'],$_POST['idd']);
-$iddf=vParam('iddf',$_GET['iddf'],$_POST['iddf']);
-$acc=vParam('acc',$_GET['acc'],$_POST['acc']);
+$idp=vParam('idp', isset($_GET['idp']) ? $_GET['idp'] : NULL, isset($_POST['idp']) ? $_POST['idp'] : NULL);
+$idc=vParam('idc', isset($_GET['idc']) ? $_GET['idc'] : NULL, isset($_POST['idc']) ? $_POST['idc'] : NULL);
+$idd=vParam('idd', isset($_GET['idd']) ? $_GET['idd'] : NULL, isset($_POST['idd']) ? $_POST['idd'] : NULL);
+$iddf=vParam('iddf', isset($_GET['iddf']) ? $_GET['iddf'] : NULL, isset($_POST['iddf']) ? $_POST['iddf'] : NULL);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
 
-if($acc==md5(DELd)) header(sprintf("Location: %s", '_fncts.php?idd='.$idd.'&acc='.md5(DELd)));
+if($acc==md5('DELd')) header(sprintf("Location: %s", '_fncts.php?idd='.$idd.'&acc='.md5('DELd')));
 
 $qrydf='SELECT * FROM  db_documentos_formato ORDER BY nombre ASC';
 $RSdf=mysql_query($qrydf);
@@ -21,7 +21,7 @@ $detpac=dataPac($idp);
 $detpac_nom=$detpac['pac_nom'].' '.$detpac['pac_ape'];
 $detCON=fnc_datacons($idc, $idp);
 if($detdoc){
-	$acc=md5(UPDd);
+	$acc=md5('UPDd');
 	$doc_date=$detdoc['fecha'];
 	if ($iddf){
 		$doc_nom=$detdocf['nombre'];
@@ -33,7 +33,7 @@ if($detdoc){
 	$btnAcc='<button type="submit" class="btn btn-success" name="btnA"><i class="fas fa-save fa-lg"></i> ACTUALIZAR</button>';
 	$btnAccP='<button type="submit" class="btn btn-primary" name="btnP"><i class="fas fa-save fa-lg"></i> ACTUALIZAR E IMPRIMIR</button>';
 }else{
-	$acc=md5(INSd);
+	$acc=md5('INSd');
 	$doc_date=$sdate;
 	$doc_nom=$detdocf['nombre'];
 	$doc_con=$detdocf['formato'];
@@ -60,7 +60,7 @@ include(RAIZf.'head.php'); ?>
 	<input name="idc" type="hidden" id="idc" value="<?php echo $idc ?>">
 	<input name="acc" type="hidden" id="acc" value="<?php echo $acc ?>">
 	<input name="fecha" type="hidden" id="fecha" value="<?php echo $doc_date ?>">
-	<input name="form" type="hidden" id="form" value="<?php echo md5(fDocs) ?>">
+	<input name="form" type="hidden" id="form" value="<?php echo md5('fDocs') ?>">
 	<input name="url" type="hidden" value="<?php echo $urlc ?>">
 </fieldset>
 

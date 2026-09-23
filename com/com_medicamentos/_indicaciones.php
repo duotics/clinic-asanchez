@@ -1,4 +1,5 @@
 <?php
+$paramSQL='';
 $param=$_POST;
 if($p){
 	if($param['nom']) $paramSQL.=' AND des LIKE "%'.$param['nom'].'%"';
@@ -55,8 +56,8 @@ $btnNew='<a href="indicacionesForm.php" class="btn btn-default fancybox fancybox
 		$ids=md5($id);
 		$TMC=NULL;
 		if($tr_RSd<=10) $TMC=totRowsTabP('db_tratamientos_detalle','AND idref='.$id.' AND tip="I"');	
-		$btnStat=genStatus('actions.php',array('ids'=>$ids, 'val'=>$dRSd['est'],'acc'=>md5(STi),"url"=>$urlc));
-		$btnFeat=genStatus('actions.php',array('ids'=>$ids, 'val'=>$dRSd['feat'],'acc'=>md5(FTi),"url"=>$urlc));
+		$btnStat=genStatus('actions.php',array('ids'=>$ids, 'val'=>$dRSd['est'],'acc'=>md5('STi'),"url"=>$urlc));
+		$btnFeat=genStatus('actions.php',array('ids'=>$ids, 'val'=>$dRSd['feat'],'acc'=>md5('FTi'),"url"=>$urlc));
 		?>
 		<tr>
 			<td><?php echo $id ?></td>
@@ -67,7 +68,7 @@ $btnNew='<a href="indicacionesForm.php" class="btn btn-default fancybox fancybox
 			<td>
 				<a href="indicacionesForm.php?ids=<?php echo $ids ?>" class="btn btn-success btn-xs fancybox fancybox.iframe fancyreload"><i class="fas fa-edit fa-lg"></i> Modificar</a>
 				<?php if($id>1){ ?>
-				<a href="actions.php?ids=<?php echo $ids ?>&acc=<?php echo md5(DELi)?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs"><i class="fas fa-trash fa-lg"></i> Eliminar</a>
+				<a href="actions.php?ids=<?php echo $ids ?>&acc=<?php echo md5('DELi')?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs"><i class="fas fa-trash fa-lg"></i> Eliminar</a>
 				<?php } ?>
 			</td>
 		</tr>

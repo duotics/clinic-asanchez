@@ -124,7 +124,7 @@ if ((isset($data['form'])) && ($data['form'] == 'tratdet')){
 				}
 			}while($dRSlmg=mysql_fetch_assoc($RSlmg));
 		}else{
-			if($_POST['tipTD']=='I') $indicacion=$_POST['descripcion'];
+			if((isset($_POST['tipTD']) ? $_POST['tipTD'] : NULL)=='I') $indicacion=(isset($_POST['descripcion']) ? $_POST['descripcion'] : NULL);
 			$qryins=sprintf('INSERT INTO db_tratamientos_detalle (tid, idref, tip, generico, comercial, presentacion, cantidad, numero, descripcion, indicacion)
 			VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',
 							SSQL($data['trat_id'], "int"),
@@ -145,11 +145,11 @@ if ((isset($data['form'])) && ($data['form'] == 'tratdet')){
 		}
 		
 		
-		$goToP='?idt='.$_POST['trat_id'];
+		$goToP='?idt='.(isset($_POST['trat_id']) ? $_POST['trat_id'] : NULL);
 	}
 	
 	if($acc==md5('UPDtd')){
-		if($_POST['tipTD']=='I') $indicacion=$_POST['descripcion'];
+		if((isset($_POST['tipTD']) ? $_POST['tipTD'] : NULL)=='I') $indicacion=(isset($_POST['descripcion']) ? $_POST['descripcion'] : NULL);
 		$qryUpd=sprintf('UPDATE db_tratamientos_detalle SET generico=%s, comercial=%s, presentacion=%s, cantidad=%s, numero=%s, descripcion=%s, indicacion=%s WHERE id=%s',
 						SSQL($data['generico'], "text"),
 						SSQL($data['comercial'], "text"),

@@ -1,5 +1,5 @@
 <?php
-$ids = vParam('ids', $_GET['ids'], $_POST['ids']);
+$ids = vParam('ids', isset($_GET['ids']) ? $_GET['ids'] : NULL, isset($_POST['ids']) ? $_POST['ids'] : NULL);
 $dF = detRow('db_documentos_formato', 'md5(id_df)', $ids);
 if ($dF) {
 	$id = $dF["id_df"];

@@ -1,32 +1,33 @@
 <?php include('../../init.php');
+$LOG='';
 $_SESSION['LOG']=NULL;//INICIALIZA SESSION LOG
-$id=vParam('id',$_GET['id'],$_POST['id']); //ID STANDAR
-$idp=vParam('idp',$_GET['idp'],$_POST['idp']); //ID PACIENTE
-$idc=vParam('idc',$_GET['idc'],$_POST['idc']); //ID CONSULTA
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL); //ID STANDAR
+$idp=vParam('idp', isset($_GET['idp']) ? $_GET['idp'] : NULL, isset($_POST['idp']) ? $_POST['idp'] : NULL); //ID PACIENTE
+$idc=vParam('idc', isset($_GET['idc']) ? $_GET['idc'] : NULL, isset($_POST['idc']) ? $_POST['idc'] : NULL); //ID CONSULTA
 //Variables para funciones de TRATAMIENTOS
-$idt=vParam('idt',$_GET['idt'],$_POST['idt']);
-$idtd=vParam('idtd',$_GET['idtd'],$_POST['idtd']);
+$idt=vParam('idt', isset($_GET['idt']) ? $_GET['idt'] : NULL, isset($_POST['idt']) ? $_POST['idt'] : NULL);
+$idtd=vParam('idtd', isset($_GET['idtd']) ? $_GET['idtd'] : NULL, isset($_POST['idtd']) ? $_POST['idtd'] : NULL);
 
-$ide=vParam('ide',$_GET['ide'],$_POST['ide']);
-$idr=vParam('idr',$_GET['idr'],$_POST['idr']);
+$ide=vParam('ide', isset($_GET['ide']) ? $_GET['ide'] : NULL, isset($_POST['ide']) ? $_POST['ide'] : NULL);
+$idr=vParam('idr', isset($_GET['idr']) ? $_GET['idr'] : NULL, isset($_POST['idr']) ? $_POST['idr'] : NULL);
 //Variables para funcion de Obstetricia
-$ido=vParam('ido',$_GET['ido'],$_POST['ido']);
+$ido=vParam('ido', isset($_GET['ido']) ? $_GET['ido'] : NULL, isset($_POST['ido']) ? $_POST['ido'] : NULL);
 
 //VARIABLE ACCION Y REDIRECCION
-$action=vParam('action',$_GET['action'],$_POST['action']);
-$urlreturn=$_SESSION['urlp'];
+$action=vParam('action', isset($_GET['action']) ? $_GET['action'] : NULL, isset($_POST['action']) ? $_POST['action'] : NULL);
+$urlreturn=(isset($_SESSION['urlp']) ? $_SESSION['urlp'] : NULL);
 /**********************************************************************/
 //FUNCIONES PARA TRATAMIENTOS
 if ((isset($_POST['form'])) && ($_POST['form'] == 'tratdet')){
 	if($action=='INS'){	
 	$qryinst=sprintf('INSERT INTO db_tratamientos (con_num, pac_cod, fecha, fechap, diagnostico, obs)
 	VALUES (%s,%s,%s,%s,%s,%s)',
-	SSQL($_POST['idc'], "int"),
-	SSQL($_POST['idp'], "int"),
-	SSQL($_POST['fecha'], "date"),
-	SSQL($_POST['fechap'], "date"),
-	SSQL($_POST['diagnostico'], "text"),
-	SSQL($_POST['obs'], "text"));
+	SSQL((isset($_POST['idc']) ? $_POST['idc'] : NULL), "int"),
+	SSQL((isset($_POST['idp']) ? $_POST['idp'] : NULL), "int"),
+	SSQL((isset($_POST['fecha']) ? $_POST['fecha'] : NULL), "date"),
+	SSQL((isset($_POST['fechap']) ? $_POST['fechap'] : NULL), "date"),
+	SSQL((isset($_POST['diagnostico']) ? $_POST['diagnostico'] : NULL), "text"),
+	SSQL((isset($_POST['obs']) ? $_POST['obs'] : NULL), "text"));
 	if(@mysql_query($qryinst)){ $idt = @mysql_insert_id();
 		$LOG.='<h4>Tratamiento Creado</h4> Numero. <strong>'.$idt.'</strong>';
 	}else $LOG.='Error al Insertar';
@@ -35,11 +36,11 @@ if ((isset($_POST['form'])) && ($_POST['form'] == 'tratdet')){
 	
 	if($action=='UPD'){	
 	$qryinst=sprintf('UPDATE db_tratamientos SET diagnostico=%s, fechap=%s, obs=%s WHERE tid=%s',
-	SSQL($_POST['diagnostico'], "text"),
-	SSQL($_POST['fechap'], "date"),
-	SSQL($_POST['obs'], "text"),
-	SSQL($_POST['idt'], "int"));
-	if(@mysql_query($qryinst)){ $idt = $_POST['idt'];
+	SSQL((isset($_POST['diagnostico']) ? $_POST['diagnostico'] : NULL), "text"),
+	SSQL((isset($_POST['fechap']) ? $_POST['fechap'] : NULL), "date"),
+	SSQL((isset($_POST['obs']) ? $_POST['obs'] : NULL), "text"),
+	SSQL((isset($_POST['idt']) ? $_POST['idt'] : NULL), "int"));
+	if(@mysql_query($qryinst)){ $idt = (isset($_POST['idt']) ? $_POST['idt'] : NULL);
 		$LOG.='<p>Tratamiento Actualizado</p>';
 	}else $LOG.='<p>Error al Actualizar</p>';
 	$urlreturn.='?idt='.$idt;
@@ -48,29 +49,29 @@ if ((isset($_POST['form'])) && ($_POST['form'] == 'tratdet')){
 	if($action=='INSD'){	
 	$qryins=sprintf('INSERT INTO db_tratamientos_detalle (tid, id_form, generico, comercial, presentacion, cantidad, descripcion)
 	VALUES (%s,%s,%s,%s,%s,%s,%s)',
-	SSQL($_POST['trat_id'], "int"),
-	SSQL($_POST['id_form'], "int"),
-	SSQL($_POST['generico'], "text"),
-	SSQL($_POST['comercial'], "text"),
-	SSQL($_POST['presentacion'], "text"),
-	SSQL($_POST['cantidad'], "int"),
-	SSQL($_POST['descripcion'], "text"));
+	SSQL((isset($_POST['trat_id']) ? $_POST['trat_id'] : NULL), "int"),
+	SSQL((isset($_POST['id_form']) ? $_POST['id_form'] : NULL), "int"),
+	SSQL((isset($_POST['generico']) ? $_POST['generico'] : NULL), "text"),
+	SSQL((isset($_POST['comercial']) ? $_POST['comercial'] : NULL), "text"),
+	SSQL((isset($_POST['presentacion']) ? $_POST['presentacion'] : NULL), "text"),
+	SSQL((isset($_POST['cantidad']) ? $_POST['cantidad'] : NULL), "int"),
+	SSQL((isset($_POST['descripcion']) ? $_POST['descripcion'] : NULL), "text"));
 	if(@mysql_query($qryins)) $LOG.='<p>Medicamento Guardado</p>';
 	else $LOG.='<p>Error al Guardar Medicamento</p>';
-	$urlreturn='tratamiento_form.php?idt='.$_POST['trat_id'];
+	$urlreturn='tratamiento_form.php?idt='.(isset($_POST['trat_id']) ? $_POST['trat_id'] : NULL);
 	}
 	
 	if($action=='UPDD'){	
 	$qryUpd=sprintf('UPDATE db_tratamientos_detalle SET generico=%s, comercial=%s, presentacion=%s, cantidad=%s, descripcion=%s WHERE id=%s',
-	SSQL($_POST['generico'], "text"),
-	SSQL($_POST['comercial'], "text"),
-	SSQL($_POST['presentacion'], "text"),
-	SSQL($_POST['cantidad'], "int"),
-	SSQL($_POST['descripcion'], "text"),
+	SSQL((isset($_POST['generico']) ? $_POST['generico'] : NULL), "text"),
+	SSQL((isset($_POST['comercial']) ? $_POST['comercial'] : NULL), "text"),
+	SSQL((isset($_POST['presentacion']) ? $_POST['presentacion'] : NULL), "text"),
+	SSQL((isset($_POST['cantidad']) ? $_POST['cantidad'] : NULL), "int"),
+	SSQL((isset($_POST['descripcion']) ? $_POST['descripcion'] : NULL), "text"),
 	SSQL($idtd, "int"));
 	if(@mysql_query($qryUpd)) $LOG.='<p>Medicamento Guardado</p>';
 	else $LOG.='<p>Error al Guardar Medicamento</p>';
-	$urlreturn='tratamiento_form.php?idt='.$_POST['trat_id'];
+	$urlreturn='tratamiento_form.php?idt='.(isset($_POST['trat_id']) ? $_POST['trat_id'] : NULL);
 	}
 	
 }

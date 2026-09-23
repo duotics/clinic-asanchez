@@ -1,25 +1,25 @@
 <?php require('../../init.php');
-$id=vParam('id',$_GET['id'],$_POST['id']);
-$acc=vParam('acc',$_GET['acc'],$_POST['acc']);
-$url=vParam('url',$_GET['url'],$_POST['url']);
+$id=vParam('id', isset($_GET['id']) ? $_GET['id'] : NULL, isset($_POST['id']) ? $_POST['id'] : NULL);
+$acc=vParam('acc', isset($_GET['acc']) ? $_GET['acc'] : NULL, isset($_POST['acc']) ? $_POST['acc'] : NULL);
+$url=vParam('url', isset($_GET['url']) ? $_GET['url'] : NULL, isset($_POST['url']) ? $_POST['url'] : NULL);
 $data=$_POST;
 
 
-$url=$_SESSION['urlp'];
+$url=(isset($_SESSION['urlp']) ? $_SESSION['urlp'] : NULL);
 
 mysql_query("SET AUTOCOMMIT=0;"); //Desabilita el autocommit
 mysql_query("BEGIN;"); //Inicia la transaccion
 
 if(($acc)&&($acc==md5('DELm'))){
 	$LOG=NULL;
-	$id=$_GET['id'];
+	$id=(isset($_GET['id']) ? $_GET['id'] : NULL);
 	$qryDEL=sprintf('DELETE FROM db_medicamentos WHERE id_form=%s',
 	SSQL($id,'int'));
 	if(@mysql_query($qryDEL)) $LOG.="<p>Medicamento Eliminado</p>";
 	else $LOG.='<p>No se pudo Eliminar</p>';
 	$url.='?id='.$id;
 }
-if(($_POST['form'])&&($_POST['form']=='fmed')){
+if(((isset($_POST['form']) ? $_POST['form'] : NULL))&&((isset($_POST['form']) ? $_POST['form'] : NULL)=='fmed')){
 	if($acc==md5('INSm')){
 		$insertSQL = sprintf("INSERT INTO db_medicamentos
 		(generico, comercial, presentacion, cantidad, descripcion, estado) VALUES (%s,%s,%s,%s,%s,%s)",
@@ -52,11 +52,11 @@ if(!mysql_error()){
 	mysql_query("COMMIT;");
 	$LOGt='Operación Exitosa';
 	$LOGc='alert-success';
-	$LOGi=$RAIZa.$_SESSION['conf']['i']['ok'];
+	$LOGi=$RAIZa.(isset($_SESSION['conf']['i']['ok']) ? $_SESSION['conf']['i']['ok'] : NULL);
 }else{
 	mysql_query("ROLLBACK;");
 	$LOGt='Fallo del Sistema';
-	$LOGi=$RAIZa.$_SESSION['conf']['i']['fail'];
+	$LOGi=$RAIZa.(isset($_SESSION['conf']['i']['fail']) ? $_SESSION['conf']['i']['fail'] : NULL);
 }
 mysql_query("SET AUTOCOMMIT=1;"); //Habilita el autocommit
 $_SESSION['LOG']['t']=$LOGt;

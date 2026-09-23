@@ -1,4 +1,5 @@
 <?php 
+$paramSQL='';
 $param=$_POST;
 if($param){
 	if($param['nomMed']) $paramSQL.=' AND generico LIKE "%'.$param['nomMed'].'%" '.'OR comercial LIKE "%'.$param['nomMed'].'%" ';
@@ -63,7 +64,7 @@ $btnNew='<a href="medicamentosForm.php" class="btn btn-default fancyR" data-type
 			 
 			 if($tr_RSd<=10) $TMC=totRowsTabP('db_tratamientos_detalle','AND idref='.$id.' AND tip="M"');
 			 $dLab=detRow('db_types','typ_cod',$dRSd['lab']);
-			 $btnStat=genStatus('actions.php',array('ids'=>$ids, 'val'=>$dRSd['estado'],'acc'=>md5(STm),"url"=>$urlc));
+			 $btnStat=genStatus('actions.php',array('ids'=>$ids, 'val'=>$dRSd['estado'],'acc'=>md5('STm'),"url"=>$urlc));
 		?>
 		<tr>
 			<td><?php echo $id ?></td>
@@ -78,7 +79,7 @@ $btnNew='<a href="medicamentosForm.php" class="btn btn-default fancyR" data-type
 			<td>
 				<a href="medicamentosForm.php?ids=<?php echo $ids ?>" class="btn btn-success btn-xs fancyR" data-type="iframe"><i class="fas fa-edit fa-lg"></i> Modificar</a>
 				<?php if($id>1){ ?>
-				<a href="actions.php?ids=<?php echo $ids ?>&acc=<?php echo md5(DELm)?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs"><i class="fas fa-trash fa-lg"></i> Eliminar</a>
+				<a href="actions.php?ids=<?php echo $ids ?>&acc=<?php echo md5('DELm')?>&url=<?php echo $urlc ?>" class="btn btn-danger btn-xs"><i class="fas fa-trash fa-lg"></i> Eliminar</a>
 				<?php } ?>
 			</td>
 		</tr>
