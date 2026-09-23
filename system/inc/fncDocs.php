@@ -41,10 +41,11 @@ function genDocDataChange($field,$dat){
 	return $res;
 }
 
-function genDoc($id_df,$dat=NULL){
-	$resDiag='';
+function genDoc($id_df,$dat=NULL){
+	$resDiag='';
+	$contDE=0;
 	//var_dump($_SESSION[dU]);
-	$dE=detRow('db_empleados','emp_cod',$_SESSION['dU']['u_id']);
+	$dE=detRow('db_empleados','emp_cod',(isset($_SESSION['dU']['u_id']) ? $_SESSION['dU']['u_id'] : NULL));
 	$dat['emp']=$dE;
 	if($dat['con']['con_num']){
 		$qLD=sprintf('SELECT * FROM db_consultas_diagostico WHERE con_num=%s ORDER BY id ASC LIMIT 5',

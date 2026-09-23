@@ -1,1 +1,1 @@
-<i class="icon-user icon-white"></i> <?php echo $_SESSION['dU']; ?>
+<i class="icon-user icon-white"></i> <?php echo (isset($_SESSION['dU']) ? $_SESSION['dU'] : NULL); ?>

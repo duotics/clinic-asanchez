@@ -11,7 +11,7 @@ function startConfigs(){
 	}
 }
 startConfigs();
-$cfg=$_SESSION['conf'];
+$cfg=(isset($_SESSION['conf']) ? $_SESSION['conf'] : NULL);
 date_default_timezone_set('America/Guayaquil');
 setlocale(LC_ALL,"es_ES@euro","es_ES","esp");
 setlocale(LC_ALL,"es_ES");
@@ -21,8 +21,8 @@ $sdatet=date('Y-m-d H:i:s');
 
 $_SESSION['urlp']=$_SESSION['urlc'];
 $_SESSION['urlc']=basename($_SERVER['SCRIPT_FILENAME']);//URL clean Current;
-$urlc=$_SESSION['urlc'];
-$urlp=$_SESSION['urlp'];
+$urlc=(isset($_SESSION['urlc']) ? $_SESSION['urlc'] : NULL);
+$urlp=(isset($_SESSION['urlp']) ? $_SESSION['urlp'] : NULL);
 //TEMA BOOTSTRAP
 if(isset($_SESSION['dU']['u_theme'])) $bsTheme=$_SESSION['dU']['u_theme'];
 else $bsTheme='yeti';

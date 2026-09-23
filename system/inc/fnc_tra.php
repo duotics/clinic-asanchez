@@ -91,8 +91,9 @@ function delRepObs($idr){
 	$det['LOG']=$LOG;
 	return $det;
 }
-function updRepObs($idr,$obt){
-	$LOG='';
+function updRepObs($idr,$obt){
+	$LOG='';
+	$contRows=0;
 	$qryUpdRep=sprintf('UPDATE db_rep_obs SET fechar=%s, fechae=%s, fum=%s, file=%s, est=%s WHERE id=%s',
 	GetSQLValueString($GLOBALS['sdate'],'date'),//recha registro
 	GetSQLValueString($GLOBALS['sdate'],'date'),//recha ecografia
@@ -147,8 +148,9 @@ function updRepEco($idr,$obt){
 	$det['LOG']=$LOG;
 return $det; 
 }
-function insRepObs($idc,$idp,$obt){
-	$LOG='';
+function insRepObs($idc,$idp,$obt){
+	$LOG='';
+	$contRows=0;
 	if($obt['1_FUM']['val']) $obt_FUM=datefRO(clsRO($obt['1_FUM']['val']));
 	$qryInsRep=sprintf('INSERT INTO db_rep_obs (con_num, pac_cod, fechar, fechae, fum, file, est) 
 	VALUES (%s,%s,%s,%s,%s,%s,%s)',
@@ -407,7 +409,7 @@ function AUD($id=NULL,$des=NULL,$eve=NULL){
 			$qry=sprintf('INSERT INTO db_auditoria_detalle (id_aud, user_cod, audd_datet, audd_eve, audd_des) 
 			VALUES (%s,%s,%s,%s,%s)',
 			SSQL($id,'int'),
-			SSQL($_SESSION['dU']['u_id'],'int'),
+			SSQL(isset($_SESSION['dU']['u_id']) ? $_SESSION['dU']['u_id'] : NULL,'int'),
 			SSQL($GLOBALS['sdatet'],'text'),
 			SSQL($eve,'text'),
 			SSQL($des,'text'));
@@ -425,7 +427,7 @@ function AUD($id=NULL,$des=NULL,$eve=NULL){
 		$qryAudDet=sprintf('INSERT INTO db_auditoria_detalle (id_aud, user_cod, audd_datet, audd_eve, audd_des) 
 		VALUES (%s,%s,%s,%s,%s)',
 		SSQL($id_aud,'int'),
-		SSQL($_SESSION['dU']['u_id'],'int'),
+		SSQL(isset($_SESSION['dU']['u_id']) ? $_SESSION['dU']['u_id'] : NULL,'int'),
 		SSQL($GLOBALS['sdatet'],'text'),
 		SSQL($eve,'text'),
 		SSQL($des,'text'));
